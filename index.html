@@ -4,27 +4,26 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="referrer" content="no-referrer">
-<title>来点工具 - 免费工具箱 | AI工具 · 效率软件 · 素材资源</title>
-<meta name="description" content="来点工具（ldgj.xyz）——免费软件、黑科技工具、素材资源一站式下载。小说/音乐/影视/动漫/实用软件/AI专区，持续更新。">
+<title>来点工具 - 免费工具箱 | 软件 · 音乐 · 小说 · 素材资源</title>
+<meta name="description" content="来点工具（ldgj.xyz）——免费软件、黑科技工具、素材资源一站式下载。小说/音乐/影视/动漫/游戏/资料/壁纸/实用软件，持续更新。">
 <style>
-/* ===================== 主题变量 ===================== */
+/* ===================== 主题变量：明亮干净 ===================== */
 :root{
-  --brand:#2a6ff3;            /* 品牌蓝 */
-  --brand-2:#6366f1;          /* 渐变中段 */
-  --brand-3:#8b5cf6;          /* 渐变尾段 */
-  --bg:#f5f7fb;               /* 页面背景 */
-  --card:#ffffff;             /* 卡片 */
-  --border:#e6eaf2;           /* 描边 */
-  --border-hover:#c7d4f5;
-  --text:#17233d;             /* 主文字 */
-  --text-2:#5b6478;           /* 次文字 */
-  --text-3:#9aa3b5;           /* 弱文字 */
-  --radius:16px;
-  --shadow:0 1px 2px rgba(23,35,61,.04),0 4px 16px rgba(23,35,61,.06);
-  --shadow-hover:0 6px 24px rgba(42,111,243,.14);
+  --bg:#f5f6f8;
+  --card:#ffffff;
+  --border:#e8ebf0;
+  --border-2:#dfe3ea;
+  --text:#1a1d24;
+  --text-2:#5b6472;
+  --text-3:#9aa3b2;
+  --primary:#2563eb;
+  --primary-hover:#1d4ed8;
+  --primary-soft:#eff4ff;
+  --radius:12px;
+  --shadow:0 1px 2px rgba(16,24,40,.04),0 2px 8px rgba(16,24,40,.04);
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:96px}
+html{-webkit-text-size-adjust:100%}
 body{
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif;
   background:var(--bg);color:var(--text);line-height:1.6;
@@ -33,464 +32,410 @@ body{
 a{color:inherit;text-decoration:none}
 button{font-family:inherit;cursor:pointer;border:none;background:none}
 
-/* ===================== 顶部导航 ===================== */
-.header{
-  position:sticky;top:0;z-index:100;
-  background:rgba(255,255,255,.82);
-  backdrop-filter:saturate(180%) blur(14px);
-  -webkit-backdrop-filter:saturate(180%) blur(14px);
+.app{display:flex;min-height:100vh}
+
+/* ===================== 左侧边栏 ===================== */
+.sidebar{
+  position:fixed;top:0;left:0;bottom:0;z-index:60;
+  width:264px;background:#fff;border-right:1px solid var(--border);
+  display:flex;flex-direction:column;
+  transform:translateX(-100%);transition:transform .25s ease;
+}
+.app.sidebar-open .sidebar{transform:translateX(0)}
+
+.sidebar-head{padding:18px 20px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-icon{width:38px;height:38px;border-radius:10px;flex:none;background:var(--primary);display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff}
+.brand-name{font-size:17px;font-weight:800;letter-spacing:.5px}
+.brand-domain{font-size:11.5px;color:var(--text-3);font-weight:500}
+
+.sidebar-nav{flex:1;overflow-y:auto;padding:10px 12px}
+.sidebar-nav::-webkit-scrollbar{width:6px}
+.sidebar-nav::-webkit-scrollbar-thumb{background:var(--border-2);border-radius:3px}
+.nav-item{
+  display:flex;align-items:center;gap:11px;width:100%;
+  padding:11px 12px;border-radius:10px;font-size:14.5px;font-weight:500;
+  color:var(--text-2);transition:background .15s,color .15s;text-align:left;
+}
+.nav-item:hover{background:#f2f4f7}
+.nav-item.active{background:var(--primary-soft);color:var(--primary);font-weight:600}
+.nav-icon{width:24px;font-size:18px;flex:none;text-align:center}
+.nav-count{margin-left:auto;font-size:12px;color:var(--text-3);background:#f1f3f6;border-radius:20px;padding:1px 8px}
+.nav-item.active .nav-count{background:#dbe7ff;color:var(--primary)}
+
+.sidebar-foot{padding:12px 20px;border-top:1px solid var(--border)}
+.collapse-btn{width:100%;display:flex;align-items:center;justify-content:center;gap:6px;padding:9px;border-radius:9px;font-size:13px;color:var(--text-2);background:#f5f6f8;transition:background .15s}
+.collapse-btn:hover{background:#eceef2}
+
+/* 遮罩（移动端） */
+.backdrop{position:fixed;inset:0;z-index:55;background:rgba(15,23,42,.42);opacity:0;pointer-events:none;transition:opacity .25s}
+.app.sidebar-open .backdrop{opacity:1;pointer-events:auto}
+
+/* 收起后悬浮展开按钮 */
+.float-expand{
+  position:fixed;left:14px;top:72px;z-index:40;
+  display:none;align-items:center;gap:6px;
+  padding:9px 15px;border-radius:10px;background:#fff;border:1px solid var(--border);
+  box-shadow:0 4px 14px rgba(16,24,40,.1);font-size:13.5px;font-weight:600;color:var(--primary);
+}
+.float-expand:hover{background:#f5f8ff}
+
+/* ===================== 主区域 ===================== */
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+
+.topbar{
+  position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
   border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:12px;padding:0 20px;height:60px;
 }
-.header-inner{max-width:1100px;margin:0 auto;padding:0 20px;display:flex;align-items:center;gap:16px;height:60px}
-.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:.5px;white-space:nowrap}
-.logo-icon{
-  width:36px;height:36px;border-radius:10px;flex:none;
-  background:linear-gradient(135deg,var(--brand),var(--brand-3));
-  display:flex;align-items:center;justify-content:center;font-size:19px;color:#fff;
-  box-shadow:0 3px 10px rgba(42,111,243,.3);
-}
-.logo .domain{font-size:12px;font-weight:600;color:var(--brand);background:rgba(42,111,243,.08);padding:2px 8px;border-radius:20px;margin-left:2px}
-.header-search{flex:1;max-width:320px;margin-left:auto;position:relative}
-.header-search input{
-  width:100%;height:38px;border:1px solid var(--border);border-radius:10px;
-  padding:0 14px 0 38px;font-size:14px;color:var(--text);background:#fff;outline:none;
-  transition:border-color .2s,box-shadow .2s;
-}
-.header-search input:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(42,111,243,.12)}
-.header-search .s-ico{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--text-3);font-size:15px}
+.menu-btn{width:40px;height:40px;border-radius:9px;flex:none;display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--text-2);transition:background .15s}
+.menu-btn:hover{background:#f1f3f6}
+.topbar-title{font-size:16px;font-weight:700;white-space:nowrap}
+.search{flex:1;max-width:360px;margin-left:auto;position:relative}
+.search input{width:100%;height:40px;border:1px solid var(--border);border-radius:10px;padding:0 14px 0 38px;font-size:14px;color:var(--text);background:#fff;outline:none;transition:border-color .15s,box-shadow .15s}
+.search input:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(37,99,235,.12)}
+.search .s-ico{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--text-3);font-size:15px}
 
-/* ===================== 分类快捷导航 ===================== */
-.catnav{border-top:1px solid var(--border);background:rgba(255,255,255,.6)}
-.catnav-inner{max-width:1100px;margin:0 auto;padding:8px 20px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
-.catnav-inner::-webkit-scrollbar{display:none}
-.catnav a{
-  flex:none;padding:6px 14px;border-radius:20px;font-size:13px;color:var(--text-2);
-  background:#fff;border:1px solid var(--border);transition:all .18s;white-space:nowrap;
-}
-.catnav a:hover{border-color:var(--brand);color:var(--brand)}
+.content{padding:24px 28px 60px;max-width:1080px;width:100%}
 
-/* ===================== Hero ===================== */
-.hero{
-  position:relative;overflow:hidden;
-  background:linear-gradient(135deg,#1e4fd8 0%,var(--brand) 32%,var(--brand-2) 68%,var(--brand-3) 100%);
-  color:#fff;text-align:center;padding:56px 20px 64px;
-}
-.hero::after{
-  content:"";position:absolute;inset:0;
-  background:radial-gradient(circle at 18% 20%,rgba(255,255,255,.18),transparent 42%),
-             radial-gradient(circle at 82% 78%,rgba(255,255,255,.14),transparent 40%);
-  pointer-events:none;
-}
-.hero-badge{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);padding:5px 14px;border-radius:20px;margin-bottom:18px}
-.hero h1{font-size:clamp(30px,5vw,46px);font-weight:800;letter-spacing:1px;margin-bottom:10px;position:relative}
-.hero p{font-size:15px;color:rgba(255,255,255,.9);margin-bottom:26px;position:relative}
-.hero-search{max-width:520px;margin:0 auto;position:relative}
-.hero-search input{
-  width:100%;height:54px;border-radius:14px;border:none;padding:0 20px 0 50px;
-  font-size:16px;color:var(--text);outline:none;box-shadow:0 10px 34px rgba(9,24,66,.3);
-}
-.hero-search .s-ico{position:absolute;left:18px;top:50%;transform:translateY(-50%);font-size:18px;color:var(--text-3)}
-.hero-stats{display:flex;justify-content:center;gap:34px;margin-top:28px;position:relative;flex-wrap:wrap}
-.hero-stats .stat{text-align:center}
-.hero-stats .num{font-size:24px;font-weight:800}
-.hero-stats .lbl{font-size:12px;color:rgba(255,255,255,.82)}
+.section-head{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.section-icon{width:44px;height:44px;border-radius:12px;flex:none;font-size:22px;display:flex;align-items:center;justify-content:center}
+.section-title{font-size:22px;font-weight:800}
+.section-count{font-size:13px;color:var(--text-3);font-weight:600;margin-top:2px}
+.section-desc{font-size:13.5px;color:var(--text-3);margin:6px 0 20px 56px}
 
-/* ===================== 提示条 ===================== */
-.tip{max-width:1100px;margin:20px auto 0;padding:0 20px}
-.tip-inner{
-  display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--border);
-  border-radius:12px;padding:12px 16px;font-size:13.5px;color:var(--text-2);box-shadow:var(--shadow);
-}
-.tip-inner b{color:var(--brand)}
-.tip-inner .badge{flex:none;font-size:12px;font-weight:700;color:#fff;background:var(--brand);border-radius:6px;padding:3px 8px}
-
-/* ===================== 主内容 ===================== */
-.main{max-width:1100px;margin:0 auto;padding:0 20px 60px}
-.section{margin-top:44px}
-.section-head{display:flex;align-items:center;gap:12px;margin-bottom:18px}
-.section-icon{
-  width:46px;height:46px;border-radius:13px;flex:none;font-size:24px;
-  display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(135deg,rgba(42,111,243,.1),rgba(139,92,246,.1));
-  border:1px solid rgba(42,111,243,.12);
-}
-.section-head .ttl{font-size:20px;font-weight:800}
-.section-head .cnt{font-size:12.5px;color:var(--text-3);font-weight:600;background:#fff;border:1px solid var(--border);padding:2px 10px;border-radius:20px;margin-top:2px}
-.section-desc{font-size:13.5px;color:var(--text-3);margin:-8px 0 16px 58px}
-
-/* 卡片网格 */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
 .tool{
+  position:relative;overflow:hidden;
   background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
-  padding:18px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:12px;
-  transition:transform .2s,box-shadow .2s,border-color .2s;
+  padding:18px;display:flex;flex-direction:column;gap:12px;
+  box-shadow:var(--shadow);transition:transform .18s,box-shadow .18s,border-color .18s;
 }
-.tool:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover);border-color:var(--border-hover)}
-.tool-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
-.tool-name{font-size:15.5px;font-weight:700;color:var(--text)}
-.tool-tag{flex:none;font-size:11px;font-weight:600;color:#d97706;background:#fef3e2;padding:2px 7px;border-radius:6px}
-.tool-desc{font-size:13px;color:var(--text-2);min-height:20px}
-.tool-links{display:flex;gap:8px;margin-top:auto}
-.btn{
-  flex:1;height:38px;border-radius:9px;font-size:13.5px;font-weight:600;
-  display:flex;align-items:center;justify-content:center;gap:5px;transition:all .18s;white-space:nowrap;
-}
-.btn-primary{background:var(--brand);color:#fff;box-shadow:0 3px 10px rgba(42,111,243,.28)}
-.btn-primary:hover{background:#1e5fd8;transform:translateY(-1px)}
-.btn-ghost{background:#f2f5fb;color:var(--text-2);border:1px solid var(--border)}
-.btn-ghost:hover{border-color:var(--brand);color:var(--brand)}
-.btn:only-child{flex:1}
+.tool:hover{transform:translateY(-2px);box-shadow:0 8px 22px var(--accent-soft);border-color:var(--accent-border)}
+.tool-accent{position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent)}
+.tool-top{display:flex;align-items:flex-start;gap:11px}
+.tool-icon{width:40px;height:40px;border-radius:11px;flex:none;display:flex;align-items:center;justify-content:center;font-size:20px;background:var(--accent-soft)}
+.tool-name{font-size:15px;font-weight:700;line-height:1.35}
+.tool-tag{flex:none;font-size:11px;font-weight:600;color:#d97706;background:#fef3e2;padding:2px 7px;border-radius:6px;margin-left:auto;height:fit-content}
+.tool-desc{font-size:13px;color:var(--text-2)}
+.tool-links{display:flex;gap:10px;margin-top:auto}
+.btn{flex:1;height:40px;border-radius:9px;font-size:13.5px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:5px;transition:background .15s;white-space:nowrap}
+.btn-quark{background:var(--primary);color:#fff}
+.btn-quark:hover{background:var(--primary-hover)}
+.btn-baidu{background:#f2f3f5;color:var(--text-2);border:1px solid var(--border-2)}
+.btn-baidu:hover{background:#e9ebee}
 
-/* AI 专区卡片 */
-.ai{
-  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
-  padding:20px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:12px;
-}
-.ai .ai-top{display:flex;align-items:center;gap:10px}
-.ai .ai-emoji{font-size:26px}
-.ai .ai-name{font-size:15.5px;font-weight:700}
-.ai .ai-desc{font-size:13.5px;color:var(--text-2)}
-.cmd{
-  display:flex;align-items:center;gap:8px;background:#0f172a;color:#cbd5e1;border-radius:9px;
-  padding:9px 12px;font-family:ui-monospace,SFMono-Regular,Consolas,"Courier New",monospace;font-size:12.5px;
-  word-break:break-all;line-height:1.5;
-}
-.cmd code{flex:1}
-.copy-btn{flex:none;font-size:12px;font-weight:600;color:#fff;background:rgba(255,255,255,.12);border-radius:6px;padding:4px 10px;transition:background .15s}
-.copy-btn:hover{background:rgba(255,255,255,.22)}
-.copy-btn.ok{background:#16a34a}
+/* 搜索结果分组 */
+.search-group{margin-bottom:28px}
+.search-group-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.search-group-head .sg-icon{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;background:var(--accent-soft)}
+.search-group-head .sg-name{font-size:16px;font-weight:700}
+.search-group-head .sg-count{font-size:12.5px;color:var(--text-3)}
 
-/* 空分类 */
-.empty{
-  border:1.5px dashed var(--border);border-radius:var(--radius);padding:34px;text-align:center;
-  color:var(--text-3);font-size:14px;background:#fff;
-}
-
-/* 底部 */
-.footer{margin-top:60px;background:#0f172a;color:#94a3b8;padding:44px 20px}
-.footer-inner{max-width:1100px;margin:0 auto;text-align:center}
-.footer-brand{font-size:20px;font-weight:800;color:#fff;margin-bottom:6px}
-.footer-brand .dot{color:var(--brand)}
-.footer .gz{margin:14px 0;font-size:14px}
-.footer .gz b{color:#fff}
-.footer .divider{height:1px;background:rgba(255,255,255,.08);margin:20px 0}
-.footer .disclaimer{font-size:12.5px;line-height:1.9;color:#64748b;max-width:760px;margin:0 auto;text-align:left}
-.footer .mail{margin-top:14px;font-size:13px}
-.footer .mail a{color:#93c5fd}
-.footer .copy{margin-top:18px;font-size:12px;color:#475569}
-
-/* 无结果 */
-.no-result{display:none;text-align:center;padding:40px;color:var(--text-3)}
+.no-result{display:none;text-align:center;padding:48px 20px;color:var(--text-3)}
 .no-result.show{display:block}
 .no-result .big{font-size:40px;margin-bottom:10px}
 
-@media(max-width:640px){
-  .header-inner{height:54px;gap:10px}
-  .logo{font-size:17px}
-  .logo .domain{display:none}
-  .header-search{display:none}
-  .hero{padding:40px 18px 48px}
-  .hero-stats{gap:24px}
-  .section-desc{margin-left:0;margin-top:2px}
-  .grid{grid-template-columns:1fr 1fr;gap:10px}
-  .tool{padding:14px}
-  .tool-desc{min-height:0}
+/* 页脚 */
+.footer{border-top:1px solid var(--border);background:#fff;padding:30px 20px}
+.footer-inner{max-width:1080px;margin:0 auto;text-align:center}
+.footer-brand{font-size:16px;font-weight:800}
+.footer-brand .dot{color:var(--primary)}
+.footer .gz{margin:10px 0;font-size:13.5px;color:var(--text-2)}
+.footer .gz b{color:var(--text)}
+.footer .divider{height:1px;background:var(--border);margin:16px 0}
+.footer .disclaimer{font-size:12px;line-height:1.9;color:var(--text-3);max-width:720px;margin:0 auto;text-align:left}
+.footer .mail{margin-top:12px;font-size:13px;color:var(--text-2)}
+.footer .mail a{color:var(--primary)}
+.footer .copy{margin-top:14px;font-size:12px;color:var(--text-3)}
+
+/* ===================== 响应式 ===================== */
+@media (min-width:768px){
+  .sidebar{position:sticky;transform:none;width:250px;height:100vh;transition:margin-left .25s ease}
+  .app:not(.sidebar-open) .sidebar{margin-left:-250px}
+  .backdrop{display:none}
+  .app:not(.sidebar-open) .float-expand{display:flex}
+}
+@media (min-width:768px) and (max-width:1024px){
+  .content{padding:20px 20px 48px}
+  .grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:767px){
+  .content{padding:18px 14px 48px}
+  .grid{grid-template-columns:1fr}
+  .topbar{padding:0 12px;height:56px}
+  .topbar-title{display:none}
+  .search{max-width:none}
+  .section-desc{margin-left:0;margin-top:4px}
 }
 </style>
 </head>
 <body>
+<div class="app" id="app">
 
-<!-- ============ 顶部导航 ============ -->
-<header class="header">
-  <div class="header-inner">
-    <a class="logo" href="#top">
-      <span class="logo-icon">🧰</span>
-      <span>来点工具<span class="domain">ldgj.xyz</span></span>
-    </a>
-    <div class="header-search">
-      <span class="s-ico">🔍</span>
-      <input id="headerSearch" type="text" placeholder="搜索工具…" autocomplete="off">
+  <div class="backdrop" id="backdrop"></div>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-head">
+      <div class="brand">
+        <span class="brand-icon">🧰</span>
+        <div>
+          <div class="brand-name">来点工具</div>
+          <div class="brand-domain">ldgj.xyz</div>
+        </div>
+      </div>
     </div>
-  </div>
-  <nav class="catnav">
-    <div class="catnav-inner" id="catnav"></div>
-  </nav>
-</header>
+    <nav class="sidebar-nav" id="sidebarNav"></nav>
+    <div class="sidebar-foot">
+      <button class="collapse-btn" id="collapseBtn">« 收起侧栏</button>
+    </div>
+  </aside>
 
-<!-- ============ Hero ============ -->
-<div class="hero" id="top">
-  <span class="hero-badge">⚡ 免费 · 持续更新 · 夸克网盘不限速</span>
-  <h1>来点工具</h1>
-  <p>免费软件 · 黑科技工具 · 素材资源，一站式打包下载</p>
-  <div class="hero-search">
-    <span class="s-ico">🔍</span>
-    <input id="heroSearch" type="text" placeholder="搜小说下载器 / 星盒 / 去水印…" autocomplete="off">
-  </div>
-  <div class="hero-stats">
-    <div class="stat"><div class="num" id="statCat">0</div><div class="lbl">工具分类</div></div>
-    <div class="stat"><div class="num" id="statTool">0</div><div class="lbl">款工具</div></div>
-    <div class="stat"><div class="num">免费</div><div class="lbl">永久无收费</div></div>
+  <button class="float-expand" id="floatExpand">☰ 展开侧栏</button>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="menu-btn" id="menuBtn" aria-label="菜单">☰</button>
+      <div class="topbar-title" id="topbarTitle">来点工具</div>
+      <div class="search">
+        <span class="s-ico">🔍</span>
+        <input id="search" type="text" placeholder="全局搜索工具…" autocomplete="off">
+      </div>
+    </header>
+
+    <main class="content" id="content"></main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <div class="footer-brand">来点工具<span class="dot"> · </span>ldgj.xyz</div>
+        <div class="gz">📢 更多工具 / 失效补链，关注公众号 <b>来点工具</b></div>
+        <div class="divider"></div>
+        <div class="disclaimer">
+          <b style="color:var(--text-2)">免责声明：</b>本工具箱所发布的一切资源（包括黑科技软件工具、素材资源），主要由全网公开资源平台整理而来，仅限用于学习和研究目的，不收取任何费用，请勿用于商业或非法用途，否则一切后果自负。资源版权归原作者所有，如有侵犯到您的权益，请通过邮箱联系我并提供有效证明文件，我会第一时间配合处理。
+        </div>
+        <div class="mail">📮 联系邮箱：<a href="mailto:gg318364167@gmail.com">gg318364167@gmail.com</a></div>
+        <div class="copy">© 2026 来点工具 ldgj.xyz · 免费分享 · 仅供学习研究</div>
+      </div>
+    </footer>
   </div>
 </div>
-
-<!-- ============ 提示条 ============ -->
-<div class="tip">
-  <div class="tip-inner">
-    <span class="badge">下载提示</span>
-    <span>「夸克下载」为夸克网盘，<b>不限速</b>，无会员也推荐；「百度备用」为百度网盘，需会员。</span>
-  </div>
-</div>
-
-<!-- ============ 主内容 ============ -->
-<main class="main" id="content"></main>
-
-<!-- ============ 底部 ============ -->
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-brand">来点工具<span class="dot"> · </span>ldgj.xyz</div>
-    <div class="gz">📢 更多工具 / 失效补链，关注公众号 <b>来点工具</b></div>
-    <div class="divider"></div>
-    <div class="disclaimer">
-      <b style="color:#cbd5e1">免责声明：</b><br>
-      本工具箱所发布的一切资源（包括黑科技软件工具、素材资源），主要由全网公开资源平台整理而来，仅限用于学习和研究目的。<br>
-      本工具箱不收取任何费用，请勿用于商业或非法用途，否则一切后果自负。<br>
-      本工具箱资源版权归原作者所有，如有侵犯到您的权益，请通过邮箱联系我，并提供可证明权益的有效文件，我会第一时间配合处理。
-    </div>
-    <div class="mail">📮 联系邮箱：<a href="mailto:gg318364167@gmail.com">gg318364167@gmail.com</a></div>
-    <div class="copy">© 2026 来点工具 ldgj.xyz · 免费分享 · 仅供学习研究</div>
-  </div>
-</footer>
 
 <script>
 /* =====================================================================
-   数据区：把真实链接粘贴到对应 h:'' 里即可上线
-   - 每个工具的 links 里：
-       { t:'夸克下载', h:'这里粘贴夸克网盘链接' }
-       { t:'百度备用', h:'这里粘贴百度网盘链接' }
-   - 只有一条链接的工具，只写一条即可（自动显示单个按钮）
+   数据区：每个分区带 color(主色) 和 soft(浅色)，quark=夸克，baidu=百度(可省)
+   新增/修改工具直接在这里改
    ===================================================================== */
-const TOOLBOX = [
+const SECTIONS = [
   {
-    id:'novel', icon:'📖', name:'小说区', desc:'免费看小说、下小说，各种书源下载器',
+    id:'novel', icon:'📖', name:'小说区', desc:'免费看小说、下小说', color:'#3b82f6', soft:'#eff6ff',
     tools:[
-      { name:'小说下载器', desc:'全网小说搜索下载，一键导出 TXT/EPUB', links:[{t:'夸克下载',h:''},{t:'百度备用',h:''}] },
-      { name:'番茄小说下载器', desc:'番茄小说资源下载工具', links:[{t:'夸克下载',h:''},{t:'百度备用',h:''}] },
-      { name:'七猫小说下载器', desc:'七猫免费小说下载工具', links:[{t:'夸克下载',h:''},{t:'百度备用',h:''}] },
-      { name:'笔趣阁 5.0', desc:'海量书源，免费在线阅读', links:[{t:'夸克下载',h:''},{t:'百度备用',h:''}] },
-      { name:'开源软件 + 开源书源', desc:'开源阅读软件 + 书源合集', links:[{t:'夸克下载',h:''},{t:'百度备用',h:''}] },
-      { name:'星盒', desc:'多功能聚合神器，小说/音乐/影视一站搞定', links:[{t:'夸克下载',h:''},{t:'百度备用',h:''}] },
-      { name:'摸鱼神器', desc:'电脑端看小说，隐蔽摸鱼', links:[{t:'夸克下载',h:''},{t:'百度备用',h:''}] },
-      { name:'知乎盐选文章提取', desc:'提取知乎盐选文章（需自备会员）', links:[{t:'夸克下载',h:''},{t:'百度备用',h:''}] },
-      { name:'阅读器', desc:'多格式小说阅读器', links:[{t:'下载地址',h:''},{t:'下载地址2',h:''}] },
+      { name:'小说下载器', desc:'全网小说搜索下载，一键导出 TXT/EPUB', quark:'https://pan.quark.cn/s/6c73fb388aea', baidu:'https://pan.baidu.com/s/1SHWmlXxW3FYTBf_2f_yruQ?pwd=i32n' },
+      { name:'番茄小说下载器', desc:'番茄小说资源下载', quark:'https://pan.quark.cn/s/867ce5b0aad5', baidu:'https://pan.baidu.com/s/1Rg_Ffo3vqfSU4EdQVlJPhA?pwd=f46i' },
+      { name:'七猫小说下载器', desc:'七猫免费小说下载', quark:'https://pan.quark.cn/s/a6feae8cc3d1', baidu:'https://pan.baidu.com/s/1IEjRs6QI0SSxz0_8MbAdXw?pwd=paqi' },
+      { name:'笔趣阁 5.0', desc:'海量书源免费阅读', quark:'https://pan.quark.cn/s/efae8b3e1325', baidu:'https://pan.baidu.com/s/1ecJhyMWNgQfw6v5uCt2ySg?pwd=azf3' },
+      { name:'开源软件 + 开源书源', desc:'开源阅读 + 书源合集', quark:'https://pan.quark.cn/s/938c4b40974e', baidu:'https://pan.baidu.com/s/169DT7lXgr0DLeB8pkTWUyQ?pwd=e0m5' },
+      { name:'星盒', desc:'多功能聚合神器（小说/音乐/影视/动漫）', quark:'https://pan.quark.cn/s/7fc3a192ddc2', baidu:'https://pan.baidu.com/s/18Des_vBGkeHMCgBgans8Tw?pwd=j5q4' },
+      { name:'摸鱼神器', desc:'电脑端看小说，隐蔽摸鱼', quark:'https://pan.quark.cn/s/33a420bf77d2', baidu:'https://pan.baidu.com/s/1iSVaAHf-_udfr1SGlIp82g?pwd=rscq' },
+      { name:'知乎盐选文章提取', desc:'提取知乎盐选文章（需自备会员）', quark:'https://pan.quark.cn/s/22496116e151' },
     ]
   },
   {
-    id:'music', icon:'🎵', name:'音乐区', desc:'免费听歌、下歌',
+    id:'music', icon:'🎵', name:'音乐区', desc:'免费听歌、下歌', color:'#8b5cf6', soft:'#f5f3ff',
     tools:[
-      { name:'敦伦调调', desc:'全网音乐免费听 / 下载', links:[{t:'夸克下载',h:''},{t:'百度备用',h:''}] },
-      { name:'星盒', desc:'聚合音乐资源神器', links:[{t:'夸克下载',h:''},{t:'百度备用',h:''}] },
-      { name:'zpod', desc:'播客 / 音乐播放器', links:[{t:'夸克下载',h:''},{t:'百度备用',h:''}] },
-      { name:'星音乐', desc:'免费音乐播放与下载', links:[{t:'夸克下载',h:''},{t:'百度备用',h:''}] },
-      { name:'莫比音乐', desc:'高品质音乐平台（收费）', tag:'收费', links:[{t:'夸克下载',h:''},{t:'百度备用',h:''}] },
-      { name:'四分贝音乐', desc:'免费音乐', links:[{t:'夸克下载',h:''},{t:'百度备用',h:''}] },
-      { name:'米兔音乐', desc:'免费音乐', links:[{t:'夸克下载',h:''},{t:'百度备用',h:''}] },
-      { name:'发现你的音乐', desc:'网页端在线音乐推荐（无需下载）', links:[{t:'点击直达',h:''}] },
+      { name:'敦伦调调', desc:'全网音乐免费听 / 下载', quark:'https://pan.quark.cn/s/21d0a48a9ee9', baidu:'https://pan.baidu.com/s/1ObfiNgOTdDpkxcEVFZZ4kA?pwd=3dcd' },
+      { name:'星盒', desc:'聚合音乐资源神器', quark:'https://pan.quark.cn/s/7fc3a192ddc2', baidu:'https://pan.baidu.com/s/1cs_YNcijpn15Gx6CK-lNqA?pwd=3w3y' },
+      { name:'zpod', desc:'播客 / 音乐播放器', quark:'https://pan.quark.cn/s/8e670e877201', baidu:'https://pan.baidu.com/s/1k8lnZ3KKz7eVV-yTLovZlQ?pwd=4if2' },
+      { name:'星音乐', desc:'免费音乐播放与下载', quark:'https://pan.quark.cn/s/42f30fcaeea5', baidu:'https://pan.baidu.com/s/1KcaQEt15ZQTOoXMiTHucxg?pwd=ck1c' },
+      { name:'莫比音乐', desc:'高品质音乐平台（收费）', tag:'收费', quark:'https://pan.quark.cn/s/f70a57a9420a', baidu:'https://pan.baidu.com/s/1___-VnWKyPtabXOOupRi2Q?pwd=rsc8' },
+      { name:'四分贝音乐', desc:'免费音乐', quark:'https://pan.quark.cn/s/2343ef0fa98', baidu:'https://pan.baidu.com/s/1J_8b-pnAKg9qLcuP5ULrxw?pwd=4a38' },
+      { name:'米兔音乐', desc:'免费音乐', quark:'https://pan.quark.cn/s/724b9a1e77cf', baidu:'https://pan.baidu.com/s/1_hEL82wFT2481t8gvmzAog?pwd=jjam' },
     ]
   },
   {
-    id:'video', icon:'🎬', name:'影视区', desc:'聚合影视资源',
+    id:'video', icon:'🎬', name:'影视区', desc:'聚合影视资源', color:'#ef4444', soft:'#fef2f2',
     tools:[
-      { name:'星盒', desc:'聚合影视资源，看电影追剧', links:[{t:'夸克下载',h:''}] },
+      { name:'星盒', desc:'聚合影视资源，看电影追剧', quark:'https://pan.quark.cn/s/7fc3a192ddc2', baidu:'https://pan.baidu.com/s/18Des_vBGkeHMCgBgans8Tw?pwd=j5q4' },
     ]
   },
   {
-    id:'anime', icon:'🎨', name:'动漫 / 漫画区', desc:'动漫、漫画资源',
+    id:'anime', icon:'🎨', name:'动漫 / 漫画区', desc:'动漫、漫画资源', color:'#f97316', soft:'#fff7ed',
     tools:[
-      { name:'星盒', desc:'聚合动漫 / 漫画资源', links:[{t:'夸克下载',h:''}] },
-      { name:'venera_1.4.6', desc:'漫画阅读器', links:[{t:'夸克下载',h:''}] },
+      { name:'星盒', desc:'聚合动漫 / 漫画资源', quark:'https://pan.quark.cn/s/7fc3a192ddc2', baidu:'https://pan.baidu.com/s/10DAk0iXqSrakMpqFVVUdJw?pwd=6w0m' },
+      { name:'venera_1.4.6', desc:'漫画阅读器', quark:'https://pan.quark.cn/s/ca0afa3bf4b0', baidu:'https://pan.baidu.com/s/1J_O7CFwJEgtow6ibGD_9qA?pwd=ai9w' },
     ]
   },
   {
-    id:'tutorial', icon:'📚', name:'教程区', desc:'使用教程，持续更新中', tools:[] },
-  {
-    id:'game', icon:'🎮', name:'游戏区', desc:'童年经典游戏合集',
+    id:'game', icon:'🎮', name:'游戏区', desc:'童年经典游戏合集', color:'#22c55e', soft:'#f0fdf4',
     tools:[
-      { name:'115款童年经典街机游戏', desc:'童年街机游戏大合集，一键怀旧', links:[{t:'夸克下载',h:''}] },
+      { name:'115款童年经典街机游戏', desc:'童年街机游戏大合集，一键怀旧', quark:'https://pan.quark.cn/s/5f081f6ffff0' },
     ]
   },
   {
-    id:'data', icon:'📂', name:'资料区', desc:'干货资料合集',
+    id:'data', icon:'📂', name:'资料区', desc:'干货资料合集', color:'#14b8a6', soft:'#f0fdfa',
     tools:[
-      { name:'自媒体人必备', desc:'自媒体运营干货资料包', links:[{t:'夸克下载',h:''}] },
-      { name:'中国各省旅游攻略', desc:'全国各省旅游攻略合集', links:[{t:'夸克下载',h:''}] },
+      { name:'自媒体人必备', desc:'自媒体运营干货资料包', quark:'https://pan.quark.cn/s/12d673d50af9' },
+      { name:'中国各省旅游攻略', desc:'全国各省旅游攻略合集', quark:'https://pan.quark.cn/s/a7bd03521366' },
     ]
   },
   {
-    id:'wallpaper', icon:'🖼️', name:'壁纸区', desc:'高清壁纸合集',
+    id:'wallpaper', icon:'🖼️', name:'壁纸区', desc:'高清壁纸合集', color:'#ec4899', soft:'#fdf2f8',
     tools:[
-      { name:'超级齐全的壁纸合集', desc:'海量高清壁纸打包下载', links:[{t:'夸克下载',h:''}] },
+      { name:'超级齐全的壁纸合集', desc:'海量高清壁纸打包下载', quark:'https://pan.quark.cn/s/3ebe11700a02' },
     ]
   },
   {
-    id:'software', icon:'🛠️', name:'实用软件区', desc:'效率工具、黑科技软件',
+    id:'software', icon:'🛠️', name:'实用软件区', desc:'效率工具、黑科技软件', color:'#6366f1', soft:'#eef2ff',
     tools:[
-      { name:'李跳跳', desc:'跳过 App 开屏广告', links:[{t:'夸克下载',h:''}] },
-      { name:'电脑录屏软件', desc:'屏幕录制工具', links:[{t:'夸克下载',h:''}] },
-      { name:'电脑截图软件', desc:'截图工具', links:[{t:'夸克下载',h:''}] },
-      { name:'极限投屏', desc:'手机电脑无线互投', links:[{t:'夸克下载',h:''}] },
-      { name:'带壳截图', desc:'给截图加手机壳效果', links:[{t:'夸克下载',h:''}] },
-      { name:'非剪', desc:'视频剪辑工具', links:[{t:'夸克下载',h:''}] },
-      { name:'豆包去水印', desc:'图片 + 视频去水印', links:[{t:'夸克下载',h:''}] },
-      { name:'卸载软件', desc:'强力卸载，清理残留', links:[{t:'夸克下载',h:''}] },
-      { name:'批量下载抖音视频插件', desc:'抖音视频批量下载', links:[{t:'夸克下载',h:''}] },
-      { name:'公众号文章下载器', desc:'下载公众号文章', links:[{t:'夸克下载',h:''}] },
-      { name:'qq音乐转MP3格式', desc:'音乐格式转换', links:[{t:'夸克下载',h:''}] },
-      { name:'刷圈兔', desc:'朋友圈工具', links:[{t:'夸克下载',h:''}] },
-      { name:'WPS会员版本', desc:'WPS Office 会员版', links:[{t:'夸克下载',h:''}] },
-      { name:'飞鼠格式转换助手', desc:'音视频 / 文档格式转换', links:[{t:'夸克下载',h:''}] },
-      { name:'AI视频无痕去字幕', desc:'AI 去除视频字幕', links:[{t:'夸克下载',h:''}] },
-      { name:'QQ空间恢复软件', desc:'QQ 空间数据恢复', links:[{t:'夸克下载',h:''}] },
-      { name:'Win自动更新关闭工具', desc:'关闭 Windows 自动更新', links:[{t:'夸克下载',h:''}] },
+      { name:'李跳跳', desc:'跳过 App 开屏广告', quark:'https://pan.quark.cn/s/b12c4e900948', baidu:'https://pan.baidu.com/s/1_3tevGSdkFjLL3UXcYwRkA?pwd=jr1q' },
+      { name:'电脑录屏软件', desc:'屏幕录制', quark:'https://pan.quark.cn/s/d4a4b3d25c3f', baidu:'https://pan.baidu.com/s/1xlJOaxI7NSdo82h87BrR9w?pwd=6yg4' },
+      { name:'电脑截图软件', desc:'截图工具', quark:'https://pan.quark.cn/s/755242ca07b3', baidu:'https://pan.baidu.com/s/11rrM9pdPKr7baQi1wInaMg?pwd=arhn' },
+      { name:'极限投屏', desc:'手机电脑无线互投', quark:'https://pan.quark.cn/s/c63e905b0bb4', baidu:'https://pan.baidu.com/s/1GfuV0rHaoTaK77CZz8os3A?pwd=anb2' },
+      { name:'带壳截图', desc:'给截图加手机壳效果', quark:'https://pan.quark.cn/s/74e3ddac7600', baidu:'https://pan.baidu.com/s/17Fx9y01I-d7T-ZVZNTR6jw?pwd=uumt' },
+      { name:'非剪', desc:'视频剪辑', quark:'https://pan.quark.cn/s/54d85a05c3d0', baidu:'https://pan.baidu.com/s/1MsyTlVlobPxdq2K_XGe0Wg?pwd=ppar' },
+      { name:'豆包去水印', desc:'图片 + 视频去水印', quark:'https://pan.quark.cn/s/f6af0a41f370', baidu:'https://pan.baidu.com/s/1qNyFeZoUDKtg3-DiGX7wGg?pwd=3heb' },
+      { name:'卸载软件', desc:'强力卸载，清理残留', quark:'https://pan.quark.cn/s/d5fd8dcd78fc', baidu:'https://pan.baidu.com/s/1ysTcO4Y-cxprVhawrXDC8w?pwd=ccsc' },
+      { name:'批量下载抖音视频插件', desc:'抖音视频批量下载', quark:'https://pan.quark.cn/s/1c0c61aca758', baidu:'https://pan.baidu.com/s/1G5_CW63FDj9ZHHWdXmz6pA?pwd=wu75' },
+      { name:'公众号文章下载器', desc:'下载公众号文章', quark:'https://pan.quark.cn/s/2101a43cc4d1', baidu:'https://pan.baidu.com/s/1t-ogHr3RgaiE-x3w_06t1A?pwd=u5nx' },
+      { name:'qq音乐转MP3格式', desc:'音乐格式转换', quark:'https://pan.quark.cn/s/809f293713a7', baidu:'https://pan.baidu.com/s/1XMShkHb3ak2i5a1VLODzjw?pwd=dwns' },
+      { name:'刷圈兔', desc:'朋友圈工具', quark:'https://pan.quark.cn/s/9c65f279682a', baidu:'https://pan.baidu.com/s/1xR-hreaSPe3xM4eu1b7thg?pwd=ezy3' },
+      { name:'WPS会员版本', desc:'WPS Office 会员版', quark:'https://pan.quark.cn/s/c82f17805ea3', baidu:'https://pan.baidu.com/s/1_OjqOiqSttR2_MAZbXRDQw?pwd=6isy' },
+      { name:'飞鼠格式转换助手', desc:'音视频 / 文档格式转换', quark:'https://pan.quark.cn/s/54d36d2d91dd', baidu:'https://pan.baidu.com/s/1g-EPPoxSKZJQIuzRqfdXvA?pwd=61xj' },
+      { name:'AI视频无痕去字幕', desc:'AI 去除视频字幕', quark:'https://pan.quark.cn/s/4059abee799d', baidu:'https://pan.baidu.com/s/1GdsTfpiBIgbrwP0y35Zk2A?pwd=7p7v' },
+      { name:'QQ空间恢复软件', desc:'QQ 空间数据恢复', quark:'https://pan.quark.cn/s/fbc7d2f4e05c', baidu:'https://pan.baidu.com/s/1IZRzK4VsDpzJKcuAK4YeQQ?pwd=44ka' },
+      { name:'Win自动更新关闭工具', desc:'关闭 Windows 自动更新', quark:'https://pan.quark.cn/s/a66636a1bc90', baidu:'https://pan.baidu.com/s/18PwazXQO1lrhh_GtQaX4ow?pwd=q4sy' },
     ]
   },
 ];
 
-/* AI 专区：不是下载，是 skill / 工具说明，单独渲染 */
-const AI_SECTION = {
-  id:'ai', icon:'🤖', name:'AI 专区', desc:'AI 提效 skill 与工具',
-  items:[
-    { emoji:'☁️', name:'夸克网盘 skill', desc:'夸克网盘 AI 助手 skill（实测不如手动来得快，静待优化……）' },
-    { emoji:'⚡', name:'淬火学习 skill', desc:'号称能让学习速度提升 10 倍的 skill。它不是让你「学得更快」，而是让你只学该学的、学完真会了、会的不用再学。', cmd:'npx -y skills add Biancuihuo/cuihuo-skills -g --all' },
-  ]
-};
-
 /* ===================== 渲染 ===================== */
-const main = document.getElementById('content');
-const catnav = document.getElementById('catnav');
+const app = document.getElementById('app');
+const sidebarNav = document.getElementById('sidebarNav');
+const content = document.getElementById('content');
+const topbarTitle = document.getElementById('topbarTitle');
+const searchInput = document.getElementById('search');
+let currentId = SECTIONS[0].id;
 
 function renderNav(){
-  catnav.innerHTML = TOOLBOX.map(c => `<a href="#${c.id}">${c.icon} ${c.name}</a>`).join('')
-    + `<a href="#${AI_SECTION.id}">${AI_SECTION.icon} ${AI_SECTION.name}</a>`;
+  sidebarNav.innerHTML = SECTIONS.map(s => `
+    <button class="nav-item" data-id="${s.id}">
+      <span class="nav-icon">${s.icon}</span>
+      <span>${s.name}</span>
+      <span class="nav-count">${s.tools.length}</span>
+    </button>`).join('');
 }
 
-function linkBtn(l, i){
-  const href = l.h || '#';
-  const title = l.h ? '' : 'title="链接待补充"';
-  const cls = i === 0 ? 'btn btn-primary' : 'btn btn-ghost';
-  return `<a class="${cls}" href="${href}" target="_blank" rel="noopener" ${title}>${i===0?'⬇️ ':''}${l.t}</a>`;
-}
-
-function renderTool(t){
+function toolCard(t, s){
   const tag = t.tag ? `<span class="tool-tag">${t.tag}</span>` : '';
-  return `<div class="tool" data-name="${t.name}" data-desc="${t.desc}">
-    <div class="tool-top"><div class="tool-name">${t.name}</div>${tag}</div>
+  const baidu = t.baidu
+    ? `<a class="btn btn-baidu" href="${t.baidu}" target="_blank" rel="noopener">百度备用</a>`
+    : '';
+  return `<div class="tool" style="--accent:${s.color};--accent-soft:${s.soft};--accent-border:${s.color}55">
+    <div class="tool-accent"></div>
+    <div class="tool-top">
+      <span class="tool-icon">${s.icon}</span>
+      <span class="tool-name">${t.name}</span>
+      ${tag}
+    </div>
     <div class="tool-desc">${t.desc}</div>
-    <div class="tool-links">${t.links.map(linkBtn).join('')}</div>
+    <div class="tool-links">
+      <a class="btn btn-quark" href="${t.quark}" target="_blank" rel="noopener">⬇ 夸克下载</a>
+      ${baidu}
+    </div>
   </div>`;
 }
 
-function renderSection(s){
-  const cnt = s.tools.length;
-  let body;
-  if (cnt === 0){
-    body = `<div class="empty">🚧 本分类内容整理中，持续更新……</div>`;
-  } else {
-    body = `<div class="grid">${s.tools.map(renderTool).join('')}</div>`;
-  }
-  return `<section class="section" id="${s.id}" data-cat="${s.name}">
+function renderGrid(list, s){
+  if (!list.length) return `<div class="no-result show"><div class="big">🔍</div>没有匹配的工具</div>`;
+  return `<div class="grid">${list.map(t => toolCard(t, s)).join('')}</div>`;
+}
+
+function setActiveNav(id){
+  document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.id === id));
+}
+
+function renderSection(id){
+  const s = SECTIONS.find(x => x.id === id);
+  topbarTitle.textContent = s.name;
+  setActiveNav(id);
+  content.innerHTML = `
     <div class="section-head">
-      <div class="section-icon">${s.icon}</div>
-      <div class="ttl">${s.name}</div>
-      ${cnt ? `<span class="cnt">${cnt} 款</span>` : ''}
+      <div class="section-icon" style="background:${s.soft}">${s.icon}</div>
+      <div>
+        <div class="section-title">${s.name}</div>
+        <div class="section-count">共 ${s.tools.length} 款工具</div>
+      </div>
     </div>
-    ${s.desc ? `<div class="section-desc">${s.desc}</div>` : ''}
-    ${body}
-  </section>`;
+    <div class="section-desc">${s.desc}</div>
+    ${renderGrid(s.tools, s)}`;
 }
 
-function renderAI(){
-  const cards = AI_SECTION.items.map(it => {
-    const cmd = it.cmd
-      ? `<div class="cmd"><code>${it.cmd}</code><button class="copy-btn" data-cmd="${it.cmd}">复制</button></div>`
-      : '';
-    return `<div class="ai" data-name="${it.name}" data-desc="${it.desc}${it.cmd||''}">
-      <div class="ai-top"><div class="ai-emoji">${it.emoji}</div><div class="ai-name">${it.name}</div></div>
-      <div class="ai-desc">${it.desc}</div>
-      ${cmd}
-    </div>`;
-  }).join('');
-  return `<section class="section" id="${AI_SECTION.id}" data-cat="${AI_SECTION.name}">
-    <div class="section-head">
-      <div class="section-icon">${AI_SECTION.icon}</div>
-      <div class="ttl">${AI_SECTION.name}</div>
-      <span class="cnt">${AI_SECTION.items.length} 款</span>
-    </div>
-    ${AI_SECTION.desc ? `<div class="section-desc">${AI_SECTION.desc}</div>` : ''}
-    <div class="grid">${cards}</div>
-  </section>`;
-}
-
-function renderAll(){
-  main.innerHTML = TOOLBOX.map(renderSection).join('') + renderAI() + `
-    <div class="no-result" id="noResult"><div class="big">🔍</div>没有找到相关工具，换个关键词试试</div>`;
-  renderNav();
-
-  // 统计
-  const totalTools = TOOLBOX.reduce((n,s) => n + s.tools.length, 0) + AI_SECTION.items.length;
-  document.getElementById('statCat').textContent = TOOLBOX.length + 1;
-  document.getElementById('statTool').textContent = totalTools;
-}
-
-/* ===================== 搜索过滤 ===================== */
-function doSearch(q){
-  q = q.trim().toLowerCase();
-  const sections = main.querySelectorAll('.section');
-  let visible = 0;
-  sections.forEach(sec => {
-    let hits = 0;
-    sec.querySelectorAll('.tool,.ai').forEach(el => {
-      const hay = (el.dataset.name + ' ' + el.dataset.desc).toLowerCase();
-      const ok = !q || hay.includes(q);
-      el.style.display = ok ? '' : 'none';
-      if (ok) hits++;
-    });
-    // 分类名也参与匹配（含 q 时显示整个分类）
-    const catHit = sec.dataset.cat.toLowerCase().includes(q);
-    if (catHit && q) sec.querySelectorAll('.tool,.ai').forEach(el => el.style.display = '');
-    const show = hits > 0 || catHit;
-    sec.style.display = show ? '' : 'none';
-    if (show) visible++;
+function renderSearch(q){
+  topbarTitle.textContent = '搜索结果';
+  setActiveNav('');
+  const groups = [];
+  SECTIONS.forEach(s => {
+    const nameHit = s.name.toLowerCase().includes(q);
+    const matched = nameHit ? s.tools : s.tools.filter(t => (t.name + t.desc).toLowerCase().includes(q));
+    if (matched.length) groups.push({ s, tools: matched });
   });
-  document.getElementById('noResult').classList.toggle('show', visible === 0);
+  if (!groups.length){
+    content.innerHTML = `<div class="no-result show"><div class="big">🔍</div>没有找到「${searchInput.value.trim()}」相关工具</div>`;
+    return;
+  }
+  content.innerHTML = groups.map(g => `
+    <div class="search-group">
+      <div class="search-group-head">
+        <span class="sg-icon" style="background:${g.s.soft}">${g.s.icon}</span>
+        <span class="sg-name">${g.s.name}</span>
+        <span class="sg-count">${g.tools.length} 款</span>
+      </div>
+      ${renderGrid(g.tools, g.s)}
+    </div>`).join('');
 }
 
-document.getElementById('heroSearch').addEventListener('input', e => {
-  document.getElementById('headerSearch').value = e.target.value;
-  doSearch(e.target.value);
-});
-document.getElementById('headerSearch').addEventListener('input', e => {
-  document.getElementById('heroSearch').value = e.target.value;
-  doSearch(e.target.value);
-});
-
-/* ===================== 复制指令 ===================== */
-main.addEventListener('click', e => {
-  const btn = e.target.closest('.copy-btn');
+/* ===================== 交互 ===================== */
+sidebarNav.addEventListener('click', e => {
+  const btn = e.target.closest('.nav-item');
   if (!btn) return;
-  const cmd = btn.dataset.cmd;
-  const done = () => { btn.textContent = '已复制 ✓'; btn.classList.add('ok'); setTimeout(()=>{ btn.textContent='复制'; btn.classList.remove('ok'); }, 1500); };
-  if (navigator.clipboard && navigator.clipboard.writeText){
-    navigator.clipboard.writeText(cmd).then(done).catch(() => fallbackCopy(cmd, done));
-  } else fallbackCopy(cmd, done);
+  currentId = btn.dataset.id;
+  searchInput.value = '';
+  renderSection(currentId);
+  if (window.innerWidth < 768) closeSidebar();
 });
-function fallbackCopy(text, done){
-  const ta = document.createElement('textarea');
-  ta.value = text; document.body.appendChild(ta); ta.select();
-  try { document.execCommand('copy'); done(); } catch(e){}
-  document.body.removeChild(ta);
-}
 
-renderAll();
+// 全局搜索
+searchInput.addEventListener('input', () => {
+  const q = searchInput.value.trim().toLowerCase();
+  if (q) renderSearch(q);
+  else renderSection(currentId);
+});
+
+// 侧栏开关
+const menuBtn = document.getElementById('menuBtn');
+const collapseBtn = document.getElementById('collapseBtn');
+const floatExpand = document.getElementById('floatExpand');
+const backdrop = document.getElementById('backdrop');
+function openSidebar(){ app.classList.add('sidebar-open'); }
+function closeSidebar(){ app.classList.remove('sidebar-open'); }
+menuBtn.addEventListener('click', () => app.classList.toggle('sidebar-open'));
+collapseBtn.addEventListener('click', closeSidebar);
+floatExpand.addEventListener('click', openSidebar);
+backdrop.addEventListener('click', closeSidebar);
+
+// 初始状态 + 跨断点时重置
+let isDesktop = window.innerWidth >= 768;
+if (isDesktop) openSidebar(); else closeSidebar();
+window.addEventListener('resize', () => {
+  const nowDesktop = window.innerWidth >= 768;
+  if (nowDesktop !== isDesktop){
+    isDesktop = nowDesktop;
+    if (nowDesktop) openSidebar(); else closeSidebar();
+  }
+});
+
+renderNav();
+renderSection(currentId);
 </script>
 </body>
 </html>
