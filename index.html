@@ -92,6 +92,12 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .btn-baidu{background:#f2f3f5;color:var(--text-2);border:1px solid var(--border-2)}
 .btn-baidu:hover{background:#e9ebee}
 
+/* AI 指令卡片 */
+.cmd-row{display:flex;align-items:center;gap:8px;background:#0f172a;color:#cbd5e1;border-radius:8px;padding:8px 10px;font-size:12px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
+.cmd-row code{flex:1;word-break:break-all;line-height:1.5}
+.btn-copy{height:28px;padding:0 10px;border-radius:6px;font-size:12px;font-weight:600;background:rgba(255,255,255,.14);color:#fff;white-space:nowrap;transition:background .15s}
+.btn-copy:hover{background:rgba(255,255,255,.24)}
+
 /* 分页 */
 .pagination{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:26px;flex-wrap:wrap}
 .page-btn{min-width:36px;height:36px;padding:0 12px;border-radius:9px;font-size:13.5px;font-weight:600;color:var(--text-2);background:#fff;border:1px solid var(--border);transition:all .15s}
@@ -141,11 +147,11 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 @media (max-width:767px){
   .site-header{padding:10px 14px}
   .brand-domain{display:none}
-  .tabbar-inner{padding:8px 14px}
+  .tabbar-inner{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;padding:8px 14px}
+  .tab{width:100%;justify-content:center}
   .content{padding:18px 14px 48px}
   .grid{grid-template-columns:1fr}
   .search{max-width:none}
-  .section-desc{margin-left:0;margin-top:4px}
 }
 </style>
 </head>
@@ -277,6 +283,13 @@ const SECTIONS = [
       { name:'Win自动更新关闭工具', desc:'关闭 Windows 自动更新', quark:'https://pan.quark.cn/s/a66636a1bc90', baidu:'https://pan.baidu.com/s/18PwazXQO1lrhh_GtQaX4ow?pwd=q4sy' },
     ]
   },
+  {
+    id:'ai', icon:'🤖', name:'AI专区', desc:'AI 提效 skill', color:'#0ea5e9', soft:'#f0f9ff',
+    tools:[
+      { name:'夸克网盘 skill', desc:'夸克网盘 AI 助手 skill（实测不如手动来得快，静待优化）' },
+      { name:'淬火学习 skill', desc:'号称能让学习速度提升 10 倍的 skill，不是让你学得更快，而是只学该学的、学完真会了', cmd:'npx -y skills add Biancuihuo/cuihuo-skills -g --all' },
+    ]
+  },
 ];
 
 const PAGE_SIZE = 10;
@@ -299,12 +312,23 @@ function renderTabs(){
 
 function toolCard(t, s){
   const tag = t.tag ? `<span class="tool-tag">${t.tag}</span>` : '';
-  const baidu = t.baidu
-    ? `<a class="btn btn-baidu" href="${t.baidu}" target="_blank" rel="noopener">备用下载</a>`
-    : '';
   const icon = t.img
     ? `<img class="tool-icon tool-img" src="${t.img}" alt="${t.name}" loading="lazy">`
     : `<span class="tool-icon">${s.icon}</span>`;
+
+  let action = '';
+  if (t.cmd){
+    action = `<div class="cmd-row"><code>${t.cmd}</code><button class="btn-copy" data-cmd="${t.cmd}">复制</button></div>`;
+  } else if (t.quark){
+    const baidu = t.baidu
+      ? `<a class="btn btn-baidu" href="${t.baidu}" target="_blank" rel="noopener">备用下载</a>`
+      : '';
+    action = `<div class="tool-btns">
+      <a class="btn btn-quark" href="${t.quark}" target="_blank" rel="noopener">点击下载</a>
+      ${baidu}
+    </div>`;
+  }
+
   return `<div class="tool" style="--accent:${s.color};--accent-soft:${s.soft};--accent-border:${s.color}55">
     <div class="tool-accent"></div>
     <div class="tool-head">
@@ -313,10 +337,7 @@ function toolCard(t, s){
       ${tag}
     </div>
     <div class="tool-desc">${t.desc}</div>
-    <div class="tool-btns">
-      <a class="btn btn-quark" href="${t.quark}" target="_blank" rel="noopener">点击下载</a>
-      ${baidu}
-    </div>
+    ${action}
   </div>`;
 }
 
@@ -354,17 +375,7 @@ function renderSection(id, page=1){
   const start = (currentPage - 1) * PAGE_SIZE;
   const list = s.tools.slice(start, start + PAGE_SIZE);
   setActiveTab(id);
-  content.innerHTML = `
-    <div class="section-head">
-      <div class="section-icon" style="background:${s.soft}">${s.icon}</div>
-      <div>
-        <div class="section-title">${s.name}</div>
-        <div class="section-count">共 ${s.tools.length} 款工具</div>
-      </div>
-    </div>
-    <div class="section-desc">${s.desc}</div>
-    ${renderGrid(list, s)}
-    ${paginationHTML(totalPages, currentPage)}`;
+  content.innerHTML = `${renderGrid(list, s)}${paginationHTML(totalPages, currentPage)}`;
 }
 
 function renderSearch(q){
@@ -399,12 +410,29 @@ tabbar.addEventListener('click', e => {
   renderSection(btn.dataset.id, 1);
 });
 
-// 分页点击
+// 分页点击 + 复制指令
 content.addEventListener('click', e => {
-  const btn = e.target.closest('.page-btn');
-  if (!btn || btn.disabled) return;
-  renderSection(currentId, parseInt(btn.dataset.page, 10));
+  const pageBtn = e.target.closest('.page-btn');
+  if (pageBtn && !pageBtn.disabled){
+    renderSection(currentId, parseInt(pageBtn.dataset.page, 10));
+    return;
+  }
+  const copyBtn = e.target.closest('.btn-copy');
+  if (copyBtn){
+    const cmd = copyBtn.dataset.cmd;
+    const done = () => { copyBtn.textContent = '已复制'; setTimeout(() => copyBtn.textContent = '复制', 1500); };
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(cmd).then(done).catch(() => fallbackCopy(cmd, done));
+    } else fallbackCopy(cmd, done);
+  }
 });
+
+function fallbackCopy(text, done){
+  const ta = document.createElement('textarea');
+  ta.value = text; document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); done(); } catch(e){}
+  document.body.removeChild(ta);
+}
 
 // 全局搜索
 searchInput.addEventListener('input', () => {
