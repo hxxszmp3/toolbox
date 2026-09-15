@@ -64,12 +64,12 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
 .tool{
   position:relative;overflow:hidden;
-  background:var(--card);border:1px solid var(--border-2);border-radius:var(--radius);
+  background:var(--card);border:1.5px solid var(--accent-border);border-radius:var(--radius);
   padding:16px;display:flex;flex-direction:column;gap:10px;
   box-shadow:0 1px 3px rgba(16,24,40,.06),0 4px 14px rgba(16,24,40,.06);
   transition:transform .18s,box-shadow .18s,border-color .18s;
 }
-.tool:hover{transform:translateY(-2px);box-shadow:0 10px 26px var(--accent-soft);border-color:var(--accent-border)}
+.tool:hover{transform:translateY(-2px);box-shadow:0 10px 26px var(--accent-soft);border-color:var(--accent)}
 .tool-accent{position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent)}
 .tool-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .tool-icon{width:40px;height:40px;border-radius:10px;flex:none;display:flex;align-items:center;justify-content:center;font-size:21px;background:var(--accent-soft)}
@@ -327,7 +327,7 @@ function toolCard(t, s){
     </div>`;
   }
 
-  return `<div class="tool" style="--accent:${s.color};--accent-soft:${s.soft};--accent-border:${s.color}55">
+  return `<div class="tool" style="--accent:${s.color};--accent-soft:${s.soft};--accent-border:${s.color}99">
     <div class="tool-accent"></div>
     <div class="tool-head">
       ${icon}
