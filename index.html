@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="referrer" content="no-referrer">
 <title>来点工具 - 免费工具箱 | 软件 · 音乐 · 小说 · 素材资源</title>
-<meta name="description" content="来点工具（ldgj.xyz）——免费软件、黑科技工具、素材资源一站式下载。小说/音乐/影视/动漫/漫画/游戏/资料/壁纸/实用软件，持续更新。">
+<meta name="description" content="来点工具（ldgj.xyz）——免费软件、黑科技工具、素材资源一站式下载。小说/音乐/影视/动漫/漫画/游戏/资料/壁纸/实用软件/AI，持续更新。">
 <style>
 /* ===================== 主题变量：明亮干净 ===================== */
 :root{
@@ -34,13 +34,13 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
 /* ===================== 顶部（品牌 + 搜索 + 分类 tab）===================== */
 .header-wrap{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--border)}
-.site-header{display:flex;align-items:center;gap:16px;padding:12px 24px}
-.brand{display:flex;align-items:center;gap:10px}
-.brand-icon{width:38px;height:38px;border-radius:10px;flex:none;background:var(--primary);display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff}
-.brand-name{font-size:17px;font-weight:800;letter-spacing:.5px}
-.brand-domain{font-size:12px;color:var(--text-3);font-weight:500}
+.site-header{display:flex;align-items:center;gap:16px;padding:14px 24px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-icon{width:46px;height:46px;border-radius:12px;flex:none;background:var(--primary);display:flex;align-items:center;justify-content:center;color:#fff;box-shadow:0 3px 10px rgba(37,99,235,.3)}
+.brand-name{font-size:21px;font-weight:800;letter-spacing:.5px}
+.brand-domain{font-size:13px;color:var(--text-3);font-weight:500}
 .search{flex:1;max-width:420px;margin-left:auto;position:relative}
-.search input{width:100%;height:40px;border:1px solid var(--border);border-radius:10px;padding:0 14px 0 38px;font-size:14px;color:var(--text);background:#fafbfc;outline:none;transition:border-color .15s,box-shadow .15s,background .15s}
+.search input{width:100%;height:42px;border:1px solid var(--border);border-radius:10px;padding:0 14px 0 38px;font-size:14px;color:var(--text);background:#fafbfc;outline:none;transition:border-color .15s,box-shadow .15s,background .15s}
 .search input:focus{border-color:var(--primary);background:#fff;box-shadow:0 0 0 3px rgba(37,99,235,.12)}
 .search .s-ico{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--text-3);font-size:15px}
 
@@ -61,23 +61,18 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 /* ===================== 内容 ===================== */
 .content{max-width:1080px;margin:0 auto;padding:24px 24px 60px;width:100%}
 
-.section-head{display:flex;align-items:center;gap:12px;margin-bottom:6px}
-.section-icon{width:46px;height:46px;border-radius:12px;flex:none;font-size:23px;display:flex;align-items:center;justify-content:center}
-.section-title{font-size:22px;font-weight:800}
-.section-count{font-size:13px;color:var(--text-3);font-weight:600;margin-top:2px}
-.section-desc{font-size:13.5px;color:var(--text-3);margin:6px 0 20px 58px}
-
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
 .tool{
   position:relative;overflow:hidden;
-  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
-  padding:15px 16px;display:flex;flex-direction:column;gap:10px;
-  box-shadow:var(--shadow);transition:transform .18s,box-shadow .18s,border-color .18s;
+  background:var(--card);border:1px solid var(--border-2);border-radius:var(--radius);
+  padding:16px;display:flex;flex-direction:column;gap:10px;
+  box-shadow:0 1px 3px rgba(16,24,40,.06),0 4px 14px rgba(16,24,40,.06);
+  transition:transform .18s,box-shadow .18s,border-color .18s;
 }
-.tool:hover{transform:translateY(-2px);box-shadow:0 8px 22px var(--accent-soft);border-color:var(--accent-border)}
+.tool:hover{transform:translateY(-2px);box-shadow:0 10px 26px var(--accent-soft);border-color:var(--accent-border)}
 .tool-accent{position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent)}
 .tool-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.tool-icon{width:38px;height:38px;border-radius:10px;flex:none;display:flex;align-items:center;justify-content:center;font-size:20px;background:var(--accent-soft)}
+.tool-icon{width:40px;height:40px;border-radius:10px;flex:none;display:flex;align-items:center;justify-content:center;font-size:21px;background:var(--accent-soft)}
 .tool-img{object-fit:cover;display:block;background:#eef1f5;padding:0}
 .tool-name{font-size:16px;font-weight:700;line-height:1.3}
 .tool-tag{flex:none;font-size:11px;font-weight:600;color:#d97706;background:#fef3e2;padding:2px 7px;border-radius:6px}
@@ -162,7 +157,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 <div class="header-wrap">
   <header class="site-header">
     <div class="brand">
-      <span class="brand-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:21px;height:21px"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
+      <span class="brand-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:25px;height:25px"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
       <div>
         <div class="brand-name">来点工具</div>
         <div class="brand-domain">ldgj.xyz · 免费软件 / 工具 / 素材下载</div>
@@ -197,99 +192,100 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
 <script>
 /* =====================================================================
-   数据区：分区名统一四字；color=主色 soft=浅色；quark=夸克 baidu=百度(可省)
+   数据区：分区名统一四字；color=主色 soft=浅色
+   img=真实图标  emoji=按功能自动配的图标  quark=夸克 baidu=百度(可省) cmd=指令
    新增/修改工具直接在这里改
    ===================================================================== */
 const SECTIONS = [
   {
     id:'novel', icon:'📖', name:'小说专区', desc:'免费看小说、下小说', color:'#3b82f6', soft:'#eff6ff',
     tools:[
-      { name:'小说下载器', desc:'全网小说搜索下载，一键导出 TXT/EPUB', quark:'https://pan.quark.cn/s/6c73fb388aea', baidu:'https://pan.baidu.com/s/1SHWmlXxW3FYTBf_2f_yruQ?pwd=i32n' },
+      { name:'小说下载器', desc:'全网小说搜索下载，一键导出 TXT/EPUB', img:'icons/xiaoshuo.png', quark:'https://pan.quark.cn/s/6c73fb388aea', baidu:'https://pan.baidu.com/s/1SHWmlXxW3FYTBf_2f_yruQ?pwd=i32n' },
       { name:'番茄小说下载器', desc:'番茄小说资源下载', img:'icons/fanqie.png', quark:'https://pan.quark.cn/s/867ce5b0aad5', baidu:'https://pan.baidu.com/s/1Rg_Ffo3vqfSU4EdQVlJPhA?pwd=f46i' },
       { name:'七猫小说下载器', desc:'七猫免费小说下载', img:'icons/qimao.png', quark:'https://pan.quark.cn/s/a6feae8cc3d1', baidu:'https://pan.baidu.com/s/1IEjRs6QI0SSxz0_8MbAdXw?pwd=paqi' },
-      { name:'笔趣阁 5.0', desc:'海量书源免费阅读', img:'icons/biquge.jpg', quark:'https://pan.quark.cn/s/efae8b3e1325', baidu:'https://pan.baidu.com/s/1ecJhyMWNgQfw6v5uCt2ySg?pwd=azf3' },
+      { name:'笔趣阁 5.0', desc:'海量书源免费阅读', img:'icons/biquge.png', quark:'https://pan.quark.cn/s/efae8b3e1325', baidu:'https://pan.baidu.com/s/1ecJhyMWNgQfw6v5uCt2ySg?pwd=azf3' },
       { name:'开源软件 + 开源书源', desc:'开源阅读 + 书源合集', img:'icons/kaiyuan.png', quark:'https://pan.quark.cn/s/938c4b40974e', baidu:'https://pan.baidu.com/s/169DT7lXgr0DLeB8pkTWUyQ?pwd=e0m5' },
-      { name:'星盒', desc:'多功能聚合神器（小说/音乐/影视/动漫）', quark:'https://pan.quark.cn/s/7fc3a192ddc2', baidu:'https://pan.baidu.com/s/18Des_vBGkeHMCgBgans8Tw?pwd=j5q4' },
-      { name:'摸鱼神器', desc:'电脑端看小说，隐蔽摸鱼', quark:'https://pan.quark.cn/s/33a420bf77d2', baidu:'https://pan.baidu.com/s/1iSVaAHf-_udfr1SGlIp82g?pwd=rscq' },
-      { name:'知乎盐选文章提取', desc:'提取知乎盐选文章（需自备会员）', quark:'https://pan.quark.cn/s/22496116e151' },
+      { name:'星盒', desc:'多功能聚合神器（小说/音乐/影视/动漫）', img:'icons/xinghe.png', quark:'https://pan.quark.cn/s/7fc3a192ddc2', baidu:'https://pan.baidu.com/s/18Des_vBGkeHMCgBgans8Tw?pwd=j5q4' },
+      { name:'摸鱼神器', desc:'电脑端看小说，隐蔽摸鱼', img:'icons/moyu.png', quark:'https://pan.quark.cn/s/33a420bf77d2', baidu:'https://pan.baidu.com/s/1iSVaAHf-_udfr1SGlIp82g?pwd=rscq' },
+      { name:'知乎盐选文章提取', desc:'提取知乎盐选文章（需自备会员）', img:'icons/zhihu.png', quark:'https://pan.quark.cn/s/22496116e151' },
     ]
   },
   {
     id:'music', icon:'🎵', name:'音乐专区', desc:'免费听歌、下歌', color:'#8b5cf6', soft:'#f5f3ff',
     tools:[
-      { name:'敦伦调调', desc:'全网音乐免费听 / 下载', quark:'https://pan.quark.cn/s/21d0a48a9ee9', baidu:'https://pan.baidu.com/s/1ObfiNgOTdDpkxcEVFZZ4kA?pwd=3dcd' },
-      { name:'星盒', desc:'聚合音乐资源神器', quark:'https://pan.quark.cn/s/7fc3a192ddc2', baidu:'https://pan.baidu.com/s/1cs_YNcijpn15Gx6CK-lNqA?pwd=3w3y' },
-      { name:'zpod', desc:'播客 / 音乐播放器', quark:'https://pan.quark.cn/s/8e670e877201', baidu:'https://pan.baidu.com/s/1k8lnZ3KKz7eVV-yTLovZlQ?pwd=4if2' },
-      { name:'星音乐', desc:'免费音乐播放与下载', quark:'https://pan.quark.cn/s/42f30fcaeea5', baidu:'https://pan.baidu.com/s/1KcaQEt15ZQTOoXMiTHucxg?pwd=ck1c' },
-      { name:'莫比音乐', desc:'高品质音乐平台（收费）', tag:'收费', quark:'https://pan.quark.cn/s/f70a57a9420a', baidu:'https://pan.baidu.com/s/1___-VnWKyPtabXOOupRi2Q?pwd=rsc8' },
-      { name:'四分贝音乐', desc:'免费音乐', quark:'https://pan.quark.cn/s/2343ef0fa98', baidu:'https://pan.baidu.com/s/1J_8b-pnAKg9qLcuP5ULrxw?pwd=4a38' },
-      { name:'米兔音乐', desc:'免费音乐', quark:'https://pan.quark.cn/s/724b9a1e77cf', baidu:'https://pan.baidu.com/s/1_hEL82wFT2481t8gvmzAog?pwd=jjam' },
+      { name:'敦伦调调', desc:'全网音乐免费听 / 下载', img:'icons/dunlun.png', quark:'https://pan.quark.cn/s/21d0a48a9ee9', baidu:'https://pan.baidu.com/s/1ObfiNgOTdDpkxcEVFZZ4kA?pwd=3dcd' },
+      { name:'星盒', desc:'聚合音乐资源神器', img:'icons/xinghe.png', quark:'https://pan.quark.cn/s/7fc3a192ddc2', baidu:'https://pan.baidu.com/s/1cs_YNcijpn15Gx6CK-lNqA?pwd=3w3y' },
+      { name:'zpod', desc:'播客 / 音乐播放器', img:'icons/zpod.png', quark:'https://pan.quark.cn/s/8e670e877201', baidu:'https://pan.baidu.com/s/1k8lnZ3KKz7eVV-yTLovZlQ?pwd=4if2' },
+      { name:'星音乐', desc:'免费音乐播放与下载', img:'icons/xingyinyue.png', quark:'https://pan.quark.cn/s/42f30fcaeea5', baidu:'https://pan.baidu.com/s/1KcaQEt15ZQTOoXMiTHucxg?pwd=ck1c' },
+      { name:'莫比音乐', desc:'高品质音乐平台（收费）', tag:'收费', img:'icons/mobi.png', quark:'https://pan.quark.cn/s/f70a57a9420a', baidu:'https://pan.baidu.com/s/1___-VnWKyPtabXOOupRi2Q?pwd=rsc8' },
+      { name:'四分贝音乐', desc:'免费音乐', img:'icons/sifenbei.png', quark:'https://pan.quark.cn/s/2343ef0fa98', baidu:'https://pan.baidu.com/s/1J_8b-pnAKg9qLcuP5ULrxw?pwd=4a38' },
+      { name:'米兔音乐', desc:'免费音乐', img:'icons/mitu.png', quark:'https://pan.quark.cn/s/724b9a1e77cf', baidu:'https://pan.baidu.com/s/1_hEL82wFT2481t8gvmzAog?pwd=jjam' },
     ]
   },
   {
     id:'video', icon:'🎬', name:'影视专区', desc:'聚合影视资源', color:'#ef4444', soft:'#fef2f2',
     tools:[
-      { name:'星盒', desc:'聚合影视资源，看电影追剧', quark:'https://pan.quark.cn/s/7fc3a192ddc2', baidu:'https://pan.baidu.com/s/18Des_vBGkeHMCgBgans8Tw?pwd=j5q4' },
+      { name:'星盒', desc:'聚合影视资源，看电影追剧', img:'icons/xinghe.png', quark:'https://pan.quark.cn/s/7fc3a192ddc2', baidu:'https://pan.baidu.com/s/18Des_vBGkeHMCgBgans8Tw?pwd=j5q4' },
     ]
   },
   {
     id:'anime', icon:'🎨', name:'动漫专区', desc:'动漫资源', color:'#f97316', soft:'#fff7ed',
     tools:[
-      { name:'星盒', desc:'聚合动漫资源', quark:'https://pan.quark.cn/s/7fc3a192ddc2', baidu:'https://pan.baidu.com/s/10DAk0iXqSrakMpqFVVUdJw?pwd=6w0m' },
+      { name:'星盒', desc:'聚合动漫资源', img:'icons/xinghe.png', quark:'https://pan.quark.cn/s/7fc3a192ddc2', baidu:'https://pan.baidu.com/s/10DAk0iXqSrakMpqFVVUdJw?pwd=6w0m' },
     ]
   },
   {
     id:'comic', icon:'📚', name:'漫画专区', desc:'漫画资源', color:'#f59e0b', soft:'#fffbeb',
     tools:[
-      { name:'venera_1.4.6', desc:'漫画阅读器', quark:'https://pan.quark.cn/s/ca0afa3bf4b0', baidu:'https://pan.baidu.com/s/1J_O7CFwJEgtow6ibGD_9qA?pwd=ai9w' },
+      { name:'venera_1.4.6', desc:'漫画阅读器', emoji:'📖', quark:'https://pan.quark.cn/s/ca0afa3bf4b0', baidu:'https://pan.baidu.com/s/1J_O7CFwJEgtow6ibGD_9qA?pwd=ai9w' },
     ]
   },
   {
     id:'game', icon:'🎮', name:'游戏专区', desc:'童年经典游戏合集', color:'#22c55e', soft:'#f0fdf4',
     tools:[
-      { name:'115款童年经典街机游戏', desc:'童年街机游戏大合集，一键怀旧', quark:'https://pan.quark.cn/s/5f081f6ffff0' },
+      { name:'115款童年经典街机游戏', desc:'童年街机游戏大合集，一键怀旧', emoji:'🕹️', quark:'https://pan.quark.cn/s/5f081f6ffff0' },
     ]
   },
   {
     id:'data', icon:'📂', name:'资料专区', desc:'干货资料合集', color:'#14b8a6', soft:'#f0fdfa',
     tools:[
-      { name:'自媒体人必备', desc:'自媒体运营干货资料包', quark:'https://pan.quark.cn/s/12d673d50af9' },
-      { name:'中国各省旅游攻略', desc:'全国各省旅游攻略合集', quark:'https://pan.quark.cn/s/a7bd03521366' },
+      { name:'自媒体人必备', desc:'自媒体运营干货资料包', emoji:'✍️', quark:'https://pan.quark.cn/s/12d673d50af9' },
+      { name:'中国各省旅游攻略', desc:'全国各省旅游攻略合集', emoji:'🗺️', quark:'https://pan.quark.cn/s/a7bd03521366' },
     ]
   },
   {
     id:'wallpaper', icon:'🖼️', name:'壁纸专区', desc:'高清壁纸合集', color:'#ec4899', soft:'#fdf2f8',
     tools:[
-      { name:'超级齐全的壁纸合集', desc:'海量高清壁纸打包下载', quark:'https://pan.quark.cn/s/3ebe11700a02' },
+      { name:'超级齐全的壁纸合集', desc:'海量高清壁纸打包下载', emoji:'🌆', quark:'https://pan.quark.cn/s/3ebe11700a02' },
     ]
   },
   {
     id:'software', icon:'🛠️', name:'实用软件', desc:'效率工具、黑科技软件', color:'#6366f1', soft:'#eef2ff',
     tools:[
-      { name:'李跳跳', desc:'跳过 App 开屏广告', quark:'https://pan.quark.cn/s/b12c4e900948', baidu:'https://pan.baidu.com/s/1_3tevGSdkFjLL3UXcYwRkA?pwd=jr1q' },
-      { name:'电脑录屏软件', desc:'屏幕录制', quark:'https://pan.quark.cn/s/d4a4b3d25c3f', baidu:'https://pan.baidu.com/s/1xlJOaxI7NSdo82h87BrR9w?pwd=6yg4' },
-      { name:'电脑截图软件', desc:'截图工具', quark:'https://pan.quark.cn/s/755242ca07b3', baidu:'https://pan.baidu.com/s/11rrM9pdPKr7baQi1wInaMg?pwd=arhn' },
-      { name:'极限投屏', desc:'手机电脑无线互投', quark:'https://pan.quark.cn/s/c63e905b0bb4', baidu:'https://pan.baidu.com/s/1GfuV0rHaoTaK77CZz8os3A?pwd=anb2' },
-      { name:'带壳截图', desc:'给截图加手机壳效果', quark:'https://pan.quark.cn/s/74e3ddac7600', baidu:'https://pan.baidu.com/s/17Fx9y01I-d7T-ZVZNTR6jw?pwd=uumt' },
-      { name:'非剪', desc:'视频剪辑', quark:'https://pan.quark.cn/s/54d85a05c3d0', baidu:'https://pan.baidu.com/s/1MsyTlVlobPxdq2K_XGe0Wg?pwd=ppar' },
-      { name:'豆包去水印', desc:'图片 + 视频去水印', quark:'https://pan.quark.cn/s/f6af0a41f370', baidu:'https://pan.baidu.com/s/1qNyFeZoUDKtg3-DiGX7wGg?pwd=3heb' },
-      { name:'卸载软件', desc:'强力卸载，清理残留', quark:'https://pan.quark.cn/s/d5fd8dcd78fc', baidu:'https://pan.baidu.com/s/1ysTcO4Y-cxprVhawrXDC8w?pwd=ccsc' },
-      { name:'批量下载抖音视频插件', desc:'抖音视频批量下载', quark:'https://pan.quark.cn/s/1c0c61aca758', baidu:'https://pan.baidu.com/s/1G5_CW63FDj9ZHHWdXmz6pA?pwd=wu75' },
-      { name:'公众号文章下载器', desc:'下载公众号文章', quark:'https://pan.quark.cn/s/2101a43cc4d1', baidu:'https://pan.baidu.com/s/1t-ogHr3RgaiE-x3w_06t1A?pwd=u5nx' },
-      { name:'qq音乐转MP3格式', desc:'音乐格式转换', quark:'https://pan.quark.cn/s/809f293713a7', baidu:'https://pan.baidu.com/s/1XMShkHb3ak2i5a1VLODzjw?pwd=dwns' },
-      { name:'刷圈兔', desc:'朋友圈工具', quark:'https://pan.quark.cn/s/9c65f279682a', baidu:'https://pan.baidu.com/s/1xR-hreaSPe3xM4eu1b7thg?pwd=ezy3' },
-      { name:'WPS会员版本', desc:'WPS Office 会员版', quark:'https://pan.quark.cn/s/c82f17805ea3', baidu:'https://pan.baidu.com/s/1_OjqOiqSttR2_MAZbXRDQw?pwd=6isy' },
-      { name:'飞鼠格式转换助手', desc:'音视频 / 文档格式转换', quark:'https://pan.quark.cn/s/54d36d2d91dd', baidu:'https://pan.baidu.com/s/1g-EPPoxSKZJQIuzRqfdXvA?pwd=61xj' },
-      { name:'AI视频无痕去字幕', desc:'AI 去除视频字幕', quark:'https://pan.quark.cn/s/4059abee799d', baidu:'https://pan.baidu.com/s/1GdsTfpiBIgbrwP0y35Zk2A?pwd=7p7v' },
-      { name:'QQ空间恢复软件', desc:'QQ 空间数据恢复', quark:'https://pan.quark.cn/s/fbc7d2f4e05c', baidu:'https://pan.baidu.com/s/1IZRzK4VsDpzJKcuAK4YeQQ?pwd=44ka' },
-      { name:'Win自动更新关闭工具', desc:'关闭 Windows 自动更新', quark:'https://pan.quark.cn/s/a66636a1bc90', baidu:'https://pan.baidu.com/s/18PwazXQO1lrhh_GtQaX4ow?pwd=q4sy' },
+      { name:'李跳跳', desc:'跳过 App 开屏广告', img:'icons/litiaotiao.png', quark:'https://pan.quark.cn/s/b12c4e900948', baidu:'https://pan.baidu.com/s/1_3tevGSdkFjLL3UXcYwRkA?pwd=jr1q' },
+      { name:'电脑录屏软件', desc:'屏幕录制', emoji:'🎥', quark:'https://pan.quark.cn/s/d4a4b3d25c3f', baidu:'https://pan.baidu.com/s/1xlJOaxI7NSdo82h87BrR9w?pwd=6yg4' },
+      { name:'电脑截图软件', desc:'截图工具', emoji:'📸', quark:'https://pan.quark.cn/s/755242ca07b3', baidu:'https://pan.baidu.com/s/11rrM9pdPKr7baQi1wInaMg?pwd=arhn' },
+      { name:'极限投屏', desc:'手机电脑无线互投', img:'icons/jixian.png', quark:'https://pan.quark.cn/s/c63e905b0bb4', baidu:'https://pan.baidu.com/s/1GfuV0rHaoTaK77CZz8os3A?pwd=anb2' },
+      { name:'带壳截图', desc:'给截图加手机壳效果', emoji:'📱', quark:'https://pan.quark.cn/s/74e3ddac7600', baidu:'https://pan.baidu.com/s/17Fx9y01I-d7T-ZVZNTR6jw?pwd=uumt' },
+      { name:'非剪', desc:'视频剪辑', emoji:'✂️', quark:'https://pan.quark.cn/s/54d85a05c3d0', baidu:'https://pan.baidu.com/s/1MsyTlVlobPxdq2K_XGe0Wg?pwd=ppar' },
+      { name:'豆包去水印', desc:'图片 + 视频去水印', emoji:'🧽', quark:'https://pan.quark.cn/s/f6af0a41f370', baidu:'https://pan.baidu.com/s/1qNyFeZoUDKtg3-DiGX7wGg?pwd=3heb' },
+      { name:'卸载软件', desc:'强力卸载，清理残留', emoji:'🗑️', quark:'https://pan.quark.cn/s/d5fd8dcd78fc', baidu:'https://pan.baidu.com/s/1ysTcO4Y-cxprVhawrXDC8w?pwd=ccsc' },
+      { name:'批量下载抖音视频插件', desc:'抖音视频批量下载', emoji:'📥', quark:'https://pan.quark.cn/s/1c0c61aca758', baidu:'https://pan.baidu.com/s/1G5_CW63FDj9ZHHWdXmz6pA?pwd=wu75' },
+      { name:'公众号文章下载器', desc:'下载公众号文章', emoji:'📄', quark:'https://pan.quark.cn/s/2101a43cc4d1', baidu:'https://pan.baidu.com/s/1t-ogHr3RgaiE-x3w_06t1A?pwd=u5nx' },
+      { name:'qq音乐转MP3格式', desc:'音乐格式转换', emoji:'🎶', quark:'https://pan.quark.cn/s/809f293713a7', baidu:'https://pan.baidu.com/s/1XMShkHb3ak2i5a1VLODzjw?pwd=dwns' },
+      { name:'刷圈兔', desc:'朋友圈工具', emoji:'🐰', quark:'https://pan.quark.cn/s/9c65f279682a', baidu:'https://pan.baidu.com/s/1xR-hreaSPe3xM4eu1b7thg?pwd=ezy3' },
+      { name:'WPS会员版本', desc:'WPS Office 会员版', emoji:'📝', quark:'https://pan.quark.cn/s/c82f17805ea3', baidu:'https://pan.baidu.com/s/1_OjqOiqSttR2_MAZbXRDQw?pwd=6isy' },
+      { name:'飞鼠格式转换助手', desc:'音视频 / 文档格式转换', emoji:'🔄', quark:'https://pan.quark.cn/s/54d36d2d91dd', baidu:'https://pan.baidu.com/s/1g-EPPoxSKZJQIuzRqfdXvA?pwd=61xj' },
+      { name:'AI视频无痕去字幕', desc:'AI 去除视频字幕', emoji:'🎞️', quark:'https://pan.quark.cn/s/4059abee799d', baidu:'https://pan.baidu.com/s/1GdsTfpiBIgbrwP0y35Zk2A?pwd=7p7v' },
+      { name:'QQ空间恢复软件', desc:'QQ 空间数据恢复', emoji:'💾', quark:'https://pan.quark.cn/s/fbc7d2f4e05c', baidu:'https://pan.baidu.com/s/1IZRzK4VsDpzJKcuAK4YeQQ?pwd=44ka' },
+      { name:'Win自动更新关闭工具', desc:'关闭 Windows 自动更新', emoji:'🛑', quark:'https://pan.quark.cn/s/a66636a1bc90', baidu:'https://pan.baidu.com/s/18PwazXQO1lrhh_GtQaX4ow?pwd=q4sy' },
     ]
   },
   {
     id:'ai', icon:'🤖', name:'AI专区', desc:'AI 提效 skill', color:'#0ea5e9', soft:'#f0f9ff',
     tools:[
-      { name:'夸克网盘 skill', desc:'夸克网盘 AI 助手 skill（实测不如手动来得快，静待优化）' },
-      { name:'淬火学习 skill', desc:'号称能让学习速度提升 10 倍的 skill，不是让你学得更快，而是只学该学的、学完真会了', cmd:'npx -y skills add Biancuihuo/cuihuo-skills -g --all' },
+      { name:'夸克网盘 skill', desc:'夸克网盘 AI 助手 skill（实测不如手动来得快，静待优化）', emoji:'☁️' },
+      { name:'淬火学习 skill', desc:'号称能让学习速度提升 10 倍的 skill，不是让你学得更快，而是只学该学的、学完真会了', emoji:'🔥', cmd:'npx -y skills add Biancuihuo/cuihuo-skills -g --all' },
     ]
   },
 ];
@@ -316,7 +312,7 @@ function toolCard(t, s){
   const tag = t.tag ? `<span class="tool-tag">${t.tag}</span>` : '';
   const icon = t.img
     ? `<img class="tool-icon tool-img" src="${t.img}" alt="${t.name}" loading="lazy">`
-    : `<span class="tool-icon">${s.icon}</span>`;
+    : `<span class="tool-icon">${t.emoji || s.icon}</span>`;
 
   let action = '';
   if (t.cmd){
