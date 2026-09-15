@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="referrer" content="no-referrer">
 <title>来点工具 - 免费工具箱 | 软件 · 音乐 · 小说 · 素材资源</title>
-<meta name="description" content="来点工具（ldgj.xyz）——免费软件、黑科技工具、素材资源一站式下载。小说/音乐/影视/动漫/游戏/资料/壁纸/实用软件，持续更新。">
+<meta name="description" content="来点工具（ldgj.xyz）——免费软件、黑科技工具、素材资源一站式下载。小说/音乐/影视/动漫/漫画/游戏/资料/壁纸/实用软件，持续更新。">
 <style>
 /* ===================== 主题变量：明亮干净 ===================== */
 :root{
@@ -23,7 +23,7 @@
   --shadow:0 1px 2px rgba(16,24,40,.04),0 2px 8px rgba(16,24,40,.04);
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 body{
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif;
   background:var(--bg);color:var(--text);line-height:1.6;
@@ -32,82 +32,43 @@ body{
 a{color:inherit;text-decoration:none}
 button{font-family:inherit;cursor:pointer;border:none;background:none}
 
-.app{display:flex;min-height:100vh}
-
-/* ===================== 顶部品牌栏 ===================== */
-.site-header{background:#fff;border-bottom:1px solid var(--border);padding:12px 20px;display:flex;align-items:center}
+/* ===================== 顶部（品牌 + 搜索 + 分类 tab）===================== */
+.header-wrap{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--border)}
+.site-header{display:flex;align-items:center;gap:16px;padding:12px 24px}
 .brand{display:flex;align-items:center;gap:10px}
 .brand-icon{width:38px;height:38px;border-radius:10px;flex:none;background:var(--primary);display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff}
 .brand-name{font-size:17px;font-weight:800;letter-spacing:.5px}
 .brand-domain{font-size:12px;color:var(--text-3);font-weight:500}
-
-/* ===================== 左侧边栏 ===================== */
-/* 移动端：抽屉 */
-.sidebar{
-  position:fixed;top:0;left:0;bottom:0;z-index:60;
-  width:264px;background:#fff;border-right:1px solid var(--border);
-  display:flex;flex-direction:column;
-  transform:translateX(-100%);transition:transform .25s ease;
-}
-.app.sidebar-open .sidebar{transform:translateX(0)}
-
-.sidebar-label{padding:14px 20px 4px;font-size:12px;font-weight:600;color:var(--text-3);letter-spacing:1px}
-.sidebar-nav{flex:1;overflow-y:auto;padding:6px 12px 10px}
-.sidebar-nav::-webkit-scrollbar{width:6px}
-.sidebar-nav::-webkit-scrollbar-thumb{background:var(--border-2);border-radius:3px}
-.nav-item{
-  display:flex;align-items:center;gap:11px;width:100%;
-  padding:11px 12px;border-radius:10px;font-size:14.5px;font-weight:500;
-  color:var(--text-2);transition:background .15s,color .15s;text-align:left;
-}
-.nav-item:hover{background:#f2f4f7}
-.nav-item.active{background:var(--primary-soft);color:var(--primary);font-weight:600}
-.nav-icon{width:24px;font-size:18px;flex:none;text-align:center}
-.nav-count{margin-left:auto;font-size:12px;color:var(--text-3);background:#f1f3f6;border-radius:20px;padding:1px 8px}
-.nav-item.active .nav-count{background:#dbe7ff;color:var(--primary)}
-
-.sidebar-foot{padding:14px 20px;border-top:1px solid var(--border);font-size:12px;color:var(--text-3);text-align:center}
-
-/* 遮罩（移动端） */
-.backdrop{position:fixed;inset:0;z-index:55;background:rgba(15,23,42,.42);opacity:0;pointer-events:none;transition:opacity .25s}
-.app.sidebar-open .backdrop{opacity:1;pointer-events:auto}
-
-/* ===================== 主区域 ===================== */
-.main{flex:1;min-width:0;display:flex;flex-direction:column}
-
-.topbar{
-  position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);
-  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
-  border-bottom:1px solid var(--border);
-  display:flex;align-items:center;gap:12px;padding:0 20px;height:60px;
-}
-.menu-btn{height:38px;padding:0 12px;border-radius:9px;flex:none;display:flex;align-items:center;justify-content:center;gap:6px;font-size:14.5px;font-weight:600;color:var(--text-2);transition:background .15s}
-.menu-btn:hover{background:#f1f3f6}
-
-/* 移动端菜单提示 */
-.menu-hint{
-  display:none;position:fixed;left:50%;transform:translateX(-50%);bottom:18px;z-index:45;
-  background:rgba(26,29,36,.95);color:#fff;padding:11px 16px;border-radius:22px;
-  font-size:13.5px;align-items:center;gap:10px;box-shadow:0 6px 20px rgba(0,0,0,.3);
-}
-.menu-hint.hidden{display:none !important}
-.hint-close{color:#fff;font-size:16px;line-height:1;opacity:.7;padding:2px}
-.hint-close:hover{opacity:1}
-.topbar-title{font-size:16px;font-weight:700;white-space:nowrap}
-.search{flex:1;max-width:380px;margin-left:auto;position:relative}
-.search input{width:100%;height:40px;border:1px solid var(--border);border-radius:10px;padding:0 14px 0 38px;font-size:14px;color:var(--text);background:#fff;outline:none;transition:border-color .15s,box-shadow .15s}
-.search input:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(37,99,235,.12)}
+.search{flex:1;max-width:420px;margin-left:auto;position:relative}
+.search input{width:100%;height:40px;border:1px solid var(--border);border-radius:10px;padding:0 14px 0 38px;font-size:14px;color:var(--text);background:#fafbfc;outline:none;transition:border-color .15s,box-shadow .15s,background .15s}
+.search input:focus{border-color:var(--primary);background:#fff;box-shadow:0 0 0 3px rgba(37,99,235,.12)}
 .search .s-ico{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--text-3);font-size:15px}
 
-.content{padding:24px 28px 60px;max-width:1060px;width:100%}
+.tabbar{border-top:1px solid var(--border)}
+.tabbar-inner{display:flex;gap:8px;overflow-x:auto;padding:10px 24px;scrollbar-width:none}
+.tabbar-inner::-webkit-scrollbar{display:none}
+.tab{
+  flex:none;display:flex;align-items:center;gap:6px;
+  padding:8px 15px;border-radius:20px;font-size:14px;font-weight:500;
+  color:var(--text-2);background:#fff;border:1px solid var(--border);
+  transition:all .15s;white-space:nowrap;
+}
+.tab:hover{border-color:var(--primary);color:var(--primary)}
+.tab.active{background:var(--primary);color:#fff;border-color:var(--primary);font-weight:600}
+.tab-icon{font-size:16px}
+.tab-count{font-size:11px;background:rgba(0,0,0,.07);border-radius:10px;padding:0 6px;line-height:1.6}
+.tab.active .tab-count{background:rgba(255,255,255,.22)}
+
+/* ===================== 内容 ===================== */
+.content{max-width:1080px;margin:0 auto;padding:24px 24px 60px;width:100%}
 
 .section-head{display:flex;align-items:center;gap:12px;margin-bottom:6px}
-.section-icon{width:44px;height:44px;border-radius:12px;flex:none;font-size:22px;display:flex;align-items:center;justify-content:center}
+.section-icon{width:46px;height:46px;border-radius:12px;flex:none;font-size:23px;display:flex;align-items:center;justify-content:center}
 .section-title{font-size:22px;font-weight:800}
 .section-count{font-size:13px;color:var(--text-3);font-weight:600;margin-top:2px}
-.section-desc{font-size:13.5px;color:var(--text-3);margin:6px 0 20px 56px}
+.section-desc{font-size:13.5px;color:var(--text-3);margin:6px 0 20px 58px}
 
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
 .tool{
   position:relative;overflow:hidden;
   background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
@@ -117,10 +78,11 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .tool:hover{transform:translateY(-2px);box-shadow:0 8px 22px var(--accent-soft);border-color:var(--accent-border)}
 .tool-accent{position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent)}
 .tool-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.tool-icon{width:36px;height:36px;border-radius:10px;flex:none;display:flex;align-items:center;justify-content:center;font-size:19px;background:var(--accent-soft)}
+.tool-icon{width:38px;height:38px;border-radius:10px;flex:none;display:flex;align-items:center;justify-content:center;font-size:20px;background:var(--accent-soft)}
 .tool-img{object-fit:cover;display:block;background:#eef1f5;padding:0}
-.tool-name{font-size:17px;font-weight:700;line-height:1.3}
+.tool-name{font-size:16px;font-weight:700;line-height:1.3}
 .tool-tag{flex:none;font-size:11px;font-weight:600;color:#d97706;background:#fef3e2;padding:2px 7px;border-radius:6px}
+.tool-desc{font-size:13px;color:var(--text-2)}
 .tool-btns{margin-top:auto;display:flex;gap:8px}
 .btn{
   height:30px;padding:0 14px;border-radius:8px;font-size:12.5px;font-weight:600;
@@ -130,7 +92,13 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .btn-quark:hover{background:var(--primary-hover)}
 .btn-baidu{background:#f2f3f5;color:var(--text-2);border:1px solid var(--border-2)}
 .btn-baidu:hover{background:#e9ebee}
-.tool-desc{font-size:13px;color:var(--text-2)}
+
+/* 分页 */
+.pagination{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:26px;flex-wrap:wrap}
+.page-btn{min-width:36px;height:36px;padding:0 12px;border-radius:9px;font-size:13.5px;font-weight:600;color:var(--text-2);background:#fff;border:1px solid var(--border);transition:all .15s}
+.page-btn:hover{border-color:var(--primary);color:var(--primary)}
+.page-btn.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.page-btn:disabled{opacity:.4;cursor:not-allowed}
 
 /* 搜索结果分组 */
 .search-group{margin-bottom:28px}
@@ -143,9 +111,19 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .no-result.show{display:block}
 .no-result .big{font-size:40px;margin-bottom:10px}
 
+/* 回到顶部 */
+.back-top{
+  position:fixed;right:20px;bottom:24px;z-index:40;
+  width:44px;height:44px;border-radius:50%;background:var(--primary);color:#fff;
+  font-size:20px;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 16px rgba(37,99,235,.35);opacity:0;pointer-events:none;transition:opacity .2s;
+}
+.back-top.show{opacity:1;pointer-events:auto}
+.back-top:hover{background:var(--primary-hover)}
+
 /* 页脚 */
 .footer{border-top:1px solid var(--border);background:#fff;padding:30px 20px}
-.footer-inner{max-width:1060px;margin:0 auto;text-align:center}
+.footer-inner{max-width:1080px;margin:0 auto;text-align:center}
 .footer-brand{font-size:16px;font-weight:800}
 .footer-brand .dot{color:var(--primary)}
 .footer .gz{margin:10px 0;font-size:13.5px;color:var(--text-2)}
@@ -157,90 +135,67 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .footer .copy{margin-top:14px;font-size:12px;color:var(--text-3)}
 
 /* ===================== 响应式 ===================== */
-/* 平板及以上：侧边栏常驻，始终展开（无收起功能） */
-@media (min-width:768px){
-  .sidebar{position:sticky;transform:none;width:240px;height:100vh}
-  .menu-btn{display:none}
-  .backdrop{display:none}
-}
-/* 平板 */
 @media (min-width:768px) and (max-width:1024px){
   .content{padding:20px 20px 48px}
   .grid{grid-template-columns:repeat(2,1fr)}
 }
-/* 手机 */
 @media (max-width:767px){
+  .site-header{padding:10px 14px}
+  .brand-domain{display:none}
+  .tabbar-inner{padding:8px 14px}
   .content{padding:18px 14px 48px}
   .grid{grid-template-columns:1fr}
-  .topbar{padding:0 12px;height:56px}
-  .topbar-title{display:none}
   .search{max-width:none}
   .section-desc{margin-left:0;margin-top:4px}
-  .menu-hint{display:flex}
 }
 </style>
 </head>
 <body>
-<header class="site-header">
-  <div class="brand">
-    <span class="brand-icon">🧰</span>
-    <div>
-      <div class="brand-name">来点工具</div>
-      <div class="brand-domain">ldgj.xyz · 免费软件 / 工具 / 素材下载</div>
+
+<div class="header-wrap">
+  <header class="site-header">
+    <div class="brand">
+      <span class="brand-icon">🧰</span>
+      <div>
+        <div class="brand-name">来点工具</div>
+        <div class="brand-domain">ldgj.xyz · 免费软件 / 工具 / 素材下载</div>
+      </div>
     </div>
-  </div>
-</header>
-
-<div class="app" id="app">
-
-  <div class="backdrop" id="backdrop"></div>
-
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-label">全部分区</div>
-    <nav class="sidebar-nav" id="sidebarNav"></nav>
-    <div class="sidebar-foot">持续更新中…</div>
-  </aside>
-
-  <div class="main">
-    <header class="topbar">
-      <button class="menu-btn" id="menuBtn" aria-label="菜单"><span>☰</span><span>菜单</span></button>
-      <div class="topbar-title" id="topbarTitle">来点工具</div>
-      <div class="search">
-        <span class="s-ico">🔍</span>
-        <input id="search" type="text" placeholder="全局搜索工具…" autocomplete="off">
-      </div>
-    </header>
-
-    <main class="content" id="content"></main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        <div class="footer-brand">来点工具<span class="dot"> · </span>ldgj.xyz</div>
-        <div class="gz">📢 更多工具 / 失效补链，关注公众号 <b>来点工具</b></div>
-        <div class="divider"></div>
-        <div class="disclaimer">
-          <b style="color:var(--text-2)">免责声明：</b>本工具箱所发布的一切资源（包括黑科技软件工具、素材资源），主要由全网公开资源平台整理而来，仅限用于学习和研究目的，不收取任何费用，请勿用于商业或非法用途，否则一切后果自负。资源版权归原作者所有，如有侵犯到您的权益，请通过邮箱联系我并提供有效证明文件，我会第一时间配合处理。
-        </div>
-        <div class="mail">📮 联系邮箱：<a href="mailto:gg318364167@gmail.com">gg318364167@gmail.com</a></div>
-        <div class="copy">© 2026 来点工具 ldgj.xyz · 免费分享 · 仅供学习研究</div>
-      </div>
-    </footer>
-  </div>
+    <div class="search">
+      <span class="s-ico">🔍</span>
+      <input id="search" type="text" placeholder="全局搜索工具…" autocomplete="off">
+    </div>
+  </header>
+  <nav class="tabbar">
+    <div class="tabbar-inner" id="tabbar"></div>
+  </nav>
 </div>
 
-<div class="menu-hint" id="menuHint">
-  <span>👈 点左上角「菜单」查看全部分区</span>
-  <button class="hint-close" id="hintClose" aria-label="关闭">✕</button>
-</div>
+<main class="content" id="content"></main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">来点工具<span class="dot"> · </span>ldgj.xyz</div>
+    <div class="gz">📢 更多工具 / 失效补链，关注公众号 <b>来点工具</b></div>
+    <div class="divider"></div>
+    <div class="disclaimer">
+      <b style="color:var(--text-2)">免责声明：</b>本工具箱所发布的一切资源（包括黑科技软件工具、素材资源），主要由全网公开资源平台整理而来，仅限用于学习和研究目的，不收取任何费用，请勿用于商业或非法用途，否则一切后果自负。资源版权归原作者所有，如有侵犯到您的权益，请通过邮箱联系我并提供有效证明文件，我会第一时间配合处理。
+    </div>
+    <div class="mail">📮 联系邮箱：<a href="mailto:gg318364167@gmail.com">gg318364167@gmail.com</a></div>
+    <div class="copy">© 2026 来点工具 ldgj.xyz · 免费分享 · 仅供学习研究</div>
+  </div>
+</footer>
+
+<button class="back-top" id="backTop" aria-label="回到顶部">↑</button>
 
 <script>
 /* =====================================================================
-   数据区：每个分区带 color(主色) 和 soft(浅色)，quark=夸克，baidu=百度(可省)
+   数据区：分区名统一四字；color=主色 soft=浅色；quark=夸克 baidu=百度(可省)
    新增/修改工具直接在这里改
    ===================================================================== */
 const SECTIONS = [
   {
-    id:'novel', icon:'📖', name:'小说区', desc:'免费看小说、下小说', color:'#3b82f6', soft:'#eff6ff',
+    id:'novel', icon:'📖', name:'小说专区', desc:'免费看小说、下小说', color:'#3b82f6', soft:'#eff6ff',
     tools:[
       { name:'小说下载器', desc:'全网小说搜索下载，一键导出 TXT/EPUB', quark:'https://pan.quark.cn/s/6c73fb388aea', baidu:'https://pan.baidu.com/s/1SHWmlXxW3FYTBf_2f_yruQ?pwd=i32n' },
       { name:'番茄小说下载器', desc:'番茄小说资源下载', img:'icons/fanqie.png', quark:'https://pan.quark.cn/s/867ce5b0aad5', baidu:'https://pan.baidu.com/s/1Rg_Ffo3vqfSU4EdQVlJPhA?pwd=f46i' },
@@ -253,7 +208,7 @@ const SECTIONS = [
     ]
   },
   {
-    id:'music', icon:'🎵', name:'音乐区', desc:'免费听歌、下歌', color:'#8b5cf6', soft:'#f5f3ff',
+    id:'music', icon:'🎵', name:'音乐专区', desc:'免费听歌、下歌', color:'#8b5cf6', soft:'#f5f3ff',
     tools:[
       { name:'敦伦调调', desc:'全网音乐免费听 / 下载', quark:'https://pan.quark.cn/s/21d0a48a9ee9', baidu:'https://pan.baidu.com/s/1ObfiNgOTdDpkxcEVFZZ4kA?pwd=3dcd' },
       { name:'星盒', desc:'聚合音乐资源神器', quark:'https://pan.quark.cn/s/7fc3a192ddc2', baidu:'https://pan.baidu.com/s/1cs_YNcijpn15Gx6CK-lNqA?pwd=3w3y' },
@@ -265,39 +220,44 @@ const SECTIONS = [
     ]
   },
   {
-    id:'video', icon:'🎬', name:'影视区', desc:'聚合影视资源', color:'#ef4444', soft:'#fef2f2',
+    id:'video', icon:'🎬', name:'影视专区', desc:'聚合影视资源', color:'#ef4444', soft:'#fef2f2',
     tools:[
       { name:'星盒', desc:'聚合影视资源，看电影追剧', quark:'https://pan.quark.cn/s/7fc3a192ddc2', baidu:'https://pan.baidu.com/s/18Des_vBGkeHMCgBgans8Tw?pwd=j5q4' },
     ]
   },
   {
-    id:'anime', icon:'🎨', name:'动漫 / 漫画区', desc:'动漫、漫画资源', color:'#f97316', soft:'#fff7ed',
+    id:'anime', icon:'🎨', name:'动漫专区', desc:'动漫资源', color:'#f97316', soft:'#fff7ed',
     tools:[
-      { name:'星盒', desc:'聚合动漫 / 漫画资源', quark:'https://pan.quark.cn/s/7fc3a192ddc2', baidu:'https://pan.baidu.com/s/10DAk0iXqSrakMpqFVVUdJw?pwd=6w0m' },
+      { name:'星盒', desc:'聚合动漫资源', quark:'https://pan.quark.cn/s/7fc3a192ddc2', baidu:'https://pan.baidu.com/s/10DAk0iXqSrakMpqFVVUdJw?pwd=6w0m' },
+    ]
+  },
+  {
+    id:'comic', icon:'📚', name:'漫画专区', desc:'漫画资源', color:'#f59e0b', soft:'#fffbeb',
+    tools:[
       { name:'venera_1.4.6', desc:'漫画阅读器', quark:'https://pan.quark.cn/s/ca0afa3bf4b0', baidu:'https://pan.baidu.com/s/1J_O7CFwJEgtow6ibGD_9qA?pwd=ai9w' },
     ]
   },
   {
-    id:'game', icon:'🎮', name:'游戏区', desc:'童年经典游戏合集', color:'#22c55e', soft:'#f0fdf4',
+    id:'game', icon:'🎮', name:'游戏专区', desc:'童年经典游戏合集', color:'#22c55e', soft:'#f0fdf4',
     tools:[
       { name:'115款童年经典街机游戏', desc:'童年街机游戏大合集，一键怀旧', quark:'https://pan.quark.cn/s/5f081f6ffff0' },
     ]
   },
   {
-    id:'data', icon:'📂', name:'资料区', desc:'干货资料合集', color:'#14b8a6', soft:'#f0fdfa',
+    id:'data', icon:'📂', name:'资料专区', desc:'干货资料合集', color:'#14b8a6', soft:'#f0fdfa',
     tools:[
       { name:'自媒体人必备', desc:'自媒体运营干货资料包', quark:'https://pan.quark.cn/s/12d673d50af9' },
       { name:'中国各省旅游攻略', desc:'全国各省旅游攻略合集', quark:'https://pan.quark.cn/s/a7bd03521366' },
     ]
   },
   {
-    id:'wallpaper', icon:'🖼️', name:'壁纸区', desc:'高清壁纸合集', color:'#ec4899', soft:'#fdf2f8',
+    id:'wallpaper', icon:'🖼️', name:'壁纸专区', desc:'高清壁纸合集', color:'#ec4899', soft:'#fdf2f8',
     tools:[
       { name:'超级齐全的壁纸合集', desc:'海量高清壁纸打包下载', quark:'https://pan.quark.cn/s/3ebe11700a02' },
     ]
   },
   {
-    id:'software', icon:'🛠️', name:'实用软件区', desc:'效率工具、黑科技软件', color:'#6366f1', soft:'#eef2ff',
+    id:'software', icon:'🛠️', name:'实用软件', desc:'效率工具、黑科技软件', color:'#6366f1', soft:'#eef2ff',
     tools:[
       { name:'李跳跳', desc:'跳过 App 开屏广告', quark:'https://pan.quark.cn/s/b12c4e900948', baidu:'https://pan.baidu.com/s/1_3tevGSdkFjLL3UXcYwRkA?pwd=jr1q' },
       { name:'电脑录屏软件', desc:'屏幕录制', quark:'https://pan.quark.cn/s/d4a4b3d25c3f', baidu:'https://pan.baidu.com/s/1xlJOaxI7NSdo82h87BrR9w?pwd=6yg4' },
@@ -320,20 +280,21 @@ const SECTIONS = [
   },
 ];
 
+const PAGE_SIZE = 10;
+
 /* ===================== 渲染 ===================== */
-const app = document.getElementById('app');
-const sidebarNav = document.getElementById('sidebarNav');
+const tabbar = document.getElementById('tabbar');
 const content = document.getElementById('content');
-const topbarTitle = document.getElementById('topbarTitle');
 const searchInput = document.getElementById('search');
 let currentId = SECTIONS[0].id;
+let currentPage = 1;
 
-function renderNav(){
-  sidebarNav.innerHTML = SECTIONS.map(s => `
-    <button class="nav-item" data-id="${s.id}">
-      <span class="nav-icon">${s.icon}</span>
+function renderTabs(){
+  tabbar.innerHTML = SECTIONS.map(s => `
+    <button class="tab" data-id="${s.id}">
+      <span class="tab-icon">${s.icon}</span>
       <span>${s.name}</span>
-      <span class="nav-count">${s.tools.length}</span>
+      <span class="tab-count">${s.tools.length}</span>
     </button>`).join('');
 }
 
@@ -365,14 +326,35 @@ function renderGrid(list, s){
   return `<div class="grid">${list.map(t => toolCard(t, s)).join('')}</div>`;
 }
 
-function setActiveNav(id){
-  document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.id === id));
+function paginationHTML(totalPages, page){
+  if (totalPages <= 1) return '';
+  let nums = '';
+  for (let i = 1; i <= totalPages; i++){
+    nums += `<button class="page-btn ${i===page?'active':''}" data-page="${i}">${i}</button>`;
+  }
+  return `<div class="pagination">
+    <button class="page-btn" data-page="${page-1}" ${page===1?'disabled':''}>上一页</button>
+    ${nums}
+    <button class="page-btn" data-page="${page+1}" ${page===totalPages?'disabled':''}>下一页</button>
+  </div>`;
 }
 
-function renderSection(id){
+function setActiveTab(id){
+  document.querySelectorAll('.tab').forEach(el => {
+    const on = el.dataset.id === id;
+    el.classList.toggle('active', on);
+    if (on) el.scrollIntoView({ block:'nearest', inline:'nearest' });
+  });
+}
+
+function renderSection(id, page=1){
+  currentId = id;
   const s = SECTIONS.find(x => x.id === id);
-  topbarTitle.textContent = s.name;
-  setActiveNav(id);
+  const totalPages = Math.max(1, Math.ceil(s.tools.length / PAGE_SIZE));
+  currentPage = Math.min(page, totalPages);
+  const start = (currentPage - 1) * PAGE_SIZE;
+  const list = s.tools.slice(start, start + PAGE_SIZE);
+  setActiveTab(id);
   content.innerHTML = `
     <div class="section-head">
       <div class="section-icon" style="background:${s.soft}">${s.icon}</div>
@@ -382,12 +364,12 @@ function renderSection(id){
       </div>
     </div>
     <div class="section-desc">${s.desc}</div>
-    ${renderGrid(s.tools, s)}`;
+    ${renderGrid(list, s)}
+    ${paginationHTML(totalPages, currentPage)}`;
 }
 
 function renderSearch(q){
-  topbarTitle.textContent = '搜索结果';
-  setActiveNav('');
+  setActiveTab('');
   const groups = [];
   SECTIONS.forEach(s => {
     const nameHit = s.name.toLowerCase().includes(q);
@@ -410,34 +392,37 @@ function renderSearch(q){
 }
 
 /* ===================== 交互 ===================== */
-sidebarNav.addEventListener('click', e => {
-  const btn = e.target.closest('.nav-item');
+// 切换分区
+tabbar.addEventListener('click', e => {
+  const btn = e.target.closest('.tab');
   if (!btn) return;
-  currentId = btn.dataset.id;
   searchInput.value = '';
-  renderSection(currentId);
-  // 移动端选中后关闭抽屉
-  if (window.innerWidth < 768) app.classList.remove('sidebar-open');
+  renderSection(btn.dataset.id, 1);
+});
+
+// 分页点击
+content.addEventListener('click', e => {
+  const btn = e.target.closest('.page-btn');
+  if (!btn || btn.disabled) return;
+  renderSection(currentId, parseInt(btn.dataset.page, 10));
 });
 
 // 全局搜索
 searchInput.addEventListener('input', () => {
   const q = searchInput.value.trim().toLowerCase();
   if (q) renderSearch(q);
-  else renderSection(currentId);
+  else renderSection(currentId, 1);
 });
 
-// 侧栏开关（仅移动端抽屉）
-const menuHint = document.getElementById('menuHint');
-document.getElementById('menuBtn').addEventListener('click', () => {
-  app.classList.toggle('sidebar-open');
-  menuHint.classList.add('hidden');
+// 回到顶部
+const backTop = document.getElementById('backTop');
+window.addEventListener('scroll', () => {
+  backTop.classList.toggle('show', window.scrollY > 400);
 });
-document.getElementById('backdrop').addEventListener('click', () => app.classList.remove('sidebar-open'));
-document.getElementById('hintClose').addEventListener('click', () => menuHint.classList.add('hidden'));
+backTop.addEventListener('click', () => window.scrollTo({ top:0, behavior:'smooth' }));
 
-renderNav();
-renderSection(currentId);
+renderTabs();
+renderSection(currentId, 1);
 </script>
 </body>
 </html>
