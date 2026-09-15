@@ -45,18 +45,17 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .search .s-ico{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--text-3);font-size:15px}
 
 .tabbar{border-top:1px solid var(--border)}
-.tabbar-inner{display:flex;gap:8px;overflow-x:auto;padding:10px 24px;scrollbar-width:none}
-.tabbar-inner::-webkit-scrollbar{display:none}
+.tabbar-inner{display:flex;flex-wrap:wrap;gap:6px;padding:10px 24px}
 .tab{
-  flex:none;display:flex;align-items:center;gap:6px;
-  padding:8px 15px;border-radius:20px;font-size:14px;font-weight:500;
+  flex:none;display:flex;align-items:center;gap:4px;
+  padding:5px 11px;border-radius:16px;font-size:13px;font-weight:500;
   color:var(--text-2);background:#fff;border:1px solid var(--border);
   transition:all .15s;white-space:nowrap;
 }
 .tab:hover{border-color:var(--primary);color:var(--primary)}
 .tab.active{background:var(--primary);color:#fff;border-color:var(--primary);font-weight:600}
-.tab-icon{font-size:16px}
-.tab-count{font-size:11px;background:rgba(0,0,0,.07);border-radius:10px;padding:0 6px;line-height:1.6}
+.tab-icon{font-size:15px}
+.tab-count{font-size:10.5px;background:rgba(0,0,0,.07);border-radius:10px;padding:0 5px;line-height:1.6}
 .tab.active .tab-count{background:rgba(255,255,255,.22)}
 
 /* ===================== 内容 ===================== */
@@ -155,7 +154,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 <div class="header-wrap">
   <header class="site-header">
     <div class="brand">
-      <span class="brand-icon">🧰</span>
+      <span class="brand-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:21px;height:21px"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
       <div>
         <div class="brand-name">来点工具</div>
         <div class="brand-domain">ldgj.xyz · 免费软件 / 工具 / 素材下载</div>
