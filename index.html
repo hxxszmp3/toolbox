@@ -100,6 +100,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .page-btn.active{background:var(--primary);color:#fff;border-color:var(--primary)}
 .page-btn:disabled{opacity:.4;cursor:not-allowed}
 
+/* 分区底部持续更新 */
+.section-update{text-align:center;color:var(--text-3);font-size:13px;margin-top:26px;padding-top:18px;border-top:1px dashed var(--border-2)}
+
 /* 搜索结果分组 */
 .search-group{margin-bottom:28px}
 .search-group-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
@@ -264,13 +267,13 @@ const SECTIONS = [
     tools:[
       { name:'李跳跳', desc:'跳过 App 开屏广告', img:'icons/litiaotiao.png', quark:'https://pan.quark.cn/s/b12c4e900948', baidu:'https://pan.baidu.com/s/1_3tevGSdkFjLL3UXcYwRkA?pwd=jr1q' },
       { name:'电脑录屏软件', desc:'屏幕录制', emoji:'🎥', quark:'https://pan.quark.cn/s/d4a4b3d25c3f', baidu:'https://pan.baidu.com/s/1xlJOaxI7NSdo82h87BrR9w?pwd=6yg4' },
-      { name:'电脑截图软件', desc:'截图工具', emoji:'📸', quark:'https://pan.quark.cn/s/755242ca07b3', baidu:'https://pan.baidu.com/s/11rrM9pdPKr7baQi1wInaMg?pwd=arhn' },
+      { name:'电脑截图软件', desc:'PixPin 截图工具', emoji:'📸', quark:'https://pan.quark.cn/s/755242ca07b3', baidu:'https://pan.baidu.com/s/11rrM9pdPKr7baQi1wInaMg?pwd=arhn' },
       { name:'极限投屏', desc:'手机电脑无线互投', img:'icons/jixian.png', quark:'https://pan.quark.cn/s/c63e905b0bb4', baidu:'https://pan.baidu.com/s/1GfuV0rHaoTaK77CZz8os3A?pwd=anb2' },
       { name:'带壳截图', desc:'给截图加手机壳效果', emoji:'📱', quark:'https://pan.quark.cn/s/74e3ddac7600', baidu:'https://pan.baidu.com/s/17Fx9y01I-d7T-ZVZNTR6jw?pwd=uumt' },
       { name:'非剪', desc:'视频剪辑', emoji:'✂️', quark:'https://pan.quark.cn/s/54d85a05c3d0', baidu:'https://pan.baidu.com/s/1MsyTlVlobPxdq2K_XGe0Wg?pwd=ppar' },
       { name:'豆包去水印', desc:'图片 + 视频去水印', emoji:'🧽', quark:'https://pan.quark.cn/s/f6af0a41f370', baidu:'https://pan.baidu.com/s/1qNyFeZoUDKtg3-DiGX7wGg?pwd=3heb' },
-      { name:'卸载软件', desc:'强力卸载，清理残留', emoji:'🗑️', quark:'https://pan.quark.cn/s/d5fd8dcd78fc', baidu:'https://pan.baidu.com/s/1ysTcO4Y-cxprVhawrXDC8w?pwd=ccsc' },
-      { name:'批量下载抖音视频插件', desc:'抖音视频批量下载', emoji:'📥', quark:'https://pan.quark.cn/s/1c0c61aca758', baidu:'https://pan.baidu.com/s/1G5_CW63FDj9ZHHWdXmz6pA?pwd=wu75' },
+      { name:'卸载软件', desc:'Geek 强力卸载，清理残留', emoji:'🗑️', quark:'https://pan.quark.cn/s/d5fd8dcd78fc', baidu:'https://pan.baidu.com/s/1ysTcO4Y-cxprVhawrXDC8w?pwd=ccsc' },
+      { name:'批量下载抖音视频插件', desc:'DataTool 抖音视频批量下载', emoji:'📥', quark:'https://pan.quark.cn/s/1c0c61aca758', baidu:'https://pan.baidu.com/s/1G5_CW63FDj9ZHHWdXmz6pA?pwd=wu75' },
       { name:'公众号文章下载器', desc:'下载公众号文章', emoji:'📄', quark:'https://pan.quark.cn/s/2101a43cc4d1', baidu:'https://pan.baidu.com/s/1t-ogHr3RgaiE-x3w_06t1A?pwd=u5nx' },
       { name:'qq音乐转MP3格式', desc:'音乐格式转换', emoji:'🎶', quark:'https://pan.quark.cn/s/809f293713a7', baidu:'https://pan.baidu.com/s/1XMShkHb3ak2i5a1VLODzjw?pwd=dwns' },
       { name:'刷圈兔', desc:'朋友圈工具', emoji:'🐰', quark:'https://pan.quark.cn/s/9c65f279682a', baidu:'https://pan.baidu.com/s/1xR-hreaSPe3xM4eu1b7thg?pwd=ezy3' },
@@ -373,7 +376,7 @@ function renderSection(id, page=1){
   const start = (currentPage - 1) * PAGE_SIZE;
   const list = s.tools.slice(start, start + PAGE_SIZE);
   setActiveTab(id);
-  content.innerHTML = `${renderGrid(list, s)}${paginationHTML(totalPages, currentPage)}`;
+  content.innerHTML = `${renderGrid(list, s)}${paginationHTML(totalPages, currentPage)}<div class="section-update">🔄 持续更新中，更多工具敬请期待…</div>`;
 }
 
 function renderSearch(q){
