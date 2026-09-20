@@ -87,6 +87,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .btn-baidu{background:#f2f3f5;color:var(--text-2);border:1px solid var(--border-2)}
 .btn-baidu:hover{background:#e9ebee}
 
+/* 直接显示网址 */
+.web-link{margin-top:auto;font-size:12.5px;color:var(--primary);word-break:break-all;display:inline-flex;align-items:center;gap:4px}
+.web-link:hover{text-decoration:underline}
+
 /* AI 指令卡片 */
 .cmd-row{display:flex;align-items:center;gap:8px;background:#0f172a;color:#cbd5e1;border-radius:8px;padding:8px 10px;font-size:12px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
 .cmd-row code{flex:1;word-break:break-all;line-height:1.5}
@@ -252,6 +256,8 @@ const SECTIONS = [
   {
     id:'data', icon:'📂', name:'资料专区', desc:'干货资料合集', color:'#14b8a6', soft:'#f0fdfa',
     tools:[
+      { name:'自媒体运营宝典', desc:'自媒体运营干货教程合集', emoji:'📘', quark:'https://pan.quark.cn/s/843970d3a819', baidu:'https://pan.baidu.com/s/1i-dcqE_dTVIu4I48PxdLBg?pwd=s8q5' },
+      { name:'古龙小说全集', desc:'古龙武侠小说在线阅读，70多部经典作品', emoji:'📖', web:'https://www.gulongwang.com/' },
       { name:'自媒体人必备', desc:'自媒体运营干货资料包', emoji:'✍️', quark:'https://pan.quark.cn/s/12d673d50af9' },
       { name:'中国各省旅游攻略', desc:'全国各省旅游攻略合集', emoji:'🗺️', quark:'https://pan.quark.cn/s/a7bd03521366' },
     ]
@@ -320,7 +326,9 @@ function toolCard(t, s){
     : `<span class="tool-icon">${t.emoji || s.icon}</span>`;
 
   let action = '';
-  if (t.cmd){
+  if (t.web){
+    action = `<a class="web-link" href="${t.web}" target="_blank" rel="noopener">🔗 ${t.web}</a>`;
+  } else if (t.cmd){
     action = `<div class="cmd-row"><code>${t.cmd}</code><button class="btn-copy" data-cmd="${t.cmd}">复制</button></div>`;
   } else if (t.quark){
     const baidu = t.baidu
