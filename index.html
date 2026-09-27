@@ -98,6 +98,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
 /* AI 指令卡片 */
 .cmd-row{display:flex;align-items:center;gap:8px;background:#0f172a;color:#cbd5e1;border-radius:8px;padding:8px 10px;font-size:12px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
+.cmd-label{flex:none;font-size:11px;font-weight:600;color:#7c8aa0;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif}
 .cmd-row code{flex:1;word-break:break-all;line-height:1.5}
 .btn-copy{height:28px;padding:0 10px;border-radius:6px;font-size:12px;font-weight:600;background:rgba(255,255,255,.14);color:#fff;white-space:nowrap;transition:background .15s}
 .btn-copy:hover{background:rgba(255,255,255,.24)}
@@ -306,15 +307,13 @@ const SECTIONS = [
   {
     id:'ai', icon:'🤖', name:'AI专区', desc:'AI 提效 skill', color:'#0ea5e9', soft:'#f0f9ff',
     tools:[
-      { name:'book-to-skill', desc:'把任何书籍/文档转成 AI Skill，AI 直接基于原文回答', emoji:'📚', points:[
+      { name:'book-to-skill', desc:'把任何书籍/文档转成 AI Skill，AI 直接基于原文回答', emoji:'📚', cmd:'npx skills add virgiliojr94/book-to-skill', points:[
         '<b>是什么 & 能干嘛</b>：把书籍/文档（PDF、EPUB、Word、HTML、Markdown、TXT 等）转成 AI Skill，让 AI 基于原文回答——比如民法典、劳动法十几万字做成 Skill，不编造答案',
-        '<b>怎么安装</b>：在 agent 里粘贴 <code>npx skills add virgiliojr94/book-to-skill</code>',
         '<b>GitHub 原地址</b>：<a href="https://github.com/virgiliojr94/book-to-skill" target="_blank" rel="noopener">github.com/virgiliojr94/book-to-skill</a>',
       ]},
       { name:'夸克网盘 skill', desc:'夸克网盘 AI 助手 skill（实测不如手动来得快，静待优化）', emoji:'☁️' },
-      { name:'淬火学习 skill', desc:'号称能让学习速度提升 10 倍的 skill', emoji:'🔥', points:[
+      { name:'淬火学习 skill', desc:'号称能让学习速度提升 10 倍的 skill', emoji:'🔥', cmd:'npx -y skills add Biancuihuo/cuihuo-skills -g --all', points:[
         '<b>是什么 & 能干嘛</b>：号称学习速度提升 10 倍的 skill，不是让你学得更快，而是只学该学的、学完真会了',
-        '<b>怎么安装</b>：在 agent 里粘贴 <code>npx -y skills add Biancuihuo/cuihuo-skills -g --all</code>',
         '<b>GitHub 原地址</b>：<a href="https://github.com/Biancuihuo/cuihuo-skills" target="_blank" rel="noopener">github.com/Biancuihuo/cuihuo-skills</a>',
       ]},
     ]
@@ -349,7 +348,7 @@ function toolCard(t, s){
   if (t.web){
     action = `<a class="web-link" href="${t.web}" target="_blank" rel="noopener">🔗 ${t.web}</a>`;
   } else if (t.cmd){
-    action = `<div class="cmd-row"><code>${t.cmd}</code><button class="btn-copy" data-cmd="${t.cmd}">复制</button></div>`;
+    action = `<div class="cmd-row"><span class="cmd-label">怎么安装</span><code>${t.cmd}</code><button class="btn-copy" data-cmd="${t.cmd}">复制</button></div>`;
   } else if (t.quark){
     const baidu = t.baidu
       ? `<a class="btn btn-baidu" href="${t.baidu}" target="_blank" rel="noopener">备用下载</a>`
