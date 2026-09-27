@@ -97,8 +97,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .web-link:hover{text-decoration:underline}
 
 /* AI 指令卡片 */
+.cmd-wrap{display:flex;flex-direction:column;gap:6px;margin-top:auto}
+.cmd-hint{font-size:12.5px;color:var(--text-2);font-weight:600}
 .cmd-row{display:flex;align-items:center;gap:8px;background:#0f172a;color:#cbd5e1;border-radius:8px;padding:8px 10px;font-size:12px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
-.cmd-label{flex:none;font-size:11px;font-weight:600;color:#7c8aa0;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif}
 .cmd-row code{flex:1;word-break:break-all;line-height:1.5}
 .btn-copy{height:28px;padding:0 10px;border-radius:6px;font-size:12px;font-weight:600;background:rgba(255,255,255,.14);color:#fff;white-space:nowrap;transition:background .15s}
 .btn-copy:hover{background:rgba(255,255,255,.24)}
@@ -348,7 +349,7 @@ function toolCard(t, s){
   if (t.web){
     action = `<a class="web-link" href="${t.web}" target="_blank" rel="noopener">🔗 ${t.web}</a>`;
   } else if (t.cmd){
-    action = `<div class="cmd-row"><span class="cmd-label">怎么安装</span><code>${t.cmd}</code><button class="btn-copy" data-cmd="${t.cmd}">复制</button></div>`;
+    action = `<div class="cmd-wrap"><div class="cmd-hint">怎么安装：复制以下代码到 agent 即可</div><div class="cmd-row"><code>${t.cmd}</code><button class="btn-copy" data-cmd="${t.cmd}">复制</button></div></div>`;
   } else if (t.quark){
     const baidu = t.baidu
       ? `<a class="btn btn-baidu" href="${t.baidu}" target="_blank" rel="noopener">备用下载</a>`
