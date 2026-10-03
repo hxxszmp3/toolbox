@@ -6,8 +6,26 @@
 <meta name="referrer" content="no-referrer">
 <title>来点工具 - 免费工具箱 | 软件 · 音乐 · 小说 · 素材资源</title>
 <meta name="description" content="来点工具（ldgj.xyz）——免费软件、黑科技工具、素材资源一站式下载。小说/音乐/影视/动漫/漫画/游戏/资料/壁纸/实用软件/AI，持续更新。">
+
+<!-- favicon / PWA -->
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#2563eb">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f1216">
+
+<!-- 分享预览（微信/QQ/Twitter 卡片） -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="来点工具">
+<meta property="og:title" content="来点工具 - 免费工具箱 | 软件 · 音乐 · 小说 · 素材资源">
+<meta property="og:description" content="免费软件、黑科技工具、素材资源一站式下载，持续更新。">
+<meta property="og:url" content="https://ldgj.xyz/">
+<meta property="og:image" content="https://ldgj.xyz/icons/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
 <style>
-/* ===================== 主题变量：明亮干净 ===================== */
+/* ===================== 主题变量：明亮 / 暗色自动跟随系统 ===================== */
 :root{
   --bg:#f5f6f8;
   --card:#ffffff;
@@ -19,8 +37,33 @@
   --primary:#2563eb;
   --primary-hover:#1d4ed8;
   --primary-soft:#eff4ff;
+  --input-bg:#fafbfc;
+  --code-bg:#f1f3f6;
+  --soft-btn:#f2f3f5;
+  --soft-btn-hover:#e9ebee;
   --radius:12px;
   --shadow:0 1px 2px rgba(16,24,40,.04),0 2px 8px rgba(16,24,40,.04);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f1216;
+    --card:#171b21;
+    --border:#272d36;
+    --border-2:#333a45;
+    --text:#e6eaf0;
+    --text-2:#a3adbb;
+    --text-3:#667080;
+    --primary:#3b82f6;
+    --primary-hover:#2563eb;
+    --primary-soft:#18263c;
+    --input-bg:#10141a;
+    --code-bg:#1f2530;
+    --soft-btn:#232a34;
+    --soft-btn-hover:#2b333f;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 2px 10px rgba(0,0,0,.3);
+  }
+  .tab-count{background:rgba(255,255,255,.12)}
+  .brand-icon{box-shadow:0 3px 10px rgba(0,0,0,.4)}
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
@@ -30,18 +73,19 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 a{color:inherit;text-decoration:none}
-button{font-family:inherit;cursor:pointer;border:none;background:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
 
 /* ===================== 顶部（品牌 + 搜索 + 分类 tab）===================== */
-.header-wrap{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--border)}
+.header-wrap{position:sticky;top:0;z-index:50;background:var(--card);border-bottom:1px solid var(--border)}
 .site-header{display:flex;align-items:center;gap:16px;padding:14px 24px}
 .brand{display:flex;align-items:center;gap:12px}
 .brand-icon{width:46px;height:46px;border-radius:12px;flex:none;background:var(--primary);display:flex;align-items:center;justify-content:center;color:#fff;box-shadow:0 3px 10px rgba(37,99,235,.3)}
 .brand-name{font-size:21px;font-weight:800;letter-spacing:.5px}
 .brand-domain{font-size:13px;color:var(--text-3);font-weight:500}
 .search{flex:1;max-width:420px;margin-left:auto;position:relative}
-.search input{width:100%;height:42px;border:1px solid var(--border);border-radius:10px;padding:0 14px 0 38px;font-size:14px;color:var(--text);background:#fafbfc;outline:none;transition:border-color .15s,box-shadow .15s,background .15s}
-.search input:focus{border-color:var(--primary);background:#fff;box-shadow:0 0 0 3px rgba(37,99,235,.12)}
+.search input{width:100%;height:42px;border:1px solid var(--border);border-radius:10px;padding:0 14px 0 38px;font-size:14px;color:var(--text);background:var(--input-bg);outline:none;transition:border-color .15s,box-shadow .15s,background .15s}
+.search input::placeholder{color:var(--text-3)}
+.search input:focus{border-color:var(--primary);background:var(--card);box-shadow:0 0 0 3px rgba(37,99,235,.15)}
 .search .s-ico{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--text-3);font-size:15px}
 
 .tabbar{border-top:1px solid var(--border)}
@@ -49,7 +93,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .tab{
   flex:none;display:flex;align-items:center;gap:4px;
   padding:5px 11px;border-radius:16px;font-size:13px;font-weight:500;
-  color:var(--text-2);background:#fff;border:1px solid var(--border);
+  color:var(--text-2);background:var(--card);border:1px solid var(--border);
   transition:all .15s;white-space:nowrap;
 }
 .tab:hover{border-color:var(--primary);color:var(--primary)}
@@ -66,12 +110,12 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   position:relative;overflow:hidden;
   background:var(--card);border:1.5px solid var(--accent-border);border-radius:var(--radius);
   padding:16px;display:flex;flex-direction:column;gap:10px;
-  box-shadow:0 1px 3px rgba(16,24,40,.06),0 4px 14px rgba(16,24,40,.06);
+  box-shadow:var(--shadow);
   transition:transform .18s,box-shadow .18s,border-color .18s;
 }
 .tool:hover{transform:translateY(-2px);box-shadow:0 10px 26px var(--accent-soft);border-color:var(--accent)}
 .tool-accent{position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent)}
-.tool-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.tool-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding-right:26px}
 .tool-icon{width:40px;height:40px;border-radius:10px;flex:none;display:flex;align-items:center;justify-content:center;font-size:21px;background:var(--accent-soft)}
 .tool-img{object-fit:cover;display:block;background:#eef1f5;padding:0}
 .tool-name{font-size:16px;font-weight:700;line-height:1.3}
@@ -81,32 +125,43 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .tool-points li{line-height:1.6}
 .tool-points a{color:var(--primary);word-break:break-all}
 .tool-points a:hover{text-decoration:underline}
-.tool-points code{background:#f1f3f6;padding:1px 6px;border-radius:4px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:11.5px;color:#334155;word-break:break-all}
-.tool-btns{margin-top:auto;display:flex;gap:8px}
+.tool-points code{background:var(--code-bg);padding:1px 6px;border-radius:4px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:11.5px;color:var(--text-2);word-break:break-all}
+.tool-btns{display:flex;gap:8px}
 .btn{
   height:30px;padding:0 14px;border-radius:8px;font-size:12.5px;font-weight:600;
   display:inline-flex;align-items:center;justify-content:center;gap:4px;white-space:nowrap;transition:background .15s;
 }
 .btn-quark{background:var(--primary);color:#fff}
 .btn-quark:hover{background:var(--primary-hover)}
-.btn-baidu{background:#f2f3f5;color:var(--text-2);border:1px solid var(--border-2)}
-.btn-baidu:hover{background:#e9ebee}
+.btn-baidu{background:var(--soft-btn);color:var(--text-2);border:1px solid var(--border-2)}
+.btn-baidu:hover{background:var(--soft-btn-hover)}
+
+/* 卡片底部操作区（按钮 / 提取码 / 网址 / 指令 统一沉底） */
+.tool-action{margin-top:auto;display:flex;flex-direction:column;gap:8px}
+
+/* 收藏按钮 */
+.fav-btn{position:absolute;top:10px;right:10px;z-index:2;font-size:17px;line-height:1;color:var(--text-3);opacity:.55;transition:opacity .15s,color .15s,transform .15s}
+.fav-btn:hover{opacity:1;transform:scale(1.15)}
+.fav-btn.on{color:#f59e0b;opacity:1}
 
 /* 直接显示网址 */
-.web-link{margin-top:auto;font-size:12.5px;color:var(--primary);word-break:break-all;display:inline-flex;align-items:center;gap:4px}
+.web-link{font-size:12.5px;color:var(--primary);word-break:break-all;display:inline-flex;align-items:center;gap:4px}
 .web-link:hover{text-decoration:underline}
 
 /* AI 指令卡片 */
-.cmd-wrap{display:flex;flex-direction:column;gap:6px;margin-top:auto}
+.cmd-wrap{display:flex;flex-direction:column;gap:6px}
 .cmd-hint{font-size:12.5px;color:var(--text-2);font-weight:600}
 .cmd-row{display:flex;align-items:center;gap:8px;background:#0f172a;color:#cbd5e1;border-radius:8px;padding:8px 10px;font-size:12px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
 .cmd-row code{flex:1;word-break:break-all;line-height:1.5}
 .btn-copy{height:28px;padding:0 10px;border-radius:6px;font-size:12px;font-weight:600;background:rgba(255,255,255,.14);color:#fff;white-space:nowrap;transition:background .15s}
 .btn-copy:hover{background:rgba(255,255,255,.24)}
 
+/* 搜索高亮 */
+mark{background:rgba(245,158,11,.35);color:inherit;border-radius:3px;padding:0 1px}
+
 /* 分页 */
 .pagination{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:26px;flex-wrap:wrap}
-.page-btn{min-width:36px;height:36px;padding:0 12px;border-radius:9px;font-size:13.5px;font-weight:600;color:var(--text-2);background:#fff;border:1px solid var(--border);transition:all .15s}
+.page-btn{min-width:36px;height:36px;padding:0 12px;border-radius:9px;font-size:13.5px;font-weight:600;color:var(--text-2);background:var(--card);border:1px solid var(--border);transition:all .15s}
 .page-btn:hover{border-color:var(--primary);color:var(--primary)}
 .page-btn.active{background:var(--primary);color:#fff;border-color:var(--primary)}
 .page-btn:disabled{opacity:.4;cursor:not-allowed}
@@ -136,7 +191,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .back-top:hover{background:var(--primary-hover)}
 
 /* 页脚 */
-.footer{border-top:1px solid var(--border);background:#fff;padding:30px 20px}
+.footer{border-top:1px solid var(--border);background:var(--card);padding:30px 20px}
 .footer-inner{max-width:1080px;margin:0 auto;text-align:center}
 .footer-brand{font-size:16px;font-weight:800}
 .footer-brand .dot{color:var(--primary)}
@@ -204,152 +259,16 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
 <button class="back-top" id="backTop" aria-label="回到顶部">↑</button>
 
+<script src="data.js"></script>
 <script>
-/* =====================================================================
-   数据区：分区名统一四字；color=主色 soft=浅色
-   img=真实图标  emoji=按功能自动配的图标  quark=夸克 baidu=百度(可省) cmd=指令
-   新增/修改工具直接在这里改
-   ===================================================================== */
-const SECTIONS = [
-  {
-    id:'novel', icon:'📖', name:'小说专区', desc:'免费看小说、下小说', color:'#3b82f6', soft:'#eff6ff',
-    tools:[
-      { name:'小说下载器', desc:'全网小说搜索下载，一键导出 TXT/EPUB', img:'icons/xiaoshuo.png', quark:'https://pan.quark.cn/s/6c73fb388aea', baidu:'https://pan.baidu.com/s/1SHWmlXxW3FYTBf_2f_yruQ?pwd=i32n' },
-      { name:'番茄小说下载器', desc:'番茄小说资源下载', img:'icons/fanqie.png', quark:'https://pan.quark.cn/s/867ce5b0aad5', baidu:'https://pan.baidu.com/s/1Rg_Ffo3vqfSU4EdQVlJPhA?pwd=f46i' },
-      { name:'七猫小说下载器', desc:'七猫免费小说下载', img:'icons/qimao.png', quark:'https://pan.quark.cn/s/a6feae8cc3d1', baidu:'https://pan.baidu.com/s/1IEjRs6QI0SSxz0_8MbAdXw?pwd=paqi' },
-      { name:'笔趣阁 5.0', desc:'海量书源免费阅读', img:'icons/biquge.png', quark:'https://pan.quark.cn/s/efae8b3e1325', baidu:'https://pan.baidu.com/s/1ecJhyMWNgQfw6v5uCt2ySg?pwd=azf3' },
-      { name:'开源软件 + 开源书源', desc:'开源阅读 + 书源合集', img:'icons/kaiyuan.png', quark:'https://pan.quark.cn/s/938c4b40974e', baidu:'https://pan.baidu.com/s/169DT7lXgr0DLeB8pkTWUyQ?pwd=e0m5' },
-      { name:'星盒', desc:'多功能聚合神器（小说/音乐/影视/动漫）', img:'icons/xinghe.png', quark:'https://pan.quark.cn/s/7fc3a192ddc2', baidu:'https://pan.baidu.com/s/18Des_vBGkeHMCgBgans8Tw?pwd=j5q4' },
-      { name:'摸鱼神器', desc:'电脑端看小说，隐蔽摸鱼', img:'icons/moyu.png', quark:'https://pan.quark.cn/s/33a420bf77d2', baidu:'https://pan.baidu.com/s/1iSVaAHf-_udfr1SGlIp82g?pwd=rscq' },
-      { name:'知乎盐选文章提取', desc:'提取知乎盐选文章（需自备会员）', img:'icons/zhihu.png', quark:'https://pan.quark.cn/s/22496116e151' },
-    ]
-  },
-  {
-    id:'music', icon:'🎵', name:'音乐专区', desc:'免费听歌、下歌', color:'#8b5cf6', soft:'#f5f3ff',
-    tools:[
-      { name:'敦伦调调', desc:'全网音乐免费听 / 下载', img:'icons/dunlun.png', quark:'https://pan.quark.cn/s/21d0a48a9ee9', baidu:'https://pan.baidu.com/s/1ObfiNgOTdDpkxcEVFZZ4kA?pwd=3dcd' },
-      { name:'星盒', desc:'聚合音乐资源神器', img:'icons/xinghe.png', quark:'https://pan.quark.cn/s/7fc3a192ddc2', baidu:'https://pan.baidu.com/s/1cs_YNcijpn15Gx6CK-lNqA?pwd=3w3y' },
-      { name:'zpod', desc:'播客 / 音乐播放器', img:'icons/zpod.png', quark:'https://pan.quark.cn/s/8e670e877201', baidu:'https://pan.baidu.com/s/1k8lnZ3KKz7eVV-yTLovZlQ?pwd=4if2' },
-      { name:'星音乐', desc:'免费音乐播放与下载', img:'icons/xingyinyue.png', quark:'https://pan.quark.cn/s/42f30fcaeea5', baidu:'https://pan.baidu.com/s/1KcaQEt15ZQTOoXMiTHucxg?pwd=ck1c' },
-      { name:'莫比音乐', desc:'高品质音乐平台（收费）', tag:'收费', img:'icons/mobi.png', quark:'https://pan.quark.cn/s/f70a57a9420a', baidu:'https://pan.baidu.com/s/1___-VnWKyPtabXOOupRi2Q?pwd=rsc8' },
-      { name:'四分贝音乐', desc:'免费音乐', img:'icons/sifenbei.png', quark:'https://pan.quark.cn/s/2343ef0fa98', baidu:'https://pan.baidu.com/s/1J_8b-pnAKg9qLcuP5ULrxw?pwd=4a38' },
-      { name:'米兔音乐', desc:'免费音乐', img:'icons/mitu.png', quark:'https://pan.quark.cn/s/724b9a1e77cf', baidu:'https://pan.baidu.com/s/1_hEL82wFT2481t8gvmzAog?pwd=jjam' },
-      { name:'无损音乐', desc:'FLAC 无损音乐在线试听 / 下载', emoji:'🎧', web:'https://flac.music.hi.cn/' },
-    ]
-  },
-  {
-    id:'video', icon:'🎬', name:'影视专区', desc:'聚合影视资源', color:'#ef4444', soft:'#fef2f2',
-    tools:[
-      { name:'星盒', desc:'聚合影视资源，看电影追剧', img:'icons/xinghe.png', quark:'https://pan.quark.cn/s/7fc3a192ddc2', baidu:'https://pan.baidu.com/s/18Des_vBGkeHMCgBgans8Tw?pwd=j5q4' },
-    ]
-  },
-  {
-    id:'anime', icon:'🎨', name:'动漫专区', desc:'动漫资源', color:'#f97316', soft:'#fff7ed',
-    tools:[
-      { name:'动漫共和国', desc:'动漫追番 App，支持安卓 / 苹果 / Windows', img:'icons/dongman.png', quark:'https://pan.quark.cn/s/561a59d10235', baidu:'https://pan.baidu.com/s/1gM3uc3zolfNc4CDSgBcuTg?pwd=stjc' },
-      { name:'星盒', desc:'聚合动漫资源', img:'icons/xinghe.png', quark:'https://pan.quark.cn/s/7fc3a192ddc2', baidu:'https://pan.baidu.com/s/10DAk0iXqSrakMpqFVVUdJw?pwd=6w0m' },
-    ]
-  },
-  {
-    id:'comic', icon:'📚', name:'漫画专区', desc:'漫画资源', color:'#f59e0b', soft:'#fffbeb',
-    tools:[
-      { name:'Mihon', desc:'免费开源安卓漫画阅读器（Tachiyomi 继任者）', img:'icons/mihon.png', quark:'https://pan.quark.cn/s/14966eac05db', baidu:'https://pan.baidu.com/s/11FGWmCzzpJ7gVCjh26lvIg?pwd=9gmn', points:[
-        '<b>GitHub 地址</b>：<a href="https://github.com/mihonapp" target="_blank" rel="noopener">github.com/mihonapp</a>',
-      ]},
-      { name:'venera_1.4.6', desc:'漫画阅读器', emoji:'📖', quark:'https://pan.quark.cn/s/ca0afa3bf4b0', baidu:'https://pan.baidu.com/s/1J_O7CFwJEgtow6ibGD_9qA?pwd=ai9w' },
-    ]
-  },
-  {
-    id:'game', icon:'🎮', name:'游戏专区', desc:'童年经典游戏合集', color:'#22c55e', soft:'#f0fdf4',
-    tools:[
-      { name:'手机破解游戏合集', desc:'2812 款手机破解游戏（495GB），动作/策略/经营/模拟/生存/塔防等全类型', emoji:'📱', quark:'https://pan.quark.cn/s/c830ec006605' },
-      { name:'980款Steam移植手游合集', desc:'980 款 Steam 移植手机游戏版大合集', emoji:'🎮', quark:'https://pan.quark.cn/s/7749692bbebf' },
-      { name:'115款童年经典街机游戏', desc:'童年街机游戏大合集，一键怀旧', emoji:'🕹️', quark:'https://pan.quark.cn/s/5f081f6ffff0' },
-    ]
-  },
-  {
-    id:'data', icon:'📂', name:'资料专区', desc:'干货资料合集', color:'#14b8a6', soft:'#f0fdfa',
-    tools:[
-      { name:'高性价比人生指南', desc:'循证生活指南：怎么活得久、少生病、少花冤枉钱、避坑，614 条建议，每条写明成本收益和证据出处', emoji:'🧭', quark:'https://pan.quark.cn/s/8a03cc957f40', baidu:'https://pan.baidu.com/s/1n4XxIXfgKk_uIS9XyOQaXw?pwd=sm8j', points:[
-        '<b>GitHub 地址</b>：<a href="https://github.com/eternity4719/HowToLiveBetter" target="_blank" rel="noopener">github.com/eternity4719/HowToLiveBetter</a>',
-      ]},
-      { name:'Z-Library 电子书', desc:'免费电子书下载，海量图书资源', emoji:'📚', web:'https://zh.z-library.sk/' },
-      { name:'自媒体运营宝典', desc:'自媒体运营干货教程合集', emoji:'📘', quark:'https://pan.quark.cn/s/843970d3a819', baidu:'https://pan.baidu.com/s/1i-dcqE_dTVIu4I48PxdLBg?pwd=s8q5' },
-      { name:'古龙小说全集', desc:'古龙武侠小说在线阅读，70多部经典作品', emoji:'📖', web:'https://www.gulongwang.com/' },
-      { name:'自媒体人必备', desc:'自媒体运营干货资料包', emoji:'✍️', quark:'https://pan.quark.cn/s/12d673d50af9' },
-      { name:'中国各省旅游攻略', desc:'全国各省旅游攻略合集', emoji:'🗺️', quark:'https://pan.quark.cn/s/a7bd03521366' },
-    ]
-  },
-  {
-    id:'wallpaper', icon:'🖼️', name:'壁纸专区', desc:'高清壁纸合集', color:'#ec4899', soft:'#fdf2f8',
-    tools:[
-      { name:'超级齐全的壁纸合集', desc:'海量高清壁纸打包下载', emoji:'🌆', quark:'https://pan.quark.cn/s/3ebe11700a02' },
-    ]
-  },
-  {
-    id:'software', icon:'🛠️', name:'实用软件', desc:'效率工具、黑科技软件', color:'#6366f1', soft:'#eef2ff',
-    tools:[
-      { name:'Piik', desc:'免费开源屏幕共享工具，P2P 优先，支持浏览器查看、桌面应用', img:'icons/piik.png', quark:'https://pan.quark.cn/s/ba0b83672f29', baidu:'https://pan.baidu.com/s/1yqT4XvIXji-UmR2_jWHRKg?pwd=s53t', points:[
-        '<b>GitHub 地址</b>：<a href="https://github.com/TNTcraftHIM/Piik/releases" target="_blank" rel="noopener">github.com/TNTcraftHIM/Piik/releases</a>',
-      ]},
-      { name:'VideoToNotes', desc:'视频转文章，导入视频字幕即可导出公众号排版文章', img:'icons/videotonotes.png', quark:'https://pan.quark.cn/s/d38a3d2bd7f0', baidu:'https://pan.baidu.com/s/1BiTkU9YGXdQt0XHzax33Fg?pwd=5h5t' },
-      { name:'MiniReel', desc:'第三方红果短剧客户端，免费无广告，手机/电视/电脑全平台', img:'icons/minireel.png', quark:'https://pan.quark.cn/s/c326807e1024', baidu:'https://pan.baidu.com/s/1CEqs_PTYrxYEzSz_40DAbQ?pwd=fgf1' },
-      { name:'谷歌浏览器', desc:'多系统安装包：安卓手机/平板、电视TV、鸿蒙、mac、Windows', img:'icons/chrome.png', quark:'https://pan.quark.cn/s/fa06f51cda42' },
-      { name:'Bandizip', desc:'免费 Windows 解压/压缩软件，速度快，支持绝大多数格式', img:'icons/bangzip.png', quark:'https://pan.quark.cn/s/f192f2851391', baidu:'https://pan.baidu.com/s/1X5h5sOA4wHqURaId1XyTig?pwd=2vqs' },
-      { name:'GKD', desc:'安卓开源去开屏广告，天天更新，3 个全局规则基本够用', img:'icons/gkd.png', quark:'https://pan.quark.cn/s/1c9e604664a7', baidu:'https://pan.baidu.com/s/10XQkKe7a_RxKdJ-Yg-4RHw?pwd=wb7c', points:[
-        '<b>GKD 下载</b>：<a href="https://github.com/gkd-kit/gkd" target="_blank" rel="noopener">github.com/gkd-kit/gkd</a>',
-        '<b>去广告规则</b>：<a href="https://github.com/Lin-arm/GKD_subscription" target="_blank" rel="noopener">github.com/Lin-arm/GKD_subscription</a>',
-      ]},
-      { name:'WinTab', desc:'WinTab 窗口标签页工具，多窗口 1 键收成标签页', img:'icons/wintab.png', quark:'https://pan.quark.cn/s/f67eb0e6fc34', baidu:'https://pan.baidu.com/s/187Z2jh57IWYFkA86QsacXQ?pwd=3s6d' },
-      { name:'UU远程', desc:'网易UU远程，跨平台远程控制（手机 / 电脑 / 电视）', img:'icons/uuyc.png', quark:'https://pan.quark.cn/s/43bcafcc4700', baidu:'https://pan.baidu.com/s/1mkCfPAE1KeYZP_4omt4_dw?pwd=76bm' },
-      { name:'铁汁', desc:'TieZ 剪贴板助手，永久记录 + AI 翻译 + 局域网互传', img:'icons/tiez.png', quark:'https://pan.quark.cn/s/93a33db44a9a', baidu:'https://pan.baidu.com/s/1o4OG6Y9QmZjTi1g-mdCV7Q?pwd=kdww' },
-      { name:'Win11开始菜单增强工具', desc:'StartAllBack · Win11 恢复 Win7/Win10 经典界面', img:'icons/startallback.png', quark:'https://pan.quark.cn/s/7c3ec837f3eb', baidu:'https://pan.baidu.com/s/1J5qCg9swBFnPKqdnLBkCnA?pwd=t7nc' },
-      { name:'Windows电脑护眼工具', desc:'CareUEyes · 过滤蓝光、定时休息，护眼防疲劳', img:'icons/careueyes.png', quark:'https://pan.quark.cn/s/b099a45177b0', baidu:'https://pan.baidu.com/s/1j9hGgLO8PPaHSNR2g7yDqA?pwd=f739' },
-      { name:'李跳跳', desc:'跳过 App 开屏广告', img:'icons/litiaotiao.png', quark:'https://pan.quark.cn/s/b12c4e900948', baidu:'https://pan.baidu.com/s/1_3tevGSdkFjLL3UXcYwRkA?pwd=jr1q' },
-      { name:'电脑录屏软件', desc:'屏幕录制', emoji:'🎥', quark:'https://pan.quark.cn/s/d4a4b3d25c3f', baidu:'https://pan.baidu.com/s/1xlJOaxI7NSdo82h87BrR9w?pwd=6yg4' },
-      { name:'电脑截图软件', desc:'PixPin 截图工具', emoji:'📸', quark:'https://pan.quark.cn/s/755242ca07b3', baidu:'https://pan.baidu.com/s/11rrM9pdPKr7baQi1wInaMg?pwd=arhn' },
-      { name:'极限投屏', desc:'手机电脑无线互投', img:'icons/jixian.png', quark:'https://pan.quark.cn/s/c63e905b0bb4', baidu:'https://pan.baidu.com/s/1GfuV0rHaoTaK77CZz8os3A?pwd=anb2' },
-      { name:'带壳截图', desc:'给截图加手机壳效果', emoji:'📱', quark:'https://pan.quark.cn/s/74e3ddac7600', baidu:'https://pan.baidu.com/s/17Fx9y01I-d7T-ZVZNTR6jw?pwd=uumt' },
-      { name:'非剪', desc:'视频剪辑', emoji:'✂️', quark:'https://pan.quark.cn/s/54d85a05c3d0', baidu:'https://pan.baidu.com/s/1MsyTlVlobPxdq2K_XGe0Wg?pwd=ppar' },
-      { name:'豆包去水印', desc:'图片 + 视频去水印', emoji:'🧽', quark:'https://pan.quark.cn/s/f6af0a41f370', baidu:'https://pan.baidu.com/s/1qNyFeZoUDKtg3-DiGX7wGg?pwd=3heb' },
-      { name:'卸载软件', desc:'Geek 强力卸载，清理残留', emoji:'🗑️', quark:'https://pan.quark.cn/s/d5fd8dcd78fc', baidu:'https://pan.baidu.com/s/1ysTcO4Y-cxprVhawrXDC8w?pwd=ccsc' },
-      { name:'批量下载抖音视频插件', desc:'DataTool 抖音视频批量下载', emoji:'📥', quark:'https://pan.quark.cn/s/1c0c61aca758', baidu:'https://pan.baidu.com/s/1G5_CW63FDj9ZHHWdXmz6pA?pwd=wu75' },
-      { name:'公众号文章下载器', desc:'下载公众号文章', emoji:'📄', quark:'https://pan.quark.cn/s/2101a43cc4d1', baidu:'https://pan.baidu.com/s/1t-ogHr3RgaiE-x3w_06t1A?pwd=u5nx' },
-      { name:'qq音乐转MP3格式', desc:'音乐格式转换', emoji:'🎶', quark:'https://pan.quark.cn/s/809f293713a7', baidu:'https://pan.baidu.com/s/1XMShkHb3ak2i5a1VLODzjw?pwd=dwns' },
-      { name:'刷圈兔', desc:'朋友圈工具', emoji:'🐰', quark:'https://pan.quark.cn/s/9c65f279682a', baidu:'https://pan.baidu.com/s/1xR-hreaSPe3xM4eu1b7thg?pwd=ezy3' },
-      { name:'WPS会员版本', desc:'WPS Office 会员版', emoji:'📝', quark:'https://pan.quark.cn/s/c82f17805ea3', baidu:'https://pan.baidu.com/s/1_OjqOiqSttR2_MAZbXRDQw?pwd=6isy' },
-      { name:'飞鼠格式转换助手', desc:'音视频 / 文档格式转换', img:'icons/flyingmouse.png', quark:'https://pan.quark.cn/s/54d36d2d91dd', baidu:'https://pan.baidu.com/s/1g-EPPoxSKZJQIuzRqfdXvA?pwd=61xj' },
-      { name:'AI视频无痕去字幕', desc:'AI 去除视频字幕', emoji:'🎞️', quark:'https://pan.quark.cn/s/4059abee799d', baidu:'https://pan.baidu.com/s/1GdsTfpiBIgbrwP0y35Zk2A?pwd=7p7v' },
-      { name:'QQ空间恢复软件', desc:'QQ 空间数据恢复', emoji:'💾', quark:'https://pan.quark.cn/s/fbc7d2f4e05c', baidu:'https://pan.baidu.com/s/1IZRzK4VsDpzJKcuAK4YeQQ?pwd=44ka' },
-      { name:'Win自动更新关闭工具', desc:'关闭 Windows 自动更新', emoji:'🛑', quark:'https://pan.quark.cn/s/a66636a1bc90', baidu:'https://pan.baidu.com/s/18PwazXQO1lrhh_GtQaX4ow?pwd=q4sy' },
-    ]
-  },
-  {
-    id:'ai', icon:'🤖', name:'AI专区', desc:'AI 提效 skill', color:'#0ea5e9', soft:'#f0f9ff',
-    tools:[
-      { name:'jev-chat（AI参谋）', desc:'聊天辅助工具，读懂对方、给回复建议', emoji:'💬', points:[
-        '<b>是什么 & 能干嘛</b>：装在手机/电脑上的对话副驾，在微信/QQ/飞书里告诉你对方想干什么、有没有坑、给几条回复建议，最终发不发由你决定（安卓支持微信/QQ/飞书等，mac 仅支持微信）',
-        '<b>怎么用</b>：从 GitHub 下载对应版本（安卓 APK / Windows / macOS），并在 <a href="https://openrouter.ai" target="_blank" rel="noopener">openrouter.ai</a> 注册免费获取 jev 模型密钥填入',
-        '<b>GitHub 原地址</b>：<a href="https://github.com/jev-chat/jev-chat-jarvis" target="_blank" rel="noopener">github.com/jev-chat/jev-chat-jarvis</a>',
-      ]},
-      { name:'HowToLiveBetter', desc:'高性价比人生指南，循证生活 skill', emoji:'🧭', cmd:'npx skills add eternity4719/HowToLiveBetter', points:[
-        '<b>是什么 & 能干嘛</b>：按性价比排序的循证生活指南——长寿防病、急救、省钱理财、法律红线、失业工伤、医保社保、恋爱婚育、怀孕育儿、创业合规、出国技能等 612 条建议，每条写明成本、收益、证据等级和出处（只引期刊论文与官方文件）',
-        '<b>GitHub 原地址</b>：<a href="https://github.com/eternity4719/HowToLiveBetter" target="_blank" rel="noopener">github.com/eternity4719/HowToLiveBetter</a>',
-      ]},
-      { name:'book-to-skill', desc:'把任何书籍/文档转成 AI Skill，AI 直接基于原文回答', emoji:'📚', cmd:'npx skills add virgiliojr94/book-to-skill', points:[
-        '<b>是什么 & 能干嘛</b>：把书籍/文档（PDF、EPUB、Word、HTML、Markdown、TXT 等）转成 AI Skill，让 AI 基于原文回答——比如民法典、劳动法十几万字做成 Skill，不编造答案',
-        '<b>GitHub 原地址</b>：<a href="https://github.com/virgiliojr94/book-to-skill" target="_blank" rel="noopener">github.com/virgiliojr94/book-to-skill</a>',
-      ]},
-      { name:'夸克网盘 skill', desc:'夸克网盘 AI 助手 skill（实测不如手动来得快，静待优化）', emoji:'☁️' },
-      { name:'淬火学习 skill', desc:'号称能让学习速度提升 10 倍的 skill', emoji:'🔥', cmd:'npx -y skills add Biancuihuo/cuihuo-skills -g --all', points:[
-        '<b>是什么 & 能干嘛</b>：号称学习速度提升 10 倍的 skill，不是让你学得更快，而是只学该学的、学完真会了',
-        '<b>GitHub 原地址</b>：<a href="https://github.com/Biancuihuo/cuihuo-skills" target="_blank" rel="noopener">github.com/Biancuihuo/cuihuo-skills</a>',
-      ]},
-    ]
-  },
-];
-
 const PAGE_SIZE = 10;
+const FAV_KEY = 'ldgj_favs';
+
+/* ===================== 收藏（localStorage 持久化） ===================== */
+let favs;
+try { favs = new Set(JSON.parse(localStorage.getItem(FAV_KEY) || '[]')); } catch(e){ favs = new Set(); }
+const favKey = (s, t) => s.id + '::' + t.name;
+const saveFavs = () => { try { localStorage.setItem(FAV_KEY, JSON.stringify([...favs])); } catch(e){} };
 
 /* ===================== 渲染 ===================== */
 const tabbar = document.getElementById('tabbar');
@@ -358,56 +277,90 @@ const searchInput = document.getElementById('search');
 let currentId = SECTIONS[0].id;
 let currentPage = 1;
 
+/* hash 路由：#分区id 直达，支持刷新保持 / 分享链接 / 浏览器返回键 */
+function hashSection(){
+  const h = location.hash.slice(1);
+  if (h === 'fav') return 'fav';
+  return SECTIONS.some(s => s.id === h) ? h : SECTIONS[0].id;
+}
+function setHash(id){
+  try { if (location.hash.slice(1) !== id) history.pushState(null, '', '#' + id); }
+  catch(e){ location.hash = id; }
+}
+
 function renderTabs(){
   tabbar.innerHTML = SECTIONS.map(s => `
     <button class="tab" data-id="${s.id}">
       <span class="tab-icon">${s.icon}</span>
       <span>${s.name}</span>
       <span class="tab-count">${s.tools.length}</span>
-    </button>`).join('');
+    </button>`).join('') + `
+    <button class="tab" data-id="fav">
+      <span class="tab-icon">⭐</span>
+      <span>我的收藏</span>
+      <span class="tab-count">${favs.size}</span>
+    </button>`;
 }
 
-function toolCard(t, s){
-  const tag = t.tag ? `<span class="tool-tag">${t.tag}</span>` : '';
+function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+/* 搜索命中高亮（先转义再包 mark，防注入） */
+function hi(text, q){
+  text = String(text);
+  if (!q) return esc(text);
+  const lower = text.toLowerCase();
+  let out = '', i = 0;
+  for(;;){
+    const idx = lower.indexOf(q, i);
+    if (idx < 0){ out += esc(text.slice(i)); break; }
+    out += esc(text.slice(i, idx)) + '<mark>' + esc(text.slice(idx, idx + q.length)) + '</mark>';
+    i = idx + q.length;
+  }
+  return out;
+}
+
+/* 工具可搜索文本：名称 + 描述 + 标签 + 要点(去HTML) + 指令 + 网址 */
+function toolText(t){
+  const pts = (t.points || []).map(p => p.replace(/<[^>]+>/g, ' ')).join(' ');
+  return (t.name + ' ' + t.desc + ' ' + (t.tag || '') + ' ' + pts + ' ' + (t.cmd || '') + ' ' + (t.web || '')).toLowerCase();
+}
+
+function toolCard(t, s, q = ''){
+  const tag = t.tag ? `<span class="tool-tag">${esc(t.tag)}</span>` : '';
+  const favOn = favs.has(favKey(s, t));
   const icon = t.img
-    ? `<img class="tool-icon tool-img" src="${t.img}" alt="${t.name}" loading="lazy">`
+    ? `<img class="tool-icon tool-img" src="${t.img}" alt="${esc(t.name)}" loading="lazy">`
     : `<span class="tool-icon">${t.emoji || s.icon}</span>`;
 
   let action = '';
   if (t.web){
-    action = `<a class="web-link" href="${t.web}" target="_blank" rel="noopener">🔗 ${t.web}</a>`;
+    action = `<a class="web-link" href="${t.web}" target="_blank" rel="noopener">🔗 ${esc(t.web)}</a>`;
   } else if (t.cmd){
-    action = `<div class="cmd-wrap"><div class="cmd-hint">怎么安装：复制以下代码到 agent 即可</div><div class="cmd-row"><code>${t.cmd}</code><button class="btn-copy" data-cmd="${t.cmd}">复制</button></div></div>`;
+    action = `<div class="cmd-wrap"><div class="cmd-hint">怎么安装：复制以下代码到 agent 即可</div><div class="cmd-row"><code>${esc(t.cmd)}</code><button class="btn-copy" data-copy="${esc(t.cmd)}">复制</button></div></div>`;
   } else if (t.quark){
-    const baidu = t.baidu
-      ? `<a class="btn btn-baidu" href="${t.baidu}" target="_blank" rel="noopener">备用下载</a>`
-      : '';
-    action = `<div class="tool-btns">
-      <a class="btn btn-quark" href="${t.quark}" target="_blank" rel="noopener">点击下载</a>
-      ${baidu}
-    </div>`;
+    const baidu = t.baidu ? `<a class="btn btn-baidu" href="${t.baidu}" target="_blank" rel="noopener">备用下载</a>` : '';
+    action = `<div class="tool-btns"><a class="btn btn-quark" href="${t.quark}" target="_blank" rel="noopener">点击下载</a>${baidu}</div>`;
   }
 
-  const points = t.points
-    ? `<ul class="tool-points">${t.points.map(p => `<li>${p}</li>`).join('')}</ul>`
-    : '';
+  const points = t.points ? `<ul class="tool-points">${t.points.map(p => `<li>${p}</li>`).join('')}</ul>` : '';
 
   return `<div class="tool" style="--accent:${s.color};--accent-soft:${s.soft};--accent-border:${s.color}99">
     <div class="tool-accent"></div>
+    <button class="fav-btn${favOn ? ' on' : ''}" data-fav="${favKey(s, t)}" title="${favOn ? '取消收藏' : '收藏'}">★</button>
     <div class="tool-head">
       ${icon}
-      <span class="tool-name">${t.name}</span>
+      <span class="tool-name">${hi(t.name, q)}</span>
       ${tag}
     </div>
-    <div class="tool-desc">${t.desc}</div>
+    <div class="tool-desc">${hi(t.desc, q)}</div>
     ${points}
-    ${action}
+    ${action ? `<div class="tool-action">${action}</div>` : ''}
   </div>`;
 }
 
-function renderGrid(list, s){
+function renderGrid(list, s, q = ''){
   if (!list.length) return `<div class="no-result show"><div class="big">🔍</div>没有匹配的工具</div>`;
-  return `<div class="grid">${list.map(t => toolCard(t, s)).join('')}</div>`;
+  return `<div class="grid">${list.map(t => toolCard(t, s, q)).join('')}</div>`;
 }
 
 function paginationHTML(totalPages, page){
@@ -431,15 +384,37 @@ function setActiveTab(id){
   });
 }
 
-function renderSection(id, page=1){
-  currentId = id;
+function renderFavorites(){
+  setActiveTab('fav');
+  const items = [];
+  SECTIONS.forEach(s => s.tools.forEach(t => { if (favs.has(favKey(s, t))) items.push({ t, s }); }));
+  if (!items.length){
+    content.innerHTML = `<div class="no-result show"><div class="big">⭐</div>还没有收藏的工具<br>点击卡片右上角的 ★，就能把常用工具收在这里</div>`;
+    return;
+  }
+  content.innerHTML = `<div class="grid">${items.map(({ t, s }) => toolCard(t, s)).join('')}</div>`;
+}
+
+function renderSection(id, page = 1, opts = {}){
+  const scroll = opts.scroll !== false;
+  if (id === 'fav'){
+    currentId = 'fav';
+    setHash('fav');
+    renderFavorites();
+    if (scroll) window.scrollTo({ top:0, behavior:'smooth' });
+    return;
+  }
   const s = SECTIONS.find(x => x.id === id);
+  if (!s) return renderSection(SECTIONS[0].id, page, opts);
+  currentId = id;
   const totalPages = Math.max(1, Math.ceil(s.tools.length / PAGE_SIZE));
   currentPage = Math.min(page, totalPages);
   const start = (currentPage - 1) * PAGE_SIZE;
   const list = s.tools.slice(start, start + PAGE_SIZE);
   setActiveTab(id);
   content.innerHTML = `${renderGrid(list, s)}${paginationHTML(totalPages, currentPage)}<div class="section-update">🔄 持续更新中，更多工具敬请期待…</div>`;
+  setHash(id);
+  if (scroll) window.scrollTo({ top:0, behavior:'smooth' });
 }
 
 function renderSearch(q){
@@ -447,11 +422,11 @@ function renderSearch(q){
   const groups = [];
   SECTIONS.forEach(s => {
     const nameHit = s.name.toLowerCase().includes(q);
-    const matched = nameHit ? s.tools : s.tools.filter(t => (t.name + t.desc).toLowerCase().includes(q));
+    const matched = nameHit ? s.tools : s.tools.filter(t => toolText(t).includes(q));
     if (matched.length) groups.push({ s, tools: matched });
   });
   if (!groups.length){
-    content.innerHTML = `<div class="no-result show"><div class="big">🔍</div>没有找到「${searchInput.value.trim()}」相关工具</div>`;
+    content.innerHTML = `<div class="no-result show"><div class="big">🔍</div>没有找到「${esc(searchInput.value.trim())}」相关工具</div>`;
     return;
   }
   content.innerHTML = groups.map(g => `
@@ -461,7 +436,7 @@ function renderSearch(q){
         <span class="sg-name">${g.s.name}</span>
         <span class="sg-count">${g.tools.length} 款</span>
       </div>
-      ${renderGrid(g.tools, g.s)}
+      ${renderGrid(g.tools, g.s, q)}
     </div>`).join('');
 }
 
@@ -474,16 +449,25 @@ tabbar.addEventListener('click', e => {
   renderSection(btn.dataset.id, 1);
 });
 
-// 分页点击 + 复制指令
+// 分页点击 / 收藏 / 复制
 content.addEventListener('click', e => {
   const pageBtn = e.target.closest('.page-btn');
   if (pageBtn && !pageBtn.disabled){
     renderSection(currentId, parseInt(pageBtn.dataset.page, 10));
     return;
   }
-  const copyBtn = e.target.closest('.btn-copy');
+  const favBtn = e.target.closest('.fav-btn');
+  if (favBtn){
+    const key = favBtn.dataset.fav;
+    if (favs.has(key)) favs.delete(key); else favs.add(key);
+    saveFavs();
+    renderTabs();
+    renderSection(currentId, currentPage, { scroll:false });
+    return;
+  }
+  const copyBtn = e.target.closest('[data-copy]');
   if (copyBtn){
-    const cmd = copyBtn.dataset.cmd;
+    const cmd = copyBtn.dataset.copy;
     const done = () => { copyBtn.textContent = '已复制'; setTimeout(() => copyBtn.textContent = '复制', 1500); };
     if (navigator.clipboard && navigator.clipboard.writeText){
       navigator.clipboard.writeText(cmd).then(done).catch(() => fallbackCopy(cmd, done));
@@ -498,11 +482,21 @@ function fallbackCopy(text, done){
   document.body.removeChild(ta);
 }
 
-// 全局搜索
+// 全局搜索（150ms 防抖；清空后回到 hash 对应分区）
+let searchTimer;
 searchInput.addEventListener('input', () => {
-  const q = searchInput.value.trim().toLowerCase();
-  if (q) renderSearch(q);
-  else renderSection(currentId, 1);
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => {
+    const q = searchInput.value.trim().toLowerCase();
+    if (q) renderSearch(q);
+    else renderSection(hashSection(), 1, { scroll:false });
+  }, 150);
+});
+
+// 浏览器前进/后退（hash 路由）
+window.addEventListener('hashchange', () => {
+  if (searchInput.value.trim()) return;
+  renderSection(hashSection(), 1);
 });
 
 // 回到顶部
@@ -513,7 +507,13 @@ window.addEventListener('scroll', () => {
 backTop.addEventListener('click', () => window.scrollTo({ top:0, behavior:'smooth' }));
 
 renderTabs();
-renderSection(currentId, 1);
+renderSection(hashSection(), 1, { scroll:false });
 </script>
+
+<!-- ============================================
+     访问统计（占位）：注册 umami.is 或百度统计后，
+     把他们给的 <script> 统计代码贴到这里即可，例如：
+     <script async src="https://你的umami域名/script.js" data-website-id="xxx"></script>
+     ============================================ -->
 </body>
 </html>

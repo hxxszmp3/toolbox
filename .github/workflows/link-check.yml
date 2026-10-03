@@ -1,0 +1,20 @@
+# 每周一早上自动检测 data.js 里的所有链接，失效会跑失败并邮件/站内提醒
+name: Link Check
+
+on:
+  schedule:
+    - cron: '0 3 * * 1'   # 每周一 03:00 UTC（北京时间 11:00）
+  workflow_dispatch:       # 也支持在 Actions 页面手动触发
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 检测链接
+        run: node scripts/check-links.js
