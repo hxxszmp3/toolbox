@@ -510,10 +510,15 @@ renderTabs();
 renderSection(hashSection(), 1, { scroll:false });
 </script>
 
-<!-- ============================================
-     访问统计（占位）：注册 umami.is 或百度统计后，
-     把他们给的 <script> 统计代码贴到这里即可，例如：
-     <script async src="https://你的umami域名/script.js" data-website-id="xxx"></script>
-     ============================================ -->
+<!-- 百度统计 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+var hm = document.createElement("script");
+hm.src = "https://hm.baidu.com/hm.js?2198d0554be48ff1d5610c2d46c9fb50";
+var s = document.getElementsByTagName("script")[0];
+s.parentNode.insertBefore(hm, s);
+})();
+</script>
 </body>
 </html>
