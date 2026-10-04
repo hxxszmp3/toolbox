@@ -25,7 +25,7 @@ const SECTIONS = [
       { name:'zpod', desc:'播客 / 音乐播放器', img:'icons/zpod.png', quark:'https://pan.quark.cn/s/8e670e877201', baidu:'https://pan.baidu.com/s/1k8lnZ3KKz7eVV-yTLovZlQ?pwd=4if2' },
       { name:'星音乐', desc:'免费音乐播放与下载', img:'icons/xingyinyue.png', quark:'https://pan.quark.cn/s/42f30fcaeea5', baidu:'https://pan.baidu.com/s/1KcaQEt15ZQTOoXMiTHucxg?pwd=ck1c' },
       { name:'莫比音乐', desc:'高品质音乐平台（收费）', tag:'收费', img:'icons/mobi.png', quark:'https://pan.quark.cn/s/f70a57a9420a', baidu:'https://pan.baidu.com/s/1___-VnWKyPtabXOOupRi2Q?pwd=rsc8' },
-      { name:'四分贝音乐', desc:'免费音乐', img:'icons/sifenbei.png', quark:'https://pan.quark.cn/s/2343ef0fa98', baidu:'https://pan.baidu.com/s/1J_8b-pnAKg9qLcuP5ULrxw?pwd=4a38' },
+      { name:'四分贝音乐', desc:'免费音乐', img:'icons/sifenbei.png', quark:'https://pan.quark.cn/s/6a5f6874a275', baidu:'https://pan.baidu.com/s/1J_8b-pnAKg9qLcuP5ULrxw?pwd=4a38' },
       { name:'米兔音乐', desc:'免费音乐', img:'icons/mitu.png', quark:'https://pan.quark.cn/s/724b9a1e77cf', baidu:'https://pan.baidu.com/s/1_hEL82wFT2481t8gvmzAog?pwd=jjam' },
       { name:'无损音乐', desc:'FLAC 无损音乐在线试听 / 下载', emoji:'🎧', web:'https://flac.music.hi.cn/' },
     ]
