@@ -34,6 +34,7 @@ const SECTIONS = [
     id:'video', icon:'🎬', name:'影视专区', desc:'聚合影视资源', color:'#ef4444', soft:'#fef2f2',
     tools:[
       { name:'星盒', desc:'聚合影视资源，看电影追剧', img:'icons/xinghe.png', quark:'https://pan.quark.cn/s/7fc3a192ddc2', baidu:'https://pan.baidu.com/s/18Des_vBGkeHMCgBgans8Tw?pwd=j5q4' },
+      { name:'MiniReel', desc:'第三方红果短剧客户端，免费无广告，手机/电视/电脑全平台', img:'icons/minireel.png', quark:'https://pan.quark.cn/s/c326807e1024', baidu:'https://pan.baidu.com/s/1CEqs_PTYrxYEzSz_40DAbQ?pwd=fgf1' },
     ]
   },
   {
@@ -86,7 +87,6 @@ const SECTIONS = [
         '<b>GitHub 地址</b>：<a href="https://github.com/TNTcraftHIM/Piik/releases" target="_blank" rel="noopener">github.com/TNTcraftHIM/Piik/releases</a>',
       ]},
       { name:'VideoToNotes', desc:'视频转文章，导入视频字幕即可导出公众号排版文章', img:'icons/videotonotes.png', quark:'https://pan.quark.cn/s/d38a3d2bd7f0', baidu:'https://pan.baidu.com/s/1BiTkU9YGXdQt0XHzax33Fg?pwd=5h5t' },
-      { name:'MiniReel', desc:'第三方红果短剧客户端，免费无广告，手机/电视/电脑全平台', img:'icons/minireel.png', quark:'https://pan.quark.cn/s/c326807e1024', baidu:'https://pan.baidu.com/s/1CEqs_PTYrxYEzSz_40DAbQ?pwd=fgf1' },
       { name:'谷歌浏览器', desc:'多系统安装包：安卓手机/平板、电视TV、鸿蒙、mac、Windows', img:'icons/chrome.png', quark:'https://pan.quark.cn/s/fa06f51cda42' },
       { name:'Bandizip', desc:'免费 Windows 解压/压缩软件，速度快，支持绝大多数格式', img:'icons/bangzip.png', quark:'https://pan.quark.cn/s/f192f2851391', baidu:'https://pan.baidu.com/s/1X5h5sOA4wHqURaId1XyTig?pwd=2vqs' },
       { name:'GKD', desc:'安卓开源去开屏广告，天天更新，3 个全局规则基本够用', img:'icons/gkd.png', quark:'https://pan.quark.cn/s/1c9e604664a7', baidu:'https://pan.baidu.com/s/10XQkKe7a_RxKdJ-Yg-4RHw?pwd=wb7c', points:[
