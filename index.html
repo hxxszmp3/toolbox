@@ -139,11 +139,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 /* 卡片底部操作区（按钮 / 网址 / 指令 统一沉底） */
 .tool-action{margin-top:auto;display:flex;flex-direction:column;gap:8px}
 
-/* 收藏按钮 */
-.fav-btn{position:absolute;top:10px;right:10px;z-index:2;font-size:17px;line-height:1;color:var(--text-3);opacity:.55;transition:opacity .15s,color .15s,transform .15s}
-.fav-btn:hover{opacity:1;transform:scale(1.15)}
-.fav-btn.on{color:#f59e0b;opacity:1}
-
 /* 直接显示网址 */
 .web-link{font-size:12.5px;color:var(--primary);word-break:break-all;display:inline-flex;align-items:center;gap:4px}
 .web-link:hover{text-decoration:underline}
@@ -262,13 +257,6 @@ mark{background:rgba(245,158,11,.35);color:inherit;border-radius:3px;padding:0 1
 <script src="data.js"></script>
 <script>
 const PAGE_SIZE = 10;
-const FAV_KEY = 'ldgj_favs';
-
-/* ===================== 收藏（localStorage 持久化） ===================== */
-let favs;
-try { favs = new Set(JSON.parse(localStorage.getItem(FAV_KEY) || '[]')); } catch(e){ favs = new Set(); }
-const favKey = (s, t) => s.id + '::' + t.name;
-const saveFavs = () => { try { localStorage.setItem(FAV_KEY, JSON.stringify([...favs])); } catch(e){} };
 
 /* ===================== 渲染 ===================== */
 const tabbar = document.getElementById('tabbar');
@@ -280,7 +268,6 @@ let currentPage = 1;
 /* hash 路由：#分区id 直达，支持刷新保持 / 分享链接 / 浏览器返回键 */
 function hashSection(){
   const h = location.hash.slice(1);
-  if (h === 'fav') return 'fav';
   return SECTIONS.some(s => s.id === h) ? h : SECTIONS[0].id;
 }
 function setHash(id){
@@ -294,12 +281,7 @@ function renderTabs(){
       <span class="tab-icon">${s.icon}</span>
       <span>${s.name}</span>
       <span class="tab-count">${s.tools.length}</span>
-    </button>`).join('') + `
-    <button class="tab" data-id="fav">
-      <span class="tab-icon">⭐</span>
-      <span>我的收藏</span>
-      <span class="tab-count">${favs.size}</span>
-    </button>`;
+    </button>`).join('');
 }
 
 function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
@@ -327,7 +309,6 @@ function toolText(t){
 
 function toolCard(t, s, q = ''){
   const tag = t.tag ? `<span class="tool-tag">${esc(t.tag)}</span>` : '';
-  const favOn = favs.has(favKey(s, t));
   const icon = t.img
     ? `<img class="tool-icon tool-img" src="${t.img}" alt="${esc(t.name)}" loading="lazy">`
     : `<span class="tool-icon">${t.emoji || s.icon}</span>`;
@@ -346,7 +327,6 @@ function toolCard(t, s, q = ''){
 
   return `<div class="tool" style="--accent:${s.color};--accent-soft:${s.soft};--accent-border:${s.color}99">
     <div class="tool-accent"></div>
-    <button class="fav-btn${favOn ? ' on' : ''}" data-fav="${favKey(s, t)}" title="${favOn ? '取消收藏' : '收藏'}">★</button>
     <div class="tool-head">
       ${icon}
       <span class="tool-name">${hi(t.name, q)}</span>
@@ -384,26 +364,8 @@ function setActiveTab(id){
   });
 }
 
-function renderFavorites(){
-  setActiveTab('fav');
-  const items = [];
-  SECTIONS.forEach(s => s.tools.forEach(t => { if (favs.has(favKey(s, t))) items.push({ t, s }); }));
-  if (!items.length){
-    content.innerHTML = `<div class="no-result show"><div class="big">⭐</div>还没有收藏的工具<br>点击卡片右上角的 ★，就能把常用工具收在这里</div>`;
-    return;
-  }
-  content.innerHTML = `<div class="grid">${items.map(({ t, s }) => toolCard(t, s)).join('')}</div>`;
-}
-
 function renderSection(id, page = 1, opts = {}){
   const scroll = opts.scroll !== false;
-  if (id === 'fav'){
-    currentId = 'fav';
-    setHash('fav');
-    renderFavorites();
-    if (scroll) window.scrollTo({ top:0, behavior:'smooth' });
-    return;
-  }
   const s = SECTIONS.find(x => x.id === id);
   if (!s) return renderSection(SECTIONS[0].id, page, opts);
   currentId = id;
@@ -449,20 +411,11 @@ tabbar.addEventListener('click', e => {
   renderSection(btn.dataset.id, 1);
 });
 
-// 分页点击 / 收藏 / 复制
+// 分页点击 / 复制
 content.addEventListener('click', e => {
   const pageBtn = e.target.closest('.page-btn');
   if (pageBtn && !pageBtn.disabled){
     renderSection(currentId, parseInt(pageBtn.dataset.page, 10));
-    return;
-  }
-  const favBtn = e.target.closest('.fav-btn');
-  if (favBtn){
-    const key = favBtn.dataset.fav;
-    if (favs.has(key)) favs.delete(key); else favs.add(key);
-    saveFavs();
-    renderTabs();
-    renderSection(currentId, currentPage, { scroll:false });
     return;
   }
   const copyBtn = e.target.closest('[data-copy]');
