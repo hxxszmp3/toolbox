@@ -1,0 +1,68 @@
+{
+  "note": "工具更新监控清单。type=github 的条目由 scripts/sync-check.js 自动检测最新 release；后续可扩展 quark-share（走夸克网盘 skill 的转存分享更新查询）、site（网页抓取）。",
+  "tools": [
+    {
+      "name": "Mihon",
+      "section": "漫画专区",
+      "type": "github",
+      "repo": "mihonapp/mihon",
+      "assetHint": "mihon-v*.apk（通用版）",
+      "quark": "https://pan.quark.cn/s/14966eac05db",
+      "baidu": "https://pan.baidu.com/s/11FGWmCzzpJ7gVCjh26lvIg?pwd=9gmn"
+    },
+    {
+      "name": "Piik",
+      "section": "实用软件",
+      "type": "github",
+      "repo": "TNTcraftHIM/Piik",
+      "assetHint": "piik-app-windows-amd64.zip 等各平台包",
+      "quark": "https://pan.quark.cn/s/ba0b83672f29",
+      "baidu": "https://pan.baidu.com/s/1yqT4XvIXji-UmR2_jWHRKg?pwd=s53t"
+    },
+    {
+      "name": "GKD",
+      "section": "实用软件",
+      "type": "github",
+      "repo": "gkd-kit/gkd",
+      "assetHint": "gkd-v*.apk",
+      "quark": "https://pan.quark.cn/s/1c9e604664a7",
+      "baidu": "https://pan.baidu.com/s/10XQkKe7a_RxKdJ-Yg-4RHw?pwd=wb7c"
+    },
+    {
+      "name": "GKD 去广告规则（在 GKD 卡片内）",
+      "section": "实用软件",
+      "type": "github",
+      "repo": "Lin-arm/GKD_subscription",
+      "assetHint": "gkd-subscription-offline-*.json5",
+      "embeddedIn": "GKD"
+    },
+    {
+      "name": "jev-chat（AI参谋）",
+      "section": "AI专区",
+      "type": "github",
+      "repo": "jev-chat/jev-chat-jarvis",
+      "assetHint": "安卓 APK / Windows / macOS（官方渠道下载）"
+    },
+    {
+      "name": "book-to-skill",
+      "section": "AI专区",
+      "type": "github",
+      "repo": "virgiliojr94/book-to-skill",
+      "assetHint": "npx 安装，无二进制包"
+    },
+    {
+      "name": "HowToLiveBetter",
+      "section": "AI专区",
+      "type": "github",
+      "repo": "eternity4719/HowToLiveBetter",
+      "assetHint": "HowToLiveBetter.epub / .html / .pdf"
+    },
+    {
+      "name": "淬火学习 skill",
+      "section": "AI专区",
+      "type": "github",
+      "repo": "Biancuihuo/cuihuo-skills",
+      "assetHint": "npx 安装，无二进制包"
+    }
+  ]
+}
