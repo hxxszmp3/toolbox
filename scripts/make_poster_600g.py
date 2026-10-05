@@ -84,61 +84,39 @@ for p in pts:
     d.text(((W - pw) / 2, y), p, font=f_pt, fill=(51, 65, 85))
     y += 78
 
-# ---------- 链接区域（打码） ----------
-box = (110, 840, W - 110, 1060)
-rounded(d, box, 28, fill=(241, 245, 249), outline=(203, 213, 225), width=3)
+# ---------- 合并板块：下载链接 + 马赛克 + 工具专区引导 ----------
+box = (110, 830, W - 110, 1310)
+rounded(d, box, 32, fill=(241, 245, 249), outline=(203, 213, 225), width=3)
 
-f_hint = font(34, True)
-center(d, '下载链接', 872, f_hint, GRAY)
+f_hint = font(40, True)
+center(d, '下载链接', 872, f_hint, INK)
 
 # 模糊的马赛克条：模拟被遮挡的链接
-blur = Image.new('RGB', (W - 300, 62), (255, 255, 255))
+blur = Image.new('RGB', (W - 300, 76), (241, 245, 249))
 bd = ImageDraw.Draw(blur)
 x = 12
 i = 0
 while x < blur.width - 12:
-    seg = [70, 34, 52, 26, 62, 40][i % 6]
+    seg = [78, 38, 58, 30, 68, 44][i % 6]
     seg = min(seg, blur.width - 12 - x)
     if seg <= 0:
         break
-    bd.rounded_rectangle((x, 16, x + seg, 46), radius=8,
+    bd.rounded_rectangle((x, 18, x + seg, 58), radius=9,
                          fill=(148, 163, 184) if i % 2 else (100, 116, 139))
-    x += seg + 16
+    x += seg + 18
     i += 1
-blur = blur.filter(ImageFilter.GaussianBlur(7))
-img.paste(blur, (150, 928))
+blur = blur.filter(ImageFilter.GaussianBlur(8))
+img.paste(blur, (150, 936))
 
-# 锁形提示
-f_lock = font(30, False)
-center(d, '扫码/链接已打码  请到工具箱获取', 1012, f_lock, GRAY)
+# 分隔线
+d.line([(190, 1058), (W - 190, 1058)], fill=(203, 213, 225), width=3)
 
-# ---------- 底部行动号召 ----------
-card = (110, 1110, W - 110, 1330)
-rounded(d, card, 32, fill=ORANGE_50, outline=(254, 215, 170), width=3)
-
+# 引导语
 f_cta = font(58, True)
-center(d, '工具箱 - 小说专区获取', 1148, f_cta, ORANGE)
+center(d, '工具箱 - 小说专区获取', 1086, f_cta, ORANGE)
 
-# 网址同样打码（模糊条覆盖）
-f_site = font(40, True)
-site = 'ldgj.xyz'
-sw = d.textlength(site, font=f_site)
-sy = 1262
-blur2 = Image.new('RGB', (int(sw) + 24, 56), (255, 247, 237))
-bd2 = ImageDraw.Draw(blur2)
-x = 8
-i = 0
-while x < blur2.width - 8:
-    seg = [58, 30, 44, 24, 52, 34][i % 6]
-    seg = min(seg, blur2.width - 8 - x)
-    if seg <= 0:
-        break
-    bd2.rounded_rectangle((x, 14, x + seg, 42), radius=7,
-                          fill=(214, 158, 116) if i % 2 else (178, 118, 74))
-    x += seg + 14
-    i += 1
-blur2 = blur2.filter(ImageFilter.GaussianBlur(6))
-img.paste(blur2, (int((W - blur2.width) / 2), sy - 8))
+f_tip = font(32, False)
+center(d, '链接已打码 · 到工具箱里找这个合集', 1206, f_tip, GRAY)
 
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
 img.save(OUT, 'PNG')
