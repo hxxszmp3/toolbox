@@ -52,6 +52,7 @@ const SECTIONS = [
         '<b>GitHub 地址</b>：<a href="https://github.com/mihonapp" target="_blank" rel="noopener">github.com/mihonapp</a>',
       ]},
       { name:'venera_1.4.6', desc:'漫画阅读器', emoji:'📖', quark:'https://pan.quark.cn/s/ca0afa3bf4b0', baidu:'https://pan.baidu.com/s/1J_O7CFwJEgtow6ibGD_9qA?pwd=ai9w' },
+      { name:'抱走漫画', desc:'大佬开发，免费无广，自带多个漫画源，无需手动安装漫画插件，安装即可阅读，还可下载至本地导入漫画阅读器离线阅读（仅安卓）', img:'icons/baozoumanhua.png', quark:'https://pan.quark.cn/s/b3c9435bd0a4', baidu:'https://pan.baidu.com/s/1rLGyBCQYtHYV_NV9g1xZNw?pwd=1o1m' },
     ]
   },
   {
