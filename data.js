@@ -48,7 +48,6 @@ const SECTIONS = [
   {
     id:'comic', icon:'📚', name:'漫画专区', desc:'漫画资源', color:'#f59e0b', soft:'#fffbeb',
     tools:[
-      { name:'AI漫剧最全教程', desc:'大佬付费购买的漫剧全套资料：教程+工作流+提示词+漫剧专用 Skill，比机构课程还全', emoji:'🎬', quark:'https://pan.quark.cn/s/e6e64016a0b0' },
       { name:'Mihon', desc:'免费开源安卓漫画阅读器（Tachiyomi 继任者）', img:'icons/mihon.png', quark:'https://pan.quark.cn/s/14966eac05db', baidu:'https://pan.baidu.com/s/11FGWmCzzpJ7gVCjh26lvIg?pwd=9gmn', points:[
         '<b>GitHub 地址</b>：<a href="https://github.com/mihonapp" target="_blank" rel="noopener">github.com/mihonapp</a>',
       ]},
@@ -67,6 +66,7 @@ const SECTIONS = [
   {
     id:'data', icon:'📂', name:'资料专区', desc:'干货资料合集', color:'#14b8a6', soft:'#f0fdfa',
     tools:[
+      { name:'AI漫剧最全教程', desc:'大佬付费购买的漫剧全套资料：教程+工作流+提示词+漫剧专用 Skill，比机构课程还全', emoji:'🎬', quark:'https://pan.quark.cn/s/e6e64016a0b0' },
       { name:'高性价比人生指南', desc:'循证生活指南：怎么活得久、少生病、少花冤枉钱、避坑，614 条建议，每条写明成本收益和证据出处', emoji:'🧭', quark:'https://pan.quark.cn/s/8a03cc957f40', baidu:'https://pan.baidu.com/s/1n4XxIXfgKk_uIS9XyOQaXw?pwd=sm8j', points:[
         '<b>GitHub 地址</b>：<a href="https://github.com/eternity4719/HowToLiveBetter" target="_blank" rel="noopener">github.com/eternity4719/HowToLiveBetter</a>',
       ]},
