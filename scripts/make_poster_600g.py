@@ -75,21 +75,27 @@ center(d, '小 说 合 集', 448, f_sub, INK)
 
 # ---------- 卖点 ----------
 f_pt = font(34, False)
-pts = ['起点 · 番茄热门小说 全都收', '多为精校版  排版干净', '免费无广  配本地阅读器即看']
-y = 570
+pts = [
+    '全网热门小说 基本都收录',
+    '近 600G 超大合集  一次存够',
+    '多为精校版  排版干净无乱码',
+    '免费无广告  配本地阅读器即看',
+    '支持离线阅读  手机电脑都能用',
+]
+y = 560
 for p in pts:
     pw = d.textlength(p, font=f_pt)
     rounded(d, ((W - pw) / 2 - 26, y - 8, (W + pw) / 2 + 26, y + 50), 29,
             fill=(255, 255, 255), outline=LINE, width=2)
     d.text(((W - pw) / 2, y), p, font=f_pt, fill=(51, 65, 85))
-    y += 78
+    y += 70
 
 # ---------- 合并板块：下载链接 + 马赛克 + 工具专区引导 ----------
-box = (110, 830, W - 110, 1310)
+box = (110, 950, W - 110, 1400)
 rounded(d, box, 32, fill=(241, 245, 249), outline=(203, 213, 225), width=3)
 
 f_hint = font(40, True)
-center(d, '下载链接', 872, f_hint, INK)
+center(d, '下载链接', 992, f_hint, INK)
 
 # 模糊的马赛克条：模拟被遮挡的链接
 blur = Image.new('RGB', (W - 300, 76), (241, 245, 249))
@@ -106,14 +112,14 @@ while x < blur.width - 12:
     x += seg + 18
     i += 1
 blur = blur.filter(ImageFilter.GaussianBlur(8))
-img.paste(blur, (150, 936))
+img.paste(blur, (150, 1056))
 
 # 分隔线
-d.line([(190, 1058), (W - 190, 1058)], fill=(203, 213, 225), width=3)
+d.line([(190, 1178), (W - 190, 1178)], fill=(203, 213, 225), width=3)
 
 # 引导语
 f_cta = font(58, True)
-center(d, '工具箱 - 小说专区获取', 1096, f_cta, ORANGE)
+center(d, '工具箱 - 小说专区获取', 1216, f_cta, ORANGE)
 
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
 img.save(OUT, 'PNG')
