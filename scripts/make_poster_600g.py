@@ -121,6 +121,10 @@ d.line([(190, 1178), (W - 190, 1178)], fill=(203, 213, 225), width=3)
 f_cta = font(58, True)
 center(d, '工具箱 - 小说专区获取', 1216, f_cta, ORANGE)
 
+# 书目数量说明
+f_num = font(36, True)
+center(d, '共 69235 本小说 · TXT 格式', 1300, f_num, (71, 85, 105))
+
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
 img.save(OUT, 'PNG')
 print('已生成:', os.path.abspath(OUT), img.size)
