@@ -119,8 +119,26 @@ rounded(d, card, 32, fill=ORANGE_50, outline=(254, 215, 170), width=3)
 f_cta = font(58, True)
 center(d, '工具箱 - 小说专区获取', 1148, f_cta, ORANGE)
 
+# 网址同样打码（模糊条覆盖）
 f_site = font(40, True)
-center(d, 'ldgj.xyz', 1252, f_site, (154, 52, 18))
+site = 'ldgj.xyz'
+sw = d.textlength(site, font=f_site)
+sy = 1262
+blur2 = Image.new('RGB', (int(sw) + 24, 56), (255, 247, 237))
+bd2 = ImageDraw.Draw(blur2)
+x = 8
+i = 0
+while x < blur2.width - 8:
+    seg = [58, 30, 44, 24, 52, 34][i % 6]
+    seg = min(seg, blur2.width - 8 - x)
+    if seg <= 0:
+        break
+    bd2.rounded_rectangle((x, 14, x + seg, 42), radius=7,
+                          fill=(214, 158, 116) if i % 2 else (178, 118, 74))
+    x += seg + 14
+    i += 1
+blur2 = blur2.filter(ImageFilter.GaussianBlur(6))
+img.paste(blur2, (int((W - blur2.width) / 2), sy - 8))
 
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
 img.save(OUT, 'PNG')
