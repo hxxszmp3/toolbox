@@ -15,6 +15,7 @@ const SECTIONS = [
       { name:'星盒', desc:'多功能聚合神器（小说/音乐/影视/动漫）', img:'icons/xinghe.png', quark:'https://pan.quark.cn/s/7fc3a192ddc2', baidu:'https://pan.baidu.com/s/18Des_vBGkeHMCgBgans8Tw?pwd=j5q4' },
       { name:'摸鱼神器', desc:'电脑端看小说，隐蔽摸鱼', img:'icons/moyu.png', quark:'https://pan.quark.cn/s/33a420bf77d2', baidu:'https://pan.baidu.com/s/1iSVaAHf-_udfr1SGlIp82g?pwd=rscq' },
       { name:'知乎盐选文章提取', desc:'提取知乎盐选文章（需自备会员）', img:'icons/zhihu.png', quark:'https://pan.quark.cn/s/22496116e151' },
+      { name:'600G小说合集', desc:'600多G小说合集，起点番茄热门小说，多为精校版，配本地阅读器即可看', emoji:'📚', quark:'https://pan.quark.cn/s/b819a88df377' },
     ]
   },
   {
