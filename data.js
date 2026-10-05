@@ -48,6 +48,7 @@ const SECTIONS = [
   {
     id:'comic', icon:'📚', name:'漫画专区', desc:'漫画资源', color:'#f59e0b', soft:'#fffbeb',
     tools:[
+      { name:'AI漫剧最全教程', desc:'大佬付费购买的漫剧全套资料：教程+工作流+提示词+漫剧专用 Skill，比机构课程还全', emoji:'🎬', quark:'https://pan.quark.cn/s/e6e64016a0b0' },
       { name:'Mihon', desc:'免费开源安卓漫画阅读器（Tachiyomi 继任者）', img:'icons/mihon.png', quark:'https://pan.quark.cn/s/14966eac05db', baidu:'https://pan.baidu.com/s/11FGWmCzzpJ7gVCjh26lvIg?pwd=9gmn', points:[
         '<b>GitHub 地址</b>：<a href="https://github.com/mihonapp" target="_blank" rel="noopener">github.com/mihonapp</a>',
       ]},
@@ -74,7 +75,6 @@ const SECTIONS = [
       { name:'古龙小说全集', desc:'古龙武侠小说在线阅读，70多部经典作品', emoji:'📖', web:'https://www.gulongwang.com/' },
       { name:'自媒体人必备', desc:'自媒体运营干货资料包', emoji:'✍️', quark:'https://pan.quark.cn/s/12d673d50af9' },
       { name:'中国各省旅游攻略', desc:'全国各省旅游攻略合集', emoji:'🗺️', quark:'https://pan.quark.cn/s/a7bd03521366' },
-      { name:'AI漫剧最全教程', desc:'大佬付费购买的漫剧全套资料：教程+工作流+提示词+漫剧专用 Skill，比机构课程还全', emoji:'🎬', quark:'https://pan.quark.cn/s/e6e64016a0b0' },
     ]
   },
   {
