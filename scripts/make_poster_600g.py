@@ -113,10 +113,7 @@ d.line([(190, 1058), (W - 190, 1058)], fill=(203, 213, 225), width=3)
 
 # 引导语
 f_cta = font(58, True)
-center(d, '工具箱 - 小说专区获取', 1086, f_cta, ORANGE)
-
-f_tip = font(32, False)
-center(d, '链接已打码 · 到工具箱里找这个合集', 1206, f_tip, GRAY)
+center(d, '工具箱 - 小说专区获取', 1096, f_cta, ORANGE)
 
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
 img.save(OUT, 'PNG')
