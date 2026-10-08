@@ -42,9 +42,7 @@ const SECTIONS = [
     id:'anime', icon:'🎨', name:'动漫专区', desc:'动漫资源', color:'#f97316', soft:'#fff7ed',
     tools:[
       { name:'Kazumi', desc:'开源追番聚合神器（3万+ Star），免费无广告，聚合全网番剧源，弹幕 + Anime4K 超分，Win/Mac/Linux/安卓/iOS/鸿蒙 全平台', img:'icons/kazumi.png', quark:'https://pan.quark.cn/s/e40c2f5efb4d', baidu:'https://pan.baidu.com/s/1BI-tnat5ZSVEKe21TJXlQw?pwd=hsqy', points:[
-        '<b>GitHub 地址</b>：<a href="https://github.com/Predidit/Kazumi" target="_blank" rel="noopener">github.com/Predidit/Kazumi</a>',
         '<b>版本</b>：v2.3.8 全平台打包（电脑 + 手机 + 鸿蒙）',
-        '<b>提示</b>：纯开源免费，若有人向你收费请直接拉黑',
       ]},
       { name:'动漫共和国', desc:'动漫追番 App，支持安卓 / 苹果 / Windows', img:'icons/dongman.png', quark:'https://pan.quark.cn/s/561a59d10235', baidu:'https://pan.baidu.com/s/1gM3uc3zolfNc4CDSgBcuTg?pwd=stjc' },
       { name:'星盒', desc:'聚合动漫资源', img:'icons/xinghe.png', quark:'https://pan.quark.cn/s/7fc3a192ddc2', baidu:'https://pan.baidu.com/s/10DAk0iXqSrakMpqFVVUdJw?pwd=6w0m' },
