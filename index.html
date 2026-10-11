@@ -606,8 +606,9 @@ function renderTicker(){
     return `<div class="ticker-item" title="${esc(u.title)}"><span class="tk-date">${u.date.slice(5)}</span>${flag}<span class="tk-tag">${sec ? sec.name : (UPDATES_TYPE[u.type] || UPDATES_TYPE.new).label}</span><span class="tk-text">${esc(u.title)}</span></div>`;
   }).join('');
 
-  /* 步长取实际单条高度，避免写死数值导致翻过头或翻不出可视区 */
-  const step = track.firstElementChild ? track.firstElementChild.offsetHeight : 20;
+  /* 步长取实际单条高度，避免写死数值导致翻过头或翻不出可视区；
+     取不到高度时兜底为 20px，防止整条滚动条卡住不动 */
+  const step = (track.firstElementChild ? track.firstElementChild.offsetHeight : 0) || 20;
 
   tickerIdx = 0;
   track.style.transition = 'none';
@@ -617,8 +618,14 @@ function renderTicker(){
   track.style.transition = '';
 
   if (list.length > 1){
+    /* 往返式循环：向下翻到末尾后逐条向上翻回顶部，再重新向下。
+       若用 idx % len 直接回绕，最后一条会瞬间跳回第一条，观感突兀。 */
+    const last = list.length - 1;
+    let dir = 1;
     tickerTimer = setInterval(() => {
-      tickerIdx = (tickerIdx + 1) % list.length;
+      tickerIdx += dir;
+      if (tickerIdx >= last){ tickerIdx = last; dir = -1; }
+      else if (tickerIdx <= 0){ tickerIdx = 0; dir = 1; }
       track.style.transform = `translateY(-${tickerIdx * step}px)`;
     }, TICKER_HOLD);
   }
