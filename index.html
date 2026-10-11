@@ -873,7 +873,7 @@ function toolCard(t, s, q = '', hot = false){
 }
 
 function renderGrid(list, s, q = ''){
-  if (!list.length) return `<div class="no-result show"><div class="big">🔍</div>没有匹配的工具</div>';
+  if (!list.length) return `<div class="no-result show"><div class="big">🔍</div>没有匹配的工具</div>`;
   /* 前 6 张卡片是首屏可见的，去掉 lazy 让它们立即下载；
      屏外的仍走 lazy，避免一次性把整页图标全拉下来 */
   return `<div class="grid">${list.map((t, i) => toolCard(t, s, q, i < 6)).join('')}</div>`;
