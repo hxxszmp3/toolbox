@@ -147,3 +147,31 @@ const SECTIONS = [
     ]
   },
 ];
+
+/* =====================================================================
+   更新动态 · 按天记录网站新增 / 版本更新 / 链接修复
+   date: 'YYYY-MM-DD'  type: new(新增) | update(版本更新) | fix(修复优化)
+   section: 所属分区 id（用于点击跳转 + 取色）  title: 一句话标题
+   desc: 补充说明（可省）  link: {quark,baidu}（可省）
+   新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
+   ===================================================================== */
+const UPDATES = [
+  { date:'2026-10-08', type:'new', section:'anime', title:'动漫区新增 Kazumi：开源追番聚合神器', desc:'免费无广告，聚合全网番剧源，支持弹幕 + Anime4K 超分，Win / Mac / Linux / 安卓 / iOS / 鸿蒙全平台（v2.3.8）',
+    link:{ quark:'https://pan.quark.cn/s/e40c2f5efb4d', baidu:'https://pan.baidu.com/s/1BI-tnat5ZSVEKe21TJXlQw?pwd=hsqy' } },
+  { date:'2026-10-06', type:'new', section:'data', title:'资料区新增：AI 漫剧最全教程', desc:'教程 + 工作流 + 提示词 + Skill 一整套，夸克网盘分享' },
+  { date:'2026-10-05', type:'new', section:'comic', title:'漫画区新增：抱走漫画', desc:'轻量好用的漫画聚合阅读器' },
+  { date:'2026-10-05', type:'new', section:'novel', title:'小说区新增：600G 小说合集（69235 本 TXT）', desc:'全网小说资源打包合集，持续补充' },
+  { date:'2026-10-04', type:'new', section:'software', title:'实用软件区新增：每日版本检测', desc:'接入 GitHub 版本监控，每天自动检测 GKD 等开源工具的新版本' },
+  { date:'2026-10-04', type:'new', section:'video', title:'MiniReel 调整至影视专区', desc:'红果短剧客户端，从实用软件移动到影视专区' },
+  { date:'2026-10-04', type:'fix', section:'', title:'网站全面优化上线', desc:'新增 hash 路由（链接可分享 / 刷新保持）、全局搜索增强、暗色模式自适应、SEO + PWA、链接巡检、404 页、数据拆分' },
+  { date:'2026-10-03', type:'new', section:'comic', title:'漫画区新增：Mihon 安卓漫画阅读器', desc:'开源漫画阅读器，源站自选' },
+  { date:'2026-10-02', type:'new', section:'software', title:'实用软件区新增：Piik 屏幕共享工具', desc:'跨设备屏幕 / 窗口共享' },
+  { date:'2026-10-02', type:'new', section:'software', title:'实用软件区新增：VideoToNotes 视频转文章', desc:'把视频内容自动转成结构化笔记' },
+  { date:'2026-10-01', type:'new', section:'software', title:'实用软件区新增：谷歌浏览器', desc:'Chrome 稳定版下载入口' },
+  { date:'2026-10-01', type:'new', section:'game', title:'游戏区新增：手机破解游戏合集 / Steam 移植手游合集', desc:'两类合集资源一次性补齐' },
+  { date:'2026-09-28', type:'new', section:'ai', title:'AI 专区新增：HowToLiveBetter 高性价比人生指南', desc:'612 条循证生活建议，离线文档 + Skill 两种用法' },
+  { date:'2026-09-28', type:'new', section:'software', title:'实用软件区新增：Bandizip 解压软件', desc:'轻量好用的解压工具' },
+  { date:'2026-09-28', type:'new', section:'software', title:'实用软件区新增：GKD 去广告', desc:'安卓开源去开屏广告，内置规则订阅' },
+  { date:'2026-09-28', type:'new', section:'ai', title:'AI 专区新增：jev-chat（AI 参谋）', desc:'聊天辅助工具，微信 / QQ / 飞书场景下的对话副驾' },
+  { date:'2026-09-28', type:'update', section:'data', title:'资料区新增：openrouter.ai 点击直达', desc:'正文链接改为可点击' },
+];
