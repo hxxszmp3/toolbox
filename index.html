@@ -199,13 +199,17 @@ mark{background:rgba(245,158,11,.35);color:inherit;border-radius:3px;padding:0 1
 .footer .copy{margin-top:14px;font-size:12px;color:var(--text-3)}
 
 /* ===================== 顶部更新滚动条 ===================== */
+/* 放在每个板块内容最上方；sticky 偏移量由 JS 按头部实际高度写入 --hdr-h */
 .ticker{
-  border-top:1px solid var(--border);
+  position:sticky;top:calc(var(--hdr-h,120px) + 4px);z-index:20;
+  margin:-6px -6px 16px;padding:6px;
+  border-radius:10px;
   background:linear-gradient(90deg,var(--primary-soft),var(--card) 60%);
+  box-shadow:0 1px 3px rgba(16,24,40,.06);
   cursor:pointer;user-select:none;
 }
 .ticker:hover{background:linear-gradient(90deg,var(--primary-soft),var(--primary-soft))}
-.ticker-bar{display:flex;align-items:center;gap:9px;padding:7px 24px;overflow:hidden}
+.ticker-bar{display:flex;align-items:center;gap:9px;padding:4px 18px;overflow:hidden}
 .ticker-lead{
   flex:none;display:flex;align-items:center;gap:6px;
   font-size:12.5px;font-weight:700;color:var(--primary);
@@ -237,26 +241,41 @@ mark{background:rgba(245,158,11,.35);color:inherit;border-radius:3px;padding:0 1
   .ticker-item{font-size:12px}
 }
 
-/* 手机端：更新动态入口卡片（替代第 11 个标签） */
-.mob-upd{
-  display:none;align-items:center;gap:11px;margin-top:16px;padding:13px 15px;
-  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
-  box-shadow:var(--shadow);cursor:pointer;width:100%;text-align:left;font-family:inherit;
+/* ===================== 更新动态抽屉 ===================== */
+.ud-mask{
+  position:fixed;inset:0;z-index:200;background:rgba(15,18,22,.45);
+  opacity:0;visibility:hidden;transition:opacity .24s ease,visibility .24s;
+  backdrop-filter:blur(2px);
 }
-.mob-upd:active{background:var(--soft-btn)}
-.mob-upd .mu-ico{
-  flex:none;width:34px;height:34px;border-radius:10px;background:var(--primary-soft);
-  display:flex;align-items:center;justify-content:center;font-size:16px;position:relative;
+.ud-mask.show{opacity:1;visibility:visible}
+.ud-panel{
+  position:fixed;left:50%;top:0;z-index:201;
+  width:min(680px,100%);height:100%;
+  background:var(--bg);box-shadow:0 8px 40px rgba(16,24,40,.22);
+  transform:translate(-50%,-100%);transition:transform .28s cubic-bezier(.32,.72,.35,1);
+  display:flex;flex-direction:column;
 }
-.mob-upd .mu-ico::after{
-  content:'';position:absolute;top:5px;right:5px;width:6px;height:6px;border-radius:50%;
-  background:#ef4444;animation:tkPulse 1.6s infinite;
+.ud-mask.show .ud-panel{transform:translate(-50%,0)}
+.ud-head{
+  flex:none;display:flex;align-items:center;gap:9px;
+  padding:14px 20px;border-bottom:1px solid var(--border);background:var(--card);
 }
-.mob-upd .mu-main{flex:1;min-width:0}
-.mob-upd .mu-t{font-size:14px;font-weight:600;color:var(--text)}
-.mob-upd .mu-d{font-size:12px;color:var(--text-3);margin-top:2px}
-.mob-upd .mu-arrow{flex:none;color:var(--text-3);font-size:15px}
-@media (max-width:767px){ .mob-upd{display:flex} }
+.ud-head h2{margin:0;font-size:16.5px;font-weight:700;display:flex;align-items:center;gap:7px}
+.ud-head .ud-badge{font-size:12px;padding:2px 8px;border-radius:999px;background:var(--primary-soft);color:var(--primary);font-weight:600}
+.ud-head .ud-sub{margin-left:auto;font-size:12.5px;color:var(--text-3)}
+.ud-close{
+  flex:none;width:30px;height:30px;border-radius:8px;border:1px solid var(--border);
+  background:var(--soft-btn);color:var(--text-2);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;font-size:17px;line-height:1;
+}
+.ud-close:hover{background:var(--soft-btn-hover);color:var(--text)}
+.ud-body{flex:1;overflow-y:auto;padding:16px 20px 28px;-webkit-overflow-scrolling:touch}
+@media (max-width:767px){
+  .ud-head{padding:12px 14px}
+  .ud-head h2{font-size:15.5px}
+  .ud-head .ud-sub{display:none}
+  .ud-body{padding:14px 14px 24px}
+}
 
 /* ===================== 更新动态区 ===================== */
 .upd-head{display:flex;align-items:center;gap:8px;margin:2px 0 14px}
@@ -352,13 +371,6 @@ mark{background:rgba(245,158,11,.35);color:inherit;border-radius:3px;padding:0 1
   <nav class="tabbar">
     <div class="tabbar-inner" id="tabbar"></div>
   </nav>
-  <div class="ticker" id="ticker" role="button" tabindex="0" aria-label="查看更新动态">
-    <div class="ticker-bar">
-      <span class="ticker-lead"><i class="dot"></i>今日更新</span>
-      <div class="ticker-view"><div class="ticker-track" id="tickerTrack"></div></div>
-      <span class="ticker-more">全部 ›</span>
-    </div>
-  </div>
 </div>
 
 <main class="content" id="content"></main>
@@ -378,6 +390,19 @@ mark{background:rgba(245,158,11,.35);color:inherit;border-radius:3px;padding:0 1
 
 <button class="back-top" id="backTop" aria-label="回到顶部">↑</button>
 
+<!-- 更新动态抽屉 -->
+<div class="ud-mask" id="udMask">
+  <aside class="ud-panel" role="dialog" aria-modal="true" aria-label="更新动态">
+    <div class="ud-head">
+      <h2>🆕 更新动态</h2>
+      <span class="ud-badge" id="udBadge"></span>
+      <span class="ud-sub">记录每次新增的软件、资料与版本更新</span>
+      <button class="ud-close" id="udClose" aria-label="关闭">✕</button>
+    </div>
+    <div class="ud-body" id="udBody"></div>
+  </aside>
+</div>
+
 <script src="data.js"></script>
 <script>
 const PAGE_SIZE = 10;
@@ -389,9 +414,8 @@ const searchInput = document.getElementById('search');
 let currentId = SECTIONS[0].id;
 let currentPage = 1;
 
-/* 更新动态区（独立视图，不属于 SECTIONS，id 固定为 updates） */
+/* 更新动态：不再占独立板块，只通过顶部滚动条展开抽屉 */
 const UPDATES_ID = 'updates';
-const UPDATES_TAB = { id:UPDATES_ID, icon:'🆕', name:'更新动态' };
 const UPDATES_TYPE = {
   new:    { label:'新增', cls:'t-new', ico:'✨' },
   update: { label:'版本更新', cls:'t-update', ico:'🔄' },
@@ -401,7 +425,6 @@ const UPDATES_TYPE = {
 /* hash 路由：#分区id 直达，支持刷新保持 / 分享链接 / 浏览器返回键 */
 function hashSection(){
   const h = location.hash.slice(1);
-  if (h === UPDATES_ID) return h;
   return SECTIONS.some(s => s.id === h) ? h : SECTIONS[0].id;
 }
 function setHash(id){
@@ -410,22 +433,30 @@ function setHash(id){
 }
 
 function renderTabs(){
-  const tabs = SECTIONS.concat([UPDATES_TAB]);
-  tabbar.innerHTML = tabs.map(s => `
-    <button class="tab" data-id="${s.id}"${s.id === UPDATES_ID ? ' data-mobile="hide"' : ''}>
+  tabbar.innerHTML = SECTIONS.map(s => `
+    <button class="tab" data-id="${s.id}">
       <span class="tab-icon">${s.icon}</span>
       <span>${s.name}</span>
-      ${s.tools ? `<span class="tab-count">${s.tools.length}</span>` : '<span class="tab-count">NEW</span>'}
+      <span class="tab-count">${s.tools.length}</span>
     </button>`).join('');
-  /* 手机端隐藏第 11 个标签（改用列表下方入口卡片），保持 5×2 整齐 */
-  const updTab = tabbar.querySelector(`[data-id="${UPDATES_ID}"]`);
-  if (updTab) updTab.style.display = window.matchMedia('(max-width:767px)').matches ? 'none' : '';
 }
 
 /* ===================== 顶部更新滚动条 ===================== */
 function sortedUpdates(){
   return (typeof UPDATES !== 'undefined' ? UPDATES : []).slice()
     .sort((a, b) => a.date < b.date ? 1 : a.date > b.date ? -1 : 0);
+}
+
+/* 滚动条 HTML（放在每个板块内容最上方，吸顶跟随） */
+function tickerHTML(){
+  return `
+  <div class="ticker" id="ticker" role="button" tabindex="0" aria-label="查看更新动态">
+    <div class="ticker-bar">
+      <span class="ticker-lead"><i class="dot"></i>今日更新</span>
+      <div class="ticker-view"><div class="ticker-track" id="tickerTrack"></div></div>
+      <span class="ticker-more">全部 ›</span>
+    </div>
+  </div>`;
 }
 
 function renderTicker(){
@@ -439,23 +470,6 @@ function renderTicker(){
     return `<span class="ticker-item"><span class="tk-date">${u.date.slice(5)}</span><span class="tk-tag">${sec ? sec.name : (UPDATES_TYPE[u.type] || UPDATES_TYPE.new).label}</span>${esc(u.title)}</span>`;
   }).join('');
   track.innerHTML = html + html;
-}
-
-/* ===================== 手机端更新动态入口卡片 ===================== */
-function mobileUpdateCard(){
-  const list = sortedUpdates();
-  const today = new Date().toISOString().slice(0, 10);
-  const todayCount = list.filter(u => u.date === today).length;
-  const latest = list[0];
-  return `
-    <button class="mob-upd" data-goto="${UPDATES_ID}">
-      <span class="mu-ico">🆕</span>
-      <span class="mu-main">
-        <span class="mu-t">更新动态${todayCount ? ` · 今日新增 ${todayCount} 条` : ''}</span>
-        <span class="mu-d">${latest ? esc(latest.title) : '查看全部更新记录'}</span>
-      </span>
-      <span class="mu-arrow">›</span>
-    </button>`;
 }
 
 function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
@@ -538,28 +552,19 @@ function setActiveTab(id){
   });
 }
 
-/* ===================== 更新动态视图 ===================== */
+/* ===================== 更新动态抽屉 ===================== */
 function formatDate(d){
   const [y, m, day] = d.split('-');
   return `${y} 年 ${+m} 月 ${+day} 日`;
 }
 
-function renderUpdates(opts = {}){
-  const scroll = opts.scroll !== false;
-  currentId = UPDATES_ID;
-  setActiveTab(UPDATES_ID);
-  setHash(UPDATES_ID);
+/* 记录展开前的滚动位置，收起时精确还原 */
+let udSavedScroll = 0;
 
-  const list = (typeof UPDATES !== 'undefined' ? UPDATES : []).slice()
-    .sort((a, b) => a.date < b.date ? 1 : a.date > b.date ? -1 : 0);
+function buildUpdatesHTML(){
+  const list = sortedUpdates();
 
-  if (!list.length){
-    content.innerHTML = `
-      <div class="upd-head"><h2>🆕 更新动态</h2></div>
-      <div class="upd-empty">暂无更新记录</div>`;
-    if (scroll) window.scrollTo({ top:0, behavior:'smooth' });
-    return;
-  }
+  if (!list.length) return `<div class="upd-empty">暂无更新记录</div>`;
 
   /* 按日期分组 */
   const groups = [];
@@ -571,40 +576,57 @@ function renderUpdates(opts = {}){
 
   const today = new Date().toISOString().slice(0, 10);
 
-  content.innerHTML = `
-    <div class="upd-head">
-      <h2>🆕 更新动态</h2>
-      <span class="upd-badge">${list.length} 条</span>
-      <span class="upd-sub">记录每次新增的软件、资料与版本更新</span>
-    </div>
-    ${groups.map(g => `
-      <div class="upd-group">
-        <div class="upd-date">${formatDate(g.date)}${g.date === today ? '<span class="upd-today">今天</span>' : ''}</div>
-        ${g.items.map(u => {
-          const t = UPDATES_TYPE[u.type] || UPDATES_TYPE.new;
-          const sec = SECTIONS.find(s => s.id === u.section);
-          return `
-          <div class="upd-item">
-            <div class="upd-ico" ${sec ? `style="background:${sec.soft}"` : ''}>${sec ? sec.icon : t.ico}</div>
-            <div class="upd-main">
-              <div class="upd-title">${esc(u.title)}</div>
-              ${u.desc ? `<div class="upd-desc">${esc(u.desc)}</div>` : ''}
-              <div class="upd-meta">
-                <span class="upd-tag ${t.cls}">${t.label}</span>
-                ${sec ? `<button class="upd-tag t-sec" data-goto="${sec.id}" style="border:none;cursor:pointer">${sec.name} →</button>` : ''}
-                ${u.link && u.link.quark ? `<div class="upd-links"><a class="upd-link" href="${u.link.quark}" target="_blank" rel="noopener">夸克网盘</a></div>` : ''}
-                ${u.link && u.link.baidu ? `<div class="upd-links"><a class="upd-link" href="${u.link.baidu}" target="_blank" rel="noopener">百度网盘</a></div>` : ''}
-              </div>
+  return groups.map(g => `
+    <div class="upd-group">
+      <div class="upd-date">${formatDate(g.date)}${g.date === today ? '<span class="upd-today">今天</span>' : ''}</div>
+      ${g.items.map(u => {
+        const t = UPDATES_TYPE[u.type] || UPDATES_TYPE.new;
+        const sec = SECTIONS.find(s => s.id === u.section);
+        return `
+        <div class="upd-item">
+          <div class="upd-ico" ${sec ? `style="background:${sec.soft}"` : ''}>${sec ? sec.icon : t.ico}</div>
+          <div class="upd-main">
+            <div class="upd-title">${esc(u.title)}</div>
+            ${u.desc ? `<div class="upd-desc">${esc(u.desc)}</div>` : ''}
+            <div class="upd-meta">
+              <span class="upd-tag ${t.cls}">${t.label}</span>
+              ${sec ? `<button class="upd-tag t-sec" data-goto="${sec.id}" style="border:none;cursor:pointer">${sec.name} →</button>` : ''}
+              ${u.link && u.link.quark ? `<div class="upd-links"><a class="upd-link" href="${u.link.quark}" target="_blank" rel="noopener">夸克网盘</a></div>` : ''}
+              ${u.link && u.link.baidu ? `<div class="upd-links"><a class="upd-link" href="${u.link.baidu}" target="_blank" rel="noopener">百度网盘</a></div>` : ''}
             </div>
-          </div>`;
-        }).join('')}
-      </div>`).join('')}
-    <div class="section-update">🔄 持续更新中，更多工具敬请期待…</div>`;
-  if (scroll) window.scrollTo({ top:0, behavior:'smooth' });
+          </div>
+        </div>`;
+      }).join('')}
+    </div>`).join('');
+}
+
+function openUpdates(){
+  const mask = document.getElementById('udMask');
+  const badge = document.getElementById('udBadge');
+  if (!mask) return;
+  udSavedScroll = window.scrollY;
+  document.getElementById('udBody').innerHTML = buildUpdatesHTML();
+  badge.textContent = sortedUpdates().length + ' 条';
+  mask.classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeUpdates(){
+  const mask = document.getElementById('udMask');
+  if (!mask || !mask.classList.contains('show')) return;
+  mask.classList.remove('show');
+  document.body.style.overflow = '';
+  /* 回到展开前的位置 */
+  requestAnimationFrame(() => window.scrollTo({ top:udSavedScroll, behavior:'instant' }));
+}
+
+function toggleUpdates(){
+  const mask = document.getElementById('udMask');
+  if (mask && mask.classList.contains('show')) closeUpdates();
+  else openUpdates();
 }
 
 function renderSection(id, page = 1, opts = {}){
-  if (id === UPDATES_ID) return renderUpdates(opts);
   const scroll = opts.scroll !== false;
   const s = SECTIONS.find(x => x.id === id);
   if (!s) return renderSection(SECTIONS[0].id, page, opts);
@@ -614,8 +636,9 @@ function renderSection(id, page = 1, opts = {}){
   const start = (currentPage - 1) * PAGE_SIZE;
   const list = s.tools.slice(start, start + PAGE_SIZE);
   setActiveTab(id);
-  content.innerHTML = `${renderGrid(list, s)}${paginationHTML(totalPages, currentPage)}${mobileUpdateCard()}<div class="section-update">🔄 持续更新中，更多工具敬请期待…</div>`;
+  content.innerHTML = `${tickerHTML()}${renderGrid(list, s)}${paginationHTML(totalPages, currentPage)}<div class="section-update">🔄 持续更新中，更多工具敬请期待…</div>`;
   setHash(id);
+  renderTicker();
   if (scroll) window.scrollTo({ top:0, behavior:'smooth' });
 }
 
@@ -661,8 +684,10 @@ content.addEventListener('click', e => {
   /* 动态区里点分区标签 → 跳到对应分区 */
   const gotoBtn = e.target.closest('[data-goto]');
   if (gotoBtn){
+    const target = gotoBtn.dataset.goto;
+    closeUpdates();
     searchInput.value = '';
-    renderSection(gotoBtn.dataset.goto, 1);
+    setTimeout(() => renderSection(target, 1), 60);
     return;
   }
   const copyBtn = e.target.closest('[data-copy]');
@@ -706,16 +731,41 @@ window.addEventListener('scroll', () => {
 });
 backTop.addEventListener('click', () => window.scrollTo({ top:0, behavior:'smooth' }));
 
-/* 顶部滚动条：点击 / 回车进动态区 */
-const tickerEl = document.getElementById('ticker');
-tickerEl.addEventListener('click', () => { searchInput.value = ''; renderUpdates(); });
-tickerEl.addEventListener('keydown', e => {
-  if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); searchInput.value = ''; renderUpdates(); }
+/* 顶部滚动条：点击展开 / 再次点击收起回到原位置（事件委托，滚动条随内容重建） */
+document.getElementById('content').addEventListener('click', e => {
+  if (e.target.closest('#ticker')) toggleUpdates();
+});
+document.getElementById('content').addEventListener('keydown', e => {
+  if ((e.key === 'Enter' || e.key === ' ') && e.target.closest('#ticker')){
+    e.preventDefault(); toggleUpdates();
+  }
+});
+
+/* 抽屉：点遮罩空白处 / 关闭按钮 / ESC 收起 */
+const udMask = document.getElementById('udMask');
+document.getElementById('udClose').addEventListener('click', closeUpdates);
+udMask.addEventListener('click', e => { if (e.target === udMask) closeUpdates(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeUpdates(); });
+/* 抽屉内的分区跳转 */
+document.getElementById('udBody').addEventListener('click', e => {
+  const btn = e.target.closest('[data-goto]');
+  if (!btn) return;
+  const target = btn.dataset.goto;
+  closeUpdates();
+  searchInput.value = '';
+  setTimeout(() => renderSection(target, 1), 60);
 });
 
 renderTabs();
-renderTicker();
+syncHeaderHeight();
 renderSection(hashSection(), 1, { scroll:false });
+
+/* 头部高度随标签换行变化，同步给滚动条吸顶偏移用 */
+function syncHeaderHeight(){
+  const hw = document.querySelector('.header-wrap');
+  if (hw) document.documentElement.style.setProperty('--hdr-h', hw.offsetHeight + 'px');
+}
+window.addEventListener('resize', syncHeaderHeight);
 </script>
 
 <!-- 百度统计 -->
