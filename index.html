@@ -198,6 +198,66 @@ mark{background:rgba(245,158,11,.35);color:inherit;border-radius:3px;padding:0 1
 .footer .mail a{color:var(--primary)}
 .footer .copy{margin-top:14px;font-size:12px;color:var(--text-3)}
 
+/* ===================== 顶部更新滚动条 ===================== */
+.ticker{
+  border-top:1px solid var(--border);
+  background:linear-gradient(90deg,var(--primary-soft),var(--card) 60%);
+  cursor:pointer;user-select:none;
+}
+.ticker:hover{background:linear-gradient(90deg,var(--primary-soft),var(--primary-soft))}
+.ticker-bar{display:flex;align-items:center;gap:9px;padding:7px 24px;overflow:hidden}
+.ticker-lead{
+  flex:none;display:flex;align-items:center;gap:6px;
+  font-size:12.5px;font-weight:700;color:var(--primary);
+}
+.ticker-lead .dot{
+  width:7px;height:7px;border-radius:50%;background:#ef4444;flex:none;
+  box-shadow:0 0 0 0 rgba(239,68,68,.6);animation:tkPulse 1.6s infinite;
+}
+@keyframes tkPulse{
+  0%{box-shadow:0 0 0 0 rgba(239,68,68,.55)}
+  70%{box-shadow:0 0 0 7px rgba(239,68,68,0)}
+  100%{box-shadow:0 0 0 0 rgba(239,68,68,0)}
+}
+.ticker-view{flex:1;min-width:0;overflow:hidden;position:relative;height:20px}
+.ticker-track{display:flex;align-items:center;gap:34px;white-space:nowrap;animation:tkScroll 34s linear infinite;will-change:transform}
+.ticker:hover .ticker-track{animation-play-state:paused}
+@keyframes tkScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ticker-item{font-size:12.5px;color:var(--text-2);display:inline-flex;align-items:center;gap:6px}
+.ticker-item .tk-date{color:var(--text-3);font-variant-numeric:tabular-nums}
+.ticker-item .tk-tag{font-size:11px;font-weight:600;padding:1px 6px;border-radius:999px;background:var(--card);border:1px solid var(--border);color:var(--primary)}
+.ticker-more{
+  flex:none;font-size:12px;font-weight:600;color:var(--primary);
+  display:flex;align-items:center;gap:3px;padding-left:9px;border-left:1px solid var(--border-2);
+}
+@media (max-width:767px){
+  .ticker-bar{padding:6px 14px;gap:7px}
+  .ticker-lead{font-size:11.5px}
+  .ticker-more{font-size:11.5px;padding-left:7px}
+  .ticker-item{font-size:12px}
+}
+
+/* 手机端：更新动态入口卡片（替代第 11 个标签） */
+.mob-upd{
+  display:none;align-items:center;gap:11px;margin-top:16px;padding:13px 15px;
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  box-shadow:var(--shadow);cursor:pointer;width:100%;text-align:left;font-family:inherit;
+}
+.mob-upd:active{background:var(--soft-btn)}
+.mob-upd .mu-ico{
+  flex:none;width:34px;height:34px;border-radius:10px;background:var(--primary-soft);
+  display:flex;align-items:center;justify-content:center;font-size:16px;position:relative;
+}
+.mob-upd .mu-ico::after{
+  content:'';position:absolute;top:5px;right:5px;width:6px;height:6px;border-radius:50%;
+  background:#ef4444;animation:tkPulse 1.6s infinite;
+}
+.mob-upd .mu-main{flex:1;min-width:0}
+.mob-upd .mu-t{font-size:14px;font-weight:600;color:var(--text)}
+.mob-upd .mu-d{font-size:12px;color:var(--text-3);margin-top:2px}
+.mob-upd .mu-arrow{flex:none;color:var(--text-3);font-size:15px}
+@media (max-width:767px){ .mob-upd{display:flex} }
+
 /* ===================== 更新动态区 ===================== */
 .upd-head{display:flex;align-items:center;gap:8px;margin:2px 0 14px}
 .upd-head h2{margin:0;font-size:17px;font-weight:700}
@@ -292,6 +352,13 @@ mark{background:rgba(245,158,11,.35);color:inherit;border-radius:3px;padding:0 1
   <nav class="tabbar">
     <div class="tabbar-inner" id="tabbar"></div>
   </nav>
+  <div class="ticker" id="ticker" role="button" tabindex="0" aria-label="查看更新动态">
+    <div class="ticker-bar">
+      <span class="ticker-lead"><i class="dot"></i>今日更新</span>
+      <div class="ticker-view"><div class="ticker-track" id="tickerTrack"></div></div>
+      <span class="ticker-more">全部 ›</span>
+    </div>
+  </div>
 </div>
 
 <main class="content" id="content"></main>
@@ -345,11 +412,50 @@ function setHash(id){
 function renderTabs(){
   const tabs = SECTIONS.concat([UPDATES_TAB]);
   tabbar.innerHTML = tabs.map(s => `
-    <button class="tab" data-id="${s.id}">
+    <button class="tab" data-id="${s.id}"${s.id === UPDATES_ID ? ' data-mobile="hide"' : ''}>
       <span class="tab-icon">${s.icon}</span>
       <span>${s.name}</span>
       ${s.tools ? `<span class="tab-count">${s.tools.length}</span>` : '<span class="tab-count">NEW</span>'}
     </button>`).join('');
+  /* 手机端隐藏第 11 个标签（改用列表下方入口卡片），保持 5×2 整齐 */
+  const updTab = tabbar.querySelector(`[data-id="${UPDATES_ID}"]`);
+  if (updTab) updTab.style.display = window.matchMedia('(max-width:767px)').matches ? 'none' : '';
+}
+
+/* ===================== 顶部更新滚动条 ===================== */
+function sortedUpdates(){
+  return (typeof UPDATES !== 'undefined' ? UPDATES : []).slice()
+    .sort((a, b) => a.date < b.date ? 1 : a.date > b.date ? -1 : 0);
+}
+
+function renderTicker(){
+  const track = document.getElementById('tickerTrack');
+  if (!track) return;
+  const list = sortedUpdates().slice(0, 12);
+  if (!list.length){ track.innerHTML = ''; return; }
+  /* 播两份实现无缝循环（translateX -50% 正好接上） */
+  const html = list.map(u => {
+    const sec = SECTIONS.find(s => s.id === u.section);
+    return `<span class="ticker-item"><span class="tk-date">${u.date.slice(5)}</span><span class="tk-tag">${sec ? sec.name : (UPDATES_TYPE[u.type] || UPDATES_TYPE.new).label}</span>${esc(u.title)}</span>`;
+  }).join('');
+  track.innerHTML = html + html;
+}
+
+/* ===================== 手机端更新动态入口卡片 ===================== */
+function mobileUpdateCard(){
+  const list = sortedUpdates();
+  const today = new Date().toISOString().slice(0, 10);
+  const todayCount = list.filter(u => u.date === today).length;
+  const latest = list[0];
+  return `
+    <button class="mob-upd" data-goto="${UPDATES_ID}">
+      <span class="mu-ico">🆕</span>
+      <span class="mu-main">
+        <span class="mu-t">更新动态${todayCount ? ` · 今日新增 ${todayCount} 条` : ''}</span>
+        <span class="mu-d">${latest ? esc(latest.title) : '查看全部更新记录'}</span>
+      </span>
+      <span class="mu-arrow">›</span>
+    </button>`;
 }
 
 function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
@@ -438,7 +544,8 @@ function formatDate(d){
   return `${y} 年 ${+m} 月 ${+day} 日`;
 }
 
-function renderUpdates(){
+function renderUpdates(opts = {}){
+  const scroll = opts.scroll !== false;
   currentId = UPDATES_ID;
   setActiveTab(UPDATES_ID);
   setHash(UPDATES_ID);
@@ -450,6 +557,7 @@ function renderUpdates(){
     content.innerHTML = `
       <div class="upd-head"><h2>🆕 更新动态</h2></div>
       <div class="upd-empty">暂无更新记录</div>`;
+    if (scroll) window.scrollTo({ top:0, behavior:'smooth' });
     return;
   }
 
@@ -492,10 +600,11 @@ function renderUpdates(){
         }).join('')}
       </div>`).join('')}
     <div class="section-update">🔄 持续更新中，更多工具敬请期待…</div>`;
+  if (scroll) window.scrollTo({ top:0, behavior:'smooth' });
 }
 
 function renderSection(id, page = 1, opts = {}){
-  if (id === UPDATES_ID) return renderUpdates();
+  if (id === UPDATES_ID) return renderUpdates(opts);
   const scroll = opts.scroll !== false;
   const s = SECTIONS.find(x => x.id === id);
   if (!s) return renderSection(SECTIONS[0].id, page, opts);
@@ -505,7 +614,7 @@ function renderSection(id, page = 1, opts = {}){
   const start = (currentPage - 1) * PAGE_SIZE;
   const list = s.tools.slice(start, start + PAGE_SIZE);
   setActiveTab(id);
-  content.innerHTML = `${renderGrid(list, s)}${paginationHTML(totalPages, currentPage)}<div class="section-update">🔄 持续更新中，更多工具敬请期待…</div>`;
+  content.innerHTML = `${renderGrid(list, s)}${paginationHTML(totalPages, currentPage)}${mobileUpdateCard()}<div class="section-update">🔄 持续更新中，更多工具敬请期待…</div>`;
   setHash(id);
   if (scroll) window.scrollTo({ top:0, behavior:'smooth' });
 }
@@ -597,7 +706,15 @@ window.addEventListener('scroll', () => {
 });
 backTop.addEventListener('click', () => window.scrollTo({ top:0, behavior:'smooth' }));
 
+/* 顶部滚动条：点击 / 回车进动态区 */
+const tickerEl = document.getElementById('ticker');
+tickerEl.addEventListener('click', () => { searchInput.value = ''; renderUpdates(); });
+tickerEl.addEventListener('keydown', e => {
+  if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); searchInput.value = ''; renderUpdates(); }
+});
+
 renderTabs();
+renderTicker();
 renderSection(hashSection(), 1, { scroll:false });
 </script>
 
