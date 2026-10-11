@@ -38,6 +38,7 @@ const SECTIONS = [
     id:'video', icon:'🎬', name:'影视专区', desc:'聚合影视资源', color:'#ef4444', soft:'#fef2f2',
     tools:[
       { name:'星盒', desc:'聚合影视资源，看电影追剧', img:'icons/xinghe.png', version:'v2.7.0', os:['安卓'], secret:'https://www.istarbox.app/download', quark:'https://pan.quark.cn/s/7fc3a192ddc2', baidu:'https://pan.baidu.com/s/18Des_vBGkeHMCgBgans8Tw?pwd=j5q4' },
+      { name:'Sparkle', desc:'番剧影视、漫画、壁纸一体化的安卓应用，全部免费无广告，影视最高 4K 高清，可看可下载', img:'icons/sparkle.png', os:['安卓'], quark:'https://pan.quark.cn/s/3e86c984820f', baidu:'https://pan.baidu.com/s/1DJbbLI_O8wGfA9KUh5Tzmg?pwd=mwki' },
       { name:'MiniReel', desc:'第三方红果短剧客户端，免费无广告，手机/电视/电脑全平台', img:'icons/minireel.png', version:'v0.3.0', os:['安卓','Android TV','Windows','macOS','Linux'], secret:'https://minireel.weppp.cyou:54267/versions', quark:'https://pan.quark.cn/s/c326807e1024', baidu:'https://pan.baidu.com/s/1CEqs_PTYrxYEzSz_40DAbQ?pwd=fgf1' },
     ]
   },
@@ -54,6 +55,7 @@ const SECTIONS = [
     tools:[
       { name:'Mihon', desc:'免费开源安卓漫画阅读器（Tachiyomi 继任者）', img:'icons/mihon.png', version:'v0.20.4', os:['安卓'], secret:'https://github.com/mihonapp/mihon', quark:'https://pan.quark.cn/s/14966eac05db', baidu:'https://pan.baidu.com/s/11FGWmCzzpJ7gVCjh26lvIg?pwd=9gmn' },
       { name:'venera_1.4.6', desc:'漫画阅读器', emoji:'📖', version:'1.4.6', os:['安卓'], secret:'https://github.com/venera-app/venera', quark:'https://pan.quark.cn/s/ca0afa3bf4b0', baidu:'https://pan.baidu.com/s/1J_O7CFwJEgtow6ibGD_9qA?pwd=ai9w' },
+      { name:'Sparkle', desc:'漫画聚合阅读器，看热门 / 找漫画 / 畅销榜 / 全网热议，也能下载离线看', img:'icons/sparkle.png', os:['安卓'], quark:'https://pan.quark.cn/s/3e86c984820f', baidu:'https://pan.baidu.com/s/1DJbbLI_O8wGfA9KUh5Tzmg?pwd=mwki' },
       { name:'抱走漫画', desc:'免费无广告的多源漫画聚合阅读器，装完直接看，离线也能缓存下载', img:'icons/baozoumanhua.png', version:'1.0.7', os:['安卓'], secretText:'QQ 群文件', quark:'https://pan.quark.cn/s/b3c9435bd0a4', baidu:'https://pan.baidu.com/s/1rLGyBCQYtHYV_NV9g1xZNw?pwd=1o1m' },
     ]
   },
@@ -146,6 +148,7 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
+  { date:'2026-10-11', type:'update', section:'video', title:'Sparkle 上线影视专区与漫画专区', desc:'番剧影视、漫画、壁纸一体化的安卓应用，全部免费无广告，影视最高 4K 高清，可看可下载' },
   { date:'2026-10-11', type:'update', section:'software', title:'录屏合集、团子素材解析上线，支持设备全站校准', desc:'4 款录屏软件合并为一张合集卡片；豆包去水印升级为团子素材解析（v1.1.8）；全站支持设备逐条比对实际安装包重新核验' },
   { date:'2026-10-11', type:'fix', section:'', title:'移除卡片上直接显示的 GitHub 地址', desc:'Mihon / Piik / 高性价比人生指南不再明文展示项目地址，下载来源统一收进右上角书签（需管理员密码）；AI 专区作为开源 skill 入口，保留地址方便安装' },
   { date:'2026-10-11', type:'update', section:'music', title:'星音乐 v2.0、zpod v3.0.10 版本号上线', desc:'七猫小说下载器补充 iOS 支持' },
