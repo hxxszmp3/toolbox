@@ -113,6 +113,16 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   box-shadow:var(--shadow);
   transition:transform .18s,box-shadow .18s,border-color .18s;
 }
+/* 从更新动态跳转到某张卡片时的高亮提示 */
+.tool.flash{
+  animation:toolFlash 2.6s ease-out;
+  border-color:var(--accent);
+}
+@keyframes toolFlash{
+  0%,12%   {box-shadow:0 0 0 0 var(--accent);transform:scale(1.035)}
+  30%      {box-shadow:0 0 0 7px transparent;transform:scale(1.02)}
+  100%     {box-shadow:0 0 0 0 transparent;transform:scale(1)}
+}
 .tool:hover{transform:translateY(-2px);box-shadow:0 10px 26px var(--accent-soft);border-color:var(--accent)}
 .tool-accent{position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent)}
 .tool-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding-right:26px}
@@ -122,13 +132,13 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .tool-tag{flex:none;font-size:11px;font-weight:600;color:#d97706;background:#fef3e2;padding:2px 7px;border-radius:6px}
 /* NEW 角标：最近 7 天新增的工具，配合分区「最新在前」排序使用 */
 .tool-new{
-  flex:none;font-size:10px;font-weight:700;letter-spacing:.4px;color:#fff;
-  background:linear-gradient(135deg,#f43f5e,#f97316);padding:2px 6px;border-radius:6px;
-  box-shadow:0 1px 4px rgba(244,63,94,.35);
+  flex:none;font-size:9px;font-weight:700;letter-spacing:.2px;color:#fff;line-height:1.5;
+  background:linear-gradient(135deg,#f43f5e,#f97316);padding:1px 4px;border-radius:5px;
+  box-shadow:0 1px 3px rgba(244,63,94,.3);
 }
 .tool-new::before{
-  content:'';display:inline-block;width:5px;height:5px;border-radius:50%;
-  background:#fff;margin-right:4px;vertical-align:middle;
+  content:'';display:inline-block;width:4px;height:4px;border-radius:50%;
+  background:#fff;margin-right:3px;vertical-align:middle;
   animation:newPulse 1.6s ease-in-out infinite;
 }
 @keyframes newPulse{0%,100%{opacity:1}50%{opacity:.35}}
@@ -302,6 +312,11 @@ mark{background:rgba(245,158,11,.35);color:inherit;border-radius:3px;padding:0 1
   background:var(--primary-soft);color:var(--primary);
 }
 .ticker-item .tk-text{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis}
+/* 带跳转目标的条目显示手型光标并轻微高亮，暗示可点 */
+.ticker-item[data-goto-tool],.ticker-item[data-goto]{cursor:pointer}
+.ticker-item[data-goto-tool]:hover .tk-text,
+.ticker-item[data-goto]:hover .tk-text{color:var(--primary)}
+.ticker-item[data-goto-tool]:hover,.ticker-item[data-goto]:hover{background:var(--soft-btn)}
 .ticker-item .tk-tag{font-size:11px;font-weight:600;padding:1px 6px;border-radius:999px;background:var(--card);border:1px solid var(--border);color:var(--primary);flex:none}
 .ticker-more{
   flex:none;font-size:12px;font-weight:600;color:var(--primary);
@@ -421,6 +436,15 @@ mark{background:rgba(245,158,11,.35);color:inherit;border-radius:3px;padding:0 1
 }
 .upd-main{flex:1;min-width:0;overflow-wrap:anywhere}
 .upd-title{font-size:14.5px;font-weight:600;color:var(--text);line-height:1.45;word-break:break-word;overflow-wrap:anywhere}
+/* 更新标题里的工具名做成按钮，点直达对应卡片并高亮 */
+.upd-tool{
+  display:inline-block;font:inherit;font-weight:700;color:var(--primary);
+  background:var(--primary-soft);border:none;border-radius:5px;
+  padding:1px 6px;margin:0 2px;cursor:pointer;
+  transition:background .15s,color .15s;
+}
+.upd-tool:hover{background:var(--primary);color:#fff}
+.upd-tool:active{transform:translateY(1px)}
 .upd-desc{font-size:13px;color:var(--text-2);line-height:1.55;margin-top:4px;word-break:break-word;overflow-wrap:anywhere}
 .upd-meta{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin-top:8px}
 .upd-tag{
@@ -615,7 +639,12 @@ function renderTicker(){
     const sec = SECTIONS.find(s => s.id === u.section);
     /* 回退到历史日期时标「最近」，让用户知道这不是当天更新 */
     const flag = isToday ? '' : '<span class="tk-flag">最近</span>';
-    return `<div class="ticker-item" title="${esc(u.title)}"><span class="tk-date">${u.date.slice(5)}</span>${flag}<span class="tk-tag">${sec ? sec.name : (UPDATES_TYPE[u.type] || UPDATES_TYPE.new).label}</span><span class="tk-text">${esc(u.title)}</span></div>`;
+    /* 滚动条条目也能点：先命中该更新里的第一个工具就直接跳卡片，否则照旧打开全部 */
+    const hit = findToolsInUpdate(u)[0];
+    const jump = hit
+      ? ` data-goto-tool="${esc(hit)}"`
+      : (sec ? ` data-goto="${sec.id}"` : '');
+    return `<div class="ticker-item"${jump} title="${esc(u.title)}"><span class="tk-date">${u.date.slice(5)}</span>${flag}<span class="tk-tag">${sec ? sec.name : (UPDATES_TYPE[u.type] || UPDATES_TYPE.new).label}</span><span class="tk-text">${esc(u.title)}</span></div>`;
   }).join('');
 
   /* 步长取实际单条高度，避免写死数值导致翻过头或翻不出可视区；
@@ -698,6 +727,78 @@ function sortTools(list){
   return fresh.concat(old).map(x => x.t);
 }
 
+/* ============== 更新动态 → 工具卡片跳转 ============== */
+/* 一条更新可能涉及多个工具（如「星音乐 v2.0、zpod v3.0.10」）。
+   从标题/描述里找出所有真实存在的工具名，命中的都做成可点击。
+
+   两点必须处理，否则会漏：
+   1) 空格差异——卡片叫「600G小说合集」，文案写「600G 小说合集」，直接 includes 匹配不上；
+   2) 简称差异——卡片叫「录屏软件合集」，文案写「录屏合集」，多出修饰词后整名也匹配不上。
+   所以先做「去空格」的精确匹配，再对未命中的工具做去修饰词的模糊匹配。 */
+function findToolsInUpdate(u){
+  const raw = (u.title + ' ' + (u.desc || ''));
+  const text = raw.replace(/\s+/g, '');          /* 忽略所有空白 */
+  const hit = [];
+  const push = name => { if (!hit.includes(name)) hit.push(name); };
+
+  SECTIONS.forEach(s => s.tools.forEach(t => {
+    if (text.includes(t.name.replace(/\s+/g, ''))) push(t.name);
+  }));
+  if (hit.length) return hit;
+
+  /* 兜底模糊匹配：剥掉常见修饰词后，至少剩 3 个字才认为可信，避免「软件」这类
+     过短的公共词把不相关的工具误判成命中 */
+  const NOISE = ['合集', '软件', '专区', '客户端', '解析', '下载', '工具', '版'];
+  SECTIONS.forEach(s => s.tools.forEach(t => {
+    let core = t.name.replace(/\s+/g, '');
+    NOISE.forEach(n => { core = core.split(n).join(''); });
+    if (core.length >= 3 && text.includes(core)) push(t.name);
+  }));
+  return hit;
+}
+
+/* 同一工具可能同时存在于多个分区（如星盒出现在 4 个区、Sparkle 在影视和漫画）。
+   随机挑一个分区展示，避免每次点击都固定落在同一个区。 */
+function pickSectionForTool(toolName){
+  const secs = SECTIONS.filter(s => s.tools.some(t => t.name === toolName));
+  if (!secs.length) return null;
+  if (secs.length === 1) return secs[0];
+  return secs[Math.floor(Math.random() * secs.length)];
+}
+
+/* 跳到指定分区并高亮该工具卡片。
+   因为列表分页，需先按排序后的真实次序算出它在第几页，再翻到那一页。 */
+function gotoTool(toolName){
+  const sec = pickSectionForTool(toolName);
+  if (!sec) return false;
+  closeUpdates();
+
+  const list = sortTools(sec.tools);
+  const idx = list.findIndex(t => t.name === toolName);
+  if (idx < 0) return false;
+  const page = Math.floor(idx / PAGE_SIZE) + 1;
+
+  /* 停掉滚动条轮播：条目正在纵向翻动时点击，目标会边滚边走，读起来容易点错 */
+  clearInterval(tickerTimer);
+
+  searchInput.value = '';
+  renderSection(sec.id, page, { scroll: false });
+
+  /* 等两帧让卡片渲染完再定位高亮。
+     closeUpdates 内部也会用 rAF 回滚滚动位置，所以这里多等一帧，
+     确保 scrollIntoView 排在回滚之后执行，不会被覆盖。 */
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    const cards = content.querySelectorAll('.tool');
+    let target = null;
+    cards.forEach(c => { if (c.dataset.tool === toolName) target = c; });
+    if (!target) return;
+    target.classList.add('flash');
+    target.scrollIntoView({ behavior:'smooth', block:'center' });
+    setTimeout(() => target.classList.remove('flash'), 2600);
+  }));
+  return true;
+}
+
 function toolCard(t, s, q = ''){
   const tag = t.tag ? `<span class="tool-tag">${esc(t.tag)}</span>` : '';
   const newBadge = isNewTool(t) ? '<span class="tool-new">NEW</span>' : '';
@@ -745,7 +846,7 @@ function toolCard(t, s, q = ''){
 
   const points = t.points ? `<ul class="tool-points">${t.points.map(p => `<li>${p}</li>`).join('')}</ul>` : '';
 
-  return `<div class="tool${hasSrc ? ' has-bookmark' : ''}${open ? ' unlocked' : ''}" style="--accent:${s.color};--accent-soft:${s.soft};--accent-border:${s.color}99">
+  return `<div class="tool${hasSrc ? ' has-bookmark' : ''}${open ? ' unlocked' : ''}" data-tool="${esc(t.name)}" style="--accent:${s.color};--accent-soft:${s.soft};--accent-border:${s.color}99">
     <div class="tool-accent"></div>
     ${bookmark}
     <div class="tool-head">
@@ -820,11 +921,16 @@ function buildUpdatesHTML(){
       ${g.items.map(u => {
         const t = UPDATES_TYPE[u.type] || UPDATES_TYPE.new;
         const sec = SECTIONS.find(s => s.id === u.section);
+        /* 标题里的工具名做成可点击，点击直接跳到对应卡片并高亮 */
+        const hits = findToolsInUpdate(u);
+        const titleHTML = hits.length
+          ? hits.map(n => `<button class="upd-tool" data-goto-tool="${esc(n)}">${esc(n)}</button>`).join(' ')
+          : esc(u.title);
         return `
         <div class="upd-item">
           <div class="upd-ico" ${sec ? `style="background:${sec.soft}"` : ''}>${sec ? sec.icon : t.ico}</div>
           <div class="upd-main">
-            <div class="upd-title">${esc(u.title)}</div>
+            <div class="upd-title">${titleHTML}</div>
             ${u.desc ? `<div class="upd-desc">${esc(u.desc)}</div>` : ''}
             <div class="upd-meta">
               <span class="upd-tag ${t.cls}">${t.label}</span>
@@ -931,8 +1037,9 @@ content.addEventListener('click', e => {
     }
     return;
   }
-  /* 动态区里点分区标签 → 跳到对应分区 */
-  const gotoBtn = e.target.closest('[data-goto]');
+  /* 动态区里点分区标签 → 跳到对应分区。
+     只处理抽屉（#udBody）里的，滚动条内的 data-goto 由它自己的委托单独处理，避免重复触发 */
+  const gotoBtn = e.target.closest('#udBody [data-goto]');
   if (gotoBtn){
     const target = gotoBtn.dataset.goto;
     closeUpdates();
@@ -983,6 +1090,20 @@ backTop.addEventListener('click', () => window.scrollTo({ top:0, behavior:'smoot
 
 /* 顶部滚动条：点击展开 / 再次点击收起回到原位置（事件委托，滚动条随内容重建） */
 document.getElementById('content').addEventListener('click', e => {
+  /* 条目自身带了工具名/分区时优先按它跳转，不再打开抽屉 */
+  const jump = e.target.closest('[data-goto-tool]');
+  if (jump && jump.closest('#ticker')){
+    e.stopPropagation();
+    gotoTool(jump.dataset.gotoTool);
+    return;
+  }
+  const goSec = e.target.closest('#ticker [data-goto]');
+  if (goSec){
+    e.stopPropagation();
+    searchInput.value = '';
+    renderSection(goSec.dataset.goto, 1);
+    return;
+  }
   if (e.target.closest('#ticker')) toggleUpdates();
 });
 document.getElementById('content').addEventListener('keydown', e => {
@@ -996,8 +1117,13 @@ const udMask = document.getElementById('udMask');
 document.getElementById('udClose').addEventListener('click', closeUpdates);
 udMask.addEventListener('click', e => { if (e.target === udMask) closeUpdates(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeUpdates(); });
-/* 抽屉内的分区跳转 */
+/* 抽屉内的跳转：点工具名直达卡片并高亮，点分区标签进分区 */
 document.getElementById('udBody').addEventListener('click', e => {
+  const toolBtn = e.target.closest('[data-goto-tool]');
+  if (toolBtn){
+    gotoTool(toolBtn.dataset.gotoTool);
+    return;
+  }
   const btn = e.target.closest('[data-goto]');
   if (!btn) return;
   const target = btn.dataset.goto;
