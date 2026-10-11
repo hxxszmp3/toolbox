@@ -127,17 +127,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   display:inline-block;vertical-align:middle;
 }
 
-/* 最新版本号 */
-.tool-ver{display:flex;align-items:center;gap:8px;margin-top:-2px}
-.tool-ver .ver-label{
-  font-size:11px;font-weight:600;color:var(--text-3);
-  background:var(--soft-btn);padding:2px 8px;border-radius:6px;flex:none;
-}
-.tool-ver .ver-val{
-  font-size:13px;font-weight:700;color:var(--accent);
-  font-variant-numeric:tabular-nums;
-}
-
 /* 支持设备 */
 .tool-os{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:-2px}
 .tool-os .os-label{
@@ -670,10 +659,7 @@ function toolCard(t, s, q = ''){
     ? `<img class="tool-icon tool-img" src="${t.img}" alt="${esc(t.name)}" loading="lazy">`
     : `<span class="tool-icon">${t.emoji || s.icon}</span>`;
 
-  /* 最新版本号：仅当 data.js 里配了 version 才显示 */
-  const verLine = t.version
-    ? `<div class="tool-ver"><span class="ver-label">最新版本</span><span class="ver-val">${esc(t.version)}</span></div>`
-    : '';
+  /* 版本号按要求不在卡片展示，data.js 的 version 字段保留备用 */
 
   /* 支持设备：未标注（无官网或不确定）则整行不显示 */
   const osLine = (t.os && t.os.length)
@@ -722,7 +708,6 @@ function toolCard(t, s, q = ''){
       ${tag}
     </div>
     <div class="tool-desc"><span class="desc-label">${esc(descLabel(s))}</span><span class="desc-text">${hi(t.desc, q)}</span></div>
-    ${verLine}
     ${osLine}
     ${secretBox}
     ${points}
