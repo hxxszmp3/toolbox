@@ -120,7 +120,65 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .tool-img{object-fit:cover;display:block;background:#eef1f5;padding:0}
 .tool-name{font-size:16px;font-weight:700;line-height:1.3}
 .tool-tag{flex:none;font-size:11px;font-weight:600;color:#d97706;background:#fef3e2;padding:2px 7px;border-radius:6px}
-.tool-desc{font-size:13px;color:var(--text-2)}
+.tool-desc{font-size:13px;color:var(--text-2);line-height:1.6}
+.tool-desc .desc-label{
+  font-size:11px;font-weight:600;color:var(--text-3);
+  background:var(--soft-btn);padding:2px 7px;border-radius:6px;margin-right:7px;
+  display:inline-block;vertical-align:middle;
+}
+
+/* 最新版本号 */
+.tool-ver{display:flex;align-items:center;gap:8px;margin-top:-2px}
+.tool-ver .ver-label{
+  font-size:11px;font-weight:600;color:var(--text-3);
+  background:var(--soft-btn);padding:2px 8px;border-radius:6px;flex:none;
+}
+.tool-ver .ver-val{
+  font-size:13px;font-weight:700;color:var(--accent);
+  font-variant-numeric:tabular-nums;
+}
+
+/* 支持设备 */
+.tool-os{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:-2px}
+.tool-os .os-label{
+  font-size:11px;font-weight:600;color:var(--text-3);
+  background:var(--soft-btn);padding:2px 8px;border-radius:6px;flex:none;
+}
+.tool-os .os-tag{
+  font-size:11px;font-weight:600;color:var(--text-2);
+  background:var(--soft-btn);border:1px solid var(--border);
+  padding:1px 7px;border-radius:6px;white-space:nowrap;
+}
+
+/* 右上角书签：点击输入管理员密码显示下载来源 */
+.tool-bookmark{
+  position:absolute;top:10px;right:10px;z-index:3;
+  width:26px;height:26px;padding:0;border:none;border-radius:7px;
+  background:transparent;color:var(--text-3);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:color .18s,background .18s,transform .18s;
+}
+.tool-bookmark svg{width:15px;height:15px}
+.tool-bookmark:hover{color:var(--accent);background:var(--accent-soft);transform:translateY(-1px)}
+/* 已显示来源地址时书签点亮 */
+.tool.unlocked .tool-bookmark{color:var(--accent);background:var(--accent-soft)}
+
+/* 解锁后显示的来源地址 */
+.tool-secret{
+  display:flex;align-items:center;gap:8px;
+  padding:8px 10px;border-radius:8px;
+  background:var(--accent-soft);border:1px dashed var(--accent-border);
+}
+.tool-secret .sec-label{
+  font-size:11px;font-weight:600;color:var(--accent);flex:none;
+  background:var(--card);padding:2px 7px;border-radius:6px;
+}
+.tool-secret .sec-link{
+  font-size:12px;color:var(--primary);word-break:break-all;line-height:1.5;
+}
+.tool-secret .sec-link:hover{text-decoration:underline}
+/* 来源为文字（如 QQ 群文件）时不做链接 */
+.tool-secret .sec-text{font-size:12.5px;font-weight:600;color:var(--text-2)}
 .tool-points{list-style:none;display:flex;flex-direction:column;gap:6px;font-size:12.5px;color:var(--text-2)}
 .tool-points li{line-height:1.6}
 .tool-points a{color:var(--primary);word-break:break-all}
@@ -249,6 +307,35 @@ mark{background:rgba(245,158,11,.35);color:inherit;border-radius:3px;padding:0 1
   .ticker-more{font-size:11.5px;padding-left:7px}
   .ticker-item{font-size:12px}
 }
+
+/* ===================== 书签解锁弹窗 ===================== */
+.pw-mask{
+  position:fixed;inset:0;z-index:300;background:rgba(15,18,22,.45);
+  display:flex;align-items:center;justify-content:center;padding:20px;
+  opacity:0;visibility:hidden;transition:opacity .2s,visibility .2s;
+}
+.pw-mask.show{opacity:1;visibility:visible}
+.pw-box{
+  width:min(360px,100%);background:var(--card);border-radius:14px;
+  padding:22px 20px 16px;box-shadow:0 12px 40px rgba(16,24,40,.24);
+  transform:scale(.96);transition:transform .2s;
+}
+.pw-mask.show .pw-box{transform:scale(1)}
+.pw-title{font-size:16px;font-weight:700;margin-bottom:14px}
+.pw-row{display:flex;gap:8px}
+.pw-input{
+  flex:1;min-width:0;height:38px;padding:0 12px;
+  border:1.5px solid var(--border-2);border-radius:9px;
+  background:var(--input-bg);color:var(--text);font-size:14px;font-family:inherit;
+}
+.pw-input:focus{outline:none;border-color:var(--primary)}
+.pw-err{font-size:12.5px;color:#dc2626;margin-top:8px;min-height:18px}
+.pw-close{
+  margin-top:6px;text-align:center;font-size:13px;color:var(--text-3);cursor:pointer;
+}
+.pw-close:hover{color:var(--text-2)}
+.btn-primary{background:var(--primary);color:#fff;border:none;height:38px;padding:0 18px;border-radius:9px;font-size:14px;font-weight:600;cursor:pointer}
+.btn-primary:hover{background:var(--primary-hover)}
 
 /* ===================== 更新动态抽屉 ===================== */
 .ud-mask{
@@ -399,6 +486,19 @@ mark{background:rgba(245,158,11,.35);color:inherit;border-radius:3px;padding:0 1
 
 <button class="back-top" id="backTop" aria-label="回到顶部">↑</button>
 
+<!-- 书签解锁弹窗 -->
+<div class="pw-mask" id="pwMask">
+  <div class="pw-box" role="dialog" aria-modal="true" aria-label="输入访问密码">
+    <div class="pw-title">🔒 输入管理员密码</div>
+    <div class="pw-row">
+      <input class="pw-input" id="pwInput" type="password" placeholder="请输入管理员密码" autocomplete="off">
+      <button class="btn btn-primary" id="pwOk">确定</button>
+    </div>
+    <div class="pw-err" id="pwErr"></div>
+    <div class="pw-close" id="pwCancel">取消</div>
+  </div>
+</div>
+
 <!-- 更新动态抽屉 -->
 <div class="ud-mask" id="udMask">
   <aside class="ud-panel" role="dialog" aria-modal="true" aria-label="更新动态">
@@ -543,6 +643,37 @@ function toolCard(t, s, q = ''){
     ? `<img class="tool-icon tool-img" src="${t.img}" alt="${esc(t.name)}" loading="lazy">`
     : `<span class="tool-icon">${t.emoji || s.icon}</span>`;
 
+  /* 最新版本号：仅当 data.js 里配了 version 才显示 */
+  const verLine = t.version
+    ? `<div class="tool-ver"><span class="ver-label">最新版本</span><span class="ver-val">${esc(t.version)}</span></div>`
+    : '';
+
+  /* 支持设备：未标注（无官网或不确定）则整行不显示 */
+  const osLine = (t.os && t.os.length)
+    ? `<div class="tool-os"><span class="os-label">支持设备</span>${t.os.map(o => `<span class="os-tag">${esc(o)}</span>`).join('')}</div>`
+    : '';
+
+  /* 书签状态按卡片独立维护（key = 分区id + 工具名），互不影响 */
+  const hasSrc = !!(t.secret || t.secretText);
+  const key = hasSrc ? `${s.id}::${t.name}` : '';
+  const open = key && unlockedCards.has(key);
+
+  /* 书签在卡片右上角；已展开时为点亮态，点击可收起 */
+  const bookmark = hasSrc
+    ? `<button class="tool-bookmark" data-secret-key="${esc(key)}" aria-label="下载来源">
+         <svg viewBox="0 0 24 24" fill="${open ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4.5L5 21V4a1 1 0 0 1 1-1z"/></svg>
+       </button>`
+    : '';
+
+  /* 解锁后显示来源：网址显示为链接，文字（如 QQ 群文件）显示为纯文本 */
+  let secretBox = '';
+  if (open){
+    const inner = t.secret
+      ? `<a class="sec-link" href="${esc(t.secret)}" target="_blank" rel="noopener">${esc(t.secret)}</a>`
+      : `<span class="sec-text">${esc(t.secretText)}</span>`;
+    secretBox = `<div class="tool-secret"><span class="sec-label">下载来源</span>${inner}</div>`;
+  }
+
   let action = '';
   if (t.web){
     action = `<a class="web-link" href="${t.web}" target="_blank" rel="noopener">🔗 ${esc(t.web)}</a>`;
@@ -555,14 +686,18 @@ function toolCard(t, s, q = ''){
 
   const points = t.points ? `<ul class="tool-points">${t.points.map(p => `<li>${p}</li>`).join('')}</ul>` : '';
 
-  return `<div class="tool" style="--accent:${s.color};--accent-soft:${s.soft};--accent-border:${s.color}99">
+  return `<div class="tool${hasSrc ? ' has-bookmark' : ''}${open ? ' unlocked' : ''}" style="--accent:${s.color};--accent-soft:${s.soft};--accent-border:${s.color}99">
     <div class="tool-accent"></div>
+    ${bookmark}
     <div class="tool-head">
       ${icon}
       <span class="tool-name">${hi(t.name, q)}</span>
       ${tag}
     </div>
-    <div class="tool-desc">${hi(t.desc, q)}</div>
+    <div class="tool-desc"><span class="desc-label">软件简介</span><span class="desc-text">${hi(t.desc, q)}</span></div>
+    ${verLine}
+    ${osLine}
+    ${secretBox}
     ${points}
     ${action ? `<div class="tool-action">${action}</div>` : ''}
   </div>`;
@@ -723,6 +858,18 @@ content.addEventListener('click', e => {
     renderSection(currentId, parseInt(pageBtn.dataset.page, 10));
     return;
   }
+  /* 点书签：已展开→收起；未展开→要密码 */
+  const bm = e.target.closest('.tool-bookmark');
+  if (bm){
+    const key = bm.dataset.secretKey;
+    if (unlockedCards.has(key)){
+      unlockedCards.delete(key);
+      renderCurrentView();
+    } else {
+      openPassword(key);
+    }
+    return;
+  }
   /* 动态区里点分区标签 → 跳到对应分区 */
   const gotoBtn = e.target.closest('[data-goto]');
   if (gotoBtn){
@@ -796,6 +943,57 @@ document.getElementById('udBody').addEventListener('click', e => {
   closeUpdates();
   searchInput.value = '';
   setTimeout(() => renderSection(target, 1), 60);
+});
+
+/* ===================== 书签：管理员密码查看下载来源 ===================== */
+const BOOKMARK_PWD = 'ldgj';
+/* 已展开来源地址的卡片（分区id::工具名）。仅存内存，刷新即失效，各卡片互不影响 */
+const unlockedCards = new Set();
+let pendingCardKey = '';
+
+function openPassword(cardKey){
+  const mask = document.getElementById('pwMask');
+  if (!mask) return;
+  pendingCardKey = cardKey;
+  document.getElementById('pwErr').textContent = '';
+  document.getElementById('pwInput').value = '';
+  mask.classList.add('show');
+  setTimeout(() => document.getElementById('pwInput').focus(), 60);
+}
+
+function closePassword(){
+  document.getElementById('pwMask').classList.remove('show');
+  pendingCardKey = '';
+}
+
+function submitPassword(){
+  const val = document.getElementById('pwInput').value.trim();
+  if (val !== BOOKMARK_PWD){
+    document.getElementById('pwErr').textContent = '管理员密码不正确，请重试';
+    document.getElementById('pwInput').select();
+    return;
+  }
+  /* 只展开当前这一张卡片 */
+  if (pendingCardKey) unlockedCards.add(pendingCardKey);
+  closePassword();
+  renderCurrentView();
+}
+
+/* 重绘当前视图（不清空已解锁状态） */
+function renderCurrentView(){
+  const q = searchInput.value.trim();
+  if (q) renderSearch(q);
+  else renderSection(currentId, currentPage, { scroll:false });
+}
+
+document.getElementById('pwOk').addEventListener('click', submitPassword);
+document.getElementById('pwCancel').addEventListener('click', closePassword);
+document.getElementById('pwMask').addEventListener('click', e => {
+  if (e.target.id === 'pwMask') closePassword();
+});
+document.getElementById('pwInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') submitPassword();
+  if (e.key === 'Escape') closePassword();
 });
 
 renderTabs();
