@@ -295,6 +295,11 @@ mark{background:rgba(245,158,11,.35);color:inherit;border-radius:3px;padding:0 1
   white-space:nowrap;
 }
 .ticker-item .tk-date{color:var(--text-3);font-variant-numeric:tabular-nums;flex:none}
+/* 回退到历史日期时的提示标记 */
+.ticker-item .tk-flag{
+  flex:none;font-size:10px;font-weight:600;padding:1px 5px;border-radius:999px;
+  background:var(--primary-soft);color:var(--primary);
+}
 .ticker-item .tk-text{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis}
 .ticker-item .tk-tag{font-size:11px;font-weight:600;padding:1px 6px;border-radius:999px;background:var(--card);border:1px solid var(--border);color:var(--primary);flex:none}
 .ticker-more{
@@ -303,11 +308,11 @@ mark{background:rgba(245,158,11,.35);color:inherit;border-radius:3px;padding:0 1
 }
 @media (max-width:767px){
   .ticker-bar{padding:6px 14px;gap:7px}
-  .ticker-lead{font-size:11.5px}
   .ticker-more{font-size:11.5px;padding-left:7px}
   .ticker-item{font-size:12px;gap:5px}
-  /* 手机上宽度紧张：隐藏日期与分区标签，标题独占一行并省略 */
-  .ticker-item .tk-date,.ticker-item .tk-tag{display:none}
+  /* 手机上宽度紧张：保留日期，隐藏分区标签，标题省略号截断 */
+  .ticker-item .tk-date{font-size:11px}
+  .ticker-item .tk-tag{display:none}
   .ticker-item .tk-text{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 }
 
@@ -570,13 +575,17 @@ function sortedUpdates(){
     .sort((a, b) => a.date < b.date ? 1 : a.date > b.date ? -1 : 0);
 }
 
-/* 滚动条只展示当天（今天）的更新记录；点开抽屉仍看全部 */
+/* 滚动条展示「当天」的更新；当天没有改动就回退到最近一个有记录的日期 */
 function todayUpdates(){
+  const list = sortedUpdates();
+  if (!list.length) return [];
   const now = new Date();
   const todayKey = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
-  const list = sortedUpdates().filter(u => u.date === todayKey);
-  /* 当天没有记录时退化为最新一条，避免空白 */
-  return list.length ? list : sortedUpdates().slice(0, 1);
+  /* list 已按日期倒序，list[0].date 即最近一个有记录的日期 */
+  const latestKey = list[0].date;
+  /* 优先当天；当天无记录则回退到最近一天 */
+  const day = list.some(u => u.date === todayKey) ? todayKey : latestKey;
+  return list.filter(u => u.date === day);
 }
 
 /* 滚动条 HTML（放在每个板块内容最上方，吸顶跟随） */
@@ -584,7 +593,7 @@ function tickerHTML(){
   return `
   <div class="ticker" id="ticker" role="button" tabindex="0" aria-label="查看更新动态">
     <div class="ticker-bar">
-      <span class="ticker-lead"><i class="dot"></i>最新动态</span>
+      <span class="ticker-lead"><i class="dot"></i></span>
       <div class="ticker-view"><div class="ticker-track" id="tickerTrack"></div></div>
       <span class="ticker-more">全部 ›</span>
     </div>
@@ -598,9 +607,14 @@ function renderTicker(){
   const list = todayUpdates().slice(0, 12);
   if (!list.length){ track.innerHTML = ''; return; }
 
+  const _n = new Date();
+  const _todayKey = _n.getFullYear() + '-' + String(_n.getMonth()+1).padStart(2,'0') + '-' + String(_n.getDate()).padStart(2,'0');
+  const isToday = list[0].date === _todayKey;
   track.innerHTML = list.map(u => {
     const sec = SECTIONS.find(s => s.id === u.section);
-    return `<div class="ticker-item" title="${esc(u.title)}"><span class="tk-date">${u.date.slice(5)}</span><span class="tk-tag">${sec ? sec.name : (UPDATES_TYPE[u.type] || UPDATES_TYPE.new).label}</span><span class="tk-text">${esc(u.title)}</span></div>`;
+    /* 回退到历史日期时标「最近」，让用户知道这不是当天更新 */
+    const flag = isToday ? '' : '<span class="tk-flag">最近</span>';
+    return `<div class="ticker-item" title="${esc(u.title)}"><span class="tk-date">${u.date.slice(5)}</span>${flag}<span class="tk-tag">${sec ? sec.name : (UPDATES_TYPE[u.type] || UPDATES_TYPE.new).label}</span><span class="tk-text">${esc(u.title)}</span></div>`;
   }).join('');
 
   /* 步长取实际单条高度，避免写死数值导致翻过头或翻不出可视区 */
@@ -764,7 +778,9 @@ function buildUpdatesHTML(){
     else groups.push({ date:u.date, items:[u] });
   });
 
-  const today = new Date().toISOString().slice(0, 10);
+  /* 用本地日期，避免 toISOString 的 UTC 偏移导致「今天」标签错位 */
+  const _dn = new Date();
+  const today = _dn.getFullYear() + '-' + String(_dn.getMonth()+1).padStart(2,'0') + '-' + String(_dn.getDate()).padStart(2,'0');
 
   return groups.map(g => `
     <div class="upd-group">
