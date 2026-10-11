@@ -120,6 +120,18 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .tool-img{object-fit:cover;display:block;background:#eef1f5;padding:0}
 .tool-name{font-size:16px;font-weight:700;line-height:1.3}
 .tool-tag{flex:none;font-size:11px;font-weight:600;color:#d97706;background:#fef3e2;padding:2px 7px;border-radius:6px}
+/* NEW 角标：最近 7 天新增的工具，配合分区「最新在前」排序使用 */
+.tool-new{
+  flex:none;font-size:10px;font-weight:700;letter-spacing:.4px;color:#fff;
+  background:linear-gradient(135deg,#f43f5e,#f97316);padding:2px 6px;border-radius:6px;
+  box-shadow:0 1px 4px rgba(244,63,94,.35);
+}
+.tool-new::before{
+  content:'';display:inline-block;width:5px;height:5px;border-radius:50%;
+  background:#fff;margin-right:4px;vertical-align:middle;
+  animation:newPulse 1.6s ease-in-out infinite;
+}
+@keyframes newPulse{0%,100%{opacity:1}50%{opacity:.35}}
 .tool-desc{font-size:13px;color:var(--text-2);line-height:1.6}
 .tool-desc .desc-label{
   font-size:11px;font-weight:600;color:var(--text-3);
@@ -660,8 +672,35 @@ const DESC_LABEL = {
 };
 function descLabel(s){ return DESC_LABEL[s.id] || '软件简介'; }
 
+/* 最近 7 天内新增的工具视为「新」，提到分区最前；更早的工具保持 data.js 里的原有顺序不动。
+   added 由 tools/sync_added.sh 从 git 历史自动写入 data.js */
+const NEW_DAYS = 7;
+
+function daysSinceAdded(t){
+  if (!t.added) return Infinity;
+  const d = new Date(t.added + 'T00:00:00');
+  if (isNaN(d)) return Infinity;
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  return Math.round((today - d) / 86400000);
+}
+
+function isNewTool(t){ return daysSinceAdded(t) < NEW_DAYS; }
+
+/* 稳定分割：新的在前（内部按日期倒序），老的后面（完全保持原顺序）。
+   不能用整体 sort，否则老工具之间的相对顺序会被打乱。 */
+function sortTools(list){
+  const fresh = [], old = [];
+  list.forEach((t, i) => {
+    (isNewTool(t) ? fresh : old).push({ t, i });
+  });
+  fresh.sort((a, b) => b.t.added.localeCompare(a.t.added) || a.i - b.i);
+  return fresh.concat(old).map(x => x.t);
+}
+
 function toolCard(t, s, q = ''){
   const tag = t.tag ? `<span class="tool-tag">${esc(t.tag)}</span>` : '';
+  const newBadge = isNewTool(t) ? '<span class="tool-new">NEW</span>' : '';
   const icon = t.img
     ? `<img class="tool-icon tool-img" src="${t.img}" alt="${esc(t.name)}" loading="lazy">`
     : `<span class="tool-icon">${t.emoji || s.icon}</span>`;
@@ -712,6 +751,7 @@ function toolCard(t, s, q = ''){
     <div class="tool-head">
       ${icon}
       <span class="tool-name">${hi(t.name, q)}</span>
+      ${newBadge}
       ${tag}
     </div>
     <div class="tool-desc"><span class="desc-label">${esc(descLabel(s))}</span><span class="desc-text">${hi(t.desc, q)}</span></div>
@@ -832,7 +872,7 @@ function renderSection(id, page = 1, opts = {}){
   const totalPages = Math.max(1, Math.ceil(s.tools.length / PAGE_SIZE));
   currentPage = Math.min(page, totalPages);
   const start = (currentPage - 1) * PAGE_SIZE;
-  const list = s.tools.slice(start, start + PAGE_SIZE);
+  const list = sortTools(s.tools).slice(start, start + PAGE_SIZE);
   setActiveTab(id);
   content.innerHTML = `${tickerHTML()}${renderGrid(list, s)}${paginationHTML(totalPages, currentPage)}<div class="section-update">🔄 持续更新中，更多工具敬请期待…</div>`;
   setHash(id);
@@ -846,7 +886,7 @@ function renderSearch(q){
   SECTIONS.forEach(s => {
     const nameHit = s.name.toLowerCase().includes(q);
     const matched = nameHit ? s.tools : s.tools.filter(t => toolText(t).includes(q));
-    if (matched.length) groups.push({ s, tools: matched });
+    if (matched.length) groups.push({ s, tools: sortTools(matched) });
   });
   if (!groups.length){
     content.innerHTML = `<div class="no-result show"><div class="big">🔍</div>没有找到「${esc(searchInput.value.trim())}」相关工具</div>`;
