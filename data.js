@@ -118,17 +118,21 @@ const SECTIONS = [
     tools:[
       { name:'jev-chat（AI参谋）', desc:'聊天辅助工具，读懂对方、给回复建议', emoji:'💬', os:['安卓','Windows','macOS'], points:[
         '<b>是什么 & 能干嘛</b>：装在手机/电脑上的对话副驾，在微信/QQ/飞书里告诉你对方想干什么、有没有坑、给几条回复建议，最终发不发由你决定（安卓支持微信/QQ/飞书等，mac 仅支持微信）',
-        '<b>怎么用</b>：下载对应版本安装包（安卓 APK / Windows / macOS），并在 <a href="https://openrouter.ai" target="_blank" rel="noopener">openrouter.ai</a> 注册免费获取 jev 模型密钥填入',
+        '<b>怎么用</b>：从 GitHub 下载对应版本（安卓 APK / Windows / macOS），并在 <a href="https://openrouter.ai" target="_blank" rel="noopener">openrouter.ai</a> 注册免费获取 jev 模型密钥填入',
+        '<b>GitHub 原地址</b>：<a href="https://github.com/jev-chat/jev-chat-jarvis" target="_blank" rel="noopener">github.com/jev-chat/jev-chat-jarvis</a>',
       ]},
       { name:'HowToLiveBetter', desc:'高性价比人生指南，循证生活 skill', emoji:'🧭', os:['Windows','macOS','Linux'], cmd:'npx skills add eternity4719/HowToLiveBetter', points:[
         '<b>是什么 & 能干嘛</b>：按性价比排序的循证生活指南——长寿防病、急救、省钱理财、法律红线、失业工伤、医保社保、恋爱婚育、怀孕育儿、创业合规、出国技能等 612 条建议，每条写明成本、收益、证据等级和出处（只引期刊论文与官方文件）',
+        '<b>GitHub 原地址</b>：<a href="https://github.com/eternity4719/HowToLiveBetter" target="_blank" rel="noopener">github.com/eternity4719/HowToLiveBetter</a>',
       ]},
       { name:'book-to-skill', desc:'把任何书籍/文档转成 AI Skill，AI 直接基于原文回答', emoji:'📚', os:['Windows','macOS','Linux'], cmd:'npx skills add virgiliojr94/book-to-skill', points:[
         '<b>是什么 & 能干嘛</b>：把书籍/文档（PDF、EPUB、Word、HTML、Markdown、TXT 等）转成 AI Skill，让 AI 基于原文回答——比如民法典、劳动法十几万字做成 Skill，不编造答案',
+        '<b>GitHub 原地址</b>：<a href="https://github.com/virgiliojr94/book-to-skill" target="_blank" rel="noopener">github.com/virgiliojr94/book-to-skill</a>',
       ]},
       { name:'夸克网盘 skill', desc:'夸克网盘 AI 助手 skill（实测不如手动来得快，静待优化）', emoji:'☁️', os:['Windows','macOS','Linux'] },
       { name:'淬火学习 skill', desc:'号称能让学习速度提升 10 倍的 skill', emoji:'🔥', os:['Windows','macOS','Linux'], cmd:'npx -y skills add Biancuihuo/cuihuo-skills -g --all', points:[
         '<b>是什么 & 能干嘛</b>：号称学习速度提升 10 倍的 skill，不是让你学得更快，而是只学该学的、学完真会了',
+        '<b>GitHub 原地址</b>：<a href="https://github.com/Biancuihuo/cuihuo-skills" target="_blank" rel="noopener">github.com/Biancuihuo/cuihuo-skills</a>',
       ]},
     ]
   },
@@ -143,7 +147,7 @@ const SECTIONS = [
    ===================================================================== */
 const UPDATES = [
   { date:'2026-10-11', type:'update', section:'software', title:'录屏合集、团子素材解析上线，支持设备全站校准', desc:'4 款录屏软件合并为一张合集卡片；豆包去水印升级为团子素材解析（v1.1.8）；全站支持设备逐条比对实际安装包重新核验' },
-  { date:'2026-10-11', type:'fix', section:'', title:'移除卡片上直接显示的 GitHub 地址', desc:'Mihon / Piik / 高性价比人生指南 / AI 专区各工具不再明文展示项目地址，下载来源统一收进右上角书签（需管理员密码）' },
+  { date:'2026-10-11', type:'fix', section:'', title:'移除卡片上直接显示的 GitHub 地址', desc:'Mihon / Piik / 高性价比人生指南不再明文展示项目地址，下载来源统一收进右上角书签（需管理员密码）；AI 专区作为开源 skill 入口，保留地址方便安装' },
   { date:'2026-10-11', type:'update', section:'music', title:'星音乐 v2.0、zpod v3.0.10 版本号上线', desc:'七猫小说下载器补充 iOS 支持' },
   { date:'2026-10-11', type:'update', section:'software', title:'实用软件区录屏合集扩为 4 款', desc:'OBS Studio、ShareX、FastStone Capture、Apowersoft 录屏大师各一张卡片，均为 Windows 口碑之作' },
   { date:'2026-10-11', type:'fix', section:'software', title:'下架批量下载抖音视频插件、WPS 会员版本', desc:'违规 / 风险资源已从站点移除' },
