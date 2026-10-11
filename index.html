@@ -227,7 +227,7 @@ mark{background:rgba(245,158,11,.35);color:inherit;border-radius:3px;padding:0 1
 /* 纵向翻动：所有条目纵向叠放，用 translateY 平滑切换 */
 .ticker-track{
   display:flex;flex-direction:column;
-  transition:transform .5s cubic-bezier(.4,0,.2,1);
+  transition:transform .85s cubic-bezier(.45,0,.25,1);
   will-change:transform;
 }
 .ticker-item{
@@ -451,8 +451,8 @@ function renderTabs(){
 }
 
 /* ===================== 顶部更新滚动条 ===================== */
-const TICKER_STEP = 500;   /* 单条高度，需与 CSS 中 .ticker-item 的 height 一致 */
-const TICKER_HOLD = 2000;  /* 每条停留时长（毫秒） */
+const TICKER_HOLD = 2600;   /* 每条停留时长（毫秒） */
+const TICKER_MONTHS = 1;    /* 只展示最近几个月的更新 */
 let tickerIdx = 0, tickerTimer = null;
 
 function sortedUpdates(){
@@ -460,12 +460,24 @@ function sortedUpdates(){
     .sort((a, b) => a.date < b.date ? 1 : a.date > b.date ? -1 : 0);
 }
 
+/* 只保留最近 TICKER_MONTHS 个月的记录 */
+function recentUpdates(){
+  const list = sortedUpdates();
+  if (!list.length) return list;
+  const now = new Date();
+  const cutoff = new Date(now.getFullYear(), now.getMonth() - TICKER_MONTHS, now.getDate());
+  const key = d => d.slice(0,4) + '-' + d.slice(5,7) + '-' + d.slice(8,10);
+  const cutKey = cutoff.getFullYear() + '-' + String(cutoff.getMonth()+1).padStart(2,'0') + '-' + String(cutoff.getDate()).padStart(2,'0');
+  const inRange = list.filter(u => key(u.date) >= cutKey);
+  return inRange.length ? inRange : list.slice(0, 1);
+}
+
 /* 滚动条 HTML（放在每个板块内容最上方，吸顶跟随） */
 function tickerHTML(){
   return `
   <div class="ticker" id="ticker" role="button" tabindex="0" aria-label="查看更新动态">
     <div class="ticker-bar">
-      <span class="ticker-lead"><i class="dot"></i>今日更新</span>
+      <span class="ticker-lead"><i class="dot"></i>最新动态</span>
       <div class="ticker-view"><div class="ticker-track" id="tickerTrack"></div></div>
       <span class="ticker-more">全部 ›</span>
     </div>
@@ -476,27 +488,28 @@ function renderTicker(){
   const track = document.getElementById('tickerTrack');
   if (!track) return;
   clearInterval(tickerTimer);
-  const list = sortedUpdates().slice(0, 12);
+  const list = recentUpdates().slice(0, 12);
   if (!list.length){ track.innerHTML = ''; return; }
 
-  /* 只渲染一份，纵向叠放靠 translateY 切换 */
   track.innerHTML = list.map(u => {
     const sec = SECTIONS.find(s => s.id === u.section);
-    return `<div class="ticker-item"><span class="tk-date">${u.date.slice(5)}</span><span class="tk-tag">${sec ? sec.name : (UPDATES_TYPE[u.type] || UPDATES_TYPE.new).label}</span><span class="tk-text">${esc(u.title)}</span></div>`;
+    return `<div class="ticker-item" title="${esc(u.title)}"><span class="tk-date">${u.date.slice(5)}</span><span class="tk-tag">${sec ? sec.name : (UPDATES_TYPE[u.type] || UPDATES_TYPE.new).label}</span><span class="tk-text">${esc(u.title)}</span></div>`;
   }).join('');
 
-  /* 溢出用省略号，避免长标题撑破布局 */
-  list.forEach((u, i) => {
-    const t = track.children[i];
-    if (t) t.title = u.title;
-  });
+  /* 步长取实际单条高度，避免写死数值导致翻过头或翻不出可视区 */
+  const step = track.firstElementChild ? track.firstElementChild.offsetHeight : 20;
 
   tickerIdx = 0;
+  track.style.transition = 'none';
   track.style.transform = 'translateY(0)';
+  /* 强制回流后再恢复过渡，避免首次定位也带动画 */
+  void track.offsetHeight;
+  track.style.transition = '';
+
   if (list.length > 1){
     tickerTimer = setInterval(() => {
       tickerIdx = (tickerIdx + 1) % list.length;
-      track.style.transform = `translateY(-${tickerIdx * TICKER_STEP}px)`;
+      track.style.transform = `translateY(-${tickerIdx * step}px)`;
     }, TICKER_HOLD);
   }
 }
