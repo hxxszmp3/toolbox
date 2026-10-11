@@ -224,12 +224,21 @@ mark{background:rgba(245,158,11,.35);color:inherit;border-radius:3px;padding:0 1
   100%{box-shadow:0 0 0 0 rgba(239,68,68,0)}
 }
 .ticker-view{flex:1;min-width:0;overflow:hidden;position:relative;height:20px}
-.ticker-track{display:flex;align-items:center;gap:34px;white-space:nowrap;animation:tkScroll 34s linear infinite;will-change:transform}
-.ticker:hover .ticker-track{animation-play-state:paused}
-@keyframes tkScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.ticker-item{font-size:12.5px;color:var(--text-2);display:inline-flex;align-items:center;gap:6px}
-.ticker-item .tk-date{color:var(--text-3);font-variant-numeric:tabular-nums}
-.ticker-item .tk-tag{font-size:11px;font-weight:600;padding:1px 6px;border-radius:999px;background:var(--card);border:1px solid var(--border);color:var(--primary)}
+/* 纵向翻动：所有条目纵向叠放，用 translateY 平滑切换 */
+.ticker-track{
+  display:flex;flex-direction:column;
+  transition:transform .5s cubic-bezier(.4,0,.2,1);
+  will-change:transform;
+}
+.ticker-item{
+  height:20px;flex:none;
+  font-size:12.5px;color:var(--text-2);
+  display:flex;align-items:center;gap:6px;
+  white-space:nowrap;
+}
+.ticker-item .tk-date{color:var(--text-3);font-variant-numeric:tabular-nums;flex:none}
+.ticker-item .tk-text{overflow:hidden;text-overflow:ellipsis;min-width:0}
+.ticker-item .tk-tag{font-size:11px;font-weight:600;padding:1px 6px;border-radius:999px;background:var(--card);border:1px solid var(--border);color:var(--primary);flex:none}
 .ticker-more{
   flex:none;font-size:12px;font-weight:600;color:var(--primary);
   display:flex;align-items:center;gap:3px;padding-left:9px;border-left:1px solid var(--border-2);
@@ -442,6 +451,10 @@ function renderTabs(){
 }
 
 /* ===================== 顶部更新滚动条 ===================== */
+const TICKER_STEP = 500;   /* 单条高度，需与 CSS 中 .ticker-item 的 height 一致 */
+const TICKER_HOLD = 2000;  /* 每条停留时长（毫秒） */
+let tickerIdx = 0, tickerTimer = null;
+
 function sortedUpdates(){
   return (typeof UPDATES !== 'undefined' ? UPDATES : []).slice()
     .sort((a, b) => a.date < b.date ? 1 : a.date > b.date ? -1 : 0);
@@ -462,14 +475,30 @@ function tickerHTML(){
 function renderTicker(){
   const track = document.getElementById('tickerTrack');
   if (!track) return;
+  clearInterval(tickerTimer);
   const list = sortedUpdates().slice(0, 12);
   if (!list.length){ track.innerHTML = ''; return; }
-  /* 播两份实现无缝循环（translateX -50% 正好接上） */
-  const html = list.map(u => {
+
+  /* 只渲染一份，纵向叠放靠 translateY 切换 */
+  track.innerHTML = list.map(u => {
     const sec = SECTIONS.find(s => s.id === u.section);
-    return `<span class="ticker-item"><span class="tk-date">${u.date.slice(5)}</span><span class="tk-tag">${sec ? sec.name : (UPDATES_TYPE[u.type] || UPDATES_TYPE.new).label}</span>${esc(u.title)}</span>`;
+    return `<div class="ticker-item"><span class="tk-date">${u.date.slice(5)}</span><span class="tk-tag">${sec ? sec.name : (UPDATES_TYPE[u.type] || UPDATES_TYPE.new).label}</span><span class="tk-text">${esc(u.title)}</span></div>`;
   }).join('');
-  track.innerHTML = html + html;
+
+  /* 溢出用省略号，避免长标题撑破布局 */
+  list.forEach((u, i) => {
+    const t = track.children[i];
+    if (t) t.title = u.title;
+  });
+
+  tickerIdx = 0;
+  track.style.transform = 'translateY(0)';
+  if (list.length > 1){
+    tickerTimer = setInterval(() => {
+      tickerIdx = (tickerIdx + 1) % list.length;
+      track.style.transform = `translateY(-${tickerIdx * TICKER_STEP}px)`;
+    }, TICKER_HOLD);
+  }
 }
 
 function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
