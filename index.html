@@ -24,6 +24,13 @@
 <meta property="og:image" content="https://ldgj.xyz/icons/og.png">
 <meta name="twitter:card" content="summary_large_image">
 
+<!-- 首屏图标预加载：小说专区首屏的几张卡片图，让浏览器在解析 HTML 时就并行开始下载，
+     与 HTML/CSS 的下载重叠，图标不再串行等待。数量控制在 4 张，避免抢首屏带宽。 -->
+<link rel="preload" as="image" href="icons/xiaoshuo.png">
+<link rel="preload" as="image" href="icons/fanqie.png">
+<link rel="preload" as="image" href="icons/qimao.png">
+<link rel="preload" as="image" href="icons/biquge.png">
+
 <style>
 /* ===================== 主题变量：明亮 / 暗色自动跟随系统 ===================== */
 :root{
@@ -128,6 +135,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .tool-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding-right:26px}
 .tool-icon{width:40px;height:40px;border-radius:10px;flex:none;display:flex;align-items:center;justify-content:center;font-size:21px;background:var(--accent-soft)}
 .tool-img{object-fit:cover;display:block;background:#eef1f5;padding:0}
+/* 图标未加载完 / 加载失败时不让布局跳动，也不显示浏览器默认的破图图标 */
+.tool-img:not(.loaded){color:transparent;font-size:0}
 .tool-name{font-size:16px;font-weight:700;line-height:1.3}
 .tool-tag{flex:none;font-size:11px;font-weight:600;color:#d97706;background:#fef3e2;padding:2px 7px;border-radius:6px}
 /* NEW 角标：最近 7 天新增的工具，配合分区「最新在前」排序使用 */
@@ -799,11 +808,11 @@ function gotoTool(toolName){
   return true;
 }
 
-function toolCard(t, s, q = ''){
+function toolCard(t, s, q = '', hot = false){
   const tag = t.tag ? `<span class="tool-tag">${esc(t.tag)}</span>` : '';
   const newBadge = isNewTool(t) ? '<span class="tool-new">NEW</span>' : '';
   const icon = t.img
-    ? `<img class="tool-icon tool-img" src="${t.img}" alt="${esc(t.name)}" loading="lazy">`
+    ? `<img class="tool-icon tool-img" src="${t.img}" alt="${esc(t.name)}" width="40" height="40" decoding="async"${hot ? '' : ' loading="lazy"'}>`
     : `<span class="tool-icon">${t.emoji || s.icon}</span>`;
 
   /* 版本号按要求不在卡片展示，data.js 的 version 字段保留备用 */
@@ -864,8 +873,10 @@ function toolCard(t, s, q = ''){
 }
 
 function renderGrid(list, s, q = ''){
-  if (!list.length) return `<div class="no-result show"><div class="big">🔍</div>没有匹配的工具</div>`;
-  return `<div class="grid">${list.map(t => toolCard(t, s, q)).join('')}</div>`;
+  if (!list.length) return `<div class="no-result show"><div class="big">🔍</div>没有匹配的工具</div>';
+  /* 前 6 张卡片是首屏可见的，去掉 lazy 让它们立即下载；
+     屏外的仍走 lazy，避免一次性把整页图标全拉下来 */
+  return `<div class="grid">${list.map((t, i) => toolCard(t, s, q, i < 6)).join('')}</div>`;
 }
 
 function paginationHTML(totalPages, page){
@@ -1186,6 +1197,22 @@ document.getElementById('pwInput').addEventListener('keydown', e => {
 renderTabs();
 syncHeaderHeight();
 renderSection(hashSection(), 1, { scroll:false });
+
+/* 图标加载完成后打标记；加载失败则换成 emoji 占位，不留破图。
+   用捕获阶段监听 img 的 load/error —— 卡片是动态插入的，
+   冒泡阶段监听不到后续换页新增的图片。 */
+content.addEventListener('load', e => {
+  if (e.target.classList && e.target.classList.contains('tool-img')) e.target.classList.add('loaded');
+}, true);
+content.addEventListener('error', e => {
+  const img = e.target;
+  if (!img.classList || !img.classList.contains('tool-img')) return;
+  const sec = SECTIONS.find(s => s.id === currentId) || SECTIONS[0];
+  const span = document.createElement('span');
+  span.className = 'tool-icon';
+  span.textContent = sec.icon;
+  if (img.parentNode) img.parentNode.replaceChild(span, img);
+}, true);
 
 /* 头部高度随标签换行变化，同步给滚动条吸顶偏移用 */
 function syncHeaderHeight(){
