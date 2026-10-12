@@ -320,7 +320,15 @@ mark{background:rgba(245,158,11,.35);color:inherit;border-radius:3px;padding:0 1
   flex:none;font-size:10px;font-weight:600;padding:1px 5px;border-radius:999px;
   background:var(--primary-soft);color:var(--primary);
 }
-.ticker-item .tk-text{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis}
+.ticker-item .tk-text{flex:1;min-width:0;overflow:hidden}
+/* 文字超出可视宽度时改为横向滚动：先向左走完把全文露出来，走完才翻到下一条。
+   --tk-scroll-dist 由 JS 按实际溢出宽度算出位移，--tk-scroll-dur 按时长配，
+   保证匀速不突兀；文字在 span 里是 nowrap 的，溢出量才能如实反映在 scrollWidth 上。 */
+.tk-scroll{display:block;white-space:nowrap;will-change:transform}
+.tk-scroll.rolling{animation:tkRoll var(--tk-scroll-dur,0ms) linear both}
+@keyframes tkRoll{from{transform:translateX(0)}to{transform:translateX(calc(-1px * var(--tk-scroll-dist,0px)))}}
+/* 悬停时暂停横向滚动，方便用户读完或点击 */
+.ticker-item:hover .tk-scroll.rolling{animation-play-state:paused}
 /* 带跳转目标的条目显示手型光标并轻微高亮，暗示可点 */
 .ticker-item[data-goto-tool],.ticker-item[data-goto]{cursor:pointer}
 .ticker-item[data-goto-tool]:hover .tk-text,
@@ -338,7 +346,9 @@ mark{background:rgba(245,158,11,.35);color:inherit;border-radius:3px;padding:0 1
   /* 手机上宽度紧张：保留日期，隐藏分区标签，标题省略号截断 */
   .ticker-item .tk-date{font-size:11px}
   .ticker-item .tk-tag{display:none}
-  .ticker-item .tk-text{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .ticker-item .tk-text{flex:1;min-width:0;overflow:hidden;white-space:nowrap}
+  /* 手机上滚动速度略快些，否则等一条读完太磨人 */
+  .ticker-item .tk-scroll.rolling{animation-duration:var(--tk-scroll-dur-m,6s)}
 }
 
 /* ===================== 书签解锁弹窗 ===================== */
@@ -601,7 +611,9 @@ function renderTabs(){
 }
 
 /* ===================== 顶部更新滚动条 ===================== */
-const TICKER_HOLD = 2600;   /* 每条停留时长（毫秒） */
+const TICKER_HOLD = 2600;   /* 未溢出时每条停留时长（毫秒） */
+const TK_SCROLL_PX = 42;    /* 横向滚动速度：每秒走多少像素 */
+const TAIL_MS = 700;        /* 滚到位后的尾停，留时间把末尾读完 */
 let tickerIdx = 0, tickerTimer = null;
 
 function sortedUpdates(){
@@ -637,7 +649,7 @@ function tickerHTML(){
 function renderTicker(){
   const track = document.getElementById('tickerTrack');
   if (!track) return;
-  clearInterval(tickerTimer);
+  clearTimeout(tickerTimer);
   const list = todayUpdates().slice(0, 12);
   if (!list.length){ track.innerHTML = ''; return; }
 
@@ -653,12 +665,37 @@ function renderTicker(){
     const jump = hit
       ? ` data-goto-tool="${esc(hit)}"`
       : (sec ? ` data-goto="${sec.id}"` : '');
-    return `<div class="ticker-item"${jump} title="${esc(u.title)}"><span class="tk-date">${u.date.slice(5)}</span>${flag}<span class="tk-tag">${sec ? sec.name : (UPDATES_TYPE[u.type] || UPDATES_TYPE.new).label}</span><span class="tk-text">${esc(u.title)}</span></div>`;
+    return `<div class="ticker-item"${jump} title="${esc(u.title)}"><span class="tk-date">${u.date.slice(5)}</span>${flag}<span class="tk-tag">${sec ? sec.name : (UPDATES_TYPE[u.type] || UPDATES_TYPE.new).label}</span><span class="tk-text"><span class="tk-scroll">${esc(u.title)}</span></span></div>`;
   }).join('');
 
   /* 步长取实际单条高度，避免写死数值导致翻过头或翻不出可视区；
      取不到高度时兜底为 20px，防止整条滚动条卡住不动 */
   const step = (track.firstElementChild ? track.firstElementChild.offsetHeight : 0) || 20;
+
+  /* 逐条测量文字是否溢出可视宽度：
+     - 未溢出：静态显示，停留 TICKER_HOLD
+     - 溢出：向左横向滚动，速度 TK_SCROLL_PX 每秒，走完再翻下一条
+     时长按「溢出宽度 / 速度」算，并留出 TAIL_MS 读完的尾停。
+     同时给当前条加 rolling 类启动动画，其余条保持静止。 */
+  const items = [...track.querySelectorAll('.ticker-item')];
+  const holds = items.map((item, i) => {
+    const box = item.querySelector('.tk-text');
+    const run = item.querySelector('.tk-scroll');
+    if (!box || !run) return TICKER_HOLD;
+    /* 先清掉动画再量，避免上一轮的 transform 影响 scrollWidth 判定 */
+    run.classList.remove('rolling');
+    const over = run.scrollWidth - box.clientWidth;
+    if (over <= 1) return TICKER_HOLD;
+    /* 位移留出可视宽度，这样文字末尾能完整停在可视区内 */
+    const dist = over;
+    const dur = Math.round((dist / TK_SCROLL_PX) * 1000);
+    run.style.setProperty('--tk-scroll-dist', dist + 'px');
+    run.style.setProperty('--tk-scroll-dur', dur + 'ms');
+    run.style.setProperty('--tk-scroll-dur-m', Math.round(dur * 0.72) + 'ms');
+    run.dataset.tkHold = String(dur + TAIL_MS);
+    run.classList.toggle('rolling', i === 0);
+    return dur + TAIL_MS;
+  });
 
   tickerIdx = 0;
   track.style.transition = 'none';
@@ -669,15 +706,26 @@ function renderTicker(){
 
   if (list.length > 1){
     /* 往返式循环：向下翻到末尾后逐条向上翻回顶部，再重新向下。
-       若用 idx % len 直接回绕，最后一条会瞬间跳回第一条，观感突兀。 */
+       若用 idx % len 直接回绕，最后一条会瞬间跳回第一条，观感突兀。
+       每条停留时长不同（超长的要横向滚完），所以用递归 setTimeout 链。 */
     const last = list.length - 1;
     let dir = 1;
-    tickerTimer = setInterval(() => {
-      tickerIdx += dir;
-      if (tickerIdx >= last){ tickerIdx = last; dir = -1; }
-      else if (tickerIdx <= 0){ tickerIdx = 0; dir = 1; }
-      track.style.transform = `translateY(-${tickerIdx * step}px)`;
-    }, TICKER_HOLD);
+    const tick = () => {
+      if (!document.body.contains(track)){ clearTimeout(tickerTimer); return; }
+      /* 只有当前条播横向动画，其他条复位，保证轮到时才从头滚 */
+      items.forEach((it, i) => {
+        const run = it.querySelector('.tk-scroll');
+        if (run) run.classList.toggle('rolling', i === tickerIdx);
+      });
+      tickerTimer = setTimeout(() => {
+        tickerIdx += dir;
+        if (tickerIdx >= last){ tickerIdx = last; dir = -1; }
+        else if (tickerIdx <= 0){ tickerIdx = 0; dir = 1; }
+        track.style.transform = `translateY(-${tickerIdx * step}px)`;
+        tick();
+      }, holds[tickerIdx] || TICKER_HOLD);
+    };
+    tick();
   }
 }
 
@@ -788,7 +836,7 @@ function gotoTool(toolName){
   const page = Math.floor(idx / PAGE_SIZE) + 1;
 
   /* 停掉滚动条轮播：条目正在纵向翻动时点击，目标会边滚边走，读起来容易点错 */
-  clearInterval(tickerTimer);
+  clearTimeout(tickerTimer);
 
   searchInput.value = '';
   renderSection(sec.id, page, { scroll: false });
