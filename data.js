@@ -41,7 +41,7 @@ const SECTIONS = [
     tools:[
       { name:'星盒', desc:'聚合影视资源，看电影追剧', added:'2026-10-04', img:'icons/xinghe.png', version:'v2.7.0', os:['安卓'], secret:'https://www.istarbox.app/download', quark:'https://pan.quark.cn/s/7fc3a192ddc2', baidu:'https://pan.baidu.com/s/18Des_vBGkeHMCgBgans8Tw?pwd=j5q4' },
       { name:'Sparkle', desc:'番剧影视、漫画、壁纸一体化的安卓应用，全部免费无广告，影视最高 4K 高清，可看可下载', added:'2026-10-11', img:'icons/sparkle.png', os:['安卓'], quark:'https://pan.quark.cn/s/3e86c984820f', baidu:'https://pan.baidu.com/s/1DJbbLI_O8wGfA9KUh5Tzmg?pwd=mwki' },
-      { name:'MiniReel', desc:'第三方红果短剧客户端，免费无广告，手机/电视/电脑全平台', added:'2026-10-04', img:'icons/minireel.png', version:'v0.3.0', os:['安卓','Android TV','Windows','macOS','Linux'], secret:'https://minireel.weppp.cyou:54267/versions', quark:'https://pan.quark.cn/s/c326807e1024', baidu:'https://pan.baidu.com/s/1CEqs_PTYrxYEzSz_40DAbQ?pwd=fgf1' },
+      { name:'MiniReel', desc:'第三方红果短剧客户端，免费无广告，手机/电视/电脑全平台', added:'2026-10-04', img:'icons/minireel.png', version:'v0.3.1', os:['安卓','Android TV','Windows','macOS','Linux'], secret:'https://minireel.weppp.cyou:54267/versions', quark:'https://pan.quark.cn/s/c326807e1024', baidu:'https://pan.baidu.com/s/1CEqs_PTYrxYEzSz_40DAbQ?pwd=fgf1' },
     ]
   },
   {
@@ -151,6 +151,8 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
+  { date:'2026-10-12', type:'update', section:'video', title:'红果短剧免广告版 MiniReel 更新至 v0.3.1', desc:'第三方红果短剧客户端新版本，免费无广告，支持手机 / 电视 / 电脑全平台',
+    link:{ quark:'https://pan.quark.cn/s/c326807e1024', baidu:'https://pan.baidu.com/s/1CEqs_PTYrxYEzSz_40DAbQ?pwd=fgf1' } },
   { date:'2026-10-12', type:'new', section:'data', title:'资料区新增：168 部经典漫画合集', desc:'灌篮高手、七龙珠、火影忍者、海贼王、柯南、哆啦A梦、蜡笔小新、圣斗士星矢、JOJO、老夫子、阿衰等 168 部经典作品打包，多数为高清彩版与全卷合集',
     link:{ quark:'https://pan.quark.cn/s/99dcc16a7c8d' } },
   { date:'2026-10-11', type:'update', section:'video', title:'Sparkle 上线影视专区与漫画专区', desc:'番剧影视、漫画、壁纸一体化的安卓应用，全部免费无广告，影视最高 4K 高清，可看可下载' },
