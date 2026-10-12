@@ -72,7 +72,7 @@ const SECTIONS = [
   {
     id:'data', icon:'📂', name:'资料专区', desc:'干货资料合集', added:'2026-10-04', color:'#14b8a6', soft:'#f0fdfa',
     tools:[
-      { name:'168部经典漫画合集', desc:'灌篮高手、七龙珠、火影忍者、海贼王、柯南、哆啦A梦、蜡笔小新、圣斗士星矢、JOJO、老夫子、阿衰等 168 部经典漫画打包，多数为高清彩版与全卷合集', emoji:'📕', quark:'https://pan.quark.cn/s/99dcc16a7c8d' },
+      { name:'168部经典漫画合集', desc:'灌篮高手、七龙珠、火影忍者、海贼王、柯南、哆啦A梦、蜡笔小新、圣斗士星矢、JOJO、老夫子、阿衰等 168 部经典漫画打包，多数为高清彩版与全卷合集', added:'2026-10-12', emoji:'📕', quark:'https://pan.quark.cn/s/99dcc16a7c8d' },
       { name:'AI漫剧最全教程', desc:'做 AI 漫剧的整套资料，含教程、工作流、提示词和专用 Skill，看完就能照着开工', added:'2026-10-06', emoji:'🎬', quark:'https://pan.quark.cn/s/e6e64016a0b0' },
       { name:'高性价比人生指南', desc:'614 条循证生活建议，讲怎么活得久、少生病、少花冤枉钱和避坑，每条都标了成本收益和出处', added:'2026-10-04', emoji:'🧭', quark:'https://pan.quark.cn/s/8a03cc957f40', baidu:'https://pan.baidu.com/s/1n4XxIXfgKk_uIS9XyOQaXw?pwd=sm8j' },
       { name:'Z-Library 电子书', desc:'免费电子书下载，海量图书资源', added:'2026-10-04', emoji:'📚', web:'https://zh.z-library.sk/' },
