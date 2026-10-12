@@ -611,9 +611,10 @@ function renderTabs(){
 }
 
 /* ===================== 顶部更新滚动条 ===================== */
-const TICKER_HOLD = 1500;   /* 未溢出时每条停留时长（毫秒） */
-const TK_SCROLL_PX = 42;    /* 横向滚动速度：每秒走多少像素 */
-const TAIL_MS = 700;        /* 滚到位后的尾停，留时间把末尾读完 */
+const TICKER_HOLD = 2000;   /* 未溢出时每条停留时长（毫秒），按需求至少 2s */
+const TK_SCROLL_PX = 28;    /* 横向滚动速度：每秒走多少像素（比 42 调慢，便于阅读） */
+const TK_SCROLL_MAX = 9000; /* 单条滚动时长上限，避免超长标题滚到天荒地老 */
+const TAIL_MS = 1000;       /* 滚到位后的尾停，留时间把末尾读完 */
 let tickerIdx = 0, tickerTimer = null;
 
 function sortedUpdates(){
@@ -688,12 +689,15 @@ function renderTicker(){
     run.classList.remove('rolling');
     const over = Math.ceil(run.getBoundingClientRect().width - box.getBoundingClientRect().width);
     if (over <= 1) return TICKER_HOLD;
-    const dur = Math.round((over / TK_SCROLL_PX) * 1000);
+    /* 理想时长 = 溢出量 / 速度；超过 9s 就按比例提速，避免长标题滚太久像卡住。
+       位移始终等于溢出量（保证末尾能完整停进可视区），提速只体现在时长上。 */
+    const ideal = (over / TK_SCROLL_PX) * 1000;
+    const dur = Math.round(Math.min(TK_SCROLL_MAX, ideal));
     run.style.setProperty('--tk-scroll-dist', over + 'px');
     run.style.setProperty('--tk-scroll-shift', -over + 'px');
     /* duration 直接写进 style，内联优先级高于媒体查询里的规则，两端都生效 */
     run.style.animationDuration = dur + 'ms';
-    run.style.setProperty('--tk-scroll-dur-m', Math.round(dur * 0.72) + 'ms');
+    run.style.setProperty('--tk-scroll-dur-m', Math.round(dur * 0.85) + 'ms');
     return dur + TAIL_MS;
   });
 
