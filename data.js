@@ -91,6 +91,7 @@ const SECTIONS = [
   {
     id:'software', icon:'🛠️', name:'实用软件', desc:'效率工具、黑科技软件', added:'2026-10-04', color:'#6366f1', soft:'#eef2ff',
     tools:[
+      { name:'C盘AI清理大师', desc:'Win 电脑 C 盘清理必备：一键全面清理，或单选临时文件、回收站、浏览器缓存、Windows 更新缓存、备份文件、系统日志、Defender 与 IIS 日志，磁盘告急时救急用', img:'icons/cleanmaster.png', version:'v1.0.0', os:['Windows'], quark:'https://pan.quark.cn/s/74185fa74660' },
       { name:'Piik', desc:'免费开源屏幕共享工具，P2P 优先，支持浏览器查看、桌面应用', added:'2026-10-04', img:'icons/piik.png', version:'v1.9.2', os:['Windows'], secret:'https://github.com/TNTcraftHIM/Piik', quark:'https://pan.quark.cn/s/ba0b83672f29', baidu:'https://pan.baidu.com/s/1yqT4XvIXji-UmR2_jWHRKg?pwd=s53t' },
       { name:'VideoToNotes', desc:'视频转文章，导入视频字幕即可导出公众号排版文章', added:'2026-10-04', img:'icons/videotonotes.png', os:['Windows'], quark:'https://pan.quark.cn/s/d38a3d2bd7f0', baidu:'https://pan.baidu.com/s/1BiTkU9YGXdQt0XHzax33Fg?pwd=5h5t' },
       { name:'谷歌浏览器', desc:'多系统安装包：安卓手机/平板、电视TV、鸿蒙、mac、Windows', added:'2026-10-04', img:'icons/chrome.png', os:['Windows','macOS','安卓','鸿蒙','Android TV'], quark:'https://pan.quark.cn/s/fa06f51cda42' },
@@ -151,6 +152,8 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
+  { date:'2026-10-12', type:'new', section:'software', title:'实用软件区新增：C盘AI清理大师', desc:'Win 电脑 C 盘清理必备工具，一键全面清理或按需单选：临时文件、回收站、浏览器缓存、Windows 更新缓存、备份文件、系统日志、Defender 与 IIS 日志。磁盘告急时救急',
+    link:{ quark:'https://pan.quark.cn/s/74185fa74660' } },
   { date:'2026-10-12', type:'update', section:'video', title:'红果短剧免广告版 MiniReel 更新至 v0.3.1', desc:'第三方红果短剧客户端新版本，免费无广告，支持手机 / 电视 / 电脑全平台',
     link:{ quark:'https://pan.quark.cn/s/c326807e1024', baidu:'https://pan.baidu.com/s/1CEqs_PTYrxYEzSz_40DAbQ?pwd=fgf1' } },
   { date:'2026-10-12', type:'new', section:'data', title:'资料区新增：168 部经典漫画合集', desc:'灌篮高手、七龙珠、火影忍者、海贼王、柯南、哆啦A梦、蜡笔小新、圣斗士星矢、JOJO、老夫子、阿衰等 168 部经典作品打包，多数为高清彩版与全卷合集',
