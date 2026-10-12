@@ -91,7 +91,7 @@ const SECTIONS = [
   {
     id:'software', icon:'🛠️', name:'实用软件', desc:'效率工具、黑科技软件', added:'2026-10-04', color:'#6366f1', soft:'#eef2ff',
     tools:[
-      { name:'C盘AI清理大师', desc:'Win 电脑 C 盘清理必备：一键全面清理，或单选临时文件、回收站、浏览器缓存、Windows 更新缓存、备份文件、系统日志、Defender 与 IIS 日志，磁盘告急时救急用', img:'icons/cleanmaster.png', version:'v1.0.0', os:['Windows'], quark:'https://pan.quark.cn/s/74185fa74660' },
+      { name:'C盘AI清理大师', desc:'Win 电脑 C 盘清理必备：一键全面清理，或单选临时文件、回收站、浏览器缓存、Windows 更新缓存、备份文件、系统日志、Defender 与 IIS 日志，磁盘告急时救急用', added:'2026-10-12', img:'icons/cleanmaster.png', version:'v1.0.0', os:['Windows'], quark:'https://pan.quark.cn/s/74185fa74660' },
       { name:'Piik', desc:'免费开源屏幕共享工具，P2P 优先，支持浏览器查看、桌面应用', added:'2026-10-04', img:'icons/piik.png', version:'v1.9.2', os:['Windows'], secret:'https://github.com/TNTcraftHIM/Piik', quark:'https://pan.quark.cn/s/ba0b83672f29', baidu:'https://pan.baidu.com/s/1yqT4XvIXji-UmR2_jWHRKg?pwd=s53t' },
       { name:'VideoToNotes', desc:'视频转文章，导入视频字幕即可导出公众号排版文章', added:'2026-10-04', img:'icons/videotonotes.png', os:['Windows'], quark:'https://pan.quark.cn/s/d38a3d2bd7f0', baidu:'https://pan.baidu.com/s/1BiTkU9YGXdQt0XHzax33Fg?pwd=5h5t' },
       { name:'谷歌浏览器', desc:'多系统安装包：安卓手机/平板、电视TV、鸿蒙、mac、Windows', added:'2026-10-04', img:'icons/chrome.png', os:['Windows','macOS','安卓','鸿蒙','Android TV'], quark:'https://pan.quark.cn/s/fa06f51cda42' },
