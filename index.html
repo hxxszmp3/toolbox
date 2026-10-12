@@ -322,13 +322,13 @@ mark{background:rgba(245,158,11,.35);color:inherit;border-radius:3px;padding:0 1
 }
 .ticker-item .tk-text{flex:1;min-width:0;overflow:hidden}
 /* 文字超出可视宽度时改为横向滚动：先向左走完把全文露出来，走完才翻到下一条。
-   --tk-scroll-dist 由 JS 按实际溢出宽度算出位移，--tk-scroll-dur 按时长配，
-   保证匀速不突兀；文字在 span 里是 nowrap 的，溢出量才能如实反映在 scrollWidth 上。 */
-.tk-scroll{display:block;white-space:nowrap;will-change:transform}
-.tk-scroll.rolling{animation:tkRoll var(--tk-scroll-dur,0ms) linear both}
-@keyframes tkRoll{from{transform:translateX(0)}to{transform:translateX(calc(-1px * var(--tk-scroll-dist,0px)))}}
-/* 悬停时暂停横向滚动，方便用户读完或点击 */
-.ticker-item:hover .tk-scroll.rolling{animation-play-state:paused}
+   用 inline-block + width:max-content，让自身宽度等于文字真实宽度，
+   这样 JS 才能准确量出「文字宽 − 可视宽」的溢出量。 */
+.tk-scroll{display:inline-block;width:max-content;max-width:none;flex:none;white-space:nowrap;will-change:transform}
+.tk-scroll.rolling{animation-name:tkRoll;animation-timing-function:linear;animation-fill-mode:both}
+/* 用负的 translateX 变量直接位移，不套 calc() —— 部分内核对 keyframes 里
+   的 calc(-1px * var(...)) 求值不可靠，会导致动画跑起来但位移恒为 0 */
+@keyframes tkRoll{from{transform:translateX(0)}to{transform:translateX(var(--tk-scroll-shift,0px))}}
 /* 带跳转目标的条目显示手型光标并轻微高亮，暗示可点 */
 .ticker-item[data-goto-tool],.ticker-item[data-goto]{cursor:pointer}
 .ticker-item[data-goto-tool]:hover .tk-text,
@@ -611,7 +611,7 @@ function renderTabs(){
 }
 
 /* ===================== 顶部更新滚动条 ===================== */
-const TICKER_HOLD = 2600;   /* 未溢出时每条停留时长（毫秒） */
+const TICKER_HOLD = 1500;   /* 未溢出时每条停留时长（毫秒） */
 const TK_SCROLL_PX = 42;    /* 横向滚动速度：每秒走多少像素 */
 const TAIL_MS = 700;        /* 滚到位后的尾停，留时间把末尾读完 */
 let tickerIdx = 0, tickerTimer = null;
@@ -676,24 +676,24 @@ function renderTicker(){
      - 未溢出：静态显示，停留 TICKER_HOLD
      - 溢出：向左横向滚动，速度 TK_SCROLL_PX 每秒，走完再翻下一条
      时长按「溢出宽度 / 速度」算，并留出 TAIL_MS 读完的尾停。
-     同时给当前条加 rolling 类启动动画，其余条保持静止。 */
+     .tk-scroll 是 inline-block + width:max-content，其宽度就是文字真实宽度，
+     减去 .tk-text 的可视宽度即为溢出量。 */
   const items = [...track.querySelectorAll('.ticker-item')];
-  const holds = items.map((item, i) => {
+  const holds = items.map(item => {
     const box = item.querySelector('.tk-text');
     const run = item.querySelector('.tk-scroll');
     if (!box || !run) return TICKER_HOLD;
-    /* 先清掉动画再量，避免上一轮的 transform 影响 scrollWidth 判定 */
+    /* getBoundingClientRect 会包含 transform 的位移，量之前先摘掉 rolling，
+       否则上一轮动画残留的 translateX 会污染宽度读数 */
     run.classList.remove('rolling');
-    const over = run.scrollWidth - box.clientWidth;
+    const over = Math.ceil(run.getBoundingClientRect().width - box.getBoundingClientRect().width);
     if (over <= 1) return TICKER_HOLD;
-    /* 位移留出可视宽度，这样文字末尾能完整停在可视区内 */
-    const dist = over;
-    const dur = Math.round((dist / TK_SCROLL_PX) * 1000);
-    run.style.setProperty('--tk-scroll-dist', dist + 'px');
-    run.style.setProperty('--tk-scroll-dur', dur + 'ms');
+    const dur = Math.round((over / TK_SCROLL_PX) * 1000);
+    run.style.setProperty('--tk-scroll-dist', over + 'px');
+    run.style.setProperty('--tk-scroll-shift', -over + 'px');
+    /* duration 直接写进 style，内联优先级高于媒体查询里的规则，两端都生效 */
+    run.style.animationDuration = dur + 'ms';
     run.style.setProperty('--tk-scroll-dur-m', Math.round(dur * 0.72) + 'ms');
-    run.dataset.tkHold = String(dur + TAIL_MS);
-    run.classList.toggle('rolling', i === 0);
     return dur + TAIL_MS;
   });
 
