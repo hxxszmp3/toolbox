@@ -26,6 +26,7 @@ const SECTIONS = [
   {
     id:'music', icon:'🎵', name:'音乐专区', desc:'免费听歌、下歌', added:'2026-10-04', color:'#8b5cf6', soft:'#f5f3ff',
     tools:[
+      { name:'MoeKoeMusic', desc:'酷狗概念版开源音乐播放器，GitHub 6000+ star。登录酷狗账号直接同步歌单收藏与听歌时长，无社交功能、官方服务器直连，支持标准 / 高频 / FLAC / Hi-Res 音质', added:'2026-10-14', img:'icons/moekoe.png', version:'v1.7.1', os:['Windows','macOS'], secret:'https://github.com/MoeKoeMusic/MoeKoeMusic', quark:'https://pan.quark.cn/s/a45888fd2f22', baidu:'https://pan.baidu.com/s/1uBPlFqU0HbEjG5sS-KyUDw?pwd=dmpi' },
       { name:'敦伦调调', desc:'全网音乐免费听 / 下载', added:'2026-10-04', img:'icons/dunlun.png', version:'v1.0.10', os:['安卓'], secret:'https://app.4848948.xyz/', quark:'https://pan.quark.cn/s/21d0a48a9ee9', baidu:'https://pan.baidu.com/s/1ObfiNgOTdDpkxcEVFZZ4kA?pwd=3dcd' },
       { name:'星盒', desc:'聚合音乐资源神器', added:'2026-10-04', img:'icons/xinghe.png', version:'v2.7.0', os:['安卓'], secret:'https://www.istarbox.app/download', quark:'https://pan.quark.cn/s/7fc3a192ddc2', baidu:'https://pan.baidu.com/s/1cs_YNcijpn15Gx6CK-lNqA?pwd=3w3y' },
       { name:'zpod', desc:'播客 / 音乐播放器', added:'2026-10-04', img:'icons/zpod.png', version:'v3.0.10', os:['Windows','安卓','iOS'], secret:'https://zpod.net/#landing-downloads', quark:'https://pan.quark.cn/s/8e670e877201', baidu:'https://pan.baidu.com/s/1k8lnZ3KKz7eVV-yTLovZlQ?pwd=4if2' },
@@ -152,6 +153,8 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
+  { date:'2026-10-14', type:'new', section:'music', title:'音乐区新增：MoeKoeMusic 酷狗概念版开源播放器', desc:'GitHub 6000+ star 的开源音乐播放器，登录酷狗账号同步歌单收藏与听歌时长，无社交功能、官方服务器直连，支持标准 / 高频 / FLAC / Hi-Res 音质',
+    link:{ quark:'https://pan.quark.cn/s/a45888fd2f22', baidu:'https://pan.baidu.com/s/1uBPlFqU0HbEjG5sS-KyUDw?pwd=dmpi' } },
   { date:'2026-10-12', type:'new', section:'software', title:'实用软件区新增：C盘AI清理大师', desc:'Win 电脑 C 盘清理必备工具，一键全面清理或按需单选：临时文件、回收站、浏览器缓存、Windows 更新缓存、备份文件、系统日志、Defender 与 IIS 日志。磁盘告急时救急',
     link:{ quark:'https://pan.quark.cn/s/74185fa74660' } },
   { date:'2026-10-12', type:'update', section:'video', title:'红果短剧免广告版 MiniReel 更新至 v0.3.1', desc:'第三方红果短剧客户端新版本，免费无广告，支持手机 / 电视 / 电脑全平台',
