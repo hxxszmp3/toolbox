@@ -74,6 +74,7 @@ const SECTIONS = [
   {
     id:'data', icon:'📂', name:'资料专区', desc:'干货资料合集', added:'2026-10-04', color:'#14b8a6', soft:'#f0fdfa',
     tools:[
+      { name:'洗脑的最高境界', desc:'一套讲「术公式」的书，照着练就能告别词不达意。谈沟通、说服、让别人听进去都能用上', added:'2026-10-18', emoji:'🗣️', quark:'https://pan.quark.cn/s/4a42652de0a2' },
       { name:'Kindle电子书6000本分类合集', desc:'6000 本 Kindle 电子书按题材分 31 类，含小说、历史、文学、技术、经管、哲学等，azw3 与 mobi 双格式，附 29 份分类索引可直接找书', added:'2026-10-18', emoji:'🔖', quark:'https://pan.quark.cn/s/c55a501b07a8' },
       { name:'穷人的底层逻辑', desc:'讲普通人如何在资源有限时做选择、把差距拉开。适合想搞懂自己困在哪、该往哪使劲的人看', added:'2026-10-18', emoji:'💰', quark:'https://pan.quark.cn/s/fc5a52d757fb' },
       { name:'万物皆模型之孙子兵法72篇', desc:'72 张思维模型图把《孙子兵法》拆开讲，每篇配原文、白话翻译、曹操批注、现代启发与核心总结，文言文啃不动的适合入门', added:'2026-10-18', emoji:'⚔️', quark:'https://pan.quark.cn/s/646982890001' },
@@ -163,6 +164,8 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
+  { date:'2026-10-18', type:'new', section:'data', title:'资料区新增：洗脑的最高境界', desc:'一套讲「术公式」的书，照着练就能告别词不达意。谈沟通、说服、让别人听进去都能用上',
+    link:{ quark:'https://pan.quark.cn/s/4a42652de0a2' } },
   { date:'2026-10-18', type:'new', section:'data', title:'资料区新增：Kindle电子书6000本分类合集', desc:'6000 本 Kindle 电子书按题材分 31 类，含小说、历史、文学、技术、经管、哲学等，azw3 与 mobi 双格式，附 29 份分类索引可直接找书',
     link:{ quark:'https://pan.quark.cn/s/c55a501b07a8' } },
   { date:'2026-10-18', type:'new', section:'data', title:'资料区新增：穷人的底层逻辑', desc:'讲普通人如何在资源有限时做选择、把差距拉开。适合想搞懂自己困在哪、该往哪使劲的人看',
