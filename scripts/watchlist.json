@@ -1,6 +1,145 @@
 {
-  "note": "工具更新监控清单。type=github 的条目由 scripts/sync-check.js 自动检测最新 release；后续可扩展 quark-share（走夸克网盘 skill 的转存分享更新查询）、site（网页抓取）。",
+  "note": "工具更新监控清单。type=github → 查最新 release（api.github.com）；type=site → 抓取页面取版本。与 sync-state.json 中记录的上次版本比对，有差异即报更新。新条目首次运行只建基线、不报更新。",
   "tools": [
+    {
+      "name": "小说下载器",
+      "section": "小说专区",
+      "type": "github",
+      "repo": "freeok/so-novel",
+      "assetHint": "so-novel-*.zip / 各平台包",
+      "quark": "https://pan.quark.cn/s/6c73fb388aea",
+      "baidu": "https://pan.baidu.com/s/1SHWmlXxW3FYTBf_2f_yruQ?pwd=i32n"
+    },
+    {
+      "name": "番茄小说下载器",
+      "section": "小说专区",
+      "type": "github",
+      "repo": "zhongbai2333/Tomato-Novel-Downloader",
+      "assetHint": "TomatoNovelDownloader-*.apk / .exe",
+      "quark": "https://pan.quark.cn/s/867ce5b0aad5",
+      "baidu": "https://pan.baidu.com/s/1Rg_Ffo3vqfSU4EdQVlJPhA?pwd=f46i"
+    },
+    {
+      "name": "七猫小说下载器",
+      "section": "小说专区",
+      "type": "github",
+      "repo": "shing-yu/swiftcat-downloader",
+      "assetHint": "swiftcat-downloader-*",
+      "quark": "https://pan.quark.cn/s/a6feae8cc3d1",
+      "baidu": "https://pan.baidu.com/s/1IEjRs6QI0SSxz0_8MbAdXw?pwd=paqi"
+    },
+    {
+      "name": "笔趣阁",
+      "section": "小说专区",
+      "type": "manual",
+      "url": "https://www.bqgapp.cn/",
+      "assetHint": "安卓 APK（官网直接下载）",
+      "quark": "https://pan.quark.cn/s/efae8b3e1325",
+      "baidu": "https://pan.baidu.com/s/1ecJhyMWNgQfw6v5uCt2ySg?pwd=azf3",
+      "source": "软件官网（需人工查看）",
+      "note": "官网为 JS 渲染/无稳定版本号"
+    },
+    {
+      "name": "星盒",
+      "section": "小说专区",
+      "type": "manual",
+      "url": "https://www.istarbox.app/download",
+      "assetHint": "安卓 APK（官网直接下载）",
+      "quark": "https://pan.quark.cn/s/7fc3a192ddc2",
+      "baidu": "https://pan.baidu.com/s/18Des_vBGkeHMCgBgans8Tw?pwd=j5q4",
+      "source": "软件官网（需人工查看）",
+      "note": "官网有防爬拦截，抓取超时"
+    },
+    {
+      "name": "敦伦调调",
+      "section": "音乐专区",
+      "type": "manual",
+      "url": "https://app.4848948.xyz/",
+      "assetHint": "安卓 APK（官网直接下载）",
+      "quark": "https://pan.quark.cn/s/21d0a48a9ee9",
+      "baidu": "https://pan.baidu.com/s/1ObfiNgOTdDpkxcEVFZZ4kA?pwd=3dcd",
+      "source": "软件官网（需人工查看）",
+      "note": "官网有防爬拦截，抓取超时"
+    },
+    {
+      "name": "星音乐",
+      "section": "音乐专区",
+      "type": "manual",
+      "url": "https://music.istarbox.app/",
+      "assetHint": "安卓 APK（官网直接下载）",
+      "quark": "https://pan.quark.cn/s/42f30fcaeea5",
+      "baidu": "https://pan.baidu.com/s/1KcaQEt15ZQTOoXMiTHucxg?pwd=ck1c",
+      "source": "软件官网（需人工查看）",
+      "note": "官网有防爬拦截，抓取失败"
+    },
+    {
+      "name": "zpod",
+      "section": "音乐专区",
+      "type": "manual",
+      "url": "https://zpod.net/#landing-downloads",
+      "assetHint": "Windows / 安卓 / iOS（官网直接下载）",
+      "quark": "https://pan.quark.cn/s/8e670e877201",
+      "baidu": "https://pan.baidu.com/s/1k8lnZ3KKz7eVV-yTLovZlQ?pwd=4if2",
+      "source": "软件官网（需人工查看）",
+      "note": "下载页锚点跳转，版本由页面脚本渲染"
+    },
+    {
+      "name": "莫比音乐",
+      "section": "音乐专区",
+      "type": "manual",
+      "source": "QQ 群文件",
+      "assetHint": "QQ 群文件（无公开接口，需人工查看）",
+      "quark": "https://pan.quark.cn/s/f70a57a9420a",
+      "baidu": "https://pan.baidu.com/s/1___-VnWKyPtabXOOupRi2Q?pwd=rsc8"
+    },
+    {
+      "name": "四分贝音乐",
+      "section": "音乐专区",
+      "type": "site",
+      "url": "https://www.4fb.cn/soft/pc/2816.html",
+      "assetHint": "Windows exe（官网直接下载）",
+      "quark": "https://pan.quark.cn/s/6a5f6874a275",
+      "baidu": "https://pan.baidu.com/s/1J_8b-pnAKg9qLcuP5ULrxw?pwd=4a38",
+      "anchor": "(?:版本|version|v)\\s*[:：]?\\s*v?([0-9]+\\.[0-9]+\\.[0-9]+(?:\\.[0-9]+)*)"
+    },
+    {
+      "name": "米兔音乐",
+      "section": "音乐专区",
+      "type": "manual",
+      "url": "https://www.qqmp3.vip/",
+      "assetHint": "Windows（官网直接下载）",
+      "quark": "https://pan.quark.cn/s/724b9a1e77cf",
+      "baidu": "https://pan.baidu.com/s/1_hEL82wFT2481t8gvmzAog?pwd=jjam",
+      "source": "软件官网（需人工查看）",
+      "note": "官网为 Cloudflare 盾页，无法抓取"
+    },
+    {
+      "name": "MiniReel",
+      "section": "影视专区",
+      "type": "site",
+      "url": "https://minireel.weppp.cyou:54267/versions",
+      "assetHint": "手机 / 电视 / 电脑全平台包",
+      "quark": "https://pan.quark.cn/s/c326807e1024",
+      "baidu": "https://pan.baidu.com/s/1CEqs_PTYrxYEzSz_40DAbQ?pwd=fgf1"
+    },
+    {
+      "name": "Kazumi",
+      "section": "动漫专区",
+      "type": "github",
+      "repo": "Predidit/Kazumi",
+      "assetHint": "Kazumi-*-windows / macos / android 等",
+      "quark": "https://pan.quark.cn/s/e40c2f5efb4d",
+      "baidu": "https://pan.baidu.com/s/1BI-tnat5ZSVEKe21TJXlQw?pwd=hsqy"
+    },
+    {
+      "name": "动漫共和国",
+      "section": "动漫专区",
+      "type": "site",
+      "url": "https://www.oneghg.com/",
+      "assetHint": "安卓 / iOS / Windows（官网直接下载）",
+      "quark": "https://pan.quark.cn/s/561a59d10235",
+      "baidu": "https://pan.baidu.com/s/1gM3uc3zolfNc4CDSgBcuTg?pwd=stjc"
+    },
     {
       "name": "Mihon",
       "section": "漫画专区",
@@ -11,6 +150,24 @@
       "baidu": "https://pan.baidu.com/s/11FGWmCzzpJ7gVCjh26lvIg?pwd=9gmn"
     },
     {
+      "name": "venera",
+      "section": "漫画专区",
+      "type": "github",
+      "repo": "venera-app/venera",
+      "assetHint": "venera-*.apk",
+      "quark": "https://pan.quark.cn/s/ca0afa3bf4b0",
+      "baidu": "https://pan.baidu.com/s/1J_O7CFwJEgtow6ibGD_9qA?pwd=ai9w"
+    },
+    {
+      "name": "抱走漫画",
+      "section": "漫画专区",
+      "type": "manual",
+      "source": "QQ 群文件",
+      "assetHint": "QQ 群文件（无公开接口，需人工查看）",
+      "quark": "https://pan.quark.cn/s/b3c9435bd0a4",
+      "baidu": "https://pan.baidu.com/s/1rLGyBCQYtHYV_NV9g1xZNw?pwd=1o1m"
+    },
+    {
       "name": "Piik",
       "section": "实用软件",
       "type": "github",
@@ -18,6 +175,16 @@
       "assetHint": "piik-app-windows-amd64.zip 等各平台包",
       "quark": "https://pan.quark.cn/s/ba0b83672f29",
       "baidu": "https://pan.baidu.com/s/1yqT4XvIXji-UmR2_jWHRKg?pwd=s53t"
+    },
+    {
+      "name": "Bandizip",
+      "section": "实用软件",
+      "type": "site",
+      "url": "https://cn.bandisoft.com/bandizip/",
+      "assetHint": "Windows exe（官网直接下载）",
+      "quark": "https://pan.quark.cn/s/f192f2851391",
+      "baidu": "https://pan.baidu.com/s/1X5h5sOA4wHqURaId1XyTig?pwd=2vqs",
+      "anchor": "\"softwareVersion\"\\s*:\\s*\"(v[0-9.]+)\""
     },
     {
       "name": "GKD",
@@ -35,6 +202,106 @@
       "repo": "Lin-arm/GKD_subscription",
       "assetHint": "gkd-subscription-offline-*.json5",
       "embeddedIn": "GKD"
+    },
+    {
+      "name": "WinTab",
+      "section": "实用软件",
+      "type": "github",
+      "repo": "OUBIGFA/WinTab",
+      "assetHint": "WinTab-*.exe / .zip",
+      "quark": "https://pan.quark.cn/s/f67eb0e6fc34",
+      "baidu": "https://pan.baidu.com/s/187Z2jh57IWYFkA86QsacXQ?pwd=3s6d"
+    },
+    {
+      "name": "UU远程",
+      "section": "实用软件",
+      "type": "manual",
+      "url": "https://uuyc.163.com/",
+      "assetHint": "Windows / macOS / 安卓 / iOS / TV",
+      "quark": "https://pan.quark.cn/s/43bcafcc4700",
+      "baidu": "https://pan.baidu.com/s/1mkCfPAE1KeYZP_4omt4_dw?pwd=76bm",
+      "source": "软件官网（需人工查看）",
+      "note": "官网版本号由脚本渲染，抓不到"
+    },
+    {
+      "name": "铁汁",
+      "section": "实用软件",
+      "type": "manual",
+      "url": "https://tiez.name666.top/zh/",
+      "assetHint": "Windows / macOS（官网直接下载）",
+      "quark": "https://pan.quark.cn/s/93a33db44a9a",
+      "baidu": "https://pan.baidu.com/s/1o4OG6Y9QmZjTi1g-mdCV7Q?pwd=kdww",
+      "source": "软件官网（需人工查看）",
+      "note": "官网仅有两段版本号，误报风险高"
+    },
+    {
+      "name": "StartAllBack",
+      "section": "实用软件",
+      "type": "site",
+      "url": "https://www.ghxi.com/startallback.html",
+      "assetHint": "Windows（果核剥壳站内下载）",
+      "quark": "https://pan.quark.cn/s/7c3ec837f3eb",
+      "baidu": "https://pan.baidu.com/s/1J5qCg9swBFnPKqdnLBkCnA?pwd=t7nc",
+      "anchor": "<title>[^<]*?(v[0-9]+\\.[0-9]+\\.[0-9]+(?:\\.[0-9]+)*)"
+    },
+    {
+      "name": "PixPin",
+      "section": "实用软件",
+      "type": "site",
+      "url": "https://pixpin.cn/download",
+      "assetHint": "Windows / macOS（官网直接下载）",
+      "quark": "https://pan.quark.cn/s/755242ca07b3",
+      "baidu": "https://pan.baidu.com/s/11rrM9pdPKr7baQi1wInaMg?pwd=arhn",
+      "anchor": "PixPin_win_([0-9.]+)\\.exe"
+    },
+    {
+      "name": "极限投屏",
+      "section": "实用软件",
+      "type": "manual",
+      "url": "https://my.feishu.cn/docx/QRMhd9nlmorAGgxVLImczxSdnYf",
+      "assetHint": "Windows（飞书文档内下载）",
+      "quark": "https://pan.quark.cn/s/c63e905b0bb4",
+      "baidu": "https://pan.baidu.com/s/1GfuV0rHaoTaK77CZz8os3A?pwd=anb2",
+      "source": "软件官网（需人工查看）",
+      "note": "飞书文档需登录，抓不到"
+    },
+    {
+      "name": "Geek Uninstaller",
+      "section": "实用软件",
+      "type": "site",
+      "url": "https://geekuninstaller.com/download",
+      "assetHint": "Windows（官网直接下载）",
+      "quark": "https://pan.quark.cn/s/d5fd8dcd78fc",
+      "baidu": "https://pan.baidu.com/s/1ysTcO4Y-cxprVhawrXDC8w?pwd=ccsc"
+    },
+    {
+      "name": "公众号文章下载器",
+      "section": "实用软件",
+      "type": "manual",
+      "url": "https://changfengbox.top/wechat",
+      "assetHint": "Windows（官网直接下载）",
+      "quark": "https://pan.quark.cn/s/2101a43cc4d1",
+      "baidu": "https://pan.baidu.com/s/1t-ogHr3RgaiE-x3w_06t1A?pwd=u5nx",
+      "source": "软件官网（需人工查看）",
+      "note": "页面为 Vue 单页，版本号由脚本渲染"
+    },
+    {
+      "name": "飞鼠格式转换助手",
+      "section": "实用软件",
+      "type": "github",
+      "repo": "LaoFeng-mouse/flyingmouse-format",
+      "assetHint": "flyingmouse-format-*.exe",
+      "quark": "https://pan.quark.cn/s/54d36d2d91dd",
+      "baidu": "https://pan.baidu.com/s/1g-EPPoxSKZJQIuzRqfdXvA?pwd=61xj"
+    },
+    {
+      "name": "AI视频无痕去字幕",
+      "section": "实用软件",
+      "type": "github",
+      "repo": "YaoFANGUK/video-subtitle-remover",
+      "assetHint": "videosubtitleremover-*.exe / 源码",
+      "quark": "https://pan.quark.cn/s/4059abee799d",
+      "baidu": "https://pan.baidu.com/s/1GdsTfpiBIgbrwP0y35Zk2A?pwd=7p7v"
     },
     {
       "name": "jev-chat（AI参谋）",
