@@ -74,6 +74,7 @@ const SECTIONS = [
   {
     id:'data', icon:'📂', name:'资料专区', desc:'干货资料合集', added:'2026-10-04', color:'#14b8a6', soft:'#f0fdfa',
     tools:[
+      { name:'车载音乐无损系列全集', desc:'3598 首车载歌单，主体为 FLAC 无损且带 lrc 歌词，另按 18 个主题分册：抖音网红、经典粤语、草原天籁、闽南语、4D环绕、怀旧8090 等', added:'2026-10-18', emoji:'🚗', quark:'https://pan.quark.cn/s/708e9409767b' },
       { name:'获取财色的手段', desc:'只讲两件事：搞钱和两性关系。从商界竞争一路聊到情场博弈，把人性和利益交换的门道摊开给你看', added:'2026-10-18', emoji:'♟️', quark:'https://pan.quark.cn/s/c7685670683d' },
       { name:'斑马百科英语启蒙全套课程', desc:'斑马英语 L0–L3 主线 + S1–S4 动画系列共 2719 个文件，动画为高清 mp4 按周分集，另配教材绘本、单词卡与练习册，176GB', added:'2026-10-18', emoji:'🦓', quark:'https://pan.quark.cn/s/de4ab35d0a19' },
       { name:'知识的错觉', desc:'你以为的「懂得」大多是在借别人的脑。这本书逼你看清自己的认知边界，读完明白清醒比知道得多更要紧', added:'2026-10-18', emoji:'🧩', quark:'https://pan.quark.cn/s/44fb068b6429' },
@@ -169,6 +170,8 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
+  { date:'2026-10-18', type:'new', section:'data', title:'资料区新增：车载音乐无损系列全集', desc:'3598 首车载歌单，主体为 FLAC 无损且带 lrc 歌词，另按 18 个主题分册：抖音网红、经典粤语、草原天籁、闽南语、4D环绕、怀旧8090 等',
+    link:{ quark:'https://pan.quark.cn/s/708e9409767b' } },
   { date:'2026-10-18', type:'new', section:'data', title:'资料区新增：获取财色的手段', desc:'只讲两件事：搞钱和两性关系。从商界竞争一路聊到情场博弈，把人性和利益交换的门道摊开给你看',
     link:{ quark:'https://pan.quark.cn/s/c7685670683d' } },
   { date:'2026-10-18', type:'new', section:'data', title:'资料区新增：斑马百科英语启蒙全套课程', desc:'斑马英语 L0–L3 主线 + S1–S4 动画系列共 2719 个文件，动画为高清 mp4 按周分集，另配教材绘本、单词卡与练习册，176GB',
