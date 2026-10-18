@@ -74,6 +74,7 @@ const SECTIONS = [
   {
     id:'data', icon:'📂', name:'资料专区', desc:'干货资料合集', added:'2026-10-04', color:'#14b8a6', soft:'#f0fdfa',
     tools:[
+      { name:'最重要的事，只有一件', desc:'把「专注」讲得很现实：注意力收不回来，大脑就没法真正聚焦。教你在杂事里只挑一件真正重要的事去做', added:'2026-10-18', emoji:'🎯', quark:'https://pan.quark.cn/s/17536ec1e944' },
       { name:'6600余套个人简历模板合集', desc:'按行业与岗位分类，含 467 份可编辑 Word 版、英文简历、创意长图简历和封面封皮，改一改就能投', added:'2026-10-18', emoji:'📋', quark:'https://pan.quark.cn/s/0b291086466a' },
       { name:'从小学到高中全学科思维导图', desc:'623 张知识导图覆盖小初高 9 个学科，语文数学英语物化生史地政按学段分册，PDF 可直接打印，复习梳理一遍就够', added:'2026-10-18', emoji:'🧠', quark:'https://pan.quark.cn/s/25d90856c4f7' },
       { name:'经典香港电影合集未删减版', desc:'150+ 部港产经典电影未删减合集，1978–2000 年代的 HKFACT 高清修复版，MKV 封装，含《僵尸先生》《旺角大家姐》《赌侠》系列等', added:'2026-10-18', emoji:'🍿', quark:'https://pan.quark.cn/s/e065649b0e17' },
@@ -159,6 +160,8 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
+  { date:'2026-10-18', type:'new', section:'data', title:'资料区新增：最重要的事，只有一件', desc:'把「专注」讲得很现实：注意力收不回来，大脑就没法真正聚焦。教你在杂事里只挑一件真正重要的事去做',
+    link:{ quark:'https://pan.quark.cn/s/17536ec1e944' } },
   { date:'2026-10-18', type:'new', section:'data', title:'资料区新增：6600余套个人简历模板合集', desc:'按行业与岗位分类，含 467 份可编辑 Word 版、英文简历、创意长图简历和封面封皮，改一改就能投',
     link:{ quark:'https://pan.quark.cn/s/0b291086466a' } },
   { date:'2026-10-18', type:'new', section:'data', title:'资料区新增：从小学到高中全学科思维导图', desc:'623 张知识导图覆盖小初高 9 个学科，语文数学英语物化生史地政按学段分册，PDF 可直接打印，复习梳理一遍就够',
