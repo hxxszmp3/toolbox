@@ -74,6 +74,7 @@ const SECTIONS = [
   {
     id:'data', icon:'📂', name:'资料专区', desc:'干货资料合集', added:'2026-10-04', color:'#14b8a6', soft:'#f0fdfa',
     tools:[
+      { name:'各类打印纸+计划表', desc:'17 份学生打印纸与表格合集：作业登记 / 日日清 / 错字本、语文数学英语练习纸与作文纸、读书记录、21 天习惯养成，打印即用', added:'2026-10-18', emoji:'📄', quark:'https://pan.quark.cn/s/60a499e23535' },
       { name:'朋友圈伪装QQ空间素材', desc:'6 张朋友圈伪装 QQ 空间的图全部无水印，含成品展示、企鹅 SVIP 头像与配套个性签名，直接换图即可', added:'2026-10-18', emoji:'🐧', quark:'https://pan.quark.cn/s/e2e2c74b4ef6' },
       { name:'168部经典漫画合集', desc:'灌篮高手、七龙珠、火影忍者、海贼王、柯南、哆啦A梦、蜡笔小新、圣斗士星矢、JOJO、老夫子、阿衰等 168 部经典漫画打包，多数为高清彩版与全卷合集', added:'2026-10-12', emoji:'📕', quark:'https://pan.quark.cn/s/99dcc16a7c8d' },
       { name:'AI漫剧最全教程', desc:'做 AI 漫剧的整套资料，含教程、工作流、提示词和专用 Skill，看完就能照着开工', added:'2026-10-06', emoji:'🎬', quark:'https://pan.quark.cn/s/e6e64016a0b0' },
@@ -155,6 +156,8 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
+  { date:'2026-10-18', type:'new', section:'data', title:'资料区新增：各类打印纸+计划表', desc:'17 份学生打印纸与表格合集：作业登记 / 日日清 / 错字本、语文数学英语练习纸与作文纸、读书记录、21 天习惯养成，打印即用',
+    link:{ quark:'https://pan.quark.cn/s/60a499e23535' } },
   { date:'2026-10-18', type:'new', section:'data', title:'资料区新增：朋友圈伪装QQ空间素材', desc:'6 张朋友圈伪装 QQ 空间的图全部无水印，含成品展示、企鹅 SVIP 头像与配套个性签名',
     link:{ quark:'https://pan.quark.cn/s/e2e2c74b4ef6' } },
   { date:'2026-10-18', type:'update', section:'software', title:'WinTab 安装包更新至 v2.4.5', desc:'WinTab 手写与绘图工具新版本，安卓 / Windows / macOS 通用' },
