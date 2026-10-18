@@ -74,6 +74,7 @@ const SECTIONS = [
   {
     id:'data', icon:'📂', name:'资料专区', desc:'干货资料合集', added:'2026-10-04', color:'#14b8a6', soft:'#f0fdfa',
     tools:[
+      { name:'知识的错觉', desc:'你以为的「懂得」大多是在借别人的脑。这本书逼你看清自己的认知边界，读完明白清醒比知道得多更要紧', added:'2026-10-18', emoji:'🧩', quark:'https://pan.quark.cn/s/44fb068b6429' },
       { name:'哆啦A梦全版本漫画PDF', desc:'12 个分类收齐全彩版 20 卷、珍藏版 45 卷、彩色作品集、短篇大全集 20 卷与道具百科，全部是 PDF，18.8GB', added:'2026-10-18', emoji:'🐾', quark:'https://pan.quark.cn/s/28f55b5c3daf' },
       { name:'理想国书单合集300册', desc:'理想国 12 个系列套装约 300 册，含译丛 61 册、马克斯·韦伯作品集、木心全集、讲谈社中国史，多数备齐 epub / azw3 / mobi 三种格式', added:'2026-10-18', emoji:'🏛️', quark:'https://pan.quark.cn/s/f3dc40f14786' },
       { name:'洗脑的最高境界', desc:'一套讲「术公式」的书，照着练就能告别词不达意。谈沟通、说服、让别人听进去都能用上', added:'2026-10-18', emoji:'🗣️', quark:'https://pan.quark.cn/s/4a42652de0a2' },
@@ -166,6 +167,8 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
+  { date:'2026-10-18', type:'new', section:'data', title:'资料区新增：知识的错觉', desc:'你以为的「懂得」大多是在借别人的脑。这本书逼你看清自己的认知边界，读完明白清醒比知道得多更要紧',
+    link:{ quark:'https://pan.quark.cn/s/44fb068b6429' } },
   { date:'2026-10-18', type:'new', section:'data', title:'资料区新增：哆啦A梦全版本漫画PDF', desc:'12 个分类收齐全彩版 20 卷、珍藏版 45 卷、彩色作品集、短篇大全集 20 卷与道具百科，全部是 PDF，18.8GB',
     link:{ quark:'https://pan.quark.cn/s/28f55b5c3daf' } },
   { date:'2026-10-18', type:'new', section:'data', title:'资料区新增：理想国书单合集300册', desc:'理想国 12 个系列套装约 300 册，含译丛 61 册、马克斯·韦伯作品集、木心全集、讲谈社中国史，多数备齐 epub / azw3 / mobi 三种格式',
