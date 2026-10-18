@@ -13,7 +13,7 @@ const SECTIONS = [
     id:'novel', icon:'📖', name:'小说专区', desc:'免费看小说、下小说', added:'2026-10-04', color:'#3b82f6', soft:'#eff6ff',
     tools:[
       { name:'小说下载器', desc:'全网小说搜索下载，一键导出 TXT/EPUB', added:'2026-10-04', img:'icons/xiaoshuo.png', version:'v1.11.0', os:['Windows','macOS','Linux'], secret:'https://github.com/freeok/so-novel/releases', quark:'https://pan.quark.cn/s/6c73fb388aea', baidu:'https://pan.baidu.com/s/1SHWmlXxW3FYTBf_2f_yruQ?pwd=i32n' },
-      { name:'番茄小说下载器', desc:'番茄小说资源下载', added:'2026-10-04', img:'icons/fanqie.png', version:'v2.4.15', os:['Windows','macOS','Linux','安卓'], secret:'https://github.com/zhongbai2333/Tomato-Novel-Downloader', quark:'https://pan.quark.cn/s/867ce5b0aad5', baidu:'https://pan.baidu.com/s/1Rg_Ffo3vqfSU4EdQVlJPhA?pwd=f46i' },
+      { name:'番茄小说下载器', desc:'番茄小说资源下载', added:'2026-10-04', img:'icons/fanqie.png', version:'v2.4.16', os:['Windows','macOS','Linux','安卓'], secret:'https://github.com/zhongbai2333/Tomato-Novel-Downloader', quark:'https://pan.quark.cn/s/867ce5b0aad5', baidu:'https://pan.baidu.com/s/1Rg_Ffo3vqfSU4EdQVlJPhA?pwd=f46i' },
       { name:'七猫小说下载器', desc:'七猫免费小说下载', added:'2026-10-04', img:'icons/qimao.png', version:'v1.0.0', os:['Windows','macOS','Linux','安卓','iOS'], secret:'https://github.com/shing-yu/swiftcat-downloader', quark:'https://pan.quark.cn/s/a6feae8cc3d1', baidu:'https://pan.baidu.com/s/1IEjRs6QI0SSxz0_8MbAdXw?pwd=paqi' },
       { name:'笔趣阁 5.0', desc:'海量书源免费阅读', added:'2026-10-04', img:'icons/biquge.png', version:'5.0', os:['安卓'], secret:'https://www.bqgapp.cn/', quark:'https://pan.quark.cn/s/efae8b3e1325', baidu:'https://pan.baidu.com/s/1ecJhyMWNgQfw6v5uCt2ySg?pwd=azf3' },
       { name:'开源软件 + 开源书源', desc:'开源阅读 + 书源合集', added:'2026-10-04', img:'icons/kaiyuan.png', os:['安卓'], quark:'https://pan.quark.cn/s/938c4b40974e', baidu:'https://pan.baidu.com/s/169DT7lXgr0DLeB8pkTWUyQ?pwd=e0m5' },
@@ -74,6 +74,7 @@ const SECTIONS = [
   {
     id:'data', icon:'📂', name:'资料专区', desc:'干货资料合集', added:'2026-10-04', color:'#14b8a6', soft:'#f0fdfa',
     tools:[
+      { name:'QQ伪装素材', desc:'6 张 QQ 伪装图全部无水印，含成品展示、企鹅 SVIP 头像与配套个性签名，直接换头像签名即可', added:'2026-10-18', emoji:'🐧', quark:'https://pan.quark.cn/s/e2e2c74b4ef6' },
       { name:'168部经典漫画合集', desc:'灌篮高手、七龙珠、火影忍者、海贼王、柯南、哆啦A梦、蜡笔小新、圣斗士星矢、JOJO、老夫子、阿衰等 168 部经典漫画打包，多数为高清彩版与全卷合集', added:'2026-10-12', emoji:'📕', quark:'https://pan.quark.cn/s/99dcc16a7c8d' },
       { name:'AI漫剧最全教程', desc:'做 AI 漫剧的整套资料，含教程、工作流、提示词和专用 Skill，看完就能照着开工', added:'2026-10-06', emoji:'🎬', quark:'https://pan.quark.cn/s/e6e64016a0b0' },
       { name:'高性价比人生指南', desc:'614 条循证生活建议，讲怎么活得久、少生病、少花冤枉钱和避坑，每条都标了成本收益和出处', added:'2026-10-04', emoji:'🧭', quark:'https://pan.quark.cn/s/8a03cc957f40', baidu:'https://pan.baidu.com/s/1n4XxIXfgKk_uIS9XyOQaXw?pwd=sm8j' },
@@ -99,7 +100,7 @@ const SECTIONS = [
       { name:'谷歌浏览器', desc:'多系统安装包：安卓手机/平板、电视TV、鸿蒙、mac、Windows', added:'2026-10-04', img:'icons/chrome.png', os:['Windows','macOS','安卓','鸿蒙','Android TV'], quark:'https://pan.quark.cn/s/fa06f51cda42' },
       { name:'Bandizip', desc:'免费 Windows 解压/压缩软件，速度快，支持绝大多数格式', added:'2026-10-04', img:'icons/bangzip.png', os:['Windows'], secret:'https://cn.bandisoft.com/bandizip/', quark:'https://pan.quark.cn/s/f192f2851391', baidu:'https://pan.baidu.com/s/1X5h5sOA4wHqURaId1XyTig?pwd=2vqs' },
       { name:'GKD', desc:'安卓开源去开屏广告，天天更新，3 个全局规则基本够用', added:'2026-10-04', img:'icons/gkd.png', version:'v605', os:['安卓'], secret:'https://github.com/gkd-kit/gkd/releases', quark:'https://pan.quark.cn/s/1c9e604664a7', baidu:'https://pan.baidu.com/s/10XQkKe7a_RxKdJ-Yg-4RHw?pwd=wb7c' },
-      { name:'WinTab', desc:'WinTab 窗口标签页工具，多窗口 1 键收成标签页', added:'2026-10-04', img:'icons/wintab.png', version:'v2.4.4', os:['Windows'], secret:'https://github.com/OUBIGFA/WinTab', quark:'https://pan.quark.cn/s/f67eb0e6fc34', baidu:'https://pan.baidu.com/s/187Z2jh57IWYFkA86QsacXQ?pwd=3s6d' },
+      { name:'WinTab', desc:'WinTab 窗口标签页工具，多窗口 1 键收成标签页', added:'2026-10-04', img:'icons/wintab.png', version:'v2.4.5', os:['Windows'], secret:'https://github.com/OUBIGFA/WinTab', quark:'https://pan.quark.cn/s/f67eb0e6fc34', baidu:'https://pan.baidu.com/s/187Z2jh57IWYFkA86QsacXQ?pwd=3s6d' },
       { name:'UU远程', desc:'网易UU远程，跨平台远程控制（手机 / 电脑 / 电视）', added:'2026-10-04', img:'icons/uuyc.png', os:['Windows','macOS','安卓','iOS','Android TV'], secret:'https://uuyc.163.com/', quark:'https://pan.quark.cn/s/43bcafcc4700', baidu:'https://pan.baidu.com/s/1mkCfPAE1KeYZP_4omt4_dw?pwd=76bm' },
       { name:'铁汁', desc:'TieZ 剪贴板助手，永久记录 + AI 翻译 + 局域网互传', added:'2026-10-04', img:'icons/tiez.png', os:['Windows','macOS'], secret:'https://tiez.name666.top/zh/', quark:'https://pan.quark.cn/s/93a33db44a9a', baidu:'https://pan.baidu.com/s/1o4OG6Y9QmZjTi1g-mdCV7Q?pwd=kdww' },
       { name:'Win11开始菜单增强工具', desc:'StartAllBack · Win11 恢复 Win7/Win10 经典界面', added:'2026-10-04', img:'icons/startallback.png', os:['Windows'], secret:'https://www.ghxi.com/startallback.html', quark:'https://pan.quark.cn/s/7c3ec837f3eb', baidu:'https://pan.baidu.com/s/1J5qCg9swBFnPKqdnLBkCnA?pwd=t7nc' },
@@ -154,6 +155,10 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
+  { date:'2026-10-18', type:'new', section:'data', title:'资料区新增：QQ伪装素材', desc:'6 张 QQ 伪装图全部无水印，含成品展示、企鹅 SVIP 头像与配套个性签名',
+    link:{ quark:'https://pan.quark.cn/s/e2e2c74b4ef6' } },
+  { date:'2026-10-18', type:'update', section:'software', title:'WinTab 安装包更新至 v2.4.5', desc:'WinTab 手写与绘图工具新版本，安卓 / Windows / macOS 通用' },
+  { date:'2026-10-18', type:'update', section:'novel', title:'番茄小说下载器安装包更新至 v2.4.16', desc:'番茄小说下载器新版本，安卓与电脑端同步更新' },
   { date:'2026-10-14', type:'new', section:'video', title:'影视专区新增：影视仓 TVBox 内置配置版', desc:'配置已内置，装上就能看。电影剧集综艺动漫 + 电视直播 + 豆瓣热榜，多线路切换，安卓手机 / 电视 / 盒子通用',
     link:{ quark:'https://pan.quark.cn/s/fcac31a0611f', baidu:'https://pan.baidu.com/s/1D1P7Xt3RedOtzsTUShMhXA?pwd=6afg' } },
   { date:'2026-10-14', type:'new', section:'music', title:'音乐区新增：MoeKoeMusic 酷狗概念版开源播放器', desc:'GitHub 6000+ star 的开源音乐播放器，登录酷狗账号同步歌单收藏与听歌时长，无社交功能、官方服务器直连，支持标准 / 高频 / FLAC / Hi-Res 音质',
