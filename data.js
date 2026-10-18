@@ -74,6 +74,7 @@ const SECTIONS = [
   {
     id:'data', icon:'📂', name:'资料专区', desc:'干货资料合集', added:'2026-10-04', color:'#14b8a6', soft:'#f0fdfa',
     tools:[
+      { name:'获取财色的手段', desc:'只讲两件事：搞钱和两性关系。从商界竞争一路聊到情场博弈，把人性和利益交换的门道摊开给你看', added:'2026-10-18', emoji:'♟️', quark:'https://pan.quark.cn/s/c7685670683d' },
       { name:'斑马百科英语启蒙全套课程', desc:'斑马英语 L0–L3 主线 + S1–S4 动画系列共 2719 个文件，动画为高清 mp4 按周分集，另配教材绘本、单词卡与练习册，176GB', added:'2026-10-18', emoji:'🦓', quark:'https://pan.quark.cn/s/de4ab35d0a19' },
       { name:'知识的错觉', desc:'你以为的「懂得」大多是在借别人的脑。这本书逼你看清自己的认知边界，读完明白清醒比知道得多更要紧', added:'2026-10-18', emoji:'🧩', quark:'https://pan.quark.cn/s/44fb068b6429' },
       { name:'哆啦A梦全版本漫画PDF', desc:'12 个分类收齐全彩版 20 卷、珍藏版 45 卷、彩色作品集、短篇大全集 20 卷与道具百科，全部是 PDF，18.8GB', added:'2026-10-18', emoji:'🐾', quark:'https://pan.quark.cn/s/28f55b5c3daf' },
@@ -168,6 +169,8 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
+  { date:'2026-10-18', type:'new', section:'data', title:'资料区新增：获取财色的手段', desc:'只讲两件事：搞钱和两性关系。从商界竞争一路聊到情场博弈，把人性和利益交换的门道摊开给你看',
+    link:{ quark:'https://pan.quark.cn/s/c7685670683d' } },
   { date:'2026-10-18', type:'new', section:'data', title:'资料区新增：斑马百科英语启蒙全套课程', desc:'斑马英语 L0–L3 主线 + S1–S4 动画系列共 2719 个文件，动画为高清 mp4 按周分集，另配教材绘本、单词卡与练习册，176GB',
     link:{ quark:'https://pan.quark.cn/s/de4ab35d0a19' } },
   { date:'2026-10-18', type:'new', section:'data', title:'资料区新增：知识的错觉', desc:'你以为的「懂得」大多是在借别人的脑。这本书逼你看清自己的认知边界，读完明白清醒比知道得多更要紧',
