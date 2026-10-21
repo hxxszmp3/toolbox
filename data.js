@@ -29,7 +29,7 @@ const SECTIONS = [
       { name:'MoeKoeMusic', desc:'酷狗概念版开源音乐播放器，GitHub 6000+ star。登录酷狗账号直接同步歌单收藏与听歌时长，无社交功能、官方服务器直连，支持标准 / 高频 / FLAC / Hi-Res 音质', added:'2026-10-14', img:'icons/moekoe.png', version:'v1.7.1', os:['Windows','macOS'], secret:'https://github.com/MoeKoeMusic/MoeKoeMusic', quark:'https://pan.quark.cn/s/a45888fd2f22', baidu:'https://pan.baidu.com/s/1uBPlFqU0HbEjG5sS-KyUDw?pwd=dmpi' },
       { name:'敦伦调调', desc:'全网音乐免费听 / 下载', added:'2026-10-04', img:'icons/dunlun.png', version:'v1.0.10', os:['安卓'], secret:'https://app.4848948.xyz/', quark:'https://pan.quark.cn/s/21d0a48a9ee9', baidu:'https://pan.baidu.com/s/1ObfiNgOTdDpkxcEVFZZ4kA?pwd=3dcd' },
       { name:'星盒', desc:'聚合音乐资源神器', added:'2026-10-04', img:'icons/xinghe.png', version:'v2.7.0', os:['安卓'], secret:'https://www.istarbox.app/download', quark:'https://pan.quark.cn/s/7fc3a192ddc2', baidu:'https://pan.baidu.com/s/1wZxYJcJVGL1WzLQ0T44daA?pwd=y184' },
-      { name:'zpod', desc:'一个应用搞定音乐、影视与听书，三类内容一个播放器全包', added:'2026-10-04', img:'icons/zpod.png', version:'v3.0.10', os:['Windows','macOS','安卓','iOS'], secret:'https://zpod.net/#landing-downloads', quark:'https://pan.quark.cn/s/1b54b41e32ad', baidu:'https://pan.baidu.com/s/1k8lnZ3KKz7eVV-yTLovZlQ?pwd=4if2' },
+      { name:'zpod', desc:'一个应用搞定音乐、影视与听书，三类内容一个播放器全包', added:'2026-10-04', img:'icons/zpod.png', version:'v3.0.12', os:['Windows','macOS','安卓','iOS'], secret:'https://zpod.net/#landing-downloads', quark:'https://pan.quark.cn/s/1b54b41e32ad', baidu:'https://pan.baidu.com/s/1k8lnZ3KKz7eVV-yTLovZlQ?pwd=4if2' },
       { name:'星音乐', desc:'聚合 QQ 音乐、网易云、酷我、酷狗四大平台，一站搜歌下歌', added:'2026-10-04', img:'icons/xingyinyue.png', version:'v2.0', os:['安卓'], secret:'https://music.istarbox.app/', quark:'https://pan.quark.cn/s/42f30fcaeea5', baidu:'https://pan.baidu.com/s/1KcaQEt15ZQTOoXMiTHucxg?pwd=ck1c' },
       { name:'莫比音乐', desc:'高品质音乐平台（收费）', added:'2026-10-04', tag:'收费', img:'icons/mobi.png', os:['安卓','iOS','Windows'], secretText:'QQ 群文件', quark:'https://pan.quark.cn/s/f70a57a9420a', baidu:'https://pan.baidu.com/s/1___-VnWKyPtabXOOupRi2Q?pwd=rsc8' },
       { name:'四分贝音乐', desc:'windows系统下载mp3、flac等格式，自动下载封面和歌词lrc文件', added:'2026-10-04', img:'icons/sifenbei.png', version:'v1.3.2', os:['Windows'], secret:'https://www.4fb.cn/soft/pc/2816.html', quark:'https://pan.quark.cn/s/6a5f6874a275', baidu:'https://pan.baidu.com/s/1J_8b-pnAKg9qLcuP5ULrxw?pwd=4a38' },
@@ -44,7 +44,7 @@ const SECTIONS = [
       { name:'星盒', desc:'聚合影视资源，看电影追剧', added:'2026-10-04', img:'icons/xinghe.png', version:'v2.7.0', os:['安卓'], secret:'https://www.istarbox.app/download', quark:'https://pan.quark.cn/s/7fc3a192ddc2', baidu:'https://pan.baidu.com/s/1wZxYJcJVGL1WzLQ0T44daA?pwd=y184' },
       { name:'Sparkle', desc:'番剧影视、漫画、壁纸一体化的安卓应用，全部免费无广告，影视最高 4K 高清，可看可下载', added:'2026-10-11', img:'icons/sparkle.png', os:['安卓'], quark:'https://pan.quark.cn/s/3e86c984820f', baidu:'https://pan.baidu.com/s/1DJbbLI_O8wGfA9KUh5Tzmg?pwd=mwki' },
       { name:'MiniReel', desc:'第三方红果短剧客户端，免费无广告，手机/电视/电脑全平台', added:'2026-10-04', img:'icons/minireel.png', version:'v0.3.1', os:['安卓','Android TV','Windows','macOS'], secret:'https://minireel.weppp.cyou:54267/versions', quark:'https://pan.quark.cn/s/c326807e1024', baidu:'https://pan.baidu.com/s/1CEqs_PTYrxYEzSz_40DAbQ?pwd=fgf1' },
-      { name:'zpod', desc:'一个应用搞定音乐、影视与听书，三类内容一个播放器全包', added:'2026-10-04', img:'icons/zpod.png', version:'v3.0.10', os:['Windows','macOS','安卓','iOS'], secret:'https://zpod.net/#landing-downloads', quark:'https://pan.quark.cn/s/1b54b41e32ad', baidu:'https://pan.baidu.com/s/1k8lnZ3KKz7eVV-yTLovZlQ?pwd=4if2' },
+      { name:'zpod', desc:'一个应用搞定音乐、影视与听书，三类内容一个播放器全包', added:'2026-10-04', img:'icons/zpod.png', version:'v3.0.12', os:['Windows','macOS','安卓','iOS'], secret:'https://zpod.net/#landing-downloads', quark:'https://pan.quark.cn/s/1b54b41e32ad', baidu:'https://pan.baidu.com/s/1k8lnZ3KKz7eVV-yTLovZlQ?pwd=4if2' },
     ]
   },
   {
@@ -173,6 +173,10 @@ const SECTIONS = [
 const UPDATES = [
   { date:'2026-10-21', type:'update', section:'novel', title:'番茄小说下载器新增 iOS 支持并新增 ui 精美版', desc:'支持设备补上 iOS，新增 ui 界面重制版：安卓 / iOS / Windows / macOS / Linux 五端安装包齐全，Windows 另有安装版与便携版',
     link:{ quark:'https://pan.quark.cn/s/867ce5b0aad5' } },
+  { date:'2026-10-21', type:'update', section:'music', title:'zpod 更新至 v3.0.12', desc:'四端安装包齐更：Windows 安装版、安卓 arm64、iOS ipa（附安装说明）、macOS dmg',
+    link:{ quark:'https://pan.quark.cn/s/1b54b41e32ad', baidu:'https://pan.baidu.com/s/1k8lnZ3KKz7eVV-yTLovZlQ?pwd=4if2' } },
+  { date:'2026-10-21', type:'update', section:'music', title:'星盒工具箱更新至 v2.7.0', desc:'星盒工具箱新版安装包，音乐 / 影视 / 动漫 / 小说四个专区同步更新',
+    link:{ quark:'https://pan.quark.cn/s/7fc3a192ddc2', baidu:'https://pan.baidu.com/s/1wZxYJcJVGL1WzLQ0T44daA?pwd=y184' } },
   { date:'2026-10-18', type:'new', section:'data', title:'资料区新增：车载音乐无损系列全集', desc:'3598 首车载歌单，主体为 FLAC 无损且带 lrc 歌词，另按 18 个主题分册：抖音网红、经典粤语、草原天籁、闽南语、4D环绕、怀旧8090 等',
     link:{ quark:'https://pan.quark.cn/s/708e9409767b' } },
   { date:'2026-10-18', type:'new', section:'data', title:'资料区新增：获取财色的手段', desc:'只讲两件事：搞钱和两性关系。从商界竞争一路聊到情场博弈，把人性和利益交换的门道摊开给你看',
