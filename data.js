@@ -61,6 +61,7 @@ const SECTIONS = [
       { name:'Sparkle', desc:'漫画聚合阅读器，看热门 / 找漫画 / 畅销榜 / 全网热议，也能下载离线看', added:'2026-10-11', img:'icons/sparkle.png', os:['安卓'], quark:'https://pan.quark.cn/s/3e86c984820f', baidu:'https://pan.baidu.com/s/1DJbbLI_O8wGfA9KUh5Tzmg?pwd=mwki' },
       { name:'抱走漫画', desc:'免费无广告的多源漫画聚合阅读器，装完直接看，离线也能缓存下载', added:'2026-10-05', img:'icons/baozoumanhua.png', version:'1.0.7', os:['安卓'], secretText:'QQ 群文件', quark:'https://pan.quark.cn/s/b3c9435bd0a4', baidu:'https://pan.baidu.com/s/1rLGyBCQYtHYV_NV9g1xZNw?pwd=1o1m' },
       { name:'Mihon', desc:'免费开源安卓漫画阅读器（Tachiyomi 继任者）', added:'2026-10-04', img:'icons/mihon.png', version:'v0.20.4', os:['安卓'], secret:'https://github.com/mihonapp/mihon', quark:'https://pan.quark.cn/s/14966eac05db', baidu:'https://pan.baidu.com/s/11FGWmCzzpJ7gVCjh26lvIg?pwd=9gmn' },
+      { name:'异次元', desc:'无广告无会员的多图源漫画聚合器，导入图源后一个 App 看全网漫画', added:'2026-10-21', img:'icons/yiciyuan.png', os:['安卓'], secret:'https://www.yckceo.com/yiciyuan/index/index.html', quark:'https://pan.quark.cn/s/1043b1354719', baidu:'https://pan.baidu.com/s/1QGywaLxWoMtaFNQYX7hb5A?pwd=i6pt' },
       { name:'venera_1.4.6', desc:'漫画阅读器', added:'2026-10-04', emoji:'📖', version:'1.4.6', os:['安卓'], secret:'https://github.com/venera-app/venera', quark:'https://pan.quark.cn/s/ca0afa3bf4b0', baidu:'https://pan.baidu.com/s/1J_O7CFwJEgtow6ibGD_9qA?pwd=ai9w' },
     ]
   },
@@ -171,6 +172,8 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
+  { date:'2026-10-21', type:'new', section:'comic', title:'漫画区新增：异次元', desc:'无广告无会员的多图源漫画聚合器，界面干净，支持添加多个图源、一次搜索多源、离线缓存，另附 20 份图源合集',
+    link:{ quark:'https://pan.quark.cn/s/1043b1354719', baidu:'https://pan.baidu.com/s/1QGywaLxWoMtaFNQYX7hb5A?pwd=i6pt' } },
   { date:'2026-10-21', type:'update', section:'novel', title:'番茄小说下载器新增 iOS 支持并新增 ui 精美版', desc:'支持设备补上 iOS，新增 ui 界面重制版：安卓 / iOS / Windows / macOS / Linux 五端安装包齐全，Windows 另有安装版与便携版',
     link:{ quark:'https://pan.quark.cn/s/867ce5b0aad5' } },
   { date:'2026-10-21', type:'update', section:'music', title:'zpod 更新至 v3.0.12', desc:'四端安装包齐更：Windows 安装版、安卓 arm64、iOS ipa（附安装说明）、macOS dmg',
