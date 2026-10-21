@@ -196,6 +196,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .tool-secret .sec-link{
   font-size:12px;color:var(--primary);word-break:break-all;line-height:1.5;
 }
+/* 多个下载来源时纵向排列，避免长链接挤在一行 */
+.tool-secret .sec-links{display:flex;flex-direction:column;gap:4px;min-width:0}
 .tool-secret .sec-link:hover{text-decoration:underline}
 /* 来源为文字（如 QQ 群文件）时不做链接 */
 .tool-secret .sec-text{font-size:12.5px;font-weight:600;color:var(--text-2)}
@@ -590,7 +592,7 @@ mark{background:rgba(245,158,11,.35);color:inherit;border-radius:3px;padding:0 1
 
 <!-- v 参数用于强制刷新：内容改动时把 v 往后加一位，浏览器与 CDN 都会当作新文件，
      避免 GitHub Pages / 浏览器缓存导致用户看不到更新。 -->
-<script src="data.js?v=20261021a"></script>
+<script src="data.js?v=20261021b"></script>
 <script>
 const PAGE_SIZE = 10;
 
@@ -921,12 +923,16 @@ function toolCard(t, s, q = '', hot = false){
        </button>`
     : '';
 
-  /* 解锁后显示来源：网址显示为链接，文字（如 QQ 群文件）显示为纯文本 */
+  /* 解锁后显示来源：网址显示为链接，文字（如 QQ 群文件）显示为纯文本
+     secret 允许写成字符串或字符串数组，数组时逐条列出（同一工具可能有多个下载来源） */
   let secretBox = '';
   if (open){
-    const inner = t.secret
-      ? `<a class="sec-link" href="${esc(t.secret)}" target="_blank" rel="noopener">${esc(t.secret)}</a>`
-      : `<span class="sec-text">${esc(t.secretText)}</span>`;
+    const srcList = t.secret
+      ? (Array.isArray(t.secret) ? t.secret : [t.secret])
+      : [];
+    const inner = srcList.length
+      ? `<span class="sec-links">${srcList.map(u => `<a class="sec-link" href="${esc(u)}" target="_blank" rel="noopener">${esc(u)}</a>`).join('')}</span>`
+      : (t.secretText ? `<span class="sec-text">${esc(t.secretText)}</span>` : '');
     secretBox = `<div class="tool-secret"><span class="sec-label">下载来源</span>${inner}</div>`;
   }
 
