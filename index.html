@@ -170,6 +170,22 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   padding:1px 7px;border-radius:6px;white-space:nowrap;
 }
 
+/* 下载软件：与「支持设备」同排布的链接标签 */
+.tool-dl{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:-2px}
+.tool-dl .dl-label{
+  font-size:11px;font-weight:600;color:var(--text-3);
+  background:var(--soft-btn);padding:2px 8px;border-radius:6px;flex:none;
+}
+.tool-dl .dl-tag{
+  font-size:11px;font-weight:600;color:var(--text-2);
+  background:var(--soft-btn);border:1px solid var(--border);
+  padding:1px 7px;border-radius:6px;white-space:nowrap;
+  text-decoration:none;cursor:pointer;
+  transition:color .18s,border-color .18s,background .18s;
+}
+.tool-dl .dl-tag:hover{color:var(--primary);border-color:var(--primary);background:var(--primary-soft)}
+.tool-dl .dl-tag .btn-ico{width:11px;height:11px;margin-right:2px;vertical-align:-1px}
+
 /* 右上角书签：点击输入管理员密码显示下载来源 */
 .tool-bookmark{
   position:absolute;top:10px;right:10px;z-index:3;
@@ -592,7 +608,7 @@ mark{background:rgba(245,158,11,.35);color:inherit;border-radius:3px;padding:0 1
 
 <!-- v 参数用于强制刷新：内容改动时把 v 往后加一位，浏览器与 CDN 都会当作新文件，
      避免 GitHub Pages / 浏览器缓存导致用户看不到更新。 -->
-<script src="data.js?v=20261021g"></script>
+<script src="data.js?v=20261021h"></script>
 <script>
 const PAGE_SIZE = 10;
 
@@ -911,6 +927,17 @@ function toolCard(t, s, q = '', hot = false){
     ? `<div class="tool-os"><span class="os-label">支持设备</span>${t.os.map(o => `<span class="os-tag">${esc(o)}</span>`).join('')}</div>`
     : '';
 
+  /* 下载：与「支持设备」同排布的链接标签。资料区叫「下载资料」，其余分区叫「下载软件」；
+     只有网盘链接才显示这一行 */
+  const dlTags = [
+    t.quark ? `<a class="dl-tag" href="${esc(t.quark)}" target="_blank" rel="noopener" title="${esc(t.quark)}">${ICON_QUARK}夸克网盘</a>` : '',
+    t.baidu ? `<a class="dl-tag" href="${esc(t.baidu)}" target="_blank" rel="noopener" title="${esc(t.baidu)}">${ICON_BAIDU}百度网盘</a>` : '',
+  ].filter(Boolean).join('');
+  const dlLabel = s.id === 'data' ? '下载资料' : '下载软件';
+  const dlLine = dlTags
+    ? `<div class="tool-dl"><span class="dl-label">${dlLabel}</span>${dlTags}</div>`
+    : '';
+
   /* 书签状态按卡片独立维护（key = 分区id + 工具名），互不影响 */
   const hasSrc = !!(t.secret || t.secretText);
   const key = hasSrc ? `${s.id}::${t.name}` : '';
@@ -961,6 +988,7 @@ function toolCard(t, s, q = '', hot = false){
     </div>
     <div class="tool-desc"><span class="desc-label">${esc(descLabel(s))}</span><span class="desc-text">${hi(t.desc, q)}</span></div>
     ${osLine}
+    ${dlLine}
     ${secretBox}
     ${points}
     ${action ? `<div class="tool-action">${action}</div>` : ''}
