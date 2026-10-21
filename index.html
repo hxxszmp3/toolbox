@@ -173,30 +173,35 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   padding:1px 7px;border-radius:6px;white-space:nowrap;
 }
 
-/* 下载：夸克 / 百度两个网盘入口，官方品牌色实心高亮 */
+/* 下载：夸克 / 百度两个网盘入口。
+   突出但不刺眼 —— 浅色底 + 品牌色描边 + 品牌色文字，悬停时才填充品牌色 */
 .tool-dl .row-body{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .tool-dl .dl-tag{
-  font-size:12px;font-weight:700;color:#fff;
-  padding:4px 12px;border-radius:8px;white-space:nowrap;
+  font-size:12px;font-weight:700;
+  padding:4px 13px;border-radius:8px;white-space:nowrap;
   text-decoration:none;cursor:pointer;display:inline-flex;align-items:center;gap:6px;
-  box-shadow:0 1px 3px rgba(0,0,0,.14);
-  transition:filter .18s,transform .18s,box-shadow .18s;
+  background:var(--card);border:1px solid transparent;
+  box-shadow:0 1px 2px rgba(0,0,0,.06);
+  transition:background .18s,color .18s,border-color .18s,transform .18s,box-shadow .18s;
 }
-.tool-dl .dl-tag:hover{filter:brightness(1.08);transform:translateY(-1px);box-shadow:0 3px 8px rgba(0,0,0,.18)}
+.tool-dl .dl-tag:hover{transform:translateY(-1px);box-shadow:0 3px 8px rgba(0,0,0,.12)}
 .tool-dl .dl-tag:active{transform:translateY(0)}
-.tool-dl .dl-tag.dl-quark{background:#4a6ef0;border:1px solid #3a5cd8}
-.tool-dl .dl-tag.dl-baidu{background:#2f6fe0;border:1px solid #2459bd}
-/* 网盘 logo 本身是彩色图形，直接压在品牌色按钮上会融掉，
-   这里给logo 垫一层白色圆角衬底，保证边界清晰、完整可见 */
+.tool-dl .dl-tag.dl-quark{color:#2f4fd0;border-color:#c3d0f5;background:#f2f5fe}
+.tool-dl .dl-tag.dl-quark:hover{background:#2f4fd0;border-color:#2f4fd0;color:#fff}
+.tool-dl .dl-tag.dl-baidu{color:#1f63c4;border-color:#c3d8f2;background:#eff6ff}
+.tool-dl .dl-tag.dl-baidu:hover{background:#1f63c4;border-color:#1f63c4;color:#fff}
+/* 彩色 logo 压在浅底上依旧加一层白衬底，保证边界完整清晰 */
 .tool-dl .dl-tag .btn-ico{
   width:13px;height:13px;flex:none;
   box-sizing:content-box;padding:2px;
   background:#fff;border-radius:4px;
 }
-/* 暗色下品牌色略压暗，避免纯亮蓝块在黑底上刺眼 */
+/* 暗色模式：底色转为半透明品牌色，描边与文字提亮 */
 @media (prefers-color-scheme: dark){
-  .tool-dl .dl-tag.dl-quark{background:#3d5bc4;border-color:#33499f}
-  .tool-dl .dl-tag.dl-baidu{background:#2a58ad;border-color:#204479}
+  .tool-dl .dl-tag.dl-quark{color:#9ab0f5;border-color:#33417a;background:#1b2136}
+  .tool-dl .dl-tag.dl-quark:hover{background:#3f5cd6;border-color:#4f6ce8;color:#fff}
+  .tool-dl .dl-tag.dl-baidu{color:#8fb6ea;border-color:#2c3f66;background:#161f2e}
+  .tool-dl .dl-tag.dl-baidu:hover{background:#2a6ac4;border-color:#3a7ad4;color:#fff}
 }
 
 /* 右上角书签：点击输入管理员密码显示下载来源 */
