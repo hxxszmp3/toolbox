@@ -590,7 +590,7 @@ mark{background:rgba(245,158,11,.35);color:inherit;border-radius:3px;padding:0 1
 
 <!-- v 参数用于强制刷新：内容改动时把 v 往后加一位，浏览器与 CDN 都会当作新文件，
      避免 GitHub Pages / 浏览器缓存导致用户看不到更新。 -->
-<script src="data.js?v=20261018s"></script>
+<script src="data.js?v=20261021a"></script>
 <script>
 const PAGE_SIZE = 10;
 
@@ -834,7 +834,10 @@ function findToolsInUpdate(u){
   SECTIONS.forEach(s => s.tools.forEach(t => {
     if (text.includes(t.name.replace(/\s+/g, ''))) push(t.name);
   }));
-  if (hit.length) return hit;
+  /* 名字之间存在包含关系时（如「番茄小说下载器」与「番茄小说下载器精美版」），
+     短名会先被命中，导致动态更新跳到错误的卡片。按名字长度倒序，
+     最具体（最长）的那个排在前面，优先作为跳转目标。 */
+  if (hit.length) return hit.sort((a, b) => b.length - a.length);
 
   /* 兜底模糊匹配：剥掉常见修饰词后，至少剩 3 个字才认为可信，避免「软件」这类
      过短的公共词把不相关的工具误判成命中 */
