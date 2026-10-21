@@ -181,10 +181,11 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   background:var(--soft-btn);border:1px solid var(--border);
   padding:1px 7px;border-radius:6px;white-space:nowrap;
   text-decoration:none;cursor:pointer;
+  display:inline-flex;align-items:center;gap:3px;
   transition:color .18s,border-color .18s,background .18s;
 }
 .tool-dl .dl-tag:hover{color:var(--primary);border-color:var(--primary);background:var(--primary-soft)}
-.tool-dl .dl-tag .btn-ico{width:11px;height:11px;margin-right:2px;vertical-align:-1px}
+.tool-dl .dl-tag .btn-ico{width:12px;height:12px;flex:none}
 
 /* 右上角书签：点击输入管理员密码显示下载来源 */
 .tool-bookmark{
@@ -222,22 +223,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .tool-points a{color:var(--primary);word-break:break-all}
 .tool-points a:hover{text-decoration:underline}
 .tool-points code{background:var(--code-bg);padding:1px 6px;border-radius:4px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:11.5px;color:var(--text-2);word-break:break-all}
-.tool-btns{display:flex;gap:8px}
 .btn{
   height:30px;padding:0 14px;border-radius:8px;font-size:12.5px;font-weight:600;
   display:inline-flex;align-items:center;justify-content:center;gap:4px;white-space:nowrap;transition:background .15s;
-}
-.btn-quark{background:#f5f5f5;color:var(--primary);border:1px solid var(--primary)}
-.btn-quark:hover{background:var(--primary-soft)}
-.btn-baidu{background:#f7f7f7;color:#3b6fa8;border:1px solid #dcdfe4}
-.btn-baidu:hover{background:#eef3f9;border-color:#c5d2e0}
-/* 暗色下的网盘按钮：改用深底描边，避免浅色块在黑底上刺眼。
-   必须放在亮色规则之后，否则同优先级下会被上面的亮色覆盖。 */
-@media (prefers-color-scheme: dark){
-  .btn-quark{background:#16233a;color:#7db0ff;border-color:#2d4570}
-  .btn-quark:hover{background:#1c2d4a}
-  .btn-baidu{background:#1c2028;color:#8fb4dd;border-color:#2f3846}
-  .btn-baidu:hover{background:#232935;border-color:#3d4959}
 }
 /* 按钮内的网盘 logo：官方图形，内嵌 base64 免额外请求 */
 .btn-ico{width:15px;height:15px;flex:none;display:block;object-fit:contain}
@@ -970,10 +958,8 @@ function toolCard(t, s, q = '', hot = false){
   } else if (t.cmd){
     action = `<div class="cmd-wrap"><div class="cmd-hint">怎么安装：复制以下代码到 agent 即可</div><div class="cmd-row"><code>${esc(t.cmd)}</code><button class="btn-copy" data-copy="${esc(t.cmd)}">复制</button></div></div>`;
   } else if (t.quark){
-    const baidu = t.baidu ? `<a class="btn btn-baidu" href="${t.baidu}" target="_blank" rel="noopener">${ICON_BAIDU}备用下载</a>` : '';
-    /* 提示放在按钮下方一行：网盘直链容易因限流断流，先转存到自己的网盘再下载更稳 */
-    action = `<div class="tool-btns"><a class="btn btn-quark" href="${t.quark}" target="_blank" rel="noopener">${ICON_QUARK}点击下载</a>${baidu}</div>
-      <div class="tool-tips">${ICON_TIP}先转存后下载，避免文件损坏</div>`;
+    /* 下载入口统一走上面的「下载软件」标签行（夸克 / 百度），这里只留一条提示 */
+    action = `<div class="tool-tips">${ICON_TIP}先转存到自己的网盘再下载，避免文件损坏</div>`;
   }
 
   const points = t.points ? `<ul class="tool-points">${t.points.map(p => `<li>${p}</li>`).join('')}</ul>` : '';
