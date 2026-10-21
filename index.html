@@ -834,10 +834,13 @@ function findToolsInUpdate(u){
   SECTIONS.forEach(s => s.tools.forEach(t => {
     if (text.includes(t.name.replace(/\s+/g, ''))) push(t.name);
   }));
-  /* 名字之间存在包含关系时（如「番茄小说下载器」与「番茄小说下载器精美版」），
-     短名会先被命中，导致动态更新跳到错误的卡片。按名字长度倒序，
-     最具体（最长）的那个排在前面，优先作为跳转目标。 */
-  if (hit.length) return hit.sort((a, b) => b.length - a.length);
+  /* 名字之间存在包含关系时（如「小说下载器」⊂「番茄小说下载器」⊂「番茄小说下载器精美版」），
+     子串会跟着一起命中，导致动态更新里冒出一排无关按钮、点击跳错卡片。
+     只保留最长的那个名字——它才是最具体、最贴合标题的那个工具。 */
+  if (hit.length) {
+    const longest = hit.filter(n => !hit.some(m => m !== n && m.replace(/\s+/g, '').includes(n.replace(/\s+/g, ''))));
+    return longest.length ? longest : hit;
+  }
 
   /* 兜底模糊匹配：剥掉常见修饰词后，至少剩 3 个字才认为可信，避免「软件」这类
      过短的公共词把不相关的工具误判成命中 */
