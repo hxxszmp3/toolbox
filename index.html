@@ -177,8 +177,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .tool-dl .row-body{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .tool-dl .dl-tag{
   font-size:12px;font-weight:700;color:#fff;
-  padding:3px 11px;border-radius:7px;white-space:nowrap;
-  text-decoration:none;cursor:pointer;display:inline-flex;align-items:center;gap:4px;
+  padding:4px 12px;border-radius:8px;white-space:nowrap;
+  text-decoration:none;cursor:pointer;display:inline-flex;align-items:center;gap:6px;
   box-shadow:0 1px 3px rgba(0,0,0,.14);
   transition:filter .18s,transform .18s,box-shadow .18s;
 }
@@ -186,7 +186,13 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .tool-dl .dl-tag:active{transform:translateY(0)}
 .tool-dl .dl-tag.dl-quark{background:#4a6ef0;border:1px solid #3a5cd8}
 .tool-dl .dl-tag.dl-baidu{background:#2f6fe0;border:1px solid #2459bd}
-.tool-dl .dl-tag .btn-ico{width:13px;height:13px;flex:none}
+/* 网盘 logo 本身是彩色图形，直接压在品牌色按钮上会融掉，
+   这里给logo 垫一层白色圆角衬底，保证边界清晰、完整可见 */
+.tool-dl .dl-tag .btn-ico{
+  width:13px;height:13px;flex:none;
+  box-sizing:content-box;padding:2px;
+  background:#fff;border-radius:4px;
+}
 /* 暗色下品牌色略压暗，避免纯亮蓝块在黑底上刺眼 */
 @media (prefers-color-scheme: dark){
   .tool-dl .dl-tag.dl-quark{background:#3d5bc4;border-color:#33499f}
