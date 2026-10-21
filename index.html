@@ -608,7 +608,7 @@ mark{background:rgba(245,158,11,.35);color:inherit;border-radius:3px;padding:0 1
 
 <!-- v 参数用于强制刷新：内容改动时把 v 往后加一位，浏览器与 CDN 都会当作新文件，
      避免 GitHub Pages / 浏览器缓存导致用户看不到更新。 -->
-<script src="data.js?v=20261021h"></script>
+<script src="data.js?v=20261021i"></script>
 <script>
 const PAGE_SIZE = 10;
 
@@ -927,13 +927,14 @@ function toolCard(t, s, q = '', hot = false){
     ? `<div class="tool-os"><span class="os-label">支持设备</span>${t.os.map(o => `<span class="os-tag">${esc(o)}</span>`).join('')}</div>`
     : '';
 
-  /* 下载：与「支持设备」同排布的链接标签。资料区叫「下载资料」，其余分区叫「下载软件」；
-     只有网盘链接才显示这一行 */
+  /* 下载：与「支持设备」同排布的链接标签。资料区叫「下载资料」，壁纸区叫「下载壁纸」，
+     其余分区叫「下载软件」；只有网盘链接才显示这一行 */
   const dlTags = [
     t.quark ? `<a class="dl-tag" href="${esc(t.quark)}" target="_blank" rel="noopener" title="${esc(t.quark)}">${ICON_QUARK}夸克网盘</a>` : '',
     t.baidu ? `<a class="dl-tag" href="${esc(t.baidu)}" target="_blank" rel="noopener" title="${esc(t.baidu)}">${ICON_BAIDU}百度网盘</a>` : '',
   ].filter(Boolean).join('');
-  const dlLabel = s.id === 'data' ? '下载资料' : '下载软件';
+  const DL_LABEL = { data: '下载资料', wallpaper: '下载壁纸' };
+  const dlLabel = DL_LABEL[s.id] || '下载软件';
   const dlLine = dlTags
     ? `<div class="tool-dl"><span class="dl-label">${dlLabel}</span>${dlTags}</div>`
     : '';
