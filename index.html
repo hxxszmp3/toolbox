@@ -151,41 +151,47 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   animation:newPulse 1.6s ease-in-out infinite;
 }
 @keyframes newPulse{0%,100%{opacity:1}50%{opacity:.35}}
-.tool-desc{font-size:13px;color:var(--text-2);line-height:1.6}
-.tool-desc .desc-label{
-  font-size:11px;font-weight:600;color:var(--text-3);
-  background:var(--soft-btn);padding:2px 7px;border-radius:6px;margin-right:7px;
-  display:inline-block;vertical-align:middle;
+/* 卡片内的三块信息（软件简介 / 支持设备 / 下载软件）统一为「标题 + 内容」两行结构。
+   标题独占一行，内容另起一行并左侧缩进 —— 手机端标签换行时不会跑到标题下面。 */
+.tool-row{margin-top:9px}
+.tool-row .row-title{
+  font-size:11px;font-weight:700;color:var(--text-3);letter-spacing:.05em;
+  display:flex;align-items:center;gap:5px;margin-bottom:4px;
 }
+.tool-row .row-title::before{
+  content:'';width:3px;height:11px;border-radius:2px;flex:none;
+  background:var(--accent);opacity:.6;
+}
+.tool-row .row-body{min-width:0}
+.tool-desc .row-body{font-size:13px;color:var(--text-2);line-height:1.6}
 
-/* 支持设备 */
-.tool-os{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:-2px}
-.tool-os .os-label{
-  font-size:11px;font-weight:600;color:var(--text-3);
-  background:var(--soft-btn);padding:2px 8px;border-radius:6px;flex:none;
-}
+/* 支持设备：标签在标题下方成组换行 */
+.tool-os .row-body{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
 .tool-os .os-tag{
   font-size:11px;font-weight:600;color:var(--text-2);
   background:var(--soft-btn);border:1px solid var(--border);
   padding:1px 7px;border-radius:6px;white-space:nowrap;
 }
 
-/* 下载软件：与「支持设备」同排布的链接标签 */
-.tool-dl{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:-2px}
-.tool-dl .dl-label{
-  font-size:11px;font-weight:600;color:var(--text-3);
-  background:var(--soft-btn);padding:2px 8px;border-radius:6px;flex:none;
-}
+/* 下载：夸克 / 百度两个网盘入口，官方品牌色实心高亮 */
+.tool-dl .row-body{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .tool-dl .dl-tag{
-  font-size:11px;font-weight:600;color:var(--text-2);
-  background:var(--soft-btn);border:1px solid var(--border);
-  padding:1px 7px;border-radius:6px;white-space:nowrap;
-  text-decoration:none;cursor:pointer;
-  display:inline-flex;align-items:center;gap:3px;
-  transition:color .18s,border-color .18s,background .18s;
+  font-size:12px;font-weight:700;color:#fff;
+  padding:3px 11px;border-radius:7px;white-space:nowrap;
+  text-decoration:none;cursor:pointer;display:inline-flex;align-items:center;gap:4px;
+  box-shadow:0 1px 3px rgba(0,0,0,.14);
+  transition:filter .18s,transform .18s,box-shadow .18s;
 }
-.tool-dl .dl-tag:hover{color:var(--primary);border-color:var(--primary);background:var(--primary-soft)}
-.tool-dl .dl-tag .btn-ico{width:12px;height:12px;flex:none}
+.tool-dl .dl-tag:hover{filter:brightness(1.08);transform:translateY(-1px);box-shadow:0 3px 8px rgba(0,0,0,.18)}
+.tool-dl .dl-tag:active{transform:translateY(0)}
+.tool-dl .dl-tag.dl-quark{background:#4a6ef0;border:1px solid #3a5cd8}
+.tool-dl .dl-tag.dl-baidu{background:#2f6fe0;border:1px solid #2459bd}
+.tool-dl .dl-tag .btn-ico{width:13px;height:13px;flex:none}
+/* 暗色下品牌色略压暗，避免纯亮蓝块在黑底上刺眼 */
+@media (prefers-color-scheme: dark){
+  .tool-dl .dl-tag.dl-quark{background:#3d5bc4;border-color:#33499f}
+  .tool-dl .dl-tag.dl-baidu{background:#2a58ad;border-color:#204479}
+}
 
 /* 右上角书签：点击输入管理员密码显示下载来源 */
 .tool-bookmark{
@@ -910,21 +916,22 @@ function toolCard(t, s, q = '', hot = false){
 
   /* 版本号按要求不在卡片展示，data.js 的 version 字段保留备用 */
 
-  /* 支持设备：未标注（无官网或不确定）则整行不显示 */
+  /* 支持设备：未标注（无官网或不确定）则整行不显示。
+     标题独占一行，设备标签在其下方成组换行，手机端不会挤到标题后面 */
   const osLine = (t.os && t.os.length)
-    ? `<div class="tool-os"><span class="os-label">支持设备</span>${t.os.map(o => `<span class="os-tag">${esc(o)}</span>`).join('')}</div>`
+    ? `<div class="tool-row tool-os"><div class="row-title">支持设备</div><div class="row-body">${t.os.map(o => `<span class="os-tag">${esc(o)}</span>`).join('')}</div></div>`
     : '';
 
-  /* 下载：与「支持设备」同排布的链接标签。资料区叫「下载资料」，壁纸区叫「下载壁纸」，
-     其余分区叫「下载软件」；只有网盘链接才显示这一行 */
+  /* 下载：标题 + 夸克 / 百度两个高亮按钮。资料区叫「下载资料」，壁纸区叫「下载壁纸」，
+     其余分区叫「下载软件」；只有网盘链接才显示这一块 */
   const dlTags = [
-    t.quark ? `<a class="dl-tag" href="${esc(t.quark)}" target="_blank" rel="noopener" title="${esc(t.quark)}">${ICON_QUARK}夸克网盘</a>` : '',
-    t.baidu ? `<a class="dl-tag" href="${esc(t.baidu)}" target="_blank" rel="noopener" title="${esc(t.baidu)}">${ICON_BAIDU}百度网盘</a>` : '',
+    t.quark ? `<a class="dl-tag dl-quark" href="${esc(t.quark)}" target="_blank" rel="noopener" title="${esc(t.quark)}">${ICON_QUARK}夸克网盘</a>` : '',
+    t.baidu ? `<a class="dl-tag dl-baidu" href="${esc(t.baidu)}" target="_blank" rel="noopener" title="${esc(t.baidu)}">${ICON_BAIDU}百度网盘</a>` : '',
   ].filter(Boolean).join('');
   const DL_LABEL = { data: '下载资料', wallpaper: '下载壁纸' };
   const dlLabel = DL_LABEL[s.id] || '下载软件';
   const dlLine = dlTags
-    ? `<div class="tool-dl"><span class="dl-label">${dlLabel}</span>${dlTags}</div>`
+    ? `<div class="tool-row tool-dl"><div class="row-title">${dlLabel}</div><div class="row-body">${dlTags}</div></div>`
     : '';
 
   /* 书签状态按卡片独立维护（key = 分区id + 工具名），互不影响 */
@@ -973,7 +980,7 @@ function toolCard(t, s, q = '', hot = false){
       ${newBadge}
       ${tag}
     </div>
-    <div class="tool-desc"><span class="desc-label">${esc(descLabel(s))}</span><span class="desc-text">${hi(t.desc, q)}</span></div>
+    <div class="tool-row tool-desc"><div class="row-title">${esc(descLabel(s))}</div><div class="row-body">${hi(t.desc, q)}</div></div>
     ${osLine}
     ${dlLine}
     ${secretBox}
