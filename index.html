@@ -240,6 +240,12 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .tool-points a{color:var(--primary);word-break:break-all}
 .tool-points a:hover{text-decoration:underline}
 .tool-points code{background:var(--code-bg);padding:1px 6px;border-radius:4px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:11.5px;color:var(--text-2);word-break:break-all}
+/* 功能清单：软件简介下方的 ✅ 逐条说明 */
+.tool-features{list-style:none;display:flex;flex-direction:column;gap:3px;margin-top:6px;font-size:12.5px;color:var(--text-2)}
+.tool-features li{line-height:1.55;padding-left:17px;position:relative}
+.tool-features li::before{
+  content:'✅';position:absolute;left:0;top:0;font-size:11px;line-height:1.9;
+}
 .btn{
   height:30px;padding:0 14px;border-radius:8px;font-size:12.5px;font-weight:600;
   display:inline-flex;align-items:center;justify-content:center;gap:4px;white-space:nowrap;transition:background .15s;
@@ -613,7 +619,7 @@ mark{background:rgba(245,158,11,.35);color:inherit;border-radius:3px;padding:0 1
 
 <!-- v 参数用于强制刷新：内容改动时把 v 往后加一位，浏览器与 CDN 都会当作新文件，
      避免 GitHub Pages / 浏览器缓存导致用户看不到更新。 -->
-<script src="data.js?v=20261021i"></script>
+<script src="data.js?v=20261022a"></script>
 <script>
 const PAGE_SIZE = 10;
 
@@ -982,6 +988,11 @@ function toolCard(t, s, q = '', hot = false){
 
   const points = t.points ? `<ul class="tool-points">${t.points.map(p => `<li>${p}</li>`).join('')}</ul>` : '';
 
+  /* 功能清单：跟在简介下方的 ✅ 逐条说明 */
+  const features = (t.features && t.features.length)
+    ? `<ul class="tool-features">${t.features.map(f => `<li>${esc(f)}</li>`).join('')}</ul>`
+    : '';
+
   return `<div class="tool${hasSrc ? ' has-bookmark' : ''}${open ? ' unlocked' : ''}" data-tool="${esc(t.name)}" style="--accent:${s.color};--accent-soft:${s.soft};--accent-border:${s.color}99">
     <div class="tool-accent"></div>
     ${bookmark}
@@ -991,7 +1002,7 @@ function toolCard(t, s, q = '', hot = false){
       ${newBadge}
       ${tag}
     </div>
-    <div class="tool-row tool-desc"><div class="row-title">${esc(descLabel(s))}</div><div class="row-body">${hi(t.desc, q)}</div></div>
+    <div class="tool-row tool-desc"><div class="row-title">${esc(descLabel(s))}</div><div class="row-body">${hi(t.desc, q)}${features}</div></div>
     ${osLine}
     ${dlLine}
     ${secretBox}

@@ -61,7 +61,14 @@ const SECTIONS = [
       { name:'Sparkle', desc:'漫画聚合阅读器，看热门 / 找漫画 / 畅销榜 / 全网热议，也能下载离线看', added:'2026-10-11', img:'icons/sparkle.png', os:['安卓'], quark:'https://pan.quark.cn/s/3e86c984820f', baidu:'https://pan.baidu.com/s/1DJbbLI_O8wGfA9KUh5Tzmg?pwd=mwki' },
       { name:'抱走漫画', desc:'免费无广告的多源漫画聚合阅读器，装完直接看，离线也能缓存下载', added:'2026-10-05', img:'icons/baozoumanhua.png', version:'1.0.7', os:['安卓'], secretText:'QQ 群文件', quark:'https://pan.quark.cn/s/b3c9435bd0a4', baidu:'https://pan.baidu.com/s/1rLGyBCQYtHYV_NV9g1xZNw?pwd=1o1m' },
       { name:'Mihon', desc:'免费开源安卓漫画阅读器（Tachiyomi 继任者）', added:'2026-10-04', img:'icons/mihon.png', version:'v0.20.4', os:['安卓'], secret:'https://github.com/mihonapp/mihon', quark:'https://pan.quark.cn/s/14966eac05db', baidu:'https://pan.baidu.com/s/11FGWmCzzpJ7gVCjh26lvIg?pwd=9gmn' },
-      { name:'异次元', desc:'无广告无会员的多图源漫画聚合器，导入图源后一个 App 看全网漫画', added:'2026-10-21', img:'icons/yiciyuan.png', os:['安卓'], secret:'https://www.yckceo.com/yiciyuan/index/index.html', quark:'https://pan.quark.cn/s/1043b1354719', baidu:'https://pan.baidu.com/s/1QGywaLxWoMtaFNQYX7hb5A?pwd=i6pt' },
+      { name:'异次元', desc:'无广告无会员的多图源漫画聚合器，导入图源后一个 App 看全网漫画', added:'2026-10-21', img:'icons/yiciyuan.png', os:['安卓'], secret:'https://www.yckceo.com/yiciyuan/index/index.html', quark:'https://pan.quark.cn/s/1043b1354719', baidu:'https://pan.baidu.com/s/1QGywaLxWoMtaFNQYX7hb5A?pwd=i6pt', features:[
+        '界面干净清爽，无广告、无多余花哨的东西',
+        '完全免费，没有会员，没有广告骚扰',
+        '支持下载缓存，支持离线阅读',
+        '支持添加多个图源，资源近乎无限，随时切源',
+        '一次搜索多源漫画',
+        '加入定制源地址后，一个 App 免费看全网漫画',
+      ]},
       { name:'venera_1.4.6', desc:'漫画阅读器', added:'2026-10-04', emoji:'📖', version:'1.4.6', os:['安卓'], secret:'https://github.com/venera-app/venera', quark:'https://pan.quark.cn/s/ca0afa3bf4b0', baidu:'https://pan.baidu.com/s/1J_O7CFwJEgtow6ibGD_9qA?pwd=ai9w' },
     ]
   },
