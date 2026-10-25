@@ -138,3 +138,11 @@
 - state 已按脚本逻辑更新（正常行为，未回滚）。git status 仅 scripts/sync-state.json 变动；.workbuddy/ 未跟踪。
 - 附带发现（仅提示、未处理）：data.js 卡片 version 字段明显滞后（Kazumi v2.3.8、Piik v1.9.2、GKD v605），且 Piik 的 baidu 链接（pwd=t8d8）与 watchlist 中记录（pwd=s53t）不一致。
 - 已通知用户：Kazumi / Piik 有夸克+百度（夸克替换安装包 / 百度手动）；GKD 规则为内嵌 json5，需更新卡片资源。仅检测+通知，未改 data.js、未推送、未上传网盘。
+
+## 2026-10-25 09:11
+- 命令：`node scripts/sync-check.js`（cwd: C:/Users/dellsq/Desktop/123/toolbox）
+- 结果：共检测 23 个来源（另有 12 个需人工查看），**发现 2 个更新**，无失败条目。
+- 更新明细：Piik [实用软件] v2.4.0→v2.4.1（2026-10-24）；GKD 去广告规则（内嵌 GKD 卡片）v616→v617（2026-10-24）。
+- state 已按脚本逻辑更新（正常行为，未回滚）。git status 仅 scripts/sync-state.json 变动；.workbuddy/ 未跟踪。
+- 附带发现（仅提示、未处理）：data.js 卡片 version 仍严重滞后（Piik v1.9.2、GKD v605），Piik 百度 pwd 仍为 t8d8 而 watchlist 为 s53t。
+- 已通知用户：Piik 有夸克+百度（夸克替换安装包 / 百度手动）；GKD 规则为内嵌 json5，需更新卡片资源。仅检测+通知，未改 data.js、未推送、未上传网盘。
