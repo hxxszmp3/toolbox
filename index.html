@@ -541,12 +541,29 @@ mark{background:rgba(245,158,11,.35);color:inherit;border-radius:3px;padding:0 1
   .grid{grid-template-columns:repeat(2,1fr)}
 }
 @media (max-width:767px){
-  .site-header{padding:10px 14px}
+  .site-header{padding:9px 12px}
   .brand-domain{display:none}
-  .tabbar-inner{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;padding:6px 10px}
-  .tab{flex-direction:column;gap:2px;padding:7px 2px;font-size:11.5px;width:100%;justify-content:center;border-radius:12px}
+  .brand-icon{width:38px;height:38px;border-radius:10px;font-size:19px}
+  .brand-name{font-size:18px}
+  .search input{height:36px;font-size:13px}
+  /* 手机端分区改成横向滑动单行：10 个 tab 原本排两行，头部占掉近 1/4 屏幕，
+     跳转定位时目标卡片容易被吸顶区挡住。 */
+  .tabbar-inner{
+    display:flex;flex-wrap:nowrap;overflow-x:auto;
+    gap:6px;padding:7px 12px;
+    scroll-snap-type:x proximity;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+  .tabbar-inner::-webkit-scrollbar{display:none}
+  .tab{
+    flex:none;flex-direction:row;gap:5px;
+    padding:6px 12px;font-size:12.5px;width:auto;
+    justify-content:center;border-radius:14px;
+    scroll-snap-align:start;
+  }
   .tab-count{display:none}
-  .tab-icon{font-size:17px}
+  .tab-icon{font-size:15px}
   .content{padding:18px 14px 48px}
   .grid{grid-template-columns:1fr}
   .search{max-width:none}
@@ -619,7 +636,7 @@ mark{background:rgba(245,158,11,.35);color:inherit;border-radius:3px;padding:0 1
 
 <!-- v 参数用于强制刷新：内容改动时把 v 往后加一位，浏览器与 CDN 都会当作新文件，
      避免 GitHub Pages / 浏览器缓存导致用户看不到更新。 -->
-<script src="data.js?v=20261024a"></script>
+<script src="data.js?v=20261025a"></script>
 <script>
 const PAGE_SIZE = 10;
 
@@ -911,14 +928,15 @@ function gotoTool(toolName){
 
   /* 等两帧让卡片渲染完再定位高亮。
      closeUpdates 内部也会用 rAF 回滚滚动位置，所以这里多等一帧，
-     确保 scrollIntoView 排在回滚之后执行，不会被覆盖。 */
+     确保滚动排在回滚之后执行，不会被覆盖。 */
   requestAnimationFrame(() => requestAnimationFrame(() => {
     const cards = content.querySelectorAll('.tool');
     let target = null;
     cards.forEach(c => { if (c.dataset.tool === toolName) target = c; });
     if (!target) return;
     target.classList.add('flash');
-    target.scrollIntoView({ behavior:'smooth', block:'center' });
+    /* 滚到吸顶区下方，避免被头部/更新条盖住 */
+    scrollToElement(target, 14);
     setTimeout(() => target.classList.remove('flash'), 2600);
   }));
   return true;
@@ -1359,6 +1377,24 @@ function syncHeaderHeight(){
   if (hw) document.documentElement.style.setProperty('--hdr-h', hw.offsetHeight + 'px');
 }
 window.addEventListener('resize', syncHeaderHeight);
+
+/* 跳转定位时需要避开的固定高度：吸顶头部 + 吸顶的更新滚动条。
+   更新滚动条是 sticky 的，滚动后必然吸在头部正下方，
+   所以直接用它的实际高度做偏移，不看它当下的位置。 */
+function stickyOffset(){
+  const hdr = document.querySelector('.header-wrap');
+  const tk = document.querySelector('.ticker');
+  let h = hdr ? hdr.getBoundingClientRect().height : 0;
+  if (tk) h += tk.getBoundingClientRect().height;
+  return h;
+}
+
+/* 把目标元素滚到固定区下方，而不是简单的居中 —— 居中会被吸顶头部盖住 */
+function scrollToElement(el, extra = 12){
+  const off = stickyOffset() + extra;
+  const y = window.scrollY + el.getBoundingClientRect().top - off;
+  window.scrollTo({ top: Math.max(0, y), behavior:'smooth' });
+}
 </script>
 
 <!-- 百度统计 -->
