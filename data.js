@@ -180,6 +180,7 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
+  { date:'2026-10-25', type:'new', section:'data', title:'资料区新增：演唱会场馆模拟器', desc:'在线模拟演唱会场馆座位分布，主舞台、看台与各区位置一目了然，买票选座前先看个明白' },
   { date:'2026-10-24', type:'update', section:'novel', title:'番茄小说下载器更新至最新版 2026-10-24', desc:'修复已知 bug，新增番茄短剧与番茄漫画功能' },
   { date:'2026-10-21', type:'new', section:'comic', title:'漫画区新增：异次元', desc:'无广告无会员的多图源漫画聚合器，界面干净，支持添加多个图源、一次搜索多源、离线缓存，另附 20 份图源合集',
     link:{ quark:'https://pan.quark.cn/s/1043b1354719', baidu:'https://pan.baidu.com/s/1QGywaLxWoMtaFNQYX7hb5A?pwd=i6pt' } },
