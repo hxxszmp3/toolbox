@@ -181,7 +181,7 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
-  { date:'2026-10-25', type:'new', section:'data', title:'资料专区同步更新', desc:'软件工具包大合集新增双下载通道，两个夸克分享任选其一；同时上线演唱会场馆模拟器，资料专区入口全部整理完毕',
+  { date:'2026-10-25', type:'new', section:'data', title:'资料专区同步更新', desc:'今日新增两个实用站点与一套安卓应用大合集，本区入口已全部整理完毕，进分区按目录找就行',
     link:{ quark:'https://pan.quark.cn/s/24d6ebe76714' } },
   { date:'2026-10-25', type:'new', section:'data', title:'资料区新增：软件工具包大合集', desc:'40 个分类 1337 个精选安卓应用，实用工具、影视动漫、电脑软件、磁力下载、壁纸主题、相机类等持续更新中',
     link:{ quark:'https://pan.quark.cn/s/a13cf6e67d2c' } },
