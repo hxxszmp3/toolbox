@@ -83,7 +83,7 @@ const SECTIONS = [
   {
     id:'data', icon:'📂', name:'资料专区', desc:'干货资料合集', added:'2026-10-04', color:'#14b8a6', soft:'#f0fdfa',
     tools:[
-      { name:'软件工具包大合集', desc:'40 个分类 1337 个精选安卓应用，实用工具 / 影视动漫 / 电脑软件 / 小说漫画 / 音乐软件 / 磁力下载 / 壁纸主题 / 相机类等持续更新中', added:'2026-10-25', emoji:'🧰', quark:'https://pan.quark.cn/s/a13cf6e67d2c' },
+      { name:'软件工具包大合集', desc:'40 个分类 1337 个精选安卓应用，实用工具 / 影视动漫 / 电脑软件 / 小说漫画 / 音乐软件 / 磁力下载 / 壁纸主题 / 相机类等持续更新中', added:'2026-10-25', emoji:'🧰', quark:'https://pan.quark.cn/s/24d6ebe76714' },
       { name:'演唱会场馆模拟器', desc:'在线模拟演唱会场馆座位分布，选座视角一眼看清主舞台、看台与各区位置', added:'2026-10-25', img:'icons/yanchanghui.png', web:'https://shijiao.xingpaste.com' },
       { name:'车载音乐无损系列全集', desc:'3598 首车载歌单，主体为 FLAC 无损且带 lrc 歌词，另按 18 个主题分册：抖音网红、经典粤语、草原天籁、闽南语、4D环绕、怀旧8090 等', added:'2026-10-18', emoji:'🚗', quark:'https://pan.quark.cn/s/708e9409767b' },
       { name:'获取财色的手段', desc:'只讲两件事：搞钱和两性关系。从商界竞争一路聊到情场博弈，把人性和利益交换的门道摊开给你看', added:'2026-10-18', emoji:'♟️', quark:'https://pan.quark.cn/s/c7685670683d' },
@@ -181,6 +181,8 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
+  { date:'2026-10-25', type:'new', section:'data', title:'资料专区同步更新', desc:'软件工具包大合集新增双下载通道，两个夸克分享任选其一；同时上线演唱会场馆模拟器，资料专区入口全部整理完毕',
+    link:{ quark:'https://pan.quark.cn/s/24d6ebe76714' } },
   { date:'2026-10-25', type:'new', section:'data', title:'资料区新增：软件工具包大合集', desc:'40 个分类 1337 个精选安卓应用，实用工具、影视动漫、电脑软件、磁力下载、壁纸主题、相机类等持续更新中',
     link:{ quark:'https://pan.quark.cn/s/a13cf6e67d2c' } },
   { date:'2026-10-25', type:'new', section:'data', title:'资料区新增：演唱会场馆模拟器', desc:'在线模拟演唱会场馆座位分布，主舞台、看台与各区位置一目了然，买票选座前先看个明白' },
