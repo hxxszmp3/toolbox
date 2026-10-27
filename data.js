@@ -12,7 +12,7 @@ const SECTIONS = [
   {
     id:'novel', icon:'📖', name:'小说专区', desc:'免费看小说、下小说', added:'2026-10-04', color:'#3b82f6', soft:'#eff6ff',
     tools:[
-      { name:'小说下载器', desc:'全网小说搜索下载，一键导出 TXT/EPUB', added:'2026-10-04', img:'icons/xiaoshuo.png', version:'v1.11.0', os:['Windows','macOS','Linux'], secret:'https://github.com/freeok/so-novel/releases', quark:'https://pan.quark.cn/s/6c73fb388aea', baidu:'https://pan.baidu.com/s/1SHWmlXxW3FYTBf_2f_yruQ?pwd=i32n' },
+      { name:'小说下载器', desc:'全网小说搜索下载，一键导出 TXT/EPUB', added:'2026-10-04', img:'icons/xiaoshuo.png', version:'v1.12.0', os:['Windows','macOS','Linux'], secret:'https://github.com/freeok/so-novel/releases', quark:'https://pan.quark.cn/s/6c73fb388aea', baidu:'https://pan.baidu.com/s/1SHWmlXxW3FYTBf_2f_yruQ?pwd=i32n' },
       { name:'番茄小说下载器', desc:'小说、漫画、短剧，搜得、存得下、读得爽。免费的番茄小说下载与阅读工具，Windows、macOS、Linux、Android、iOS 全平台可用。', added:'2026-10-04', img:'icons/fanqie.png', version:'v2.4.16', os:['Windows','macOS','Linux','安卓','iOS'], secret:['https://github.com/zhongbai2333/Tomato-Novel-Downloader','https://github.com/POf-L/Fanqie-novel-Downloader/releases/tag/unsigned-v2026.10.20-1539-r740'], quark:'https://pan.quark.cn/s/867ce5b0aad5', baidu:'https://pan.baidu.com/s/1Rg_Ffo3vqfSU4EdQVlJPhA?pwd=f46i' },
       { name:'七猫小说下载器', desc:'七猫免费小说下载', added:'2026-10-04', img:'icons/qimao.png', version:'v1.0.0', os:['Windows','macOS','Linux','安卓','iOS'], secret:'https://github.com/shing-yu/swiftcat-downloader', quark:'https://pan.quark.cn/s/a6feae8cc3d1', baidu:'https://pan.baidu.com/s/1IEjRs6QI0SSxz0_8MbAdXw?pwd=paqi' },
       { name:'笔趣阁 5.0', desc:'海量书源免费阅读', added:'2026-10-04', img:'icons/biquge.png', version:'5.0', os:['安卓'], secret:'https://www.bqgapp.cn/', quark:'https://pan.quark.cn/s/efae8b3e1325', baidu:'https://pan.baidu.com/s/1ecJhyMWNgQfw6v5uCt2ySg?pwd=azf3' },
@@ -181,6 +181,8 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
+  { date:'2026-10-27', type:'update', section:'novel', title:'小说下载器更新至 v1.12.0', desc:'全网小说搜索下载新版本，支持 TXT / EPUB 一键导出，Windows / macOS / Linux 三端可用',
+    link:{ quark:'https://pan.quark.cn/s/6c73fb388aea', baidu:'https://pan.baidu.com/s/1SHWmlXxW3FYTBf_2f_yruQ?pwd=i32n' } },
   { date:'2026-10-25', type:'new', section:'data', title:'资料专区同步更新', desc:'今日新增两个实用站点与一套安卓应用大合集，本区入口已全部整理完毕，进分区按目录找就行',
     link:{ quark:'https://pan.quark.cn/s/24d6ebe76714' } },
   { date:'2026-10-25', type:'new', section:'data', title:'资料区新增：软件工具包大合集', desc:'40 个分类 1337 个精选安卓应用，实用工具、影视动漫、电脑软件、磁力下载、壁纸主题、相机类等持续更新中',
