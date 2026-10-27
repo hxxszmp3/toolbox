@@ -36,11 +36,11 @@ server.listen(PORT, async () => {
     await new Promise(r => setTimeout(r, 2500));
 
     const probe = `(() => {
-      const card = [...document.querySelectorAll('.tool')].find(c => c.querySelector('.btn-quark') && c.querySelector('.btn-baidu'));
+      const card = [...document.querySelectorAll('.tool')].find(c => c.querySelector('.dl-quark') && c.querySelector('.dl-baidu'));
       if (!card) return { err:'未找到同时有夸克+百度的卡片' };
-      const qb = card.querySelector('.btn-quark'), bb = card.querySelector('.btn-baidu');
+      const qb = card.querySelector('.dl-quark'), bb = card.querySelector('.dl-baidu');
       const tips = card.querySelector('.tool-tips');
-      const icoQ = qb.querySelector('img.btn-ico'), icoB = bb.querySelector('img.btn-ico');
+      const icoQ = qb.querySelector('img'), icoB = bb.querySelector('img');
       const rq = icoQ ? icoQ.getBoundingClientRect() : null;
       return {
         toolName: card.dataset.tool,
@@ -66,13 +66,13 @@ server.listen(PORT, async () => {
     /* 统计整体覆盖率 */
     const stat = await evalJS(`(() => {
       const cards=[...document.querySelectorAll('.tool')];
-      const withQ=cards.filter(c=>c.querySelector('.btn-quark'));
+      const withQ=cards.filter(c=>c.querySelector('.dl-quark'));
       return {
         total: cards.length,
         withQuark: withQ.length,
-        quarkWithIco: withQ.filter(c=>c.querySelector('img.btn-ico')).length,
+        quarkWithIco: withQ.filter(c=>c.querySelector('img')).length,
         quarkWithTips: withQ.filter(c=>c.querySelector('.tool-tips')).length,
-        baiduWithIco: cards.filter(c=>c.querySelector('img.btn-ico')).length,
+        baiduWithIco: cards.filter(c=>c.querySelector('img')).length,
         webOnly: cards.filter(c=>c.querySelector('.web-link')).length,
         cmdOnly: cards.filter(c=>c.querySelector('.cmd-wrap')).length
       };
@@ -86,7 +86,7 @@ server.listen(PORT, async () => {
 
     /* 截一张卡片区域的图，用肉眼确认排版与图标观感 */
     const box = await evalJS(`(() => {
-      const c=[...document.querySelectorAll('.tool')].find(x=>x.querySelector('.btn-baidu'));
+      const c=[...document.querySelectorAll('.tool')].find(x=>x.querySelector('.dl-baidu'));
       if(!c) return null;
       const b=c.getBoundingClientRect();
       return { x: Math.round(b.x)-8, y: Math.round(b.y)-8, width: Math.round(b.width)+16, height: Math.round(b.height)+16 };
@@ -107,7 +107,7 @@ server.listen(PORT, async () => {
       await send('Emulation.setEmulatedMedia', { features: [{ name:'prefers-color-scheme', value: scheme }] });
       await new Promise(r => setTimeout(r, 400));
       const box = await evalJS(`(() => {
-        const c=[...document.querySelectorAll('.tool')].find(x=>x.querySelector('.btn-baidu'));
+        const c=[...document.querySelectorAll('.tool')].find(x=>x.querySelector('.dl-baidu'));
         if(!c) return null;
         const b=c.getBoundingClientRect();
         return { x: Math.round(b.x)-8, y: Math.round(b.y)-8, width: Math.round(b.width)+16, height: Math.round(b.height)+16 };

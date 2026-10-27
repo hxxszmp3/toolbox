@@ -42,26 +42,38 @@ def process(path):
         im = im.resize((max(1, round(w * scale)), max(1, round(h * scale))),
                        Image.LANCZOS)
 
-    # 统一转成 RGBA 再量化：图标多为带透明通道的小图，
-    # 直接量化透明通道容易出现边缘发黑/发白，所以先把底色烘进 RGB
-    if im.mode in ('RGBA', 'LA', 'P'):
+    # 量化分两种走法：
+    # 1) 带透明通道的图 → FASTOCTREE + transparency=0，保留透明像素。
+    #    绝不能把 alpha 烘进白底再量化，否则四周出现白边，
+    #    在卡片的圆角裁切下非常明显（踩过的坑）。
+    # 2) 不带透明的 RGB 图 → 白底烘焙法（本来就无 alpha，烘焙等价于直接量化）。
+    has_alpha = im.mode in ('RGBA', 'LA') or (
+        im.mode == 'P' and 'transparency' in im.info)
+
+    if has_alpha:
         im = im.convert('RGBA')
-        bg = Image.new('RGB', im.size, (255, 255, 255))
-        bg.paste(im, mask=im.split()[-1])
-        im = bg
+        for colors in (256, 128, 64):
+            q = im.quantize(colors=colors, method=Image.FASTOCTREE,
+                            dither=Image.FLOYDSTEINBERG)
+            tmp = path + '.tmp.png'
+            q.save(tmp, 'PNG', optimize=True, transparency=0)
+            new = os.path.getsize(tmp)
+            if new <= TARGET_BYTES or colors == 64:
+                os.replace(tmp, path)
+                break
+            os.remove(tmp)
     else:
         im = im.convert('RGB')
-
-    # 先试 256 色，不够小再降到 128/64
-    for colors in (256, 128, 64):
-        q = im.quantize(colors=colors, method=Image.MEDIANCUT, dither=Image.FLOYDSTEINBERG)
-        tmp = path + '.tmp.png'
-        q.save(tmp, 'PNG', optimize=True)
-        new = os.path.getsize(tmp)
-        if new <= TARGET_BYTES or colors == 64:
-            os.replace(tmp, path)
-            break
-        os.remove(tmp)
+        # 先试 256 色，不够小再降到 128/64
+        for colors in (256, 128, 64):
+            q = im.quantize(colors=colors, method=Image.MEDIANCUT, dither=Image.FLOYDSTEINBERG)
+            tmp = path + '.tmp.png'
+            q.save(tmp, 'PNG', optimize=True)
+            new = os.path.getsize(tmp)
+            if new <= TARGET_BYTES or colors == 64:
+                os.replace(tmp, path)
+                break
+            os.remove(tmp)
 
     return name, orig, os.path.getsize(path), '%.1f%%' % ((1 - os.path.getsize(path) / orig) * 100)
 
