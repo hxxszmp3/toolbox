@@ -629,6 +629,38 @@ mark{background:rgba(245,158,11,.35);color:inherit;border-radius:3px;padding:0 1
      避免 GitHub Pages / 浏览器缓存导致用户看不到更新。 -->
 <script src="data.js?v=20261028a"></script>
 <script>
+/* 数据加载兜底：data.js 是外部文件，若因缓存 / 网络 / 版本戳不匹配而加载失败，
+   下面的主脚本会直接抛 ReferenceError 导致整页白屏（单文件整站零容错）。
+   这里先探测一次，失败就渲染可重试的提示页，而不是让用户对着白屏发呆。
+   用 throw 阻断后续主脚本是有意为之：数据缺失时主逻辑必然出错，不如直接停。 */
+(function () {
+  if (typeof SECTIONS !== 'undefined' && Array.isArray(SECTIONS) && SECTIONS.length) return;
+
+  var showFallback = function () {
+    if (document.getElementById('__fallback')) return;
+    document.body.innerHTML =
+      '<div id="__fallback" style="max-width:520px;margin:14vh auto;padding:28px;text-align:center;' +
+      'font-family:system-ui,-apple-system,\'PingFang SC\',\'Microsoft YaHei\',sans-serif;color:#1e293b">' +
+      '<div style="font-size:44px;margin-bottom:12px">📡</div>' +
+      '<h1 style="font-size:19px;margin:0 0 10px">数据加载失败</h1>' +
+      '<p style="font-size:14px;line-height:1.7;color:#5b6472;margin:0 0 20px">' +
+      '工具数据（data.js）没能加载出来，通常是网络波动或浏览器缓存了旧版本。<br>' +
+      '点下面的按钮重新加载，或按 Ctrl + F5 强制刷新。</p>' +
+      '<button id="__retry" style="border:0;background:#2563eb;color:#fff;font-size:14px;' +
+      'padding:10px 26px;border-radius:9px;cursor:pointer">重新加载</button></div>';
+    var b = document.getElementById('__retry');
+    if (b) b.onclick = function () { location.reload(true); };
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', showFallback);
+  } else {
+    showFallback();
+  }
+  throw new Error('data.js 加载失败，已降级为提示页');
+})();
+</script>
+<script>
 const PAGE_SIZE = 10;
 
 /* ===================== 渲染 ===================== */
