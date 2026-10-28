@@ -83,6 +83,7 @@ const SECTIONS = [
   {
     id:'data', icon:'📂', name:'资料专区', desc:'干货资料合集', added:'2026-10-04', color:'#14b8a6', soft:'#f0fdfa',
     tools:[
+      { name:'百万剪辑狮的音效库', desc:'2123 个 WAV 音效分 13 类：效果、乐器、动作、场景、武器、动物等，剪辑直接拖进时间线', added:'2026-10-28', emoji:'🎙️', quark:'https://pan.quark.cn/s/28979739a6fb' },
       { name:'软件工具包大合集', desc:'40 个分类 1337 个精选安卓应用，实用工具 / 影视动漫 / 电脑软件 / 小说漫画 / 音乐软件 / 磁力下载 / 壁纸主题 / 相机类等持续更新中', added:'2026-10-25', emoji:'🧰', quark:'https://pan.quark.cn/s/24d6ebe76714' },
       { name:'演唱会场馆模拟器', desc:'在线模拟演唱会场馆座位分布，选座视角一眼看清主舞台、看台与各区位置', added:'2026-10-25', img:'icons/yanchanghui.png', web:'https://shijiao.xingpaste.com' },
       { name:'车载音乐无损系列全集', desc:'3598 首车载歌单，主体为 FLAC 无损且带 lrc 歌词，另按 18 个主题分册：抖音网红、经典粤语、草原天籁、闽南语、4D环绕、怀旧8090 等', added:'2026-10-18', emoji:'🚗', quark:'https://pan.quark.cn/s/708e9409767b' },
@@ -181,6 +182,8 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
+  { date:'2026-10-28', type:'new', section:'data', title:'资料区新增：百万剪辑狮的音效库', desc:'2123 个 WAV 音效分 13 类：效果、乐器、动作、场景、武器、动物等，剪辑直接拖进时间线',
+    link:{ quark:'https://pan.quark.cn/s/28979739a6fb' } },
   { date:'2026-10-27', type:'update', section:'novel', title:'小说下载器更新至 v1.12.0', desc:'全网小说搜索下载新版本，支持 TXT / EPUB 一键导出，Windows / macOS / Linux 三端可用',
     link:{ quark:'https://pan.quark.cn/s/6c73fb388aea', baidu:'https://pan.baidu.com/s/1SHWmlXxW3FYTBf_2f_yruQ?pwd=i32n' } },
   { date:'2026-10-25', type:'new', section:'data', title:'资料专区同步更新', desc:'今日新增两个实用站点与一套安卓应用大合集，本区入口已全部整理完毕，进分区按目录找就行',
