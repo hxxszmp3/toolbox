@@ -30,7 +30,7 @@ const SECTIONS = [
       { name:'MoeKoeMusic', desc:'酷狗概念版开源音乐播放器，GitHub 6000+ star。登录酷狗账号直接同步歌单收藏与听歌时长，无社交功能、官方服务器直连，支持标准 / 高频 / FLAC / Hi-Res 音质', added:'2026-10-14', img:'icons/moekoe.png', version:'v1.7.1', os:['Windows','macOS'], secret:'https://github.com/MoeKoeMusic/MoeKoeMusic', quark:'https://pan.quark.cn/s/a45888fd2f22', baidu:'https://pan.baidu.com/s/1uBPlFqU0HbEjG5sS-KyUDw?pwd=dmpi', uc:'https://drive.uc.cn/s/512d5a99beae4' },
       { name:'敦伦调调', desc:'全网音乐免费听 / 下载', added:'2026-10-04', img:'icons/dunlun.png', version:'v1.0.10', os:['安卓'], secret:'https://app.4848948.xyz/', quark:'https://pan.quark.cn/s/21d0a48a9ee9', baidu:'https://pan.baidu.com/s/1ObfiNgOTdDpkxcEVFZZ4kA?pwd=3dcd', uc:'https://drive.uc.cn/s/626b4c451d5a4' },
       { name:'星盒', desc:'聚合音乐资源神器', added:'2026-10-04', img:'icons/xinghe.png', version:'v2.7.0', os:['安卓'], secret:'https://www.istarbox.app/download', quark:'https://pan.quark.cn/s/7fc3a192ddc2', baidu:'https://pan.baidu.com/s/1wZxYJcJVGL1WzLQ0T44daA?pwd=y184', uc:'https://drive.uc.cn/s/39b2761e89974' },
-      { name:'zpod', desc:'一个应用搞定音乐、影视与听书，三类内容一个播放器全包', added:'2026-10-04', img:'icons/zpod.png', version:'v3.0.12', os:['Windows','macOS','安卓','iOS'], secret:'https://zpod.net/#landing-downloads', quark:'https://pan.quark.cn/s/1b54b41e32ad', baidu:'https://pan.baidu.com/s/1k8lnZ3KKz7eVV-yTLovZlQ?pwd=4if2', uc:'https://drive.uc.cn/s/5078ece1be594' },
+      { name:'zpod', desc:'一个应用搞定音乐、影视与听书，三类内容一个播放器全包', added:'2026-10-04', img:'icons/zpod.png', version:'v3.0.12', os:['Windows','macOS','安卓','iOS'], secret:'https://zpod.net/#landing-downloads', quark:'https://pan.quark.cn/s/1b54b41e32ad', baidu:'https://pan.baidu.com/s/1k8lnZ3KKz7eVV-yTLovZlQ?pwd=4if2', uc:'https://drive.uc.cn/s/cae1b5f416834' },
       { name:'星音乐', desc:'聚合 QQ 音乐、网易云、酷我、酷狗四大平台，一站搜歌下歌', added:'2026-10-04', img:'icons/xingyinyue.png', version:'v2.0', os:['安卓'], secret:'https://music.istarbox.app/', quark:'https://pan.quark.cn/s/42f30fcaeea5', baidu:'https://pan.baidu.com/s/1KcaQEt15ZQTOoXMiTHucxg?pwd=ck1c', uc:'https://drive.uc.cn/s/318d63c809db4' },
       { name:'莫比音乐', desc:'高品质音乐平台（收费）', added:'2026-10-04', tag:'收费', img:'icons/mobi.png', os:['安卓','iOS','Windows'], secretText:'QQ 群文件', quark:'https://pan.quark.cn/s/f70a57a9420a', baidu:'https://pan.baidu.com/s/1___-VnWKyPtabXOOupRi2Q?pwd=rsc8', uc:'https://drive.uc.cn/s/bd080624e8264' },
       { name:'四分贝音乐', desc:'windows系统下载mp3、flac等格式，自动下载封面和歌词lrc文件', added:'2026-10-04', img:'icons/sifenbei.png', version:'v1.3.2', os:['Windows'], secret:'https://www.4fb.cn/soft/pc/2816.html', quark:'https://pan.quark.cn/s/6a5f6874a275', baidu:'https://pan.baidu.com/s/1J_8b-pnAKg9qLcuP5ULrxw?pwd=4a38' },
@@ -41,28 +41,28 @@ const SECTIONS = [
   {
     id:'video', icon:'🎬', name:'影视专区', desc:'聚合影视资源', added:'2026-10-04', color:'#ef4444', soft:'#fef2f2',
     tools:[
-      { name:'影视仓', desc:'TVBox 内置配置版，装上就能看。电影剧集综艺动漫 + 电视直播 + 豆瓣热榜，多线路切换', added:'2026-10-14', img:'icons/yingshichang.png', os:['安卓','Android TV'], secret:'https://github.com/jinenge/tvbox?tab=readme-ov-file', quark:'https://pan.quark.cn/s/fcac31a0611f', baidu:'https://pan.baidu.com/s/1D1P7Xt3RedOtzsTUShMhXA?pwd=6afg' },
+      { name:'影视仓', desc:'TVBox 内置配置版，装上就能看。电影剧集综艺动漫 + 电视直播 + 豆瓣热榜，多线路切换', added:'2026-10-14', img:'icons/yingshichang.png', os:['安卓','Android TV'], secret:'https://github.com/jinenge/tvbox?tab=readme-ov-file', quark:'https://pan.quark.cn/s/fcac31a0611f', baidu:'https://pan.baidu.com/s/1D1P7Xt3RedOtzsTUShMhXA?pwd=6afg', uc:'https://drive.uc.cn/s/0ac1d98432294' },
       { name:'星盒', desc:'聚合影视资源，看电影追剧', added:'2026-10-04', img:'icons/xinghe.png', version:'v2.7.0', os:['安卓'], secret:'https://www.istarbox.app/download', quark:'https://pan.quark.cn/s/7fc3a192ddc2', baidu:'https://pan.baidu.com/s/1wZxYJcJVGL1WzLQ0T44daA?pwd=y184', uc:'https://drive.uc.cn/s/39b2761e89974' },
-      { name:'Sparkle', desc:'番剧影视、漫画、壁纸一体化的安卓应用，全部免费无广告，影视最高 4K 高清，可看可下载', added:'2026-10-11', img:'icons/sparkle.png', os:['安卓'], quark:'https://pan.quark.cn/s/3e86c984820f', baidu:'https://pan.baidu.com/s/1DJbbLI_O8wGfA9KUh5Tzmg?pwd=mwki' },
-      { name:'MiniReel', desc:'第三方红果短剧客户端，免费无广告，手机/电视/电脑全平台', added:'2026-10-04', img:'icons/minireel.png', version:'v0.4.0', os:['安卓','Android TV','Windows','macOS'], secret:'https://minireel.weppp.cyou:54267/versions', quark:'https://pan.quark.cn/s/c326807e1024', baidu:'https://pan.baidu.com/s/1CEqs_PTYrxYEzSz_40DAbQ?pwd=fgf1' },
-      { name:'zpod', desc:'一个应用搞定音乐、影视与听书，三类内容一个播放器全包', added:'2026-10-04', img:'icons/zpod.png', version:'v3.0.12', os:['Windows','macOS','安卓','iOS'], secret:'https://zpod.net/#landing-downloads', quark:'https://pan.quark.cn/s/1b54b41e32ad', baidu:'https://pan.baidu.com/s/1k8lnZ3KKz7eVV-yTLovZlQ?pwd=4if2', uc:'https://drive.uc.cn/s/5078ece1be594' },
+      { name:'Sparkle', desc:'番剧影视、漫画、壁纸一体化的安卓应用，全部免费无广告，影视最高 4K 高清，可看可下载', added:'2026-10-11', img:'icons/sparkle.png', os:['安卓'], quark:'https://pan.quark.cn/s/3e86c984820f', baidu:'https://pan.baidu.com/s/1DJbbLI_O8wGfA9KUh5Tzmg?pwd=mwki', uc:'https://drive.uc.cn/s/79784cff81f44' },
+      { name:'MiniReel', desc:'第三方红果短剧客户端，免费无广告，手机/电视/电脑全平台', added:'2026-10-04', img:'icons/minireel.png', version:'v0.4.0', os:['安卓','Android TV','Windows','macOS'], secret:'https://minireel.weppp.cyou:54267/versions', quark:'https://pan.quark.cn/s/c326807e1024', baidu:'https://pan.baidu.com/s/1CEqs_PTYrxYEzSz_40DAbQ?pwd=fgf1', uc:'https://drive.uc.cn/s/16dc43032a3e4' },
+      { name:'zpod', desc:'一个应用搞定音乐、影视与听书，三类内容一个播放器全包', added:'2026-10-04', img:'icons/zpod.png', version:'v3.0.12', os:['Windows','macOS','安卓','iOS'], secret:'https://zpod.net/#landing-downloads', quark:'https://pan.quark.cn/s/1b54b41e32ad', baidu:'https://pan.baidu.com/s/1k8lnZ3KKz7eVV-yTLovZlQ?pwd=4if2', uc:'https://drive.uc.cn/s/cae1b5f416834' },
     ]
   },
   {
     id:'anime', icon:'🎨', name:'动漫专区', desc:'动漫资源', added:'2026-10-04', color:'#f97316', soft:'#fff7ed',
     tools:[
-      { name:'Kazumi', desc:'免费无广告聚合全网番剧源，看番时能开弹幕和 4K 超清，Win/Mac/安卓/iOS/鸿蒙都能用', added:'2026-10-08', img:'icons/kazumi.png', version:'v2.3.8', os:['Windows','macOS','Linux','安卓','iOS','鸿蒙'], secret:'https://github.com/Predidit/Kazumi/releases', quark:'https://pan.quark.cn/s/e40c2f5efb4d', baidu:'https://pan.baidu.com/s/1BI-tnat5ZSVEKe21TJXlQw?pwd=hsqy' },
-      { name:'动漫共和国', desc:'海量高清动漫免费看，日更新番，支持安卓 / 苹果 / Windows 多端同步', added:'2026-10-04', img:'icons/dongman.png', version:'v1.4.4', os:['安卓','iOS','Windows'], secret:'https://www.oneghg.com/', quark:'https://pan.quark.cn/s/561a59d10235', baidu:'https://pan.baidu.com/s/1gM3uc3zolfNc4CDSgBcuTg?pwd=stjc' },
+      { name:'Kazumi', desc:'免费无广告聚合全网番剧源，看番时能开弹幕和 4K 超清，Win/Mac/安卓/iOS/鸿蒙都能用', added:'2026-10-08', img:'icons/kazumi.png', version:'v2.3.8', os:['Windows','macOS','Linux','安卓','iOS','鸿蒙'], secret:'https://github.com/Predidit/Kazumi/releases', quark:'https://pan.quark.cn/s/e40c2f5efb4d', baidu:'https://pan.baidu.com/s/1BI-tnat5ZSVEKe21TJXlQw?pwd=hsqy', uc:'https://drive.uc.cn/s/6a1682d34acf4' },
+      { name:'动漫共和国', desc:'海量高清动漫免费看，日更新番，支持安卓 / 苹果 / Windows 多端同步', added:'2026-10-04', img:'icons/dongman.png', version:'v1.4.4', os:['安卓','iOS','Windows'], secret:'https://www.oneghg.com/', quark:'https://pan.quark.cn/s/561a59d10235', baidu:'https://pan.baidu.com/s/1gM3uc3zolfNc4CDSgBcuTg?pwd=stjc', uc:'https://drive.uc.cn/s/d54a61f7ccbe4' },
       { name:'星盒', desc:'聚合动漫资源', added:'2026-10-04', img:'icons/xinghe.png', version:'v2.7.0', os:['安卓'], secret:'https://www.istarbox.app/download', quark:'https://pan.quark.cn/s/7fc3a192ddc2', baidu:'https://pan.baidu.com/s/1wZxYJcJVGL1WzLQ0T44daA?pwd=y184', uc:'https://drive.uc.cn/s/39b2761e89974' },
     ]
   },
   {
     id:'comic', icon:'📚', name:'漫画专区', desc:'漫画资源', added:'2026-10-04', color:'#f59e0b', soft:'#fffbeb',
     tools:[
-      { name:'Sparkle', desc:'漫画聚合阅读器，看热门 / 找漫画 / 畅销榜 / 全网热议，也能下载离线看', added:'2026-10-11', img:'icons/sparkle.png', os:['安卓'], quark:'https://pan.quark.cn/s/3e86c984820f', baidu:'https://pan.baidu.com/s/1DJbbLI_O8wGfA9KUh5Tzmg?pwd=mwki' },
+      { name:'Sparkle', desc:'漫画聚合阅读器，看热门 / 找漫画 / 畅销榜 / 全网热议，也能下载离线看', added:'2026-10-11', img:'icons/sparkle.png', os:['安卓'], quark:'https://pan.quark.cn/s/3e86c984820f', baidu:'https://pan.baidu.com/s/1DJbbLI_O8wGfA9KUh5Tzmg?pwd=mwki', uc:'https://drive.uc.cn/s/79784cff81f44' },
       { name:'抱走漫画', desc:'免费无广告的多源漫画聚合阅读器，装完直接看，离线也能缓存下载', added:'2026-10-05', img:'icons/baozoumanhua.png', version:'1.0.7', os:['安卓'], secretText:'QQ 群文件', quark:'https://pan.quark.cn/s/b3c9435bd0a4', baidu:'https://pan.baidu.com/s/1rLGyBCQYtHYV_NV9g1xZNw?pwd=1o1m' },
-      { name:'Mihon', desc:'免费开源安卓漫画阅读器（Tachiyomi 继任者）', added:'2026-10-04', img:'icons/mihon.png', version:'v0.20.4', os:['安卓'], secret:'https://github.com/mihonapp/mihon', quark:'https://pan.quark.cn/s/14966eac05db', baidu:'https://pan.baidu.com/s/11FGWmCzzpJ7gVCjh26lvIg?pwd=9gmn' },
-      { name:'异次元', desc:'无广告无会员的多图源漫画聚合器，导入图源后一个 App 看全网漫画', added:'2026-10-21', img:'icons/yiciyuan.png', os:['安卓'], secret:'https://www.yckceo.com/yiciyuan/index/index.html', quark:'https://pan.quark.cn/s/1043b1354719', baidu:'https://pan.baidu.com/s/1QGywaLxWoMtaFNQYX7hb5A?pwd=i6pt', features:[
+      { name:'Mihon', desc:'免费开源安卓漫画阅读器（Tachiyomi 继任者）', added:'2026-10-04', img:'icons/mihon.png', version:'v0.20.4', os:['安卓'], secret:'https://github.com/mihonapp/mihon', quark:'https://pan.quark.cn/s/14966eac05db', baidu:'https://pan.baidu.com/s/11FGWmCzzpJ7gVCjh26lvIg?pwd=9gmn', uc:'https://drive.uc.cn/s/5ffee5072ed14' },
+      { name:'异次元', desc:'无广告无会员的多图源漫画聚合器，导入图源后一个 App 看全网漫画', added:'2026-10-21', img:'icons/yiciyuan.png', os:['安卓'], secret:'https://www.yckceo.com/yiciyuan/index/index.html', quark:'https://pan.quark.cn/s/1043b1354719', baidu:'https://pan.baidu.com/s/1QGywaLxWoMtaFNQYX7hb5A?pwd=i6pt', uc:'https://drive.uc.cn/s/48c4bdcb7dea4', features:[
         '界面干净清爽，无广告、无多余花哨的东西',
         '完全免费，没有会员，没有广告骚扰',
         '支持下载缓存，支持离线阅读',
@@ -70,7 +70,7 @@ const SECTIONS = [
         '一次搜索多源漫画',
         '加入定制源地址后，一个 App 免费看全网漫画',
       ]},
-      { name:'venera_1.4.6', desc:'漫画阅读器', added:'2026-10-04', emoji:'📖', version:'1.4.6', os:['安卓'], secret:'https://github.com/venera-app/venera', quark:'https://pan.quark.cn/s/ca0afa3bf4b0', baidu:'https://pan.baidu.com/s/1J_O7CFwJEgtow6ibGD_9qA?pwd=ai9w' },
+      { name:'venera_1.4.6', desc:'漫画阅读器', added:'2026-10-04', emoji:'📖', version:'1.4.6', os:['安卓'], secret:'https://github.com/venera-app/venera', quark:'https://pan.quark.cn/s/ca0afa3bf4b0', baidu:'https://pan.baidu.com/s/1J_O7CFwJEgtow6ibGD_9qA?pwd=ai9w', uc:'https://drive.uc.cn/s/e7d5034250234' },
     ]
   },
   {
