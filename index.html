@@ -587,36 +587,50 @@ mark{background:rgba(245,158,11,.35);color:inherit;border-radius:3px;padding:0 1
   .tool-dl .dl-tag .btn-ico{width:11px;height:11px;padding:1px}
 }
 /* ===================== 桌面端左侧边栏 =====================
-   1024px 以上：把顶部分区标签移到左侧固定栏，主内容区整体右移。
+   1024px 以上：整个 header-wrap 变成左侧固定栏 ——
+   上半是品牌 + 搜索框，下半是分区标签，竖向排列。
    1024px 以下完全沿用原来的顶部横排（下面媒体查询里已有规则）。 */
 @media (min-width:1024px){
-  :root{--side-w:190px}
-  .tabbar{
+  :root{--side-w:200px}
+  .header-wrap{
     position:fixed;left:0;top:0;bottom:0;width:var(--side-w);z-index:60;
-    border-top:none;border-right:1px solid var(--border);
-    background:var(--card);overflow-y:auto;overscroll-behavior:contain;
+    display:flex;flex-direction:column;
+    background:var(--card);border-right:1px solid var(--border);border-bottom:none;
+    overflow-y:auto;overscroll-behavior:contain;
   }
+  /* 品牌区：图标与文字竖排，尺寸收小以适应窄栏 */
+  .site-header{
+    flex-direction:column;align-items:stretch;gap:12px;
+    padding:18px 14px 14px;border-bottom:1px solid var(--border);
+  }
+  .brand{gap:10px}
+  .brand-icon{width:36px;height:36px;border-radius:10px}
+  .brand-icon svg{width:20px!important;height:20px!important}
+  .brand-name{font-size:17px}
+  .brand-domain{font-size:11px;line-height:1.5;margin-top:2px}
+  /* 搜索框占满侧栏宽度 */
+  .search{max-width:none;margin-left:0}
+  .search input{height:38px;font-size:13.5px;padding:0 12px 0 34px}
+  .search .s-ico{left:11px;font-size:14px}
+  /* 分区标签：纵向排列 */
+  .tabbar{border-top:none;background:transparent}
   .tabbar-inner{
     display:flex;flex-direction:column;flex-wrap:nowrap;
-    gap:4px;padding:20px 12px;height:100%;
+    gap:4px;padding:12px 10px;flex:1;
   }
   .tab{
     width:100%;flex:none;justify-content:flex-start;gap:8px;
-    padding:9px 12px;border-radius:9px;font-size:13.5px;
+    padding:9px 10px;border-radius:9px;font-size:13.5px;
   }
   .tab span:nth-child(2){flex:1;text-align:left}
   .tab-icon{font-size:16px;flex:none}
   .tab-count{flex:none}
-  /* 主内容区整体让出侧边栏宽度。
-     注意 .content 原本是 margin:0 auto 居中，叠加 margin-left 会让 auto 失效，
-     这里改成用 padding-left 让位，保留居中。 */
-  .header-wrap{margin-left:var(--side-w)}
-  .footer{margin-left:var(--side-w)}
   /* width 必须是 auto：block 元素的 auto 宽度会自动扣掉 margin-left，
      原来的 width:100% 会让内容整体右移后右侧溢出、看起来比头部还靠左 */
   .content{margin-left:var(--side-w);width:auto;max-width:none;
            padding-left:24px;padding-right:24px}
   .content>*{max-width:1440px;margin-left:auto;margin-right:auto}
+  .footer{margin-left:var(--side-w)}
 }
 
 </style>
@@ -1496,10 +1510,14 @@ content.addEventListener('error', e => {
   if (img.parentNode) img.parentNode.replaceChild(span, img);
 }, true);
 
-/* 头部高度随标签换行变化，同步给滚动条吸顶偏移用 */
+/* 头部高度随标签换行变化，同步给滚动条吸顶偏移用。
+   桌面端（≥1024px）header-wrap 是左侧全高固定栏，不吸顶，
+   高度要归零，否则滚动定位会按整个视口高度来偏移。 */
 function syncHeaderHeight(){
   const hw = document.querySelector('.header-wrap');
-  if (hw) document.documentElement.style.setProperty('--hdr-h', hw.offsetHeight + 'px');
+  if (!hw) return;
+  const h = window.innerWidth >= PAGE_SIZE_BREAK ? 0 : hw.offsetHeight;
+  document.documentElement.style.setProperty('--hdr-h', h + 'px');
 }
 window.addEventListener('resize', syncHeaderHeight);
 
@@ -1524,7 +1542,10 @@ window.addEventListener('resize', () => {
 function stickyOffset(){
   const hdr = document.querySelector('.header-wrap');
   const tk = document.querySelector('.ticker');
-  let h = hdr ? hdr.getBoundingClientRect().height : 0;
+  /* 桌面端左侧栏是 fixed 全高，不占吸顶高度，只算更新滚动条 */
+  let h = (window.innerWidth >= PAGE_SIZE_BREAK)
+    ? 0
+    : (hdr ? hdr.getBoundingClientRect().height : 0);
   if (tk) h += tk.getBoundingClientRect().height;
   return h;
 }
