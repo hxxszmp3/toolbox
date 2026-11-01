@@ -26,7 +26,7 @@ const SECTIONS = [
   {
     id:'music', icon:'🎵', name:'音乐专区', desc:'免费听歌、下歌', added:'2026-10-04', color:'#8b5cf6', soft:'#f5f3ff',
     tools:[
-      { name:'MusicFind 音乐搜索', desc:'371 位歌手、24000+ 首歌曲在线搜，支持单曲与批量搜索；69 个精选歌单，夸克百度双通道下载', added:'2026-11-01', emoji:'🎵', web:'https://www.hxxsz666.vip/' },
+      { name:'MusicFind 音乐搜索', desc:'300+热门歌手 MP3 合集，10万+单曲在线搜索；69 个精选歌单，夸克百度双通道下载', added:'2026-11-01', emoji:'🎵', web:'https://www.hxxsz666.vip/' },
       { name:'MoeKoeMusic', desc:'酷狗概念版开源音乐播放器，GitHub 6000+ star。登录酷狗账号直接同步歌单收藏与听歌时长，无社交功能、官方服务器直连，支持标准 / 高频 / FLAC / Hi-Res 音质', added:'2026-10-14', img:'icons/moekoe.png', version:'v1.7.1', os:['Windows','macOS'], secret:'https://github.com/MoeKoeMusic/MoeKoeMusic', quark:'https://pan.quark.cn/s/a45888fd2f22', baidu:'https://pan.baidu.com/s/1uBPlFqU0HbEjG5sS-KyUDw?pwd=dmpi', uc:'https://drive.uc.cn/s/512d5a99beae4' },
       { name:'敦伦调调', desc:'全网音乐免费听 / 下载', added:'2026-10-04', img:'icons/dunlun.png', version:'v1.0.10', os:['安卓'], secret:'https://app.4848948.xyz/', quark:'https://pan.quark.cn/s/21d0a48a9ee9', baidu:'https://pan.baidu.com/s/1ObfiNgOTdDpkxcEVFZZ4kA?pwd=3dcd', uc:'https://drive.uc.cn/s/626b4c451d5a4' },
       { name:'星盒', desc:'聚合音乐资源神器', added:'2026-10-04', img:'icons/xinghe.png', version:'v2.7.0', os:['安卓'], secret:'https://www.istarbox.app/download', quark:'https://pan.quark.cn/s/7fc3a192ddc2', baidu:'https://pan.baidu.com/s/1wZxYJcJVGL1WzLQ0T44daA?pwd=y184', uc:'https://drive.uc.cn/s/39b2761e89974' },
@@ -183,7 +183,7 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
-  { date:'2026-11-01', type:'new', section:'music', title:'音乐区新增：MusicFind 音乐搜索', desc:'371 位歌手、24000+ 首歌曲在线搜，支持单曲与批量搜索；69 个精选歌单，夸克百度双通道下载' },
+  { date:'2026-11-01', type:'new', section:'music', title:'音乐区新增：MusicFind 音乐搜索', desc:'300+热门歌手 MP3 合集，10万+单曲在线搜索；69 个精选歌单，夸克百度双通道下载' },
   { date:'2026-10-28', type:'new', section:'data', title:'资料区新增：百万剪辑狮的音效库', desc:'2123 个 WAV 音效分 13 类：效果、乐器、动作、场景、武器、动物等，剪辑直接拖进时间线',
     link:{ quark:'https://pan.quark.cn/s/28979739a6fb' } },
   { date:'2026-10-27', type:'update', section:'novel', title:'小说下载器更新至 v1.12.0', desc:'全网小说搜索下载新版本，支持 TXT / EPUB 一键导出，Windows / macOS / Linux 三端可用',
