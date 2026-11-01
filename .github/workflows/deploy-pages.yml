@@ -1,0 +1,48 @@
+# 手动部署 GitHub Pages
+#
+# 背景：2026-11-01 起仓库内置的 pages build and deployment 工作流
+# 在「Deploy to GitHub Pages」步骤持续失败（构建 success、部署 failure），
+# 判定为 GitHub 服务端问题。这个工作流用同样的官方 actions 走一遍，
+# 作为备用通道；concurrency 组与内置的一致（pages），两者串行不冲突。
+name: Deploy Pages (fallback)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 与内置 pages 工作流同一个组：串行执行，避免两个部署互相抢锁报错
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 配置 Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: 上传站点产物
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: 部署到 GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
