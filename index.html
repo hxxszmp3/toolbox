@@ -562,6 +562,12 @@ mark{background:rgba(245,158,11,.35);color:inherit;border-radius:3px;padding:0 1
   .content{padding:18px 14px 48px}
   .grid{grid-template-columns:1fr}
   .search{max-width:none}
+  /* 手机上把网盘标签压扁，让夸克/百度/UC 三个排在一行：
+     320px 屏可用宽 = 320 - 14*2(内容边距) - 16*2(卡片内边距) = 260px，
+     默认尺寸三个标签需 306px 会折行；压到 241px 后最小屏也能一行放下。 */
+  .tool-dl .row-body{gap:5px;flex-wrap:nowrap}
+  .tool-dl .dl-tag{font-size:11px;padding:4px 8px;gap:4px}
+  .tool-dl .dl-tag .btn-ico{width:11px;height:11px;padding:1px}
 }
 </style>
 </head>
@@ -631,7 +637,7 @@ mark{background:rgba(245,158,11,.35);color:inherit;border-radius:3px;padding:0 1
 
 <!-- v 参数用于强制刷新：内容改动时把 v 往后加一位，浏览器与 CDN 都会当作新文件，
      避免 GitHub Pages / 浏览器缓存导致用户看不到更新。 -->
-<script src="data.js?v=20261101a"></script>
+<script src="data.js?v=20261101b"></script>
 <script>
 /* 数据加载兜底：data.js 是外部文件，若因缓存 / 网络 / 版本戳不匹配而加载失败，
    下面的主脚本会直接抛 ReferenceError 导致整页白屏（单文件整站零容错）。
