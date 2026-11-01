@@ -586,6 +586,39 @@ mark{background:rgba(245,158,11,.35);color:inherit;border-radius:3px;padding:0 1
   .tool-dl .dl-tag{font-size:11px;padding:4px 8px;gap:4px}
   .tool-dl .dl-tag .btn-ico{width:11px;height:11px;padding:1px}
 }
+/* ===================== 桌面端左侧边栏 =====================
+   1024px 以上：把顶部分区标签移到左侧固定栏，主内容区整体右移。
+   1024px 以下完全沿用原来的顶部横排（下面媒体查询里已有规则）。 */
+@media (min-width:1024px){
+  :root{--side-w:190px}
+  .tabbar{
+    position:fixed;left:0;top:0;bottom:0;width:var(--side-w);z-index:60;
+    border-top:none;border-right:1px solid var(--border);
+    background:var(--card);overflow-y:auto;overscroll-behavior:contain;
+  }
+  .tabbar-inner{
+    display:flex;flex-direction:column;flex-wrap:nowrap;
+    gap:4px;padding:20px 12px;height:100%;
+  }
+  .tab{
+    width:100%;flex:none;justify-content:flex-start;gap:8px;
+    padding:9px 12px;border-radius:9px;font-size:13.5px;
+  }
+  .tab span:nth-child(2){flex:1;text-align:left}
+  .tab-icon{font-size:16px;flex:none}
+  .tab-count{flex:none}
+  /* 主内容区整体让出侧边栏宽度。
+     注意 .content 原本是 margin:0 auto 居中，叠加 margin-left 会让 auto 失效，
+     这里改成用 padding-left 让位，保留居中。 */
+  .header-wrap{margin-left:var(--side-w)}
+  .footer{margin-left:var(--side-w)}
+  /* width 必须是 auto：block 元素的 auto 宽度会自动扣掉 margin-left，
+     原来的 width:100% 会让内容整体右移后右侧溢出、看起来比头部还靠左 */
+  .content{margin-left:var(--side-w);width:auto;max-width:none;
+           padding-left:24px;padding-right:24px}
+  .content>*{max-width:1440px;margin-left:auto;margin-right:auto}
+}
+
 </style>
 </head>
 <body>
@@ -701,7 +734,13 @@ mark{background:rgba(245,158,11,.35);color:inherit;border-radius:3px;padding:0 1
 })();
 </script>
 <script>
-const PAGE_SIZE = 10;
+/* 每页卡片数：桌面端（≥1024px，左侧边栏布局）12 张，手机端保持 10 张 */
+const PAGE_SIZE_DESKTOP = 12;
+const PAGE_SIZE_MOBILE = 10;
+const PAGE_SIZE_BREAK = 1024;
+function pageSize(){
+  return window.innerWidth >= PAGE_SIZE_BREAK ? PAGE_SIZE_DESKTOP : PAGE_SIZE_MOBILE;
+}
 
 /* ===================== 渲染 ===================== */
 const tabbar = document.getElementById('tabbar');
@@ -983,7 +1022,7 @@ function gotoTool(toolName){
   const list = sortTools(sec.tools);
   const idx = list.findIndex(t => t.name === toolName);
   if (idx < 0) return false;
-  const page = Math.floor(idx / PAGE_SIZE) + 1;
+  const page = Math.floor(idx / pageSize()) + 1;
 
   /* 停掉滚动条轮播：条目正在纵向翻动时点击，目标会边滚边走，读起来容易点错 */
   clearTimeout(tickerTimer);
@@ -1210,10 +1249,11 @@ function renderSection(id, page = 1, opts = {}){
   const s = SECTIONS.find(x => x.id === id);
   if (!s) return renderSection(SECTIONS[0].id, page, opts);
   currentId = id;
-  const totalPages = Math.max(1, Math.ceil(s.tools.length / PAGE_SIZE));
+  const totalPages = Math.max(1, Math.ceil(s.tools.length / pageSize()));
   currentPage = Math.min(page, totalPages);
-  const start = (currentPage - 1) * PAGE_SIZE;
-  const list = sortTools(s.tools).slice(start, start + PAGE_SIZE);
+  const ps = pageSize();
+  const start = (currentPage - 1) * ps;
+  const list = sortTools(s.tools).slice(start, start + ps);
   setActiveTab(id);
   content.innerHTML = `${tickerHTML()}${renderGrid(list, s)}${paginationHTML(totalPages, currentPage)}<div class="section-update">🔄 持续更新中，更多工具敬请期待…</div>`;
   setHash(id);
@@ -1462,6 +1502,21 @@ function syncHeaderHeight(){
   if (hw) document.documentElement.style.setProperty('--hdr-h', hw.offsetHeight + 'px');
 }
 window.addEventListener('resize', syncHeaderHeight);
+
+/* 跨越 1024px 断点时（桌面侧边栏 ↔ 顶部横排）每页卡片数会变，
+   需要按新的视口宽度重新渲染当前分区，否则页面会停留在旧的每页张数上。 */
+let lastPageSize = pageSize();
+let resizeTimer = null;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    const now = pageSize();
+    if (now === lastPageSize) return;
+    lastPageSize = now;
+    /* 换页数后当前页可能越界，renderSection 内部会 clamp 到有效页 */
+    renderSection(currentId, currentPage, { scroll:false });
+  }, 180);
+});
 
 /* 跳转定位时需要避开的固定高度：吸顶头部 + 吸顶的更新滚动条。
    更新滚动条是 sticky 的，滚动后必然吸在头部正下方，
