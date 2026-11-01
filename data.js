@@ -84,6 +84,7 @@ const SECTIONS = [
   {
     id:'data', icon:'📂', name:'资料专区', desc:'干货资料合集', added:'2026-10-04', color:'#14b8a6', soft:'#f0fdfa',
     tools:[
+      { name:'全套高中电子课本教材 PDF', desc:'人教、苏教、教科、粤教、北师大各版本齐全，语数英物等全学科电子课本，846 个文件共 22.9GB', added:'2026-11-01', emoji:'📚', quark:'https://pan.quark.cn/s/df51e84f2538' },
       { name:'百万剪辑狮的音效库', desc:'2123 个 WAV 音效分 13 类：效果、乐器、动作、场景、武器、动物等，剪辑直接拖进时间线', added:'2026-10-28', emoji:'🎙️', quark:'https://pan.quark.cn/s/28979739a6fb' },
       { name:'软件工具包大合集', desc:'40 个分类 1337 个精选安卓应用，实用工具 / 影视动漫 / 电脑软件 / 小说漫画 / 音乐软件 / 磁力下载 / 壁纸主题 / 相机类等持续更新中', added:'2026-10-25', emoji:'🧰', quark:'https://pan.quark.cn/s/24d6ebe76714' },
       { name:'演唱会场馆模拟器', desc:'在线模拟演唱会场馆座位分布，选座视角一眼看清主舞台、看台与各区位置', added:'2026-10-25', img:'icons/yanchanghui.png', web:'https://shijiao.xingpaste.com' },
@@ -183,6 +184,8 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
+  { date:'2026-11-01', type:'new', section:'data', title:'资料区新增：全套高中电子课本教材 PDF', desc:'人教、苏教、教科、粤教、北师大各版本齐全，语数英物等全学科电子课本，846 个文件共 22.9GB',
+    link:{ quark:'https://pan.quark.cn/s/df51e84f2538' } },
   { date:'2026-11-01', type:'update', section:'novel', title:'番茄小说下载器更新至 v2026-10-31-1543', desc:'番茄小说下载器新版本，手机 / 电脑 / iOS 全平台安装包已同步更新',
     link:{ quark:'https://pan.quark.cn/s/867ce5b0aad5', baidu:'https://pan.baidu.com/s/1Rg_Ffo3vqfSU4EdQVlJPhA?pwd=f46i', uc:'https://drive.uc.cn/s/2a09d6d4d86c4' } },
   { date:'2026-11-01', type:'update', section:'video', title:'MiniReel 更新至 v0.4.0', desc:'第三方红果短剧客户端新版本，新增 WebDAV 同步与开发者日志，修复播放问题并优化沉浸体验；手机 / 电视 / 电脑全平台安装包已全部更新',
