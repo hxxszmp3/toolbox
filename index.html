@@ -175,10 +175,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 
 /* 下载：夸克 / 百度两个网盘入口。
    突出但不刺眼 —— 浅色底 + 品牌色描边 + 品牌色文字，悬停时才填充品牌色 */
-.tool-dl .row-body{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.tool-dl .row-body{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
 .tool-dl .dl-tag{
   font-size:12px;font-weight:700;
-  padding:4px 13px;border-radius:8px;white-space:nowrap;
+  padding:4px 11px;border-radius:8px;white-space:nowrap;
   text-decoration:none;cursor:pointer;display:inline-flex;align-items:center;gap:6px;
   background:var(--card);border:1px solid transparent;
   box-shadow:0 1px 2px rgba(0,0,0,.06);
@@ -564,7 +564,7 @@ mark{background:rgba(245,158,11,.35);color:inherit;border-radius:3px;padding:0 1
   .search{max-width:none}
   /* 手机上把网盘标签压扁，让夸克/百度/UC 三个排在一行：
      320px 屏可用宽 = 320 - 14*2(内容边距) - 16*2(卡片内边距) = 260px，
-     默认尺寸三个标签需 306px 会折行；压到 241px 后最小屏也能一行放下。 */
+     桌面端尺寸三个标签需 289px 会折行；压到 241px 后最小屏也能一行放下。 */
   .tool-dl .row-body{gap:5px;flex-wrap:nowrap}
   .tool-dl .dl-tag{font-size:11px;padding:4px 8px;gap:4px}
   .tool-dl .dl-tag .btn-ico{width:11px;height:11px;padding:1px}
