@@ -12,6 +12,7 @@ const SECTIONS = [
   {
     id:'novel', icon:'📖', name:'小说专区', desc:'免费看小说、下小说', added:'2026-10-04', color:'#3b82f6', soft:'#eff6ff',
     tools:[
+      { name:'阅读 MD3 版', desc:'开源阅读 MD3 重构版，MD3 全新界面，免费无广告，附 2000+ 书源，支持自定义书源规则', added:'2026-11-01', img:'icons/yuedu-md3.png', os:['安卓'], secret:'https://github.com/HapeLee/legado-with-MD3', quark:'https://pan.quark.cn/s/4d0d9c4932a2', baidu:'https://pan.baidu.com/s/1pLV-g_1nC1a217POTzXOlA?pwd=nav7', uc:'https://drive.uc.cn/s/38fbb925c57d4' },
       { name:'小说下载器', desc:'全网小说搜索下载，一键导出 TXT/EPUB', added:'2026-10-04', img:'icons/xiaoshuo.png', version:'v1.12.0', os:['Windows','macOS','Linux'], secret:'https://github.com/freeok/so-novel/releases', quark:'https://pan.quark.cn/s/6c73fb388aea', baidu:'https://pan.baidu.com/s/1SHWmlXxW3FYTBf_2f_yruQ?pwd=i32n', uc:'https://drive.uc.cn/s/d36933ba6d3b4' },
       { name:'番茄小说下载器', desc:'小说、漫画、短剧，搜得、存得下、读得爽。免费的番茄小说下载与阅读工具，Windows、macOS、Linux、Android、iOS 全平台可用。', added:'2026-10-04', img:'icons/fanqie.png', version:'v2.4.16', os:['Windows','macOS','Linux','安卓','iOS'], secret:['https://github.com/zhongbai2333/Tomato-Novel-Downloader','https://github.com/POf-L/Fanqie-novel-Downloader/releases/tag/unsigned-v2026.10.20-1539-r740'], quark:'https://pan.quark.cn/s/867ce5b0aad5', baidu:'https://pan.baidu.com/s/1Rg_Ffo3vqfSU4EdQVlJPhA?pwd=f46i', uc:'https://drive.uc.cn/s/2a09d6d4d86c4' },
       { name:'七猫小说下载器', desc:'七猫免费小说下载', added:'2026-10-04', img:'icons/qimao.png', version:'v1.0.0', os:['Windows','macOS','Linux','安卓','iOS'], secret:'https://github.com/shing-yu/swiftcat-downloader', quark:'https://pan.quark.cn/s/a6feae8cc3d1', baidu:'https://pan.baidu.com/s/1IEjRs6QI0SSxz0_8MbAdXw?pwd=paqi', uc:'https://drive.uc.cn/s/7fa8d8932b614' },
@@ -184,6 +185,8 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
+  { date:'2026-11-01', type:'new', section:'novel', title:'小说专区新增：阅读 MD3 版（带精品书源）', desc:'基于开源阅读重构的 MD3 新版阅读器，免费无广告，附 2000+ 可用书源与 4 份精选书源合集，支持自定义书源规则与 TXT/EPUB 本地阅读',
+    link:{ quark:'https://pan.quark.cn/s/4d0d9c4932a2', baidu:'https://pan.baidu.com/s/1pLV-g_1nC1a217POTzXOlA?pwd=nav7', uc:'https://drive.uc.cn/s/38fbb925c57d4' } },
   { date:'2026-11-01', type:'update', section:'video', title:'Sparkle 影视区置顶并补充弹幕同步说明', desc:'番剧影视、漫画、壁纸一体化的安卓应用，新增可同步各平台弹幕源说明，影视最高 4K 高清，可看可下载',
     link:{ quark:'https://pan.quark.cn/s/3e86c984820f', baidu:'https://pan.baidu.com/s/1DJbbLI_O8wGfA9KUh5Tzmg?pwd=mwki', uc:'https://drive.uc.cn/s/79784cff81f44' } },
   { date:'2026-11-01', type:'new', section:'data', title:'资料区新增：全套高中电子课本教材 PDF', desc:'人教、苏教、教科、粤教、北师大各版本齐全，语数英物等全学科电子课本，846 个文件共 22.9GB',
