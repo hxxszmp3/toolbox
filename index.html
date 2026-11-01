@@ -320,8 +320,25 @@ mark{background:rgba(245,158,11,.35);color:inherit;border-radius:3px;padding:0 1
 .footer .gz{margin:10px 0;font-size:13.5px;color:var(--text-2)}
 .footer .gz b{color:var(--text)}
 .footer .divider{height:1px;background:var(--border);margin:16px 0}
+/* 页脚小链接行：点开才显示详情，默认页脚保持紧凑 */
+.footer .foot-links{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:14px;flex-wrap:wrap}
+.footer .flink{
+  font:inherit;font-size:12.5px;color:var(--text-2);background:none;border:none;
+  padding:2px 4px;border-radius:5px;cursor:pointer;line-height:1.6;
+  transition:color .18s,background .18s;
+}
+.footer .flink:hover{color:var(--primary);background:var(--primary-soft)}
+.footer .flink[aria-expanded="true"]{color:var(--primary);font-weight:600}
+.footer .flink-sep{color:var(--text-3);font-size:12px;user-select:none}
+/* 展开面板：max-height 过渡，展开时页面高度平滑变化 */
+.footer .foot-panel{
+  max-height:0;overflow:hidden;opacity:0;
+  transition:max-height .3s ease,opacity .25s ease,margin .3s ease;
+  margin-top:0;
+}
+.footer .foot-panel.open{max-height:220px;opacity:1;margin-top:14px}
 .footer .disclaimer{font-size:12px;line-height:1.9;color:var(--text-3);max-width:720px;margin:0 auto;text-align:left}
-.footer .mail{margin-top:12px;font-size:13px;color:var(--text-2)}
+.footer .mail{font-size:13px;color:var(--text-2)}
 .footer .mail a{color:var(--primary)}
 .footer .copy{margin-top:14px;font-size:12px;color:var(--text-3)}
 
@@ -598,11 +615,24 @@ mark{background:rgba(245,158,11,.35);color:inherit;border-radius:3px;padding:0 1
   <div class="footer-inner">
     <div class="footer-brand">来点工具<span class="dot"> · </span>ldgj.xyz</div>
     <div class="gz">📢 更多工具 / 失效补链，关注公众号 <b>来点工具</b></div>
-    <div class="divider"></div>
-    <div class="disclaimer">
-      <b style="color:var(--text-2)">免责声明：</b>本工具箱所发布的一切资源（包括黑科技软件工具、素材资源），主要由全网公开资源平台整理而来，仅限用于学习和研究目的，不收取任何费用，请勿用于商业或非法用途，否则一切后果自负。资源版权归原作者所有，如有侵犯到您的权益，请通过邮箱联系我并提供有效证明文件，我会第一时间配合处理。
+
+    <!-- 默认收起：点「免责声明 / 联系方式」才展开对应内容 -->
+    <div class="foot-links">
+      <button type="button" class="flink" data-foot-target="footDisclaimer" aria-expanded="false" aria-controls="footDisclaimer">免责声明</button>
+      <span class="flink-sep" aria-hidden="true">·</span>
+      <button type="button" class="flink" data-foot-target="footContact" aria-expanded="false" aria-controls="footContact">联系方式</button>
     </div>
-    <div class="mail">📮 联系邮箱：<a href="mailto:gg318364167@gmail.com">gg318364167@gmail.com</a></div>
+
+    <div class="foot-panel" id="footDisclaimer">
+      <div class="disclaimer">
+        <b style="color:var(--text-2)">免责声明：</b>本工具箱所发布的一切资源（包括黑科技软件工具、素材资源），主要由全网公开资源平台整理而来，仅限用于学习和研究目的，不收取任何费用，请勿用于商业或非法用途，否则一切后果自负。资源版权归原作者所有，如有侵犯到您的权益，请通过邮箱联系我并提供有效证明文件，我会第一时间配合处理。
+      </div>
+    </div>
+
+    <div class="foot-panel" id="footContact">
+      <div class="mail">📮 联系邮箱：<a href="mailto:gg318364167@gmail.com">gg318364167@gmail.com</a></div>
+    </div>
+
     <div class="copy">© 2026 来点工具 ldgj.xyz · 免费分享 · 仅供学习研究</div>
   </div>
 </footer>
@@ -1292,6 +1322,24 @@ window.addEventListener('scroll', () => {
   backTop.classList.toggle('show', window.scrollY > 400);
 });
 backTop.addEventListener('click', () => window.scrollTo({ top:0, behavior:'smooth' }));
+
+/* 页脚折叠区：点「免责声明 / 联系方式」展开对应内容，再点收起。
+   同一时刻只展开一个，避免页脚被撑得太长。 */
+document.querySelectorAll('.flink[data-foot-target]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const panel = document.getElementById(btn.dataset.footTarget);
+    if (!panel) return;
+    const wasOpen = panel.classList.contains('open');
+    /* 先全部收起 */
+    document.querySelectorAll('.foot-panel').forEach(p => p.classList.remove('open'));
+    document.querySelectorAll('.flink[data-foot-target]').forEach(b => b.setAttribute('aria-expanded', 'false'));
+    /* 再按需展开当前这个 */
+    if (!wasOpen) {
+      panel.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  });
+});
 
 /* 顶部滚动条：点击展开 / 再次点击收起回到原位置（事件委托，滚动条随内容重建） */
 document.getElementById('content').addEventListener('click', e => {
