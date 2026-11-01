@@ -1,7 +1,7 @@
 /* =====================================================================
    来点工具 · 数据区（只改这个文件即可新增/修改工具）
    分区名统一四字；color=主色 soft=浅色
-   img=真实图标  emoji=按功能自动配的图标  quark=夸克 baidu=百度(可省) cmd=指令
+   img=真实图标  emoji=按功能自动配的图标  quark=夸克 baidu=百度 uc=UC网盘(均可省) cmd=指令
    version=最新版本号(可省)  secret=下载来源网址(可省，配了才显示左上角书签)
    secretText=来源为文字而非网址时用(如「QQ 群文件」)，与 secret 二选一
    os=支持设备(可省，如 ['Windows','安卓']；不确定就留空不写)
@@ -12,11 +12,11 @@ const SECTIONS = [
   {
     id:'novel', icon:'📖', name:'小说专区', desc:'免费看小说、下小说', added:'2026-10-04', color:'#3b82f6', soft:'#eff6ff',
     tools:[
-      { name:'小说下载器', desc:'全网小说搜索下载，一键导出 TXT/EPUB', added:'2026-10-04', img:'icons/xiaoshuo.png', version:'v1.12.0', os:['Windows','macOS','Linux'], secret:'https://github.com/freeok/so-novel/releases', quark:'https://pan.quark.cn/s/6c73fb388aea', baidu:'https://pan.baidu.com/s/1SHWmlXxW3FYTBf_2f_yruQ?pwd=i32n' },
-      { name:'番茄小说下载器', desc:'小说、漫画、短剧，搜得、存得下、读得爽。免费的番茄小说下载与阅读工具，Windows、macOS、Linux、Android、iOS 全平台可用。', added:'2026-10-04', img:'icons/fanqie.png', version:'v2.4.16', os:['Windows','macOS','Linux','安卓','iOS'], secret:['https://github.com/zhongbai2333/Tomato-Novel-Downloader','https://github.com/POf-L/Fanqie-novel-Downloader/releases/tag/unsigned-v2026.10.20-1539-r740'], quark:'https://pan.quark.cn/s/867ce5b0aad5', baidu:'https://pan.baidu.com/s/1Rg_Ffo3vqfSU4EdQVlJPhA?pwd=f46i' },
+      { name:'小说下载器', desc:'全网小说搜索下载，一键导出 TXT/EPUB', added:'2026-10-04', img:'icons/xiaoshuo.png', version:'v1.12.0', os:['Windows','macOS','Linux'], secret:'https://github.com/freeok/so-novel/releases', quark:'https://pan.quark.cn/s/6c73fb388aea', baidu:'https://pan.baidu.com/s/1SHWmlXxW3FYTBf_2f_yruQ?pwd=i32n', uc:'https://drive.uc.cn/s/d36933ba6d3b4' },
+      { name:'番茄小说下载器', desc:'小说、漫画、短剧，搜得、存得下、读得爽。免费的番茄小说下载与阅读工具，Windows、macOS、Linux、Android、iOS 全平台可用。', added:'2026-10-04', img:'icons/fanqie.png', version:'v2.4.16', os:['Windows','macOS','Linux','安卓','iOS'], secret:['https://github.com/zhongbai2333/Tomato-Novel-Downloader','https://github.com/POf-L/Fanqie-novel-Downloader/releases/tag/unsigned-v2026.10.20-1539-r740'], quark:'https://pan.quark.cn/s/867ce5b0aad5', baidu:'https://pan.baidu.com/s/1Rg_Ffo3vqfSU4EdQVlJPhA?pwd=f46i', uc:'https://drive.uc.cn/s/2a09d6d4d86c4' },
       { name:'七猫小说下载器', desc:'七猫免费小说下载', added:'2026-10-04', img:'icons/qimao.png', version:'v1.0.0', os:['Windows','macOS','Linux','安卓','iOS'], secret:'https://github.com/shing-yu/swiftcat-downloader', quark:'https://pan.quark.cn/s/a6feae8cc3d1', baidu:'https://pan.baidu.com/s/1IEjRs6QI0SSxz0_8MbAdXw?pwd=paqi' },
-      { name:'笔趣阁 5.0', desc:'海量书源免费阅读', added:'2026-10-04', img:'icons/biquge.png', version:'5.0', os:['安卓'], secret:'https://www.bqgapp.cn/', quark:'https://pan.quark.cn/s/efae8b3e1325', baidu:'https://pan.baidu.com/s/1ecJhyMWNgQfw6v5uCt2ySg?pwd=azf3' },
-      { name:'开源软件 + 开源书源', desc:'开源阅读 + 书源合集', added:'2026-10-04', img:'icons/kaiyuan.png', os:['安卓'], quark:'https://pan.quark.cn/s/938c4b40974e', baidu:'https://pan.baidu.com/s/169DT7lXgr0DLeB8pkTWUyQ?pwd=e0m5' },
+      { name:'笔趣阁 5.0', desc:'海量书源免费阅读', added:'2026-10-04', img:'icons/biquge.png', version:'5.0', os:['安卓'], secret:'https://www.bqgapp.cn/', quark:'https://pan.quark.cn/s/efae8b3e1325', baidu:'https://pan.baidu.com/s/1ecJhyMWNgQfw6v5uCt2ySg?pwd=azf3', uc:'https://drive.uc.cn/s/813848c0c4b64' },
+      { name:'开源软件 + 开源书源', desc:'开源阅读 + 书源合集', added:'2026-10-04', img:'icons/kaiyuan.png', os:['安卓'], quark:'https://pan.quark.cn/s/938c4b40974e', baidu:'https://pan.baidu.com/s/169DT7lXgr0DLeB8pkTWUyQ?pwd=e0m5', uc:'https://drive.uc.cn/s/14bb4f396e6f4' },
       { name:'星盒', desc:'多功能聚合神器（小说/音乐/影视/动漫）', added:'2026-10-04', img:'icons/xinghe.png', version:'v2.7.0', os:['安卓'], secret:'https://www.istarbox.app/download', quark:'https://pan.quark.cn/s/7fc3a192ddc2', baidu:'https://pan.baidu.com/s/1wZxYJcJVGL1WzLQ0T44daA?pwd=y184' },
       { name:'摸鱼神器', desc:'电脑端看小说，隐蔽摸鱼', added:'2026-10-04', img:'icons/moyu.png', os:['Windows'], quark:'https://pan.quark.cn/s/33a420bf77d2', baidu:'https://pan.baidu.com/s/1iSVaAHf-_udfr1SGlIp82g?pwd=rscq' },
       { name:'知乎盐选文章提取', desc:'提取知乎盐选文章（需自备会员）', added:'2026-10-04', img:'icons/zhihu.png', os:['Windows'], quark:'https://pan.quark.cn/s/22496116e151' },
@@ -178,7 +178,7 @@ const SECTIONS = [
    更新动态 · 按天记录网站新增 / 版本更新 / 链接修复
    date: 'YYYY-MM-DD'  type: new(新增) | update(版本更新) | fix(修复优化)
    section: 所属分区 id（用于点击跳转 + 取色）  title: 一句话标题
-   desc: 补充说明（可省）  link: {quark,baidu}（可省）
+   desc: 补充说明（可省）  link: {quark,baidu,uc}（可省）
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
