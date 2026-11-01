@@ -183,6 +183,8 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
+  { date:'2026-11-01', type:'update', section:'novel', title:'番茄小说下载器更新至 v2026-10-31-1543', desc:'番茄小说下载器新版本，手机 / 电脑 / iOS 全平台安装包已同步更新',
+    link:{ quark:'https://pan.quark.cn/s/867ce5b0aad5', baidu:'https://pan.baidu.com/s/1Rg_Ffo3vqfSU4EdQVlJPhA?pwd=f46i', uc:'https://drive.uc.cn/s/2a09d6d4d86c4' } },
   { date:'2026-11-01', type:'update', section:'video', title:'MiniReel 更新至 v0.4.0', desc:'第三方红果短剧客户端新版本，新增 WebDAV 同步与开发者日志，修复播放问题并优化沉浸体验；手机 / 电视 / 电脑全平台安装包已全部更新',
     link:{ quark:'https://pan.quark.cn/s/c326807e1024', baidu:'https://pan.baidu.com/s/1CEqs_PTYrxYEzSz_40DAbQ?pwd=fgf1' } },
   { date:'2026-11-01', type:'new', section:'music', title:'音乐区新增：MusicFind 音乐搜索', desc:'300+热门歌手 MP3 合集，10万+单曲在线搜索；69 个精选歌单，夸克百度双通道下载' },
