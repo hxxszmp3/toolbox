@@ -81,18 +81,30 @@
   - 若前一次会话已手动改过 state（未提交），下次运行就看不到那条更新了
   - **排查手法**：把 state 还原成旧值，在**隔离副本**（Temp 目录拷 sync-check.js + watchlist.json + state）
     里复跑，看是否报出更新。别在仓库里试，会污染真实 state
-- **MiniReel 检测失效**：其 `site` 页脚版权声明含 `PolyForm Noncommercial License 1.0.0`，
-    被 strict-max 规则误当成版本号 → state 记成 `1.0.0`（真实最新已到 v0.4.2）
+- **MiniReel 检测失效 —— ✅ 2026-11-03 已修复**：其 `site` 页脚版权声明含 `PolyForm Noncommercial License 1.0.0`，
+    被 strict-max 规则误当成版本号 → state 曾长期记成 `1.0.0`（真实最新 v0.4.2）
   - 该条目自建基线起就一直误判「无更新」。**2026-11-03 实锤漏报**：上游当天发布 v0.4.2，脚本仍报「无更新」
-  - **根因定位**：sync-check.js 第 122 行 `strict-max` 取页面所有三段号的最大值，
+  - **根因**：sync-check.js 第 122 行 `strict-max` 取页面所有三段号的最大值，
     license 里的 `1.0.0` 恒大于 `0.4.x` → state 永远卡在 1.0.0
-  - **精确修法（待批准后改 watchlist.json）**：给 MiniReel 条目加 `versionPattern` 锚定版本徽章，
-    MiniReel 的版本徽章在 HTML 里是 `v<!-- -->0.4.2`（Next.js SSR 的注释分隔），
-    正则用 `v<!-- -->(\d+\.\d+\.\d+)` 可精确命中；或在 clean 阶段过滤含「许可/License」的文本行
+  - **已实施的修法**：watchlist.json 的 MiniReel 条目加 `"anchor": "v<!-- -->(\\d+\\.\\d+\\.\\d+)"`
+    - ⚠️ **必须用 `anchor` 而不是 `versionPattern`**：`stripNoise()` 会把 HTML 注释删掉
+      （`<!-- -->` 变空格），versionPattern 在去噪后的文本上匹配，抓不到徽章
+    - `anchor` 走的是**原始 HTML** 分支（`am[1]` 取捕获组）→ 命中值干净，就是 "0.4.2"
+    - /versions 页和首页都是**新版在前**，首次命中即最新版
   - **人工核查手法**：MiniReel 官网首页下载中心每个平台卡片都带 `vX.Y.Z` + 日期 + MB + `/api/download/NN`，
     `curl -I https://minireel.weppp.cyou:54267/api/download/NN` 可拿到 Content-Disposition（真实文件名）和 Content-Length
-  - **macOS 包名特殊**：0.4.0 是 `MiniReel-0.4.0-macos-universal.zip`，0.4.2 改成 `release-macos.zip`（不含版本号），
-    换包时不能按版本号匹配文件名
+- **MiniReel macOS 包：上游 0.4.2 起变成双层 zip**
+  - 0.4.0 上游直接给 `MiniReel-0.4.0-macos-universal.zip`（单层，直接含 `minireel.app`，318 条目）
+  - 0.4.2 上游给 `release-macos.zip`，**里面又套了一层** `MiniReel-0.4.2-macos-universal.zip`
+  - **网盘里放的是内层包**（跟 0.4.0 那份保持一致，用户解压一次就得到 app），不是上游的 release-macos.zip
+  - 对应下载接口：/api/download/34=安卓手机、35=TV盒子、36=Windows、37=macOS
+- **MiniReel Windows 包的 PE 头是 0x014c（32 位）不是 x64 —— 正常，别误判**
+  - 0.4.0 和 0.4.2 都是这样 → NSIS 安装器 stub 固定 32 位，实际载荷是 x64
+- **夸克分享是「活的文件夹分享」**：替换目录里的文件后分享链接自动指向新文件，**不用重建分享**
+  - 但 `share-detail` 的 `size` 字段是**缓存的旧值**（会显示旧包总和），别被它误导
+  - 查分享内实际内容用 `share-search --url <链接> --keyword <名>`
+- **夸克 CLI 没有 delete 命令**：清理旧包只能用 `move` 移到归档目录
+  - `browse` 默认只返回第一页（约 5 条），拿全量必须加 `--all`；`browse` 不支持 `--stdout-only`（`search` 才支持）
 - **GKD 卡片的 version 字段（v605）指的是订阅规则号，不是 GKD app 号**（app 停在 v1.12.1）
   - 用户实际订阅源 `https://gkd667.vv.ax/gkd.json5` 的 `version` 字段才是规则号，会自动跟进
 
