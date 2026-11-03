@@ -45,7 +45,7 @@ const SECTIONS = [
       { name:'影视仓', desc:'TVBox 内置配置版，装上就能看。电影剧集综艺动漫 + 电视直播 + 豆瓣热榜，多线路切换', added:'2026-10-14', img:'icons/yingshichang.png', os:['安卓','Android TV'], secret:'https://github.com/jinenge/tvbox?tab=readme-ov-file', quark:'https://pan.quark.cn/s/fcac31a0611f', baidu:'https://pan.baidu.com/s/1D1P7Xt3RedOtzsTUShMhXA?pwd=6afg', uc:'https://drive.uc.cn/s/0ac1d98432294' },
       { name:'星盒', desc:'聚合影视资源，看电影追剧', added:'2026-10-04', img:'icons/xinghe.png', version:'v2.7.0', os:['安卓'], secret:'https://www.istarbox.app/download', quark:'https://pan.quark.cn/s/7fc3a192ddc2', baidu:'https://pan.baidu.com/s/1wZxYJcJVGL1WzLQ0T44daA?pwd=y184', uc:'https://drive.uc.cn/s/39b2761e89974' },
       { name:'Sparkle', desc:'番剧影视、漫画、壁纸一体化的安卓应用，免费无广告，影视最高 4K 高清，可看可下载，弹幕可同步各平台', added:'2026-11-01', img:'icons/sparkle.png', os:['安卓'], quark:'https://pan.quark.cn/s/3e86c984820f', baidu:'https://pan.baidu.com/s/1DJbbLI_O8wGfA9KUh5Tzmg?pwd=mwki', uc:'https://drive.uc.cn/s/79784cff81f44' },
-      { name:'MiniReel', desc:'第三方红果短剧客户端，免费无广告，手机/电视/电脑全平台', added:'2026-10-04', img:'icons/minireel.png', version:'v0.4.0', os:['安卓','Android TV','Windows','macOS'], secret:'https://minireel.weppp.cyou:54267/versions', quark:'https://pan.quark.cn/s/c326807e1024', baidu:'https://pan.baidu.com/s/1CEqs_PTYrxYEzSz_40DAbQ?pwd=fgf1', uc:'https://drive.uc.cn/s/16dc43032a3e4' },
+      { name:'MiniReel', desc:'第三方红果短剧客户端，免费无广告，手机/电视/电脑全平台', added:'2026-10-04', img:'icons/minireel.png', version:'v0.4.2', os:['安卓','Android TV','Windows','macOS'], secret:'https://minireel.weppp.cyou:54267/versions', quark:'https://pan.quark.cn/s/c326807e1024', baidu:'https://pan.baidu.com/s/1CEqs_PTYrxYEzSz_40DAbQ?pwd=fgf1', uc:'https://drive.uc.cn/s/16dc43032a3e4' },
       { name:'zpod', desc:'一个应用搞定音乐、影视与听书，三类内容一个播放器全包', added:'2026-10-04', img:'icons/zpod.png', version:'v3.0.12', os:['Windows','macOS','安卓','iOS'], secret:'https://zpod.net/#landing-downloads', quark:'https://pan.quark.cn/s/1b54b41e32ad', baidu:'https://pan.baidu.com/s/1k8lnZ3KKz7eVV-yTLovZlQ?pwd=4if2', uc:'https://drive.uc.cn/s/cae1b5f416834' },
     ]
   },
@@ -185,6 +185,8 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
+  { date:'2026-11-03', type:'update', section:'video', title:'MiniReel 更新至 v0.4.2', desc:'第三方红果短剧客户端新版本，修复播放问题并优化 Windows 卡顿；手机 / 电视 / 电脑全平台安装包已全部更新',
+    link:{ quark:'https://pan.quark.cn/s/c326807e1024', baidu:'https://pan.baidu.com/s/1CEqs_PTYrxYEzSz_40DAbQ?pwd=fgf1', uc:'https://drive.uc.cn/s/16dc43032a3e4' } },
   { date:'2026-11-01', type:'new', section:'novel', title:'小说专区新增：阅读 MD3 版（带精品书源）', desc:'基于开源阅读重构的 MD3 新版阅读器，免费无广告，附 2000+ 可用书源与 4 份精选书源合集，支持自定义书源规则与 TXT/EPUB 本地阅读',
     link:{ quark:'https://pan.quark.cn/s/4d0d9c4932a2', baidu:'https://pan.baidu.com/s/1pLV-g_1nC1a217POTzXOlA?pwd=nav7', uc:'https://drive.uc.cn/s/38fbb925c57d4' } },
   { date:'2026-11-01', type:'update', section:'video', title:'Sparkle 影视区置顶并补充弹幕同步说明', desc:'番剧影视、漫画、壁纸一体化的安卓应用，新增可同步各平台弹幕源说明，影视最高 4K 高清，可看可下载',

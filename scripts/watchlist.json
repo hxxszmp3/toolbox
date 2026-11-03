@@ -119,6 +119,7 @@
       "type": "site",
       "url": "https://minireel.weppp.cyou:54267/versions",
       "assetHint": "手机 / 电视 / 电脑全平台包",
+      "anchor": "v<!-- -->(\\d+\\.\\d+\\.\\d+)",
       "quark": "https://pan.quark.cn/s/c326807e1024",
       "baidu": "https://pan.baidu.com/s/1CEqs_PTYrxYEzSz_40DAbQ?pwd=fgf1"
     },
