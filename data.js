@@ -12,6 +12,7 @@ const SECTIONS = [
   {
     id:'novel', icon:'📖', name:'小说专区', desc:'免费看小说、下小说', added:'2026-10-04', color:'#3b82f6', soft:'#eff6ff',
     tools:[
+      { name:'指尖文库', desc:'Wenku8 Flutter 重写版，翻页动画顺滑，支持本地导入与自定义书源', added:'2026-11-05', img:'icons/wenku8.png', os:['安卓'], secret:'https://github.com/mikufoxxx/Wenku8_Flutter', quark:'https://pan.quark.cn/s/e11bcee402cc', baidu:'https://pan.baidu.com/s/1WAOVg4K63DiiFuZJ0-nrmA?pwd=im85', uc:'https://drive.uc.cn/s/0847d31cfc284' },
       { name:'阅读 MD3 版', desc:'开源阅读 MD3 重构版，MD3 全新界面，免费无广告，附 2000+ 书源，支持自定义书源规则', added:'2026-11-01', img:'icons/yuedu-md3.png', os:['安卓'], secret:'https://github.com/HapeLee/legado-with-MD3', quark:'https://pan.quark.cn/s/4d0d9c4932a2', baidu:'https://pan.baidu.com/s/1pLV-g_1nC1a217POTzXOlA?pwd=nav7', uc:'https://drive.uc.cn/s/38fbb925c57d4' },
       { name:'小说下载器', desc:'全网小说搜索下载，一键导出 TXT/EPUB', added:'2026-10-04', img:'icons/xiaoshuo.png', version:'v1.12.0', os:['Windows','macOS','Linux'], secret:'https://github.com/freeok/so-novel/releases', quark:'https://pan.quark.cn/s/6c73fb388aea', baidu:'https://pan.baidu.com/s/1SHWmlXxW3FYTBf_2f_yruQ?pwd=i32n', uc:'https://drive.uc.cn/s/d36933ba6d3b4' },
       { name:'番茄小说下载器', desc:'小说、漫画、短剧，搜得、存得下、读得爽。免费的番茄小说下载与阅读工具，Windows、macOS、Linux、Android、iOS 全平台可用。', added:'2026-10-04', img:'icons/fanqie.png', version:'v2.4.16', os:['Windows','macOS','Linux','安卓','iOS'], secret:['https://github.com/zhongbai2333/Tomato-Novel-Downloader','https://github.com/POf-L/Fanqie-novel-Downloader/releases/tag/unsigned-v2026.10.20-1539-r740'], quark:'https://pan.quark.cn/s/867ce5b0aad5', baidu:'https://pan.baidu.com/s/1Rg_Ffo3vqfSU4EdQVlJPhA?pwd=f46i', uc:'https://drive.uc.cn/s/2a09d6d4d86c4' },
@@ -185,6 +186,8 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
+  { date:'2026-11-05', type:'new', section:'novel', title:'小说专区新增：指尖文库（轻小说文库）', desc:'Wenku8 的 Flutter 重写版，翻页动画跟手，支持本地导入与自定义书源。注意：官方已更新到 0.5.6 并砍掉书源功能，附带的 0.3.7 是唯一还能用书源的版本，装好请勿更新。',
+    link:{ quark:'https://pan.quark.cn/s/e11bcee402cc', baidu:'https://pan.baidu.com/s/1WAOVg4K63DiiFuZJ0-nrmA?pwd=im85', uc:'https://drive.uc.cn/s/0847d31cfc284' } },
   { date:'2026-11-03', type:'update', section:'video', title:'MiniReel 更新至 v0.4.2', desc:'第三方红果短剧客户端新版本，修复播放问题并优化 Windows 卡顿；手机 / 电视 / 电脑全平台安装包已全部更新',
     link:{ quark:'https://pan.quark.cn/s/c326807e1024', baidu:'https://pan.baidu.com/s/1CEqs_PTYrxYEzSz_40DAbQ?pwd=fgf1', uc:'https://drive.uc.cn/s/16dc43032a3e4' } },
   { date:'2026-11-01', type:'new', section:'novel', title:'小说专区新增：阅读 MD3 版（带精品书源）', desc:'基于开源阅读重构的 MD3 新版阅读器，免费无广告，附 2000+ 可用书源与 4 份精选书源合集，支持自定义书源规则与 TXT/EPUB 本地阅读',
