@@ -87,6 +87,7 @@ const SECTIONS = [
   {
     id:'data', icon:'📂', name:'资料专区', desc:'干货资料合集', added:'2026-10-04', color:'#14b8a6', soft:'#f0fdfa',
     tools:[
+      { name:'小学初中高中教师用书合集', desc:'小学到高中各学科教师用书 PDF 合集,人教版、鲁科版等教材配套齐全,共 889 份', added:'2026-11-05', emoji:'📗', quark:'https://pan.quark.cn/s/2363c8dad800' },
       { name:'全套高中电子课本教材 PDF', desc:'人教、苏教、教科、粤教、北师大各版本齐全，语数英物等全学科电子课本，846 个文件共 22.9GB', added:'2026-11-01', emoji:'📚', quark:'https://pan.quark.cn/s/df51e84f2538' },
       { name:'百万剪辑狮的音效库', desc:'2123 个 WAV 音效分 13 类：效果、乐器、动作、场景、武器、动物等，剪辑直接拖进时间线', added:'2026-10-28', emoji:'🎙️', quark:'https://pan.quark.cn/s/28979739a6fb' },
       { name:'软件工具包大合集', desc:'40 个分类 1337 个精选安卓应用，实用工具 / 影视动漫 / 电脑软件 / 小说漫画 / 音乐软件 / 磁力下载 / 壁纸主题 / 相机类等持续更新中', added:'2026-10-25', emoji:'🧰', quark:'https://pan.quark.cn/s/24d6ebe76714' },
@@ -187,6 +188,8 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
+  { date:'2026-11-05', type:'new', section:'data', title:'资料区新增：小学初中高中教师用书合集', desc:'教师用书【小学 初中 高中 合集】，共 889 个文件 / 1098 个条目、56GB。分小学、初中、高中三学段，语文数学英语物理化学生物历史地理政治等学科齐全，人教版、鲁科版等教材配套的教师用书 PDF，备课直接可用。',
+    link:{ quark:'https://pan.quark.cn/s/2363c8dad800' } },
   { date:'2026-11-05', type:'update', section:'software', title:'飞鼠格式转换助手 更新至 v0.8.3', desc:'音视频 / 文档格式转换工具新版本，Windows 安装包已更新到最新版',
     link:{ quark:'https://pan.quark.cn/s/54d36d2d91dd', baidu:'https://pan.baidu.com/s/1g-EPPoxSKZJQIuzRqfdXvA?pwd=61xj' } },
   { date:'2026-11-05', type:'update', section:'anime', title:'Kazumi 更新至 v2.4.3', desc:'免费无广告聚合全网番剧源，Win / Mac / Linux / 安卓 / iOS 全平台安装包已同步更新',
