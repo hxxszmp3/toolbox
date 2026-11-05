@@ -28,6 +28,7 @@ const SECTIONS = [
   {
     id:'music', icon:'🎵', name:'音乐专区', desc:'免费听歌、下歌', added:'2026-10-04', color:'#8b5cf6', soft:'#f5f3ff',
     tools:[
+      { name:'BMSC', desc:'聚合 B 站海量音乐，零广告支持批量下载，需登录 B 站，25MB 轻量', added:'2026-11-05', img:'icons/bmsc.png', os:['安卓'], secret:'https://github.com/u2x1/bmsc', quark:'https://pan.quark.cn/s/0bf18962c528', baidu:'https://pan.baidu.com/s/1esy1MdxoGFtizmNF3_lSpw?pwd=dmfm', uc:'https://drive.uc.cn/s/28b98f6341d74' },
       { name:'MusicFind 音乐搜索', desc:'300+热门歌手 MP3 合集，10万+单曲在线搜索；69 个精选歌单，夸克百度双通道下载', added:'2026-11-01', emoji:'🎵', web:'https://www.hxxsz666.vip/' },
       { name:'MoeKoeMusic', desc:'酷狗概念版开源音乐播放器，GitHub 6000+ star。登录酷狗账号直接同步歌单收藏与听歌时长，无社交功能、官方服务器直连，支持标准 / 高频 / FLAC / Hi-Res 音质', added:'2026-10-14', img:'icons/moekoe.png', version:'v1.7.1', os:['Windows','macOS'], secret:'https://github.com/MoeKoeMusic/MoeKoeMusic', quark:'https://pan.quark.cn/s/a45888fd2f22', baidu:'https://pan.baidu.com/s/1uBPlFqU0HbEjG5sS-KyUDw?pwd=dmpi', uc:'https://drive.uc.cn/s/512d5a99beae4' },
       { name:'敦伦调调', desc:'全网音乐免费听 / 下载', added:'2026-10-04', img:'icons/dunlun.png', version:'v1.0.10', os:['安卓'], secret:'https://app.4848948.xyz/', quark:'https://pan.quark.cn/s/21d0a48a9ee9', baidu:'https://pan.baidu.com/s/1ObfiNgOTdDpkxcEVFZZ4kA?pwd=3dcd', uc:'https://drive.uc.cn/s/626b4c451d5a4' },
@@ -186,6 +187,8 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
+  { date:'2026-11-05', type:'new', section:'music', title:'音乐专区新增：BMSC', desc:'BMSC v2.2.4，聚合 B 站海量音乐资源，支持批量下载。无弹窗无广告的纯净畅听体验，25MB 轻量不占内存，低配设备也能流畅运行。注意：使用需登录 B 站账号。',
+    link:{ quark:'https://pan.quark.cn/s/0bf18962c528', baidu:'https://pan.baidu.com/s/1esy1MdxoGFtizmNF3_lSpw?pwd=dmfm', uc:'https://drive.uc.cn/s/28b98f6341d74' } },
   { date:'2026-11-05', type:'new', section:'novel', title:'小说专区新增：轻小说文库（Wenku8）', desc:'Wenku8 的 Flutter 重写版，翻页动画跟手，支持本地导入与自定义书源。注意：官方已更新到 0.5.6 并砍掉书源功能，附带的 0.3.7 是唯一还能用书源的版本，装好请勿更新。',
     link:{ quark:'https://pan.quark.cn/s/e11bcee402cc', baidu:'https://pan.baidu.com/s/1WAOVg4K63DiiFuZJ0-nrmA?pwd=im85', uc:'https://drive.uc.cn/s/0847d31cfc284' } },
   { date:'2026-11-03', type:'update', section:'video', title:'MiniReel 更新至 v0.4.2', desc:'第三方红果短剧客户端新版本，修复播放问题并优化 Windows 卡顿；手机 / 电视 / 电脑全平台安装包已全部更新',
