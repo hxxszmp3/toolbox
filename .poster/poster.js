@@ -6,6 +6,7 @@
  */
 const { spawn } = require('child_process');
 const http = require('http');
+const net = require('net');
 const fs = require('fs');
 const path = require('path');
 
@@ -170,10 +171,26 @@ async function cdpShotAuto(t, outPath) {
   return await cdpShot(html({ ...t, shH }), outPath);
 }
 
-function cdpShot(htmlText, outPath) {
+/* 找一个真正空闲的端口（随机撞端口会撞上残留的 Chrome 实例） */
+function freePort() {
+  return new Promise((resolve, reject) => {
+    const srv = net.createServer();
+    srv.unref();
+    srv.on('error', () => {
+      /* 被占用就再试一个 */
+      freePort().then(resolve, reject);
+    });
+    srv.listen(0, '127.0.0.1', () => {
+      const p = srv.address().port;
+      srv.close(() => resolve(p));
+    });
+  });
+}
+
+async function cdpShot(htmlText, outPath) {
+  const port = await freePort();
   return new Promise((resolve, reject) => {
     const exe = 'C:/Users/dellsq/AppData/Local/ms-playwright/chromium-1169/chrome-win/chrome.exe';
-    const port = 9700 + Math.floor(Math.random() * 200);
     const profile = path.join(require('os').tmpdir(), 'poster_chrome_' + port);
     fs.mkdirSync(profile, { recursive: true });
     const proc = spawn(exe, ['--remote-debugging-port=' + port, '--disable-gpu', '--no-sandbox',

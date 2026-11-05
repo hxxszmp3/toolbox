@@ -11,12 +11,12 @@ const shot = n => dataUri(path.join(ASSET, n));
 const TOOLS = [
   /* ---------- 0. 指尖文库 ---------- */
   {
-    key: 'wenku8', out: '指尖文库.png',
+    key: 'wenku8', out: '轻小说文库.png',
     c: '#4F46E5', bg: 'linear-gradient(170deg,#F1F0FF 0%,#FFFFFF 45%,#F5F0FF 100%)',
     b1: '#DDD6FE', b2: '#C7D2FE', dot: '#C7D2FE', shadowc: 'rgba(79,70,229,.30)',
     icon: icon('wenku8'), heroIcon: icon('wenku8'),
     pill: 'Wenku8 Flutter 重写版 · 开源',
-    title: '指尖文库',
+    title: '轻小说文库',
     subtitle: '轻小说的翻页手感',
     sub2: '翻页跟手不费眼 · 支持本地导入与自定义书源',
     features: [
