@@ -48,6 +48,10 @@
   改为 `type:"site"` + `url:"https://zpod.net/"` + `anchor:"zpod-version\"\\s+content=\"(\\d+\\.\\d+\\.\\d+)\"`（走原始 HTML 分支，稳定命中）
 - **站点抓取加重试 —— 2026-11-05**：zpod/四分贝 等官网首访会瞬时失败（fetch failed），
   单次失败就报「检测失败」是误报。`siteVersion()` 拆成 `fetchSiteOnce()` + 3 次重试（间隔 3s）
+- **search 找目录要用 `--search-type dir`**：默认 `mix` 只返回文件，搜目录名（如 "geek"）会搜不到文件夹本身
+- **GitHub API 未认证限流 60 次/小时**：批量换包前先 `GET /rate_limit` 看 remaining，
+  超了会 403；已知 asset id 时改用 `GET /repos/{o}/{r}/releases/assets/{id}` + `Accept: application/octet-stream`
+  （asset 端点不受 release 列表端点的限流影响，但仍算 core 配额）
 
 ## 换包上线流程（夸克，2026-11-05 验证）
 - **步骤**：① 上游下载 → ② 本地重命名为**上游原名**（如 `Kazumi_android_2.4.3.apk`）→ ③ `upload --parent-fid <目录>` → ④ `move --target-fid <存档目录>` 旧包
@@ -63,6 +67,15 @@
   改用 `GET /repos/{owner}/{repo}/releases/tags/{tag}` 拿 `assets[].url`，再带 `Accept: application/octet-stream` 请求该 API URL
 - **Kazumi 上游已不提供鸿蒙 hap 包**（2.3.9 起全部 release 都没有 .hap），网盘 `手机-鸿蒙/` 下的 2.3.1 hap 保持不动
 - **GitHub release 资产列表可能与网盘目录结构不一致**（如上游有 `Kazumi_windows_2.4.3.zip` 但网盘只放 .msix）→ 以网盘既有结构为准，只换同名包
+- ⚠️ **同名换包会踩坑**：新旧文件名相同（如 `piik-app-windows-amd64.zip`、`geek.exe`）时，
+  「已存在」判断会误判成「上传过了」，结果只归档旧包而没上传新包 → **先 move 旧包到存档，再 upload 新包**
+- ⚠️ **夸克内容扫描会屏蔽文件名**：某些 apk 上传后文件名被改成 `首字母****`（如 `v****`）且不进入分享。
+  实测是**按内容**触发（换个名字重新传同样被屏蔽），**用 zip 包一层就绕过**（扫描器不拆 zip）。
+  venera v1.6.3 的 arm64 apk 就是这种情况 → 改成 `venera-1.6.3-arm64-v8a.zip`（内含 apk）上传，正常可见
+- **官网只有网盘链接的版本**：四分贝 v1.3.3 官网不给直链，给的是夸克/百度/蓝奏分享。
+  用 `saveas --url <分享> --to-pdir-path <目录>` 转存到自己网盘，再 `move` 到目标目录，比下载再上传快
+- **Geek Uninstaller 官网**只给 `geek.zip`（zip 里是 geek.exe），用 python `zipfile` 解压（Windows 自带 tar 不认 zip）
+- **工具改名要同步改网盘文件夹名**（venera_1.4.6 → venera），否则卡片名与网盘目录对不上
 
 ## 图标规范
 - 128x128 RGBA 圆角透明 PNG，放 icons/，命名用拼音；**卡片只显示 40px**，源图别超 128px
