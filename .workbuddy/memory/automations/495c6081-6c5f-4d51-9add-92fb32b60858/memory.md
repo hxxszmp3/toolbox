@@ -128,3 +128,77 @@
   顶部更新条显示「11-03 影视专区 MiniReel 更新至 v0.4.2」
 - 百度网盘与 UC 网盘**未动**（无对应工具，需用户手动上传）；UC 分享页是 JS 渲染，抓不到文件列表
 - 临时文件已清理：_tmp_minireel/、_verify_live*.js/png、_m040.bin、隔离测试目录
+
+## 2026-11-04 18:37
+- 命令：`node scripts/sync-check.js`（cwd: C:/Users/dellsq/Desktop/123/toolbox）
+- 结果：检测 23 个来源（12 个人工），**发现 2 个真实更新**，1 个条目检测失败。
+  - Piik v2.5.2 → **v2.5.3**（2026-11-03T21:40:59Z），实用软件区，GitHub TNTcraftHIM/Piik
+  - GKD 去广告规则 v623 → **v624**（2026-11-03T23:32:42Z），实用软件区，内嵌于 GKD 卡片
+- **基线未漂移**：运行前存 state 快照，跑完 diff → 仅 Piik、GKD 两行变动，与报告完全一致
+- 独立二次核实（不依赖脚本）：
+  - 15 个 GitHub repo 全部 `api.github.com/releases/latest` 直查 → tag/published_at 与 state 全一致
+  - 7 个 site 类目独立重抓重跑 anchor → 四分贝 1.3.3、MiniReel 0.4.2、动漫共和国 1.4.4、
+    Bandizip v7.47、StartAllBack v3.9.28.5423、PixPin 3.6.6.0、Geek Uninstaller 1.6.0.200 均与 state 一致
+  - **坑：本机 curl 不可用** —— Windows schannel 报 `CRYPT_E_REVOCATION_OFFLINE`，curl 全部失败；
+    改用 Node `fetch` 才通。以后校验一律用 Node，别用 curl
+  - **坑：四分贝音乐「请求失败」是瞬时抖动** —— 脚本跑挂，独立重试 3 次即成功（1.3.3），非真失败
+  - GKD 订阅源 `https://gkd667.vv.ax/gkd.json5` version 字段 = **624** → 规则本体已自动更新，卡片标注滞后
+- 夸克网盘实测（只读）：
+  - Piik 分享内 `piik-app-windows-amd64.zip` = 38,240,936 B → 反查上游**精确匹配 v2.1.0**（v2.5.3 是 39,338,694 B）
+    → 网盘 v2.1.0 / 卡片 v1.9.2 / 上游 v2.5.3，三方各差一档
+  - GKD 分享结构：根目录 `gkd-v1.12.1.apk` + `GKD（跳过开屏广告）/`（内含 `手机-安卓/gkd-v1.12.1.apk` + `规则.txt` 376B）
+  - **新坑：夸克 CLI `share-search` 不支持 `--stdout-only`**（只有 `search` 支持），`browse` 也不支持
+  - `share-search` 的返回结构是 `data.files`（含 `file_name`/`size`/`fid`），目录项 `file_type==='0'` 需用 `share-detail --pdir-fid` 递归
+- 12 个人工条目本次全部复核：星盒/敦伦调调/铁汁 抓取失败（防爬/超时），其余可抓但页面无可靠三段号或为 JS 渲染
+  → 维持「需人工查看」，无新可报版本
+- 卡片 version 滞后上游（本次逐一对照）：Piik v1.9.2/v2.5.3、四分贝 v1.3.2/1.3.3、Kazumi v2.3.8/2.4.2、
+  Mihon v0.20.4/v0.21.3、venera_1.4.6/1.6.3、WinTab v2.4.5/2.4.7、PixPin v3.5.5.1/3.6.6.0、
+  Geek Uninstaller v1.5.5.185/1.6.0.200
+  - Bandizip / StartAllBack 卡片本来就没 version 字段（非滞后）；GKD v605 是规则号不是 app 号
+  - MiniReel 卡片 v0.4.2 已与上游一致（11-03 那次已更新）
+- 未改动任何站内文件：`git status` 仅 `M scripts/sync-state.json`（脚本自动更新，未回滚）；
+  data.js / index.html / icons/ / watchlist.json 全干净；`node --check data.js` 通过；
+  无提交、无推送、未上传网盘。临时校验脚本已删除
+- 顺带：MEMORY.md 从 18KB 精简到 9KB（超限被截断），保留全部关键坑位
+- 已向用户汇报：2 个更新详情 + 夸克/百度链接 + 网盘实为 v2.1.0 的三方版本差 + 卡片滞后清单 + 四分贝为瞬时失败
+
+## 2026-11-05 21:10
+- 命令：`node scripts/sync-check.js`（cwd: C:/Users/dellsq/Desktop/123/toolbox）
+- 结果：检测 23 个来源（12 个人工），**发现 3 个真实更新，无失败条目**。
+  - Kazumi 2.4.2 → **2.4.3**（2026-11-04T12:12:33Z），动漫专区
+  - GKD 去广告规则 v624 → **v625**（2026-11-04T23:48:56Z），实用软件区
+  - 飞鼠格式转换助手 v0.7.10 → **v0.8.3**（2026-11-04T10:53:52Z），实用软件区
+- **基线未漂移**：运行前存 state 快照，跑完 diff → 仅 3 行变动（Kazumi/GKD/飞鼠），与报告完全一致
+- 独立二次核实：16 个 GitHub repo 全部 `api.github.com/releases/latest` 直查 → tag/published_at 与 state 全一致；
+  7 个 site 类目独立重抓重跑 anchor → 四分贝 1.3.3、MiniReel 0.4.2、Bandizip v7.47、StartAllBack v3.9.28.5423、
+  PixPin 3.6.6.0 均一致；Geek Uninstaller 页面候选列表最大 = 1.6.0.200（脚本 loose 规则匹配到 'd d' 但 state 值正确）
+- **人工类目里挖到第 4 个更新**：**zpod v3.0.12 → 3.0.14**（官网 zpod.net 首页安装包文件名含 3.0.14；
+  脚本把它归到「需人工查看」，所以报告里没列）
+- **网盘实测（只读）——飞鼠是本次最大坑**：
+  - 飞鼠网盘 `FlyingMouse-Format-Setup-0.6.1-x64.exe` = 1,709,708,623 B
+  - 上游**没有 v0.6.1 release**（tags 有 v0.6.1 但 release 404），体积最接近 **v0.6.4 的 1,709,717,610 B（Δ 8987 B）**
+  - → 网盘是 v0.6.1/v0.6.4 量级的**孤儿包**，比卡片 v0.7.10 还旧一代，比上游 v0.8.3 落后两代
+  - 上游 v0.8.3 的 exe 达 1.6 GB（v0.7.10 是 1.5 GB）→ 换包耗时长
+  - Kazumi 网盘全是 2.3.8（体积逐一精确匹配上游 2.3.8 资产）→ 网盘 = 卡片 v2.3.8，比上游 2.4.3 落后一档
+  - zpod 网盘 4 个平台全是 3.0.12；PixPin 网盘 windows 已是 3.6.6.0 但 macOS 还是 3.3.5.7（版本不齐）
+  - Mihon 网盘 v0.20.4；WinTab 网盘 v2.4.5；Piik 网盘 38,240,936 B（= v2.1.0，仍是老样子）
+  - 四分贝网盘 `4分贝音乐1.3.1.exe`（卡片 v1.3.2、上游 1.3.3 → 三方各差一档）
+  - 敦伦调调网盘 FMusic_1.0.10（= 卡片，官网也是 1.0.10，一致）；星盒网盘 2.7.0（= 卡片）
+  - 铁汁网盘：TieZ_0.3.3_x64-setup.exe + TieZ_0.3.3-portable.zip + TieZ_0.1.3_aarch64.dmg（**卡片无 version 字段**）
+- **GKD 规则.txt 内容已查明**：网盘里的「规则.txt」只有 376 B，**不是规则本体**，只是 3 个订阅链接
+  （gkd667.vv.ax / gkd-subscription-667.pages.dev / raw.githubusercontent.com/Lin-arm/GKD_subscription/main/dist/gkd.json5）
+  → 规则本体走订阅自动更新，**换包不需要动规则文件**；卡片 v605 是规则号不是 app 号
+- **坑：`gkd667.vv.ax` 和 `gkd-subscription-667.pages.dev` 本机全超时**（fetch 和 https 模块都试过，4 次全挂）；
+  改用 `raw.githubusercontent.com/Lin-arm/GKD_subscription/main/dist/gkd.json5` 一次拿到 → **version=625**（与 state 一致）
+- 12 个人工条目本次复核：星盒/铁汁/极投屏首次超时、重试成功但无版本号；敦伦调调 1.0.10（=卡片）；zpod 3.0.14（**有更新**）；
+  笔趣阁/星音乐/米兔/UU远程/公众号下载器 页面无可靠版本号；莫比音乐/抱走漫画 是 QQ 群文件
+- 卡片 version 滞后上游（本次逐一对照）：Kazumi v2.3.8/v2.4.3、四分贝 v1.3.2/v1.3.3、Mihon v0.20.4/v0.21.3、
+  venera_1.4.6/v1.6.3、Piik v1.9.2/v2.5.3、WinTab v2.4.5/v2.4.7、PixPin v3.5.5.1/3.6.6.0、
+  Geek Uninstaller v1.5.5.185/v1.6.0.200、飞鼠 v0.7.10/v0.8.3、zpod v3.0.12/v3.0.14
+  - Bandizip / StartAllBack / 铁汁 / 米兔 / 莫比 / 抱走漫画 / UU远程 / 公众号下载器 / C盘清理 / 团子 / 极限投屏 卡片本来就没 version 字段（非滞后）
+  - GKD v605 是规则号不是 app 号；MoeKoeMusic v1.7.1、 novels 下载器、番茄、淬火、HowToLiveBetter 均已一致
+- 未改动任何站内文件：`git status` 仅 `M scripts/sync-state.json`（脚本自动更新，未回滚）；
+  data.js / index.html / icons/ / watchlist.json 全干净；`node --check data.js` 通过；
+  无提交、无推送、未上传网盘。临时文件已清理（含 _tmp_gkdcheck/ 与全部 /tmp 校验脚本）
+- 已向用户汇报：4 个更新（3 个脚本 + 1 个人工类目 zpod）+ 夸克/百度链接 + 网盘实况（飞鼠包比卡片还旧一档）
+  + 卡片滞后清单 + GKD 规则走订阅自动更新说明

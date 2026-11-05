@@ -174,6 +174,19 @@ function compareVer(a, b) {
 }
 
 async function siteVersion(t) {
+  /* 部分官网首访很慢或会瞬时失败（zpod / 四分贝 等），
+     单次失败就报「检测失败」会误导 —— 重试几次再判定 */
+  const RETRIES = 3;
+  let last = null;
+  for (let i = 1; i <= RETRIES; i++) {
+    last = await fetchSiteOnce(t);
+    if (last.ok) return last;
+    if (i < RETRIES) await new Promise(r => setTimeout(r, 3000));
+  }
+  return last;
+}
+
+async function fetchSiteOnce(t) {
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), SITE_TIMEOUT);
   try {
