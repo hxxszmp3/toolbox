@@ -202,3 +202,35 @@
   无提交、无推送、未上传网盘。临时文件已清理（含 _tmp_gkdcheck/ 与全部 /tmp 校验脚本）
 - 已向用户汇报：4 个更新（3 个脚本 + 1 个人工类目 zpod）+ 夸克/百度链接 + 网盘实况（飞鼠包比卡片还旧一档）
   + 卡片滞后清单 + GKD 规则走订阅自动更新说明
+
+## 2026-11-05 23:30（用户手动指示「把这四个软件更新，并更新网站动态」，非自动化触发）
+- **已执行落地**：Kazumi / zpod / 飞鼠格式转换助手 / GKD 规则 四个工具全部换包 + 站点动态上线
+  - 夸克换包（每个平台：上传新包 → 旧包 `move` 到 `<分区>/_旧版本存档/`）：
+    - Kazumi 2.3.8→2.4.3：8 个包（Windows msix / macOS dmg / 安卓 apk / iOS ipa / Linux deb+tar.gz 各两架构）
+    - zpod 3.0.12→3.0.14：4 个平台包（windows exe / macOS dmg / arm64 apk / ipa）
+    - 飞鼠 v0.7.10→v0.8.3：exe 1.5 GB（上传耗时约 12 分钟）
+    - GKD：规则走订阅自动更新，**不换包**（网盘「规则.txt」只有 376 B，是 3 个订阅链接而非规则本体）
+  - 新建 3 个存档目录：动漫区 / 音乐区 / 实用软件区 各一个 `_旧版本存档`
+  - 换完用 `share-detail` 递归确认分享侧已全部指向新版本（活链接，无需重建分享）
+- **站点**：data.js 卡片 version 更新 5 处（Kazumi / zpod×2 分区 / 飞鼠 / GKD v605→v625）；
+  UPDATES 顶部加 4 条 2026-11-05 的 update 条目（工具名均为蓝色可点击按钮，已用 findToolsInUpdate 逻辑复测各自只命中 1 个）；
+  index.html 版本戳 20261105c → 20261105d
+- **顺手修两个检测盲区**（本次发现）：
+  - zpod 从 `manual` 改为 `site`（抓首页 `<meta name="zpod-version">`），以后自动检测
+  - `siteVersion()` 拆出 `fetchSiteOnce()` + 3 次重试（间隔 3s）→ 修 zpod/四分贝 首访瞬时失败被误报「检测失败」
+  - 隔离副本三连测：state 3.0.12 → 正确报 3.0.14；真 state 写入 site:zpod=3.0.14
+- **推送**：commit `53c93a2`，`bash tools/push.sh` SSH 一次成功（代理端口本轮是 57371）
+- **线上验证**：data.js/index.html 的线上 md5 与 git blob **完全一致**（本地工作区是 CRLF，别误判为不一致）；
+  无头 Chromium 打开 https://ldgj.xyz/ → 0 个 JS 异常、38 图标 0 破图、
+  更新抽屉 70 条、前 4 条正是本次四条、顶部滚动条显示正确；截图确认版式无错乱
+- **本轮踩到的坑（已写进 MEMORY.md）**：
+  - `browse` 单页最多返回 5 条，`--page-size` 无效 → 目录项多时改用 `search` 按名字定位
+  - `search` **不索引 .ipa**（搜 "ipa" 只返回 .apk）→ .ipa 靠 `browse` 父目录拿
+  - `search` 也会瞬时返回 `53000 服务器内部异常` → 脚本化调用要加重试
+  - GitHub release **直链 403**（CDN 域名被限流）→ 改用 `releases/tags/{tag}` 的 `assets[].url` + `Accept: application/octet-stream`
+  - `rename` items 格式 `{schema_version:1, items:[{fid, old_name, new_name}]}`，单批 ≤5 条
+  - **Kazumi 上游已不提供鸿蒙 hap 包**（2.3.9 起全部 release 都没有 .hap）→ 网盘 `手机-鸿蒙/` 的 2.3.1 hap 保持不动
+  - 上游资产与网盘结构可能不一致（上游有 `Kazumi_windows_2.4.3.zip`，网盘只放 .msix）→ 以网盘既有结构为准，只换同名包
+- **未处理**：百度网盘 4 个工具仍是旧版（需用户手动上传）；UC 网盘未动；
+  其余卡片 version 仍滞后上游（四分贝 v1.3.2/1.3.3、Mihon v0.20.4/v0.21.3、venera 1.4.6/v1.6.3、
+  Piik v1.9.2/v2.5.3、WinTab v2.4.5/v2.4.7、PixPin v3.5.5.1/3.6.6.0、Geek v1.5.5.185/v1.6.0.200）
