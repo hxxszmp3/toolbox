@@ -128,6 +128,7 @@ const SECTIONS = [
   {
     id:'software', icon:'🛠️', name:'实用软件', desc:'效率工具、黑科技软件', added:'2026-10-04', color:'#6366f1', soft:'#eef2ff',
     tools:[
+      { name:'RadioHub', desc:'聚合全球 6.1 万电台与 5 万播客，新闻音乐体育英语听力全都有，免注册免会员', added:'2026-11-06', img:'icons/radiohub.png', os:['安卓'], secret:'https://www.grow365.com.cn/radiohub/', quark:'https://pan.quark.cn/s/89627993639a', baidu:'https://pan.baidu.com/s/1ssu1yt-6zv2F6XqFZWXapQ?pwd=iwat' },
       { name:'C盘AI清理大师', desc:'Win 电脑 C 盘清理必备：一键全面清理，或单选临时文件、回收站、浏览器缓存、Windows 更新缓存、备份文件、系统日志、Defender 与 IIS 日志，磁盘告急时救急用', added:'2026-10-12', img:'icons/cleanmaster.png', version:'v1.0.0', os:['Windows'], quark:'https://pan.quark.cn/s/74185fa74660' },
       { name:'Piik', desc:'免费开源屏幕共享工具，P2P 优先，支持浏览器查看、桌面应用', added:'2026-10-04', img:'icons/piik.png', version:'v2.5.3', os:['Windows'], secret:'https://github.com/TNTcraftHIM/Piik', quark:'https://pan.quark.cn/s/ba0b83672f29', baidu:'https://pan.baidu.com/s/1siImilwy8FN6vhIxx8Httw?pwd=t8d8' },
       { name:'VideoToNotes', desc:'视频转文章，导入视频字幕即可导出公众号排版文章', added:'2026-10-04', img:'icons/videotonotes.png', os:['Windows'], quark:'https://pan.quark.cn/s/d38a3d2bd7f0', baidu:'https://pan.baidu.com/s/1BiTkU9YGXdQt0XHzax33Fg?pwd=5h5t' },
@@ -189,6 +190,8 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
+  { date:'2026-11-06', type:'new', section:'software', title:'实用软件区新增：RadioHub', desc:'RadioHub 聚合全球 61,139 个直播电台与 50,883 个播客节目，新闻、音乐、体育、英语听力一站听齐。支持中文搜索、后台播放、锁屏续听，播客还能离线下载。无需注册、没有会员门槛，个人数据只存在本地。',
+    link:{ quark:'https://pan.quark.cn/s/89627993639a', baidu:'https://pan.baidu.com/s/1ssu1yt-6zv2F6XqFZWXapQ?pwd=iwat' } },
   { date:'2026-11-06', type:'new', section:'video', title:'影视专区新增：小柿子', desc:'小柿子，一个安卓免费看剧 App，电影、电视剧、动漫、综艺、直播、短剧六大类资源一站聚合，不用开会员随便看。安装包 42MB，体积轻巧低配手机也跑得动。',
     link:{ quark:'https://pan.quark.cn/s/e1edc76d8989', baidu:'https://pan.baidu.com/s/1b2VnHbg_1igoZAv3LjpUeA?pwd=wttk', uc:'https://drive.uc.cn/s/10c91918624c4?public=1' } },
   { date:'2026-11-05', type:'update', section:'software', title:'Geek Uninstaller 更新至 v1.6.0.200', desc:'免费开源强力卸载工具新版本，卸载后自动扫描残留文件与注册表并清理干净',
