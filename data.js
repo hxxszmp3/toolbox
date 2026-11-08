@@ -192,7 +192,7 @@ const SECTIONS = [
    ===================================================================== */
 const UPDATES = [
   { date:'2026-11-08', type:'new', section:'video', title:'影视专区新增：红果短剧第三方客户端', desc:'分电脑版与电视版两个包：电脑版含 Windows 安装包、macOS 免安装包和第三方书源包；电视版是装在安卓电视盒子上的 APK（含旧设备版与 mpv 内核版）。可搜索找剧、保存观看进度与自动连播，已同步到网盘。',
-    link:{ quark:'https://pan.quark.cn/s/46de1ea998ab' } },
+    link:{ quark:'https://pan.quark.cn/s/a47cf97e4c1a' } },
   { date:'2026-11-08', type:'update', section:'novel', title:'番茄小说下载器更新至 v2026.11.7-1124', desc:'一周 28 个版本，重点是全面打通番茄官方账号：短剧/漫画进度双向同步，新增书签、书内全文搜索、在线字体与阅读统计；BVC2 短剧终于能播，兼容转码提速约 3 倍；漫画支持跨话连续长条并可导出 CBZ / PDF；短剧下载改为可暂停续传的队列，下载出错可自动重试并通知。全平台安装包已同步到网盘。',
     link:{ quark:'https://pan.quark.cn/s/867ce5b0aad5', baidu:'https://pan.baidu.com/s/1Rg_Ffo3vqfSU4EdQVlJPhA?pwd=f46i', uc:'https://drive.uc.cn/s/2a09d6d4d86c4' } },
   { date:'2026-11-06', type:'new', section:'software', title:'实用软件区新增：RadioHub', desc:'RadioHub 聚合全球 61,139 个直播电台与 50,883 个播客节目，新闻、音乐、体育、英语听力一站听齐。支持中文搜索、后台播放、锁屏续听，播客还能离线下载。无需注册、没有会员门槛，个人数据只存在本地。',
