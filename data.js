@@ -44,6 +44,8 @@ const SECTIONS = [
   {
     id:'video', icon:'🎬', name:'影视专区', desc:'聚合影视资源', added:'2026-10-04', color:'#ef4444', soft:'#fef2f2',
     tools:[
+      { name:'红果短剧桌面版', desc:'红果短剧桌面客户端，Windows / macOS 免安装版，支持搜索找剧、保存进度与自动连播', added:'2026-11-08', emoji:'💻', version:'v1.0.22', os:['Windows','macOS'], secret:['https://github.com/waligoraamodio288-rgb/hongguo-desktop-releases','https://github.com/aston314/hongguo-tv-releases'], quark:'https://pan.quark.cn/s/46de1ea998ab' },
+      { name:'红果短剧 TV 版', desc:'红果短剧 TV 客户端，安卓电视盒子专用版，支持搜索找剧、保存进度与自动连播', added:'2026-11-08', emoji:'📺', version:'v0.2.155', os:['Android TV'], secret:'https://github.com/aston314/hongguo-tv-releases', quark:'https://pan.quark.cn/s/bd1770259144' },
       { name:'小柿子', desc:'安卓免费看剧应用，电影电视剧动漫综艺直播短剧全都有，聚合资源免会员', added:'2026-11-06', img:'icons/xiaoshizi.png', os:['安卓'], secret:'https://www.xszxsz.com/', quark:'https://pan.quark.cn/s/e1edc76d8989', baidu:'https://pan.baidu.com/s/1b2VnHbg_1igoZAv3LjpUeA?pwd=wttk', uc:'https://drive.uc.cn/s/10c91918624c4?public=1' },
       { name:'影视仓', desc:'TVBox 内置配置版，装上就能看。电影剧集综艺动漫 + 电视直播 + 豆瓣热榜，多线路切换', added:'2026-10-14', img:'icons/yingshichang.png', os:['安卓','Android TV'], secret:'https://github.com/jinenge/tvbox?tab=readme-ov-file', quark:'https://pan.quark.cn/s/fcac31a0611f', baidu:'https://pan.baidu.com/s/1D1P7Xt3RedOtzsTUShMhXA?pwd=6afg', uc:'https://drive.uc.cn/s/0ac1d98432294' },
       { name:'星盒', desc:'聚合影视资源，看电影追剧', added:'2026-10-04', img:'icons/xinghe.png', version:'v2.7.0', os:['安卓'], secret:'https://www.istarbox.app/download', quark:'https://pan.quark.cn/s/7fc3a192ddc2', baidu:'https://pan.baidu.com/s/1wZxYJcJVGL1WzLQ0T44daA?pwd=y184', uc:'https://drive.uc.cn/s/39b2761e89974' },
@@ -190,6 +192,10 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
+  { date:'2026-11-08', type:'new', section:'video', title:'影视专区新增：红果短剧 TV 版', desc:'红果短剧第三方客户端的安卓电视盒子版 v0.2.155，支持搜索找剧、保存观看进度与自动连播。提供标准版、android5 旧设备版与 mpv 播放内核版三个安装包，已同步到网盘。',
+    link:{ quark:'https://pan.quark.cn/s/bd1770259144' } },
+  { date:'2026-11-08', type:'new', section:'video', title:'影视专区新增：红果短剧桌面版', desc:'红果短剧第三方客户端的桌面版，Windows v1.0.22 与 macOS v0.2.155 均已同步到网盘，附第三方书源包，可搜索找剧、保存观看进度与自动连播。',
+    link:{ quark:'https://pan.quark.cn/s/46de1ea998ab' } },
   { date:'2026-11-08', type:'update', section:'novel', title:'番茄小说下载器更新至 v2026.11.7-1124', desc:'一周 28 个版本，重点是全面打通番茄官方账号：短剧/漫画进度双向同步，新增书签、书内全文搜索、在线字体与阅读统计；BVC2 短剧终于能播，兼容转码提速约 3 倍；漫画支持跨话连续长条并可导出 CBZ / PDF；短剧下载改为可暂停续传的队列，下载出错可自动重试并通知。全平台安装包已同步到网盘。',
     link:{ quark:'https://pan.quark.cn/s/867ce5b0aad5', baidu:'https://pan.baidu.com/s/1Rg_Ffo3vqfSU4EdQVlJPhA?pwd=f46i', uc:'https://drive.uc.cn/s/2a09d6d4d86c4' } },
   { date:'2026-11-06', type:'new', section:'software', title:'实用软件区新增：RadioHub', desc:'RadioHub 聚合全球 61,139 个直播电台与 50,883 个播客节目，新闻、音乐、体育、英语听力一站听齐。支持中文搜索、后台播放、锁屏续听，播客还能离线下载。无需注册、没有会员门槛，个人数据只存在本地。',
