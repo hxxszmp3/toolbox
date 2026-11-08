@@ -130,6 +130,7 @@ const SECTIONS = [
     id:'software', icon:'🛠️', name:'实用软件', desc:'效率工具、黑科技软件', added:'2026-10-04', color:'#6366f1', soft:'#eef2ff',
     tools:[
       { name:'RadioHub', desc:'聚合全球 6.1 万电台与 5 万播客，新闻音乐体育英语听力全都有，免注册免会员', added:'2026-11-06', img:'icons/radiohub.png', os:['安卓'], secret:'https://www.grow365.com.cn/radiohub/', quark:'https://pan.quark.cn/s/89627993639a', baidu:'https://pan.baidu.com/s/1ssu1yt-6zv2F6XqFZWXapQ?pwd=iwat' },
+      { name:'电脑开机慢和垃圾清理工具', desc:'命令行清理工具，专治开机慢、桌面黑屏、C 盘满，全部操作可回滚，22KB 免安装', added:'2026-11-08', emoji:'🧹', version:'v1.1', os:['Windows'], secret:'https://www.52pojie.cn/forum.php?mod=viewthread&tid=2132821', quark:'https://pan.quark.cn/s/65eed403ddaa' },
       { name:'C盘AI清理大师', desc:'Win 电脑 C 盘清理必备：一键全面清理，或单选临时文件、回收站、浏览器缓存、Windows 更新缓存、备份文件、系统日志、Defender 与 IIS 日志，磁盘告急时救急用', added:'2026-10-12', img:'icons/cleanmaster.png', version:'v1.0.0', os:['Windows'], quark:'https://pan.quark.cn/s/74185fa74660' },
       { name:'Piik', desc:'免费开源屏幕共享工具，P2P 优先，支持浏览器查看、桌面应用', added:'2026-10-04', img:'icons/piik.png', version:'v2.5.3', os:['Windows'], secret:'https://github.com/TNTcraftHIM/Piik', quark:'https://pan.quark.cn/s/ba0b83672f29', baidu:'https://pan.baidu.com/s/1siImilwy8FN6vhIxx8Httw?pwd=t8d8' },
       { name:'VideoToNotes', desc:'视频转文章，导入视频字幕即可导出公众号排版文章', added:'2026-10-04', img:'icons/videotonotes.png', os:['Windows'], quark:'https://pan.quark.cn/s/d38a3d2bd7f0', baidu:'https://pan.baidu.com/s/1BiTkU9YGXdQt0XHzax33Fg?pwd=5h5t' },
@@ -191,6 +192,8 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
+  { date:'2026-11-08', type:'new', section:'software', title:'实用软件区新增：电脑开机慢和垃圾清理工具', desc:'22KB 的 PowerShell 命令行清理工具，专治开机慢、桌面黑屏、C 盘满和垃圾堆积。分「全面检测」和「检测并修复」两档，改动前自动备份，全部操作可一键回滚；还能做磁盘基准测试。免安装，支持 Windows 8 到 Windows 11。',
+    link:{ quark:'https://pan.quark.cn/s/65eed403ddaa' } },
   { date:'2026-11-08', type:'new', section:'video', title:'影视专区新增：红果短剧第三方客户端', desc:'分电脑版与电视版两个包：电脑版含 Windows 安装包、macOS 免安装包和第三方书源包；电视版是装在安卓电视盒子上的 APK（含旧设备版与 mpv 内核版）。可搜索找剧、保存观看进度与自动连播，已同步到网盘。',
     link:{ quark:'https://pan.quark.cn/s/a47cf97e4c1a' } },
   { date:'2026-11-08', type:'update', section:'novel', title:'番茄小说下载器更新至 v2026.11.7-1124', desc:'一周 28 个版本，重点是全面打通番茄官方账号：短剧/漫画进度双向同步，新增书签、书内全文搜索、在线字体与阅读统计；BVC2 短剧终于能播，兼容转码提速约 3 倍；漫画支持跨话连续长条并可导出 CBZ / PDF；短剧下载改为可暂停续传的队列，下载出错可自动重试并通知。全平台安装包已同步到网盘。',
