@@ -714,7 +714,7 @@ mark{background:rgba(245,158,11,.35);color:inherit;border-radius:3px;padding:0 1
 
 <!-- v 参数用于强制刷新：内容改动时把 v 往后加一位，浏览器与 CDN 都会当作新文件，
      避免 GitHub Pages / 浏览器缓存导致用户看不到更新。 -->
-<script src="data.js?v=20261108c"></script>
+<script src="data.js?v=20261108d"></script>
 <script>
 /* 数据加载兜底：data.js 是外部文件，若因缓存 / 网络 / 版本戳不匹配而加载失败，
    下面的主脚本会直接抛 ReferenceError 导致整页白屏（单文件整站零容错）。
@@ -970,15 +970,19 @@ function daysSinceAdded(t){
 
 function isNewTool(t){ return daysSinceAdded(t) < NEW_DAYS; }
 
-/* 稳定分割：新的在前（内部按日期倒序），老的后面（完全保持原顺序）。
-   不能用整体 sort，否则老工具之间的相对顺序会被打乱。 */
+/* 稳定分割：置顶的在前（保持原有相对顺序），新的在后（内部按日期倒序），
+   最老的在最后（完全保持原顺序）。
+   不能用整体 sort，否则老工具之间的相对顺序会被打乱。
+   pin 用于长期置顶 —— added 会被 tools/sync_added.sh 从 git 历史重算，
+   想让某个工具长期待在分区顶部必须用 pin，不能靠改 added。 */
 function sortTools(list){
-  const fresh = [], old = [];
+  const pinned = [], fresh = [], old = [];
   list.forEach((t, i) => {
+    if (t.pin) { pinned.push({ t, i }); return; }
     (isNewTool(t) ? fresh : old).push({ t, i });
   });
   fresh.sort((a, b) => b.t.added.localeCompare(a.t.added) || a.i - b.i);
-  return fresh.concat(old).map(x => x.t);
+  return pinned.concat(fresh).concat(old).map(x => x.t);
 }
 
 /* ============== 更新动态 → 工具卡片跳转 ============== */
