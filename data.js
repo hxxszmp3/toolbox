@@ -44,6 +44,7 @@ const SECTIONS = [
   {
     id:'video', icon:'🎬', name:'影视专区', desc:'聚合影视资源', added:'2026-10-04', color:'#ef4444', soft:'#fef2f2',
     tools:[
+      { name:'小果影视', desc:'全网短剧免费免广告观看。Flutter 多端短剧客户端，手机/平板/电脑/电视通用，含红果、韩小圈、鬼片等站源，支持追剧、下载转 mp4、多用户备份', added:'2026-11-13', img:'icons/xiaoguo.png', version:'v1.0.9+109', os:['安卓','iOS','Windows','macOS','Android TV'], secret:'https://github.com/Xanerix/guoapp', quark:'https://pan.quark.cn/s/793ec6faf069', baidu:'https://pan.baidu.com/s/1gt2EaIambe9BH2aPq-usoQ?pwd=jdpw', uc:'https://drive.uc.cn/s/05e9b4a5fdcb4' },
       { name:'小柿子', desc:'安卓免费看剧应用，电影电视剧动漫综艺直播短剧全都有，聚合资源免会员', added:'2026-11-06', img:'icons/xiaoshizi.png', os:['安卓'], secret:'https://www.xszxsz.com/', quark:'https://pan.quark.cn/s/e1edc76d8989', baidu:'https://pan.baidu.com/s/1b2VnHbg_1igoZAv3LjpUeA?pwd=wttk', uc:'https://drive.uc.cn/s/10c91918624c4?public=1' },
       { name:'影视仓', desc:'TVBox 内置配置版，装上就能看。电影剧集综艺动漫 + 电视直播 + 豆瓣热榜，多线路切换', added:'2026-10-14', img:'icons/yingshichang.png', os:['安卓','Android TV'], secret:'https://github.com/jinenge/tvbox?tab=readme-ov-file', quark:'https://pan.quark.cn/s/fcac31a0611f', baidu:'https://pan.baidu.com/s/1D1P7Xt3RedOtzsTUShMhXA?pwd=6afg', uc:'https://drive.uc.cn/s/0ac1d98432294' },
       { name:'星盒', desc:'聚合影视资源，看电影追剧', added:'2026-10-04', img:'icons/xinghe.png', version:'v2.7.0', os:['安卓'], secret:'https://www.istarbox.app/download', quark:'https://pan.quark.cn/s/7fc3a192ddc2', baidu:'https://pan.baidu.com/s/1wZxYJcJVGL1WzLQ0T44daA?pwd=y184', uc:'https://drive.uc.cn/s/39b2761e89974' },
@@ -190,6 +191,8 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
+  { date:'2026-11-13', type:'new', section:'video', title:'影视专区新增：小果影视（红果鉴）', desc:'Flutter 打造的多端短剧客户端，手机 / 平板 / 电脑 / 电视分别适配，含红果、红果听书、韩小圈、鬼片等站源，分「红果鉴」（仅红果站源）和全站源版两个包。支持追剧、观看记录、下载转 mp4、多用户与备份，手机可长按倍速、电脑有快捷键与窗口置顶。新版 v1.0.9+109 新增横屏视频竖屏样式、窗口置顶、1.1x 倍速与电视遥控器换季。',
+    link:{ quark:'https://pan.quark.cn/s/793ec6faf069', baidu:'https://pan.baidu.com/s/1gt2EaIambe9BH2aPq-usoQ?pwd=jdpw', uc:'https://drive.uc.cn/s/05e9b4a5fdcb4' } },
   { date:'2026-11-08', type:'new', section:'software', title:'实用软件区新增：电脑开机慢和垃圾清理工具', desc:'22KB 的 PowerShell 命令行清理工具，专治开机慢、桌面黑屏、C 盘满和垃圾堆积。分「全面检测」和「检测并修复」两档，改动前自动备份，全部操作可一键回滚；还能做磁盘基准测试。免安装，支持 Windows 8 到 Windows 11。',
     link:{ quark:'https://pan.quark.cn/s/65eed403ddaa' } },
   { date:'2026-11-08', type:'update', section:'novel', title:'番茄小说下载器更新至 v2026.11.7-1124', desc:'一周 28 个版本，重点是全面打通番茄官方账号：短剧/漫画进度双向同步，新增书签、书内全文搜索、在线字体与阅读统计；BVC2 短剧终于能播，兼容转码提速约 3 倍；漫画支持跨话连续长条并可导出 CBZ / PDF；短剧下载改为可暂停续传的队列，下载出错可自动重试并通知。全平台安装包已同步到网盘。',
