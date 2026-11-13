@@ -7,3 +7,15 @@ Thumbs.db
 
 # 自动生成的 git 历史缓存
 tools/.git_history.txt
+
+# 一次性临时产物：上游解压包、夸克 CLI 日志、临时校验脚本
+_gk/
+_tmp_*/
+browse/
+tools/_*.js
+
+# 海报管线：只跟踪模板与配置，素材和渲染产物不入库
+.poster/assets*/
+.poster/data/
+.poster/out*/
+.poster/shots_index.json
