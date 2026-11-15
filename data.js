@@ -128,6 +128,7 @@ const SECTIONS = [
   {
     id:'software', icon:'🛠️', name:'实用软件', desc:'效率工具、黑科技软件', added:'2026-10-04', color:'#6366f1', soft:'#eef2ff',
     tools:[
+      { name:'Filee', desc:'263 种格式离线互转，图片、PDF、Office、HWP、视频、音频通吃，拖进去就转，免装 Office', added:'2026-11-15', img:'icons/filee.png', version:'v2.4.1', os:['Windows','macOS','Linux'], secret:'https://github.com/KnifeLemon/Filee', quark:'https://pan.quark.cn/s/7088f7152853' },
       { name:'ToolKnit', desc:'格式转换一站通：PDF、图片、视频、音频、文本互转，兼有压缩、拼接、抠图，近百个免费工具免注册 https://toolknit.com/zh/', added:'2026-11-15', img:'icons/toolknit.png', secret:'https://toolknit.com/zh/' },
       { name:'RadioHub', desc:'聚合全球 6.1 万电台与 5 万播客，新闻音乐体育英语听力全都有，免注册免会员', added:'2026-11-06', img:'icons/radiohub.png', os:['安卓'], secret:'https://www.grow365.com.cn/radiohub/', quark:'https://pan.quark.cn/s/89627993639a', baidu:'https://pan.baidu.com/s/1ssu1yt-6zv2F6XqFZWXapQ?pwd=iwat' },
       { name:'电脑开机慢和垃圾清理工具', desc:'命令行清理工具，专治开机慢、桌面黑屏、C 盘满，全部操作可回滚，22KB 免安装', added:'2026-11-08', emoji:'🧹', version:'v1.1', os:['Windows'], secret:'https://www.52pojie.cn/forum.php?mod=viewthread&tid=2132821', quark:'https://pan.quark.cn/s/65eed403ddaa' },
@@ -192,6 +193,8 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
+  { date:'2026-11-15', type:'new', section:'software', title:'实用软件区新增：Filee', desc:'拖拽式文件格式转换器，按住 Ctrl 把文件丢到光标处的格式环上就直接转换，不用打开软件窗口。支持 260+ 种格式：图片、PDF、Word、Excel、PowerPoint、HWP、电子书、压缩包、字体、CAD、3D 模型，全部在本机离线完成，不上传文件，也不需要装 Office 或 LibreOffice。Windows / macOS / Linux 全平台安装包已整理进网盘，按系统和芯片分目录。',
+    link:{ quark:'https://pan.quark.cn/s/7088f7152853' } },
   { date:'2026-11-15', type:'new', section:'software', title:'实用软件区新增：ToolKnit', desc:'主打格式转换的免费在线工具站：PDF 合并压缩与互转、图片格式转换压缩拼接抠图、视频压缩截图转 GIF、音频格式互转、字幕检查修复，另有文本对比格式化、各类计算器与计时器。全部浏览器打开即用，无需注册，多数任务在本地完成不上传文件。网址：https://toolknit.com/zh/' },
   { date:'2026-11-13', type:'new', section:'video', title:'影视专区新增：小果影视（红果鉴）', desc:'Flutter 打造的多端短剧客户端，手机 / 平板 / 电脑 / 电视分别适配，含红果、红果听书、韩小圈、鬼片等站源，分「红果鉴」（仅红果站源）和全站源版两个包。支持追剧、观看记录、下载转 mp4、多用户与备份，手机可长按倍速、电脑有快捷键与窗口置顶。新版 v1.0.9+109 新增横屏视频竖屏样式、窗口置顶、1.1x 倍速与电视遥控器换季。',
     link:{ quark:'https://pan.quark.cn/s/793ec6faf069', baidu:'https://pan.baidu.com/s/1gt2EaIambe9BH2aPq-usoQ?pwd=jdpw', uc:'https://drive.uc.cn/s/05e9b4a5fdcb4' } },
