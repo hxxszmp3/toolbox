@@ -48,7 +48,7 @@ const SECTIONS = [
       { name:'小柿子', desc:'安卓免费看剧应用，电影电视剧动漫综艺直播短剧全都有，聚合资源免会员', added:'2026-11-06', img:'icons/xiaoshizi.png', os:['安卓'], secret:'https://www.xszxsz.com/', quark:'https://pan.quark.cn/s/e1edc76d8989', baidu:'https://pan.baidu.com/s/1b2VnHbg_1igoZAv3LjpUeA?pwd=wttk', uc:'https://drive.uc.cn/s/10c91918624c4?public=1' },
       { name:'影视仓', desc:'TVBox 内置配置版，装上就能看。电影剧集综艺动漫 + 电视直播 + 豆瓣热榜，多线路切换', added:'2026-10-14', img:'icons/yingshichang.png', os:['安卓','Android TV'], secret:'https://github.com/jinenge/tvbox?tab=readme-ov-file', quark:'https://pan.quark.cn/s/fcac31a0611f', baidu:'https://pan.baidu.com/s/1D1P7Xt3RedOtzsTUShMhXA?pwd=6afg', uc:'https://drive.uc.cn/s/0ac1d98432294' },
       { name:'星盒', desc:'聚合影视资源，看电影追剧', added:'2026-10-04', img:'icons/xinghe.png', version:'v2.7.0', os:['安卓'], secret:'https://www.istarbox.app/download', quark:'https://pan.quark.cn/s/7fc3a192ddc2', baidu:'https://pan.baidu.com/s/1wZxYJcJVGL1WzLQ0T44daA?pwd=y184', uc:'https://drive.uc.cn/s/39b2761e89974' },
-      { name:'Sparkle', desc:'番剧影视、漫画、壁纸一体化的安卓应用，免费无广告，影视最高 4K 高清，可看可下载，弹幕可同步各平台', added:'2026-11-01', pin:1, img:'icons/sparkle.png', os:['安卓'], quark:'https://pan.quark.cn/s/3e86c984820f', baidu:'https://pan.baidu.com/s/1DJbbLI_O8wGfA9KUh5Tzmg?pwd=mwki', uc:'https://drive.uc.cn/s/79784cff81f44' },
+      { name:'Sparkle', desc:'番剧影视、漫画、壁纸一体化的安卓应用，免费无广告，影视最高 4K 高清，可看可下载，弹幕可同步各平台', added:'2026-10-11', pin:1, img:'icons/sparkle.png', os:['安卓'], quark:'https://pan.quark.cn/s/3e86c984820f', baidu:'https://pan.baidu.com/s/1DJbbLI_O8wGfA9KUh5Tzmg?pwd=mwki', uc:'https://drive.uc.cn/s/79784cff81f44' },
       { name:'zpod', desc:'一个应用搞定音乐、影视与听书，三类内容一个播放器全包', added:'2026-10-04', img:'icons/zpod.png', version:'v3.0.14', os:['Windows','macOS','安卓','iOS'], secret:'https://zpod.net/#landing-downloads', quark:'https://pan.quark.cn/s/1b54b41e32ad', baidu:'https://pan.baidu.com/s/1k8lnZ3KKz7eVV-yTLovZlQ?pwd=4if2', uc:'https://drive.uc.cn/s/cae1b5f416834' },
     ]
   },
@@ -74,7 +74,7 @@ const SECTIONS = [
         '一次搜索多源漫画',
         '加入定制源地址后，一个 App 免费看全网漫画',
       ]},
-      { name:'venera', desc:'漫画阅读器', added:'2026-10-04', emoji:'📖', version:'1.6.3', os:['安卓'], secret:'https://github.com/venera-app/venera', quark:'https://pan.quark.cn/s/ca0afa3bf4b0', baidu:'https://pan.baidu.com/s/1J_O7CFwJEgtow6ibGD_9qA?pwd=ai9w', uc:'https://drive.uc.cn/s/e7d5034250234' },
+      { name:'venera', desc:'漫画阅读器', added:'2026-11-06', emoji:'📖', version:'1.6.3', os:['安卓'], secret:'https://github.com/venera-app/venera', quark:'https://pan.quark.cn/s/ca0afa3bf4b0', baidu:'https://pan.baidu.com/s/1J_O7CFwJEgtow6ibGD_9qA?pwd=ai9w', uc:'https://drive.uc.cn/s/e7d5034250234' },
     ]
   },
   {
