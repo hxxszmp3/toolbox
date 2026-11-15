@@ -128,6 +128,7 @@ const SECTIONS = [
   {
     id:'software', icon:'🛠️', name:'实用软件', desc:'效率工具、黑科技软件', added:'2026-10-04', color:'#6366f1', soft:'#eef2ff',
     tools:[
+      { name:'ToolKnit', desc:'近百个免费在线工具，PDF、图片、视频、音频、文本与计算一站齐，浏览器打开即用，免注册', added:'2026-11-15', img:'icons/toolknit.png', secret:'https://toolknit.com/zh/' },
       { name:'RadioHub', desc:'聚合全球 6.1 万电台与 5 万播客，新闻音乐体育英语听力全都有，免注册免会员', added:'2026-11-06', img:'icons/radiohub.png', os:['安卓'], secret:'https://www.grow365.com.cn/radiohub/', quark:'https://pan.quark.cn/s/89627993639a', baidu:'https://pan.baidu.com/s/1ssu1yt-6zv2F6XqFZWXapQ?pwd=iwat' },
       { name:'电脑开机慢和垃圾清理工具', desc:'命令行清理工具，专治开机慢、桌面黑屏、C 盘满，全部操作可回滚，22KB 免安装', added:'2026-11-08', emoji:'🧹', version:'v1.1', os:['Windows'], secret:'https://www.52pojie.cn/forum.php?mod=viewthread&tid=2132821', quark:'https://pan.quark.cn/s/65eed403ddaa' },
       { name:'C盘AI清理大师', desc:'Win 电脑 C 盘清理必备：一键全面清理，或单选临时文件、回收站、浏览器缓存、Windows 更新缓存、备份文件、系统日志、Defender 与 IIS 日志，磁盘告急时救急用', added:'2026-10-12', img:'icons/cleanmaster.png', version:'v1.0.0', os:['Windows'], quark:'https://pan.quark.cn/s/74185fa74660' },
@@ -191,6 +192,7 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
+  { date:'2026-11-15', type:'new', section:'software', title:'实用软件区新增：ToolKnit', desc:'近百个免费在线工具一站式收齐：PDF 合并压缩与互转、图片格式转换压缩拼接抠图、视频压缩截图转 GIF、字幕检查修复、文本对比格式化、各类计算器与计时器，还有 AI 辅助小工具。全部浏览器打开即用，无需注册，多数任务在本地完成不上传文件。' },
   { date:'2026-11-13', type:'new', section:'video', title:'影视专区新增：小果影视（红果鉴）', desc:'Flutter 打造的多端短剧客户端，手机 / 平板 / 电脑 / 电视分别适配，含红果、红果听书、韩小圈、鬼片等站源，分「红果鉴」（仅红果站源）和全站源版两个包。支持追剧、观看记录、下载转 mp4、多用户与备份，手机可长按倍速、电脑有快捷键与窗口置顶。新版 v1.0.9+109 新增横屏视频竖屏样式、窗口置顶、1.1x 倍速与电视遥控器换季。',
     link:{ quark:'https://pan.quark.cn/s/793ec6faf069', baidu:'https://pan.baidu.com/s/1gt2EaIambe9BH2aPq-usoQ?pwd=jdpw', uc:'https://drive.uc.cn/s/05e9b4a5fdcb4' } },
   { date:'2026-11-08', type:'new', section:'software', title:'实用软件区新增：电脑开机慢和垃圾清理工具', desc:'22KB 的 PowerShell 命令行清理工具，专治开机慢、桌面黑屏、C 盘满和垃圾堆积。分「全面检测」和「检测并修复」两档，改动前自动备份，全部操作可一键回滚；还能做磁盘基准测试。免安装，支持 Windows 8 到 Windows 11。',
