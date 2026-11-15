@@ -164,6 +164,13 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 }
 .tool-row .row-body{min-width:0}
 .tool-desc .row-body{font-size:13px;color:var(--text-2);line-height:1.6}
+/* 简介里直写的网址：自动识别成可点击链接 */
+.tool-desc .row-body .desc-link{
+  color:var(--primary);font-weight:600;text-decoration:underline;
+  text-underline-offset:2px;text-decoration-thickness:1px;
+  word-break:break-all;transition:opacity .15s;
+}
+.tool-desc .row-body .desc-link:hover{opacity:.75}
 
 /* 支持设备：标签在标题下方成组换行 */
 .tool-os .row-body{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
@@ -714,7 +721,7 @@ mark{background:rgba(245,158,11,.35);color:inherit;border-radius:3px;padding:0 1
 
 <!-- v 参数用于强制刷新：内容改动时把 v 往后加一位，浏览器与 CDN 都会当作新文件，
      避免 GitHub Pages / 浏览器缓存导致用户看不到更新。 -->
-<script src="data.js?v=20261115b"></script>
+<script src="data.js?v=20261115c"></script>
 <script>
 /* 数据加载兜底：data.js 是外部文件，若因缓存 / 网络 / 版本戳不匹配而加载失败，
    下面的主脚本会直接抛 ReferenceError 导致整页白屏（单文件整站零容错）。
@@ -943,6 +950,18 @@ function hi(text, q){
   return out;
 }
 
+/* 简介里直写的网址自动变成可点击链接。
+   在 esc/hi 之后处理，入参已是安全 HTML，此处只包 <a> 不引入新的转义风险。
+   允许 URL 中间夹 <mark>（搜索高亮命中网址时），href 与显示都去掉标签后再用。 */
+function linkify(html){
+  return String(html).replace(/https?:\/\/(?:[^\s<]|<mark>|<\/mark>)+/g, m => {
+    const plain = m.replace(/<\/?mark>/g, '');
+    const url = plain.replace(/[.,;:!?)\]}"'，。；：！？）】]+$/, '');
+    const tail = plain.slice(url.length);
+    return `<a class="desc-link" href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>${tail}`;
+  });
+}
+
 /* 工具可搜索文本：名称 + 描述 + 标签 + 要点(去HTML) + 指令 + 网址 */
 function toolText(t){
   const pts = (t.points || []).map(p => p.replace(/<[^>]+>/g, ' ')).join(' ');
@@ -1143,7 +1162,7 @@ function toolCard(t, s, q = '', hot = false){
       ${newBadge}
       ${tag}
     </div>
-    <div class="tool-row tool-desc"><div class="row-title">${esc(descLabel(s))}</div><div class="row-body">${hi(t.desc, q)}${features}</div></div>
+    <div class="tool-row tool-desc"><div class="row-title">${esc(descLabel(s))}</div><div class="row-body">${linkify(hi(t.desc, q))}${features}</div></div>
     ${osLine}
     ${dlLine}
     ${secretBox}
