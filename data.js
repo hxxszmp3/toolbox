@@ -88,6 +88,11 @@ const SECTIONS = [
   {
     id:'data', icon:'📂', name:'资料专区', desc:'干货资料合集', added:'2026-10-04', color:'#14b8a6', soft:'#f0fdfa',
     tools:[
+      { name:'《抗老生活》', desc:'58 岁的血管状态为什么能回到 28 岁？不讲复杂理论，核心就三件事：控糖、微运动、睡好觉。把抗老拆进饮食与作息里能长期坚持的小习惯，不靠昂贵保养', added:'2026-11-16', emoji:'🧬', quark:'https://pan.quark.cn/s/8e4add0cd386' },
+      { name:'《如何快速了解一个行业》', desc:'不讲空话、不兜圈子，直接从「怎么赚钱」出发：把复杂的行业研究拆成可执行的步骤，教你在短时间内看懂一门生意的关键环节。图文并茂，当手册翻', added:'2026-11-16', emoji:'📊', quark:'https://pan.quark.cn/s/e921cd6e5a0c' },
+      { name:'香港经典电影合集 170 部', desc:'170 部港产经典电影高清合集，国粤双语音轨，未删减版本，老片修复画质到位，一部一部都是当年录像厅里放过的', added:'2026-11-16', emoji:'🎞️', quark:'https://pan.quark.cn/s/b8792421a6f3' },
+      { name:'AI 民间故事视频工具+教程', desc:'一键生成民间故事视频的工具，附带完整详细教程。选题、文案、生成、配音、剪辑一条线走完，按教程每天稳定产出', added:'2026-11-16', emoji:'🎥', quark:'https://pan.quark.cn/s/7ae82fe5d5f5' },
+      { name:'RVCmax 2026 变声器', desc:'2026 最新版 RVC 变声器，史诗级优化，实时变声、模型训练都支持，完全免费无内购，Windows 直接用', added:'2026-11-16', emoji:'🎤', quark:'https://pan.quark.cn/s/d25861e8d2ca' },
       { name:'小学初中高中教师用书合集', desc:'小学到高中各学科教师用书 PDF 合集,人教版、鲁科版等教材配套齐全,共 889 份', added:'2026-11-05', emoji:'📗', quark:'https://pan.quark.cn/s/2363c8dad800' },
       { name:'全套高中电子课本教材 PDF', desc:'人教、苏教、教科、粤教、北师大各版本齐全，语数英物等全学科电子课本，846 个文件共 22.9GB', added:'2026-11-01', emoji:'📚', quark:'https://pan.quark.cn/s/df51e84f2538' },
       { name:'百万剪辑狮的音效库', desc:'2123 个 WAV 音效分 13 类：效果、乐器、动作、场景、武器、动物等，剪辑直接拖进时间线', added:'2026-10-28', emoji:'🎙️', quark:'https://pan.quark.cn/s/28979739a6fb' },
@@ -193,6 +198,16 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
+  { date:'2026-11-16', type:'new', section:'data', title:'资料区新增：《抗老生活》', desc:'这本书不讲复杂理论，核心是把抗老融进日常：控糖、微运动、睡好觉，同时调整饮食与作息。不靠昂贵保养，而是用长期能坚持的小习惯，让身体保持更好的状态。',
+    link:{ quark:'https://pan.quark.cn/s/8e4add0cd386' } },
+  { date:'2026-11-16', type:'new', section:'data', title:'资料区新增：《如何快速了解一个行业》', desc:'干货满满的一本使用手册，图文并茂易于理解。只关心一件事：怎么更快看懂一个行业、赚到该赚的钱。作者把复杂的行业研究拆得很清楚，不讲空、不兜圈子，直接从「赚钱逻辑」出发。',
+    link:{ quark:'https://pan.quark.cn/s/e921cd6e5a0c' } },
+  { date:'2026-11-16', type:'new', section:'data', title:'资料区新增：香港经典电影合集 170 部', desc:'170 部港产经典电影高清合集，国粤双语音轨，未删减版本，老片修复画质到位。',
+    link:{ quark:'https://pan.quark.cn/s/b8792421a6f3' } },
+  { date:'2026-11-16', type:'new', section:'data', title:'资料区新增：AI 民间故事视频工具+教程', desc:'一键生成民间故事视频的工具，附完整详细教程。选题、文案、生成、配音、剪辑一条线走完，按教程可以每天稳定产出。',
+    link:{ quark:'https://pan.quark.cn/s/7ae82fe5d5f5' } },
+  { date:'2026-11-16', type:'new', section:'data', title:'资料区新增：RVCmax 2026 变声器', desc:'2026 年最新版 RVC 变声器，史诗级优化，实时变声与模型训练都支持，完全免费无内购。',
+    link:{ quark:'https://pan.quark.cn/s/d25861e8d2ca' } },
   { date:'2026-11-15', type:'new', section:'software', title:'实用软件区新增：Filee', desc:'拖拽式文件格式转换器，按住 Ctrl 把文件丢到光标处的格式环上就直接转换，不用打开软件窗口。支持 260+ 种格式：图片、PDF、Word、Excel、PowerPoint、HWP、电子书、压缩包、字体、CAD、3D 模型，全部在本机离线完成，不上传文件，也不需要装 Office 或 LibreOffice。Windows / macOS / Linux 全平台安装包已整理进网盘，按系统和芯片分目录。',
     link:{ quark:'https://pan.quark.cn/s/7088f7152853' } },
   { date:'2026-11-15', type:'new', section:'software', title:'实用软件区新增：ToolKnit', desc:'主打格式转换的免费在线工具站：PDF 合并压缩与互转、图片格式转换压缩拼接抠图、视频压缩截图转 GIF、音频格式互转、字幕检查修复，另有文本对比格式化、各类计算器与计时器。全部浏览器打开即用，无需注册，多数任务在本地完成不上传文件。网址：https://toolknit.com/zh/' },
