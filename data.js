@@ -84,6 +84,7 @@ const SECTIONS = [
   {
     id:'game', icon:'🎮', name:'游戏专区', desc:'童年经典游戏合集', added:'2026-10-04', color:'#22c55e', soft:'#f0fdf4',
     tools:[
+      { name:'植物大战僵尸全版本合集', desc:'经典杂交、融合、魔改、抽卡、金铲铲、西游版全都有，电脑解压即玩，手机装 apk', added:'2026-11-22', emoji:'🌻', quark:'https://pan.quark.cn/s/81077d57fc34' },
       { name:'手机破解游戏合集', desc:'2812 款手机破解游戏（495GB），动作、策略、经营、模拟、塔防等类型齐全，通勤路上随手玩', added:'2026-10-04', emoji:'📱', os:['安卓'], quark:'https://pan.quark.cn/s/c830ec006605' },
       { name:'980款Steam移植手游合集', desc:'980 款 Steam 移植手机游戏版大合集', added:'2026-10-04', emoji:'🎮', os:['安卓'], quark:'https://pan.quark.cn/s/7749692bbebf' },
       { name:'115款童年经典街机游戏', desc:'童年街机游戏大合集，一键怀旧', added:'2026-10-04', emoji:'🕹️', os:['安卓'], quark:'https://pan.quark.cn/s/5f081f6ffff0' },
@@ -92,6 +93,9 @@ const SECTIONS = [
   {
     id:'data', icon:'📂', name:'资料专区', desc:'干货资料合集', added:'2026-10-04', color:'#14b8a6', soft:'#f0fdfa',
     tools:[
+      { name:'核心800单词卡', desc:'精选核心 800 词一词一卡，释义、例句、音标、记忆法齐全，排版干净直接打印', added:'2026-11-22', emoji:'🗂️', quark:'https://pan.quark.cn/s/6a734e07cf57' },
+      { name:'历代书法名作库', desc:'三国至近现代 14281 件书法名作高清全卷在线看，最高 65536 像素，书法爱好者收藏', added:'2026-11-22', emoji:'🖌️', web:'https://cnshufa.com/' },
+      { name:'四六级真题库', desc:'四六级历年真题免费下载，有题目有答案，听力在线听，大学备考必备', added:'2026-11-22', emoji:'📝', web:'https://www.wehuster.com/' },
       { name:'学习资料', desc:'教育考试全阶段资料一站打包：从少儿启蒙一路覆盖到考公、法考，16 个专区点击直达对应网盘，转存即用', added:'2026-11-22', emoji:'🎓',
         links:[
           { t:'少儿专区', u:'https://pan.quark.cn/s/80451ac6830c' },
@@ -156,6 +160,8 @@ const SECTIONS = [
   {
     id:'software', icon:'🛠️', name:'实用软件', desc:'效率工具、黑科技软件', added:'2026-10-04', color:'#6366f1', soft:'#eef2ff',
     tools:[
+      { name:'RVCmax 2026 变声器', desc:'2026 最新版 RVC 变声器，实时变声与模型训练都支持，完全免费无内购', added:'2026-11-22', emoji:'🎤', os:['Windows'], quark:'https://pan.quark.cn/s/d25861e8d2ca' },
+      { name:'WPS Office 2026 终身会员', desc:'终身高级会员版，安卓/Win/Mac/iOS 全平台通用，永久激活免费使用', added:'2026-11-22', emoji:'📄', os:['安卓','Windows','macOS','iOS'], quark:'https://pan.quark.cn/s/e0d451bbe73e' },
       { name:'Filee', desc:'263 种格式离线互转，图片、PDF、Office、HWP、视频、音频通吃，拖进去就转，免装 Office', added:'2026-11-15', img:'icons/filee.png', version:'v2.4.1', os:['Windows','macOS','Linux'], secret:'https://github.com/KnifeLemon/Filee', quark:'https://pan.quark.cn/s/7088f7152853' },
       { name:'ToolKnit', desc:'格式转换一站通：PDF、图片、视频、音频、文本互转，兼有压缩、拼接、抠图，近百个免费工具免注册 https://toolknit.com/zh/', added:'2026-11-15', img:'icons/toolknit.png', secret:'https://toolknit.com/zh/' },
       { name:'RadioHub', desc:'聚合全球 6.1 万电台与 5 万播客，新闻音乐体育英语听力全都有，免注册免会员', added:'2026-11-06', img:'icons/radiohub.png', os:['安卓'], secret:'https://www.grow365.com.cn/radiohub/', quark:'https://pan.quark.cn/s/89627993639a', baidu:'https://pan.baidu.com/s/1ssu1yt-6zv2F6XqFZWXapQ?pwd=iwat' },
@@ -221,6 +227,12 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
+  { date:'2026-11-22', type:'new', section:'data', title:'资料区新增：核心800单词卡', desc:'精选核心 800 词一词一卡，释义、例句、音标、记忆法全都有，排版干净直接打印就能用，快速突破词汇瓶颈。' },
+  { date:'2026-11-22', type:'new', section:'data', title:'资料区新增：历代书法名作库', desc:'收录三国至近现代 14281 件书法名作高清全卷，原始分辨率最高达 65536 像素，写书法练书法必备的在线看帖网站。' },
+  { date:'2026-11-22', type:'new', section:'data', title:'资料区新增：四六级真题库', desc:'四六级历年真题免费下载，最新的也有，有题目有答案，听力支持在线播放，大学备考必备。' },
+  { date:'2026-11-22', type:'new', section:'game', title:'游戏区新增：植物大战僵尸全版本合集', desc:'经典杂交、融合、魔改、抽卡、金铲铲、拼接版、西游版全都有，电脑版解压即玩，手机下载 apk 安装，轻松上手。' },
+  { date:'2026-11-22', type:'new', section:'software', title:'实用软件新增：RVCmax 2026 变声器', desc:'2026 年最新最强的变声器，史诗级优化，实时变声与模型训练都支持，完全免费无内购，Windows 直接用。' },
+  { date:'2026-11-22', type:'new', section:'software', title:'实用软件新增：WPS Office 2026 终身会员', desc:'终身高级会员版，安卓 / Win / Mac / iOS 全平台通用，永久激活、永久免费使用。' },
   { date:'2026-11-22', type:'new', section:'data', title:'资料区新增：学习资料', desc:'教育考试全阶段资料一站打包，16 个专区从少儿启蒙覆盖到考公法考：少儿 / 小学 / 初中 / 高中 / 中职 / 竞赛 / 专升本 / 大学 / 考公 / 军队文职 / 税务师 / 建造师 / 执业医师 / 银行从业 / 考计算机 / 法考，卡片内点专区名直达对应网盘。' },
 
   { date:'2026-11-22', type:'new', section:'novel', title:'小说区新增：什锦铺', desc:'小说、有声书、短剧、漫画一个 App 全包：在线阅读也能导入 TXT/EPUB 电子书，字体字号翻页方式随心调，支持系统朗读和真人有声书；短剧漫剧集中浏览、自动记住进度，收藏分组、下载离线一样不少。安卓分现代/老旧手机两个包，Windows 版同步上架，四个内容分区都能找到它。',
