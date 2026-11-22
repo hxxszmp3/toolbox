@@ -93,9 +93,6 @@ const SECTIONS = [
   {
     id:'data', icon:'📂', name:'资料专区', desc:'干货资料合集', added:'2026-10-04', color:'#14b8a6', soft:'#f0fdfa',
     tools:[
-      { name:'核心800单词卡', desc:'精选核心 800 词一词一卡，释义、例句、音标、记忆法齐全，排版干净直接打印', added:'2026-11-22', emoji:'🗂️', quark:'https://pan.quark.cn/s/6a734e07cf57' },
-      { name:'历代书法名作库', desc:'三国至近现代 14281 件书法名作高清全卷在线看，最高 65536 像素，书法爱好者收藏', added:'2026-11-22', emoji:'🖌️', web:'https://cnshufa.com/' },
-      { name:'四六级真题库', desc:'四六级历年真题免费下载，有题目有答案，听力在线听，大学备考必备', added:'2026-11-22', emoji:'📝', web:'https://www.wehuster.com/' },
       { name:'学习资料', desc:'教育考试全阶段资料一站打包：从少儿启蒙一路覆盖到考公、法考，16 个专区点击直达对应网盘，转存即用', added:'2026-11-22', emoji:'🎓',
         links:[
           { t:'少儿专区', u:'https://pan.quark.cn/s/80451ac6830c' },
@@ -115,6 +112,9 @@ const SECTIONS = [
           { t:'考计算机', u:'https://pan.quark.cn/s/69547dd0d110' },
           { t:'法考专区', u:'https://pan.quark.cn/s/c210b5007d6b' },
         ] },
+      { name:'核心800单词卡', desc:'精选核心 800 词一词一卡，释义、例句、音标、记忆法齐全，排版干净直接打印', added:'2026-11-22', emoji:'🗂️', quark:'https://pan.quark.cn/s/6a734e07cf57' },
+      { name:'历代书法名作库', desc:'三国至近现代 14281 件书法名作高清全卷在线看，最高 65536 像素，书法爱好者收藏', added:'2026-11-22', emoji:'🖌️', web:'https://cnshufa.com/' },
+      { name:'四六级真题库', desc:'四六级历年真题免费下载，有题目有答案，听力在线听，大学备考必备', added:'2026-11-22', emoji:'📝', web:'https://www.wehuster.com/' },
       { name:'《抗老生活》', desc:'58 岁的血管状态为什么能回到 28 岁？不讲复杂理论，核心就三件事：控糖、微运动、睡好觉。把抗老拆进饮食与作息里能长期坚持的小习惯，不靠昂贵保养', added:'2026-11-16', emoji:'🧬', quark:'https://pan.quark.cn/s/8e4add0cd386' },
       { name:'《如何快速了解一个行业》', desc:'不讲空话、不兜圈子，直接从「怎么赚钱」出发：把复杂的行业研究拆成可执行的步骤，教你在短时间内看懂一门生意的关键环节。图文并茂，当手册翻', added:'2026-11-16', emoji:'📊', quark:'https://pan.quark.cn/s/e921cd6e5a0c' },
       { name:'香港经典电影合集 170 部', desc:'170 部港产经典电影高清合集，国粤双语音轨，未删减版本，老片修复画质到位，一部一部都是当年录像厅里放过的', added:'2026-11-16', emoji:'🎞️', quark:'https://pan.quark.cn/s/b8792421a6f3' },
