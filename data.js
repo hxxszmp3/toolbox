@@ -14,6 +14,7 @@ const SECTIONS = [
     tools:[
       { name:'轻小说文库', desc:'Wenku8 重写版，翻页跟手，支持本地导入与自定义书源。附 0.3.7 版（唯一带书源），装好勿更新', added:'2026-11-05', img:'icons/wenku8.png', os:['安卓'], secret:'https://github.com/mikufoxxx/Wenku8_Flutter', quark:'https://pan.quark.cn/s/e11bcee402cc', baidu:'https://pan.baidu.com/s/1WAOVg4K63DiiFuZJ0-nrmA?pwd=im85', uc:'https://drive.uc.cn/s/0847d31cfc284' },
       { name:'阅读 MD3 版', desc:'开源阅读 MD3 重构版，MD3 全新界面，免费无广告，附 2000+ 书源，支持自定义书源规则', added:'2026-11-01', img:'icons/yuedu-md3.png', os:['安卓'], secret:'https://github.com/HapeLee/legado-with-MD3', quark:'https://pan.quark.cn/s/4d0d9c4932a2', baidu:'https://pan.baidu.com/s/1pLV-g_1nC1a217POTzXOlA?pwd=nav7', uc:'https://drive.uc.cn/s/38fbb925c57d4' },
+      { name:'什锦铺', desc:'小说、有声书、短剧、漫画一个 App 全包，在线看也能导入 TXT/EPUB，可下载离线，安卓和 Windows 双端通用', added:'2026-11-22', img:'icons/shenjinpu.png', version:'v1.0.205', os:['安卓','Windows'], quark:'https://pan.quark.cn/s/06f31c2864ec' },
       { name:'小说下载器', desc:'全网小说搜索下载，一键导出 TXT/EPUB', added:'2026-10-04', pin:1, img:'icons/xiaoshuo.png', version:'v1.12.0', os:['Windows','macOS','Linux'], secret:'https://github.com/freeok/so-novel/releases', quark:'https://pan.quark.cn/s/6c73fb388aea', baidu:'https://pan.baidu.com/s/1SHWmlXxW3FYTBf_2f_yruQ?pwd=i32n', uc:'https://drive.uc.cn/s/d36933ba6d3b4' },
       { name:'番茄小说下载器', desc:'小说、漫画、短剧，搜得、存得下、读得爽。免费的番茄小说下载与阅读工具，Windows、macOS、Linux、Android、iOS 全平台可用。', added:'2026-10-04', pin:1, img:'icons/fanqie.png', version:'v2026.11.7-1124', os:['Windows','macOS','Linux','安卓','iOS'], secret:['https://github.com/zhongbai2333/Tomato-Novel-Downloader','https://github.com/POf-L/Fanqie-novel-Downloader'], quark:'https://pan.quark.cn/s/867ce5b0aad5', baidu:'https://pan.baidu.com/s/1Rg_Ffo3vqfSU4EdQVlJPhA?pwd=f46i', uc:'https://drive.uc.cn/s/2a09d6d4d86c4' },
       { name:'七猫小说下载器', desc:'七猫免费小说下载', added:'2026-10-04', img:'icons/qimao.png', version:'v1.0.0', os:['Windows','macOS','Linux','安卓','iOS'], secret:'https://github.com/shing-yu/swiftcat-downloader', quark:'https://pan.quark.cn/s/a6feae8cc3d1', baidu:'https://pan.baidu.com/s/1IEjRs6QI0SSxz0_8MbAdXw?pwd=paqi', uc:'https://drive.uc.cn/s/7fa8d8932b614' },
@@ -44,6 +45,7 @@ const SECTIONS = [
   {
     id:'video', icon:'🎬', name:'影视专区', desc:'聚合影视资源', added:'2026-10-04', color:'#ef4444', soft:'#fef2f2',
     tools:[
+      { name:'什锦铺', desc:'短剧漫剧免费追，自动记住看到哪、下次接着播，还能顺便看小说听有声书，安卓和 Windows 都能装', added:'2026-11-22', img:'icons/shenjinpu.png', version:'v1.0.205', os:['安卓','Windows'], quark:'https://pan.quark.cn/s/06f31c2864ec' },
       { name:'小果影视', desc:'全网短剧免费免广告观看。Flutter 多端短剧客户端，手机/平板/电脑/电视通用，含红果、韩小圈、鬼片等站源，支持追剧、下载转 mp4、多用户备份', added:'2026-11-13', img:'icons/xiaoguo.png', version:'v1.0.9+109', os:['安卓','iOS','Windows','macOS','Android TV'], secret:'https://github.com/Xanerix/guoapp', quark:'https://pan.quark.cn/s/793ec6faf069', baidu:'https://pan.baidu.com/s/1gt2EaIambe9BH2aPq-usoQ?pwd=jdpw', uc:'https://drive.uc.cn/s/05e9b4a5fdcb4' },
       { name:'小柿子', desc:'安卓免费看剧应用，电影电视剧动漫综艺直播短剧全都有，聚合资源免会员', added:'2026-11-06', img:'icons/xiaoshizi.png', os:['安卓'], secret:'https://www.xszxsz.com/', quark:'https://pan.quark.cn/s/e1edc76d8989', baidu:'https://pan.baidu.com/s/1b2VnHbg_1igoZAv3LjpUeA?pwd=wttk', uc:'https://drive.uc.cn/s/10c91918624c4?public=1' },
       { name:'影视仓', desc:'TVBox 内置配置版，装上就能看。电影剧集综艺动漫 + 电视直播 + 豆瓣热榜，多线路切换', added:'2026-10-14', img:'icons/yingshichang.png', os:['安卓','Android TV'], secret:'https://github.com/jinenge/tvbox?tab=readme-ov-file', quark:'https://pan.quark.cn/s/fcac31a0611f', baidu:'https://pan.baidu.com/s/1D1P7Xt3RedOtzsTUShMhXA?pwd=6afg', uc:'https://drive.uc.cn/s/0ac1d98432294' },
@@ -55,6 +57,7 @@ const SECTIONS = [
   {
     id:'anime', icon:'🎨', name:'动漫专区', desc:'动漫资源', added:'2026-10-04', color:'#f97316', soft:'#fff7ed',
     tools:[
+      { name:'什锦铺', desc:'漫剧动漫聚合浏览，按作品名或编号搜索，收藏分组、离线缓存，追更不断档', added:'2026-11-22', img:'icons/shenjinpu.png', version:'v1.0.205', os:['安卓','Windows'], quark:'https://pan.quark.cn/s/06f31c2864ec' },
       { name:'Kazumi', desc:'免费无广告聚合全网番剧源，看番时能开弹幕和 4K 超清，Win/Mac/安卓/iOS/鸿蒙都能用', added:'2026-10-08', img:'icons/kazumi.png', version:'v2.4.3', os:['Windows','macOS','Linux','安卓','iOS','鸿蒙'], secret:'https://github.com/Predidit/Kazumi/releases', quark:'https://pan.quark.cn/s/e40c2f5efb4d', baidu:'https://pan.baidu.com/s/1BI-tnat5ZSVEKe21TJXlQw?pwd=hsqy', uc:'https://drive.uc.cn/s/6a1682d34acf4' },
       { name:'动漫共和国', desc:'海量高清动漫免费看，日更新番，支持安卓 / 苹果 / Windows 多端同步', added:'2026-10-04', img:'icons/dongman.png', version:'v1.4.4', os:['安卓','iOS','Windows'], secret:'https://www.oneghg.com/', quark:'https://pan.quark.cn/s/561a59d10235', baidu:'https://pan.baidu.com/s/1gM3uc3zolfNc4CDSgBcuTg?pwd=stjc', uc:'https://drive.uc.cn/s/d54a61f7ccbe4' },
       { name:'星盒', desc:'聚合动漫资源', added:'2026-10-04', img:'icons/xinghe.png', version:'v2.7.0', os:['安卓'], secret:'https://www.istarbox.app/download', quark:'https://pan.quark.cn/s/7fc3a192ddc2', baidu:'https://pan.baidu.com/s/1wZxYJcJVGL1WzLQ0T44daA?pwd=y184', uc:'https://drive.uc.cn/s/39b2761e89974' },
@@ -63,6 +66,7 @@ const SECTIONS = [
   {
     id:'comic', icon:'📚', name:'漫画专区', desc:'漫画资源', added:'2026-10-04', color:'#f59e0b', soft:'#fffbeb',
     tools:[
+      { name:'什锦铺', desc:'漫画集中浏览、离线缓存，看完漫画还能接着追短剧看小说，一个应用全占', added:'2026-11-22', img:'icons/shenjinpu.png', version:'v1.0.205', os:['安卓','Windows'], quark:'https://pan.quark.cn/s/06f31c2864ec' },
       { name:'Sparkle', desc:'漫画聚合阅读器，看热门 / 找漫画 / 畅销榜 / 全网热议，也能下载离线看', added:'2026-10-11', img:'icons/sparkle.png', os:['安卓'], quark:'https://pan.quark.cn/s/3e86c984820f', baidu:'https://pan.baidu.com/s/1DJbbLI_O8wGfA9KUh5Tzmg?pwd=mwki', uc:'https://drive.uc.cn/s/79784cff81f44' },
       { name:'抱走漫画', desc:'免费无广告的多源漫画聚合阅读器，装完直接看，离线也能缓存下载', added:'2026-10-05', img:'icons/baozoumanhua.png', version:'1.0.7', os:['安卓'], secretText:'QQ 群文件', quark:'https://pan.quark.cn/s/b3c9435bd0a4', baidu:'https://pan.baidu.com/s/1rLGyBCQYtHYV_NV9g1xZNw?pwd=1o1m', uc:'https://drive.uc.cn/s/43b9b1a99c944' },
       { name:'Mihon', desc:'免费开源安卓漫画阅读器（Tachiyomi 继任者）', added:'2026-10-04', img:'icons/mihon.png', version:'v0.21.3', os:['安卓'], secret:'https://github.com/mihonapp/mihon', quark:'https://pan.quark.cn/s/14966eac05db', baidu:'https://pan.baidu.com/s/11FGWmCzzpJ7gVCjh26lvIg?pwd=9gmn', uc:'https://drive.uc.cn/s/5ffee5072ed14' },
@@ -198,6 +202,9 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
+  { date:'2026-11-22', type:'new', section:'novel', title:'小说区新增：什锦铺', desc:'小说、有声书、短剧、漫画一个 App 全包：在线阅读也能导入 TXT/EPUB 电子书，字体字号翻页方式随心调，支持系统朗读和真人有声书；短剧漫剧集中浏览、自动记住进度，收藏分组、下载离线一样不少。安卓分现代/老旧手机两个包，Windows 版同步上架，四个内容分区都能找到它。',
+    link:{ quark:'https://pan.quark.cn/s/06f31c2864ec' } },
+
   { date:'2026-11-16', type:'new', section:'data', title:'资料区新增：《抗老生活》', desc:'这本书不讲复杂理论，核心是把抗老融进日常：控糖、微运动、睡好觉，同时调整饮食与作息。不靠昂贵保养，而是用长期能坚持的小习惯，让身体保持更好的状态。',
     link:{ quark:'https://pan.quark.cn/s/8e4add0cd386' } },
   { date:'2026-11-16', type:'new', section:'data', title:'资料区新增：《如何快速了解一个行业》', desc:'干货满满的一本使用手册，图文并茂易于理解。只关心一件事：怎么更快看懂一个行业、赚到该赚的钱。作者把复杂的行业研究拆得很清楚，不讲空、不兜圈子，直接从「赚钱逻辑」出发。',
