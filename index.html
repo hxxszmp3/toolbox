@@ -197,6 +197,18 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .tool-dl .dl-tag.dl-quark:hover{background:#2f4fd0;border-color:#2f4fd0;color:#fff}
 .tool-dl .dl-tag.dl-baidu{color:#1f63c4;border-color:#c3d8f2;background:#eff6ff}
 .tool-dl .dl-tag.dl-baidu:hover{background:#1f63c4;border-color:#1f63c4;color:#fff}
+
+/* 专区直达：可点击文字链接标签，用分区强调色，悬停填充 */
+.tool-links .row-body{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.tool-links .lk-tag{
+  font-size:12px;font-weight:600;
+  padding:4px 11px;border-radius:8px;white-space:nowrap;
+  text-decoration:none;cursor:pointer;display:inline-flex;align-items:center;
+  color:var(--accent);background:var(--accent-soft);border:1px solid var(--accent-border);
+  transition:background .18s,color .18s,transform .18s,box-shadow .18s;
+}
+.tool-links .lk-tag:hover{background:var(--accent);color:#fff;transform:translateY(-1px);box-shadow:0 3px 8px rgba(0,0,0,.12)}
+.tool-links .lk-tag:active{transform:translateY(0)}
 .tool-dl .dl-tag.dl-uc{color:#e2620d;border-color:#f8d3b4;background:#fff5ed}
 .tool-dl .dl-tag.dl-uc:hover{background:#ff7b00;border-color:#ff7b00;color:#fff}
 /* 彩色 logo 压在浅底上依旧加一层白衬底，保证边界完整清晰 */
@@ -213,6 +225,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   .tool-dl .dl-tag.dl-baidu:hover{background:#2a6ac4;border-color:#3a7ad4;color:#fff}
   .tool-dl .dl-tag.dl-uc{color:#ffa45c;border-color:#5a3a1c;background:#241a12}
   .tool-dl .dl-tag.dl-uc:hover{background:#ff7b00;border-color:#ff7b00;color:#fff}
+  .tool-links .lk-tag{color:var(--accent);background:rgba(255,255,255,.05);border-color:var(--accent-border)}
+  .tool-links .lk-tag:hover{background:var(--accent);color:#fff}
 }
 
 /* 右上角书签：点击输入管理员密码显示下载来源 */
@@ -721,7 +735,7 @@ mark{background:rgba(245,158,11,.35);color:inherit;border-radius:3px;padding:0 1
 
 <!-- v 参数用于强制刷新：内容改动时把 v 往后加一位，浏览器与 CDN 都会当作新文件，
      避免 GitHub Pages / 浏览器缓存导致用户看不到更新。 -->
-<script src="data.js?v=20261122a"></script>
+<script src="data.js?v=20261122b"></script>
 <script>
 /* 数据加载兜底：data.js 是外部文件，若因缓存 / 网络 / 版本戳不匹配而加载失败，
    下面的主脚本会直接抛 ReferenceError 导致整页白屏（单文件整站零容错）。
@@ -1111,6 +1125,11 @@ function toolCard(t, s, q = '', hot = false){
     ? `<div class="tool-row tool-dl"><div class="row-title">${dlLabel}</div><div class="row-body">${dlTags}</div></div>`
     : '';
 
+  /* 专区直达：卡片内多链接（如「学习资料」的 16 个专区），点击文字直接跳转对应网盘 */
+  const linksLine = (t.links && t.links.length)
+    ? `<div class="tool-row tool-links"><div class="row-title">专区直达</div><div class="row-body">${t.links.map(l => `<a class="lk-tag" href="${esc(l.u)}" target="_blank" rel="noopener" title="${esc(l.u)}">${esc(l.t)}</a>`).join('')}</div></div>`
+    : '';
+
   /* 书签状态按卡片独立维护（key = 分区id + 工具名），互不影响 */
   const hasSrc = !!(t.secret || t.secretText);
   const key = hasSrc ? `${s.id}::${t.name}` : '';
@@ -1163,6 +1182,7 @@ function toolCard(t, s, q = '', hot = false){
       ${tag}
     </div>
     <div class="tool-row tool-desc"><div class="row-title">${esc(descLabel(s))}</div><div class="row-body">${linkify(hi(t.desc, q))}${features}</div></div>
+    ${linksLine}
     ${osLine}
     ${dlLine}
     ${secretBox}

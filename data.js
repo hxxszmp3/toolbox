@@ -92,6 +92,25 @@ const SECTIONS = [
   {
     id:'data', icon:'📂', name:'资料专区', desc:'干货资料合集', added:'2026-10-04', color:'#14b8a6', soft:'#f0fdfa',
     tools:[
+      { name:'学习资料', desc:'教育考试全阶段资料一站打包：从少儿启蒙一路覆盖到考公、法考，16 个专区点击直达对应网盘，转存即用', added:'2026-11-22', emoji:'🎓',
+        links:[
+          { t:'少儿专区', u:'https://pan.quark.cn/s/80451ac6830c' },
+          { t:'小学专区', u:'https://pan.quark.cn/s/c2d389b9688d' },
+          { t:'初中专区', u:'https://pan.quark.cn/s/0fe842f6cd86' },
+          { t:'高中专区', u:'https://pan.quark.cn/s/045233020794' },
+          { t:'中职专区', u:'https://pan.quark.cn/s/4308e52c78b2' },
+          { t:'竞赛专区', u:'https://pan.quark.cn/s/d9c2a5bf0474' },
+          { t:'专升本区', u:'https://pan.quark.cn/s/7d4e329e353a' },
+          { t:'大学专区', u:'https://pan.quark.cn/s/e395ef16b851' },
+          { t:'考公专区', u:'https://pan.quark.cn/s/826a4c9966fc' },
+          { t:'军队文职', u:'https://pan.quark.cn/s/f50800e98675' },
+          { t:'税务师区', u:'https://pan.quark.cn/s/553bac55f813' },
+          { t:'建造师区', u:'https://pan.quark.cn/s/8ffda35153dc' },
+          { t:'执业医师', u:'https://pan.quark.cn/s/72eeb0cf41fa' },
+          { t:'银行从业', u:'https://pan.quark.cn/s/f375d954b035' },
+          { t:'考计算机', u:'https://pan.quark.cn/s/69547dd0d110' },
+          { t:'法考专区', u:'https://pan.quark.cn/s/c210b5007d6b' },
+        ] },
       { name:'《抗老生活》', desc:'58 岁的血管状态为什么能回到 28 岁？不讲复杂理论，核心就三件事：控糖、微运动、睡好觉。把抗老拆进饮食与作息里能长期坚持的小习惯，不靠昂贵保养', added:'2026-11-16', emoji:'🧬', quark:'https://pan.quark.cn/s/8e4add0cd386' },
       { name:'《如何快速了解一个行业》', desc:'不讲空话、不兜圈子，直接从「怎么赚钱」出发：把复杂的行业研究拆成可执行的步骤，教你在短时间内看懂一门生意的关键环节。图文并茂，当手册翻', added:'2026-11-16', emoji:'📊', quark:'https://pan.quark.cn/s/e921cd6e5a0c' },
       { name:'香港经典电影合集 170 部', desc:'170 部港产经典电影高清合集，国粤双语音轨，未删减版本，老片修复画质到位，一部一部都是当年录像厅里放过的', added:'2026-11-16', emoji:'🎞️', quark:'https://pan.quark.cn/s/b8792421a6f3' },
@@ -202,6 +221,8 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
+  { date:'2026-11-22', type:'new', section:'data', title:'资料区新增：学习资料', desc:'教育考试全阶段资料一站打包，16 个专区从少儿启蒙覆盖到考公法考：少儿 / 小学 / 初中 / 高中 / 中职 / 竞赛 / 专升本 / 大学 / 考公 / 军队文职 / 税务师 / 建造师 / 执业医师 / 银行从业 / 考计算机 / 法考，卡片内点专区名直达对应网盘。' },
+
   { date:'2026-11-22', type:'new', section:'novel', title:'小说区新增：什锦铺', desc:'小说、有声书、短剧、漫画一个 App 全包：在线阅读也能导入 TXT/EPUB 电子书，字体字号翻页方式随心调，支持系统朗读和真人有声书；短剧漫剧集中浏览、自动记住进度，收藏分组、下载离线一样不少。安卓分现代/老旧手机两个包，Windows 版同步上架，四个内容分区都能找到它。',
     link:{ quark:'https://pan.quark.cn/s/06f31c2864ec' } },
 
