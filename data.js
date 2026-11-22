@@ -12,6 +12,7 @@ const SECTIONS = [
   {
     id:'novel', icon:'📖', name:'小说专区', desc:'免费看小说、下小说', added:'2026-10-04', color:'#3b82f6', soft:'#eff6ff',
     tools:[
+      { name:'轻小说打包器', desc:'哔哩轻小说、轻小说文库一键打包成 EPUB，封面插图目录齐全，支持分卷合并', added:'2026-11-22', emoji:'📚', version:'v0.2.50', os:['Windows'], secret:'https://github.com/montaro2017/bili_novel_packer/releases', quark:'https://pan.quark.cn/s/50af4cf0944d' },
       { name:'轻小说文库', desc:'Wenku8 重写版，翻页跟手，支持本地导入与自定义书源。附 0.3.7 版（唯一带书源），装好勿更新', added:'2026-11-05', img:'icons/wenku8.png', os:['安卓'], secret:'https://github.com/mikufoxxx/Wenku8_Flutter', quark:'https://pan.quark.cn/s/e11bcee402cc', baidu:'https://pan.baidu.com/s/1WAOVg4K63DiiFuZJ0-nrmA?pwd=im85', uc:'https://drive.uc.cn/s/0847d31cfc284' },
       { name:'阅读 MD3 版', desc:'开源阅读 MD3 重构版，MD3 全新界面，免费无广告，附 2000+ 书源，支持自定义书源规则', added:'2026-11-01', img:'icons/yuedu-md3.png', os:['安卓'], secret:'https://github.com/HapeLee/legado-with-MD3', quark:'https://pan.quark.cn/s/4d0d9c4932a2', baidu:'https://pan.baidu.com/s/1pLV-g_1nC1a217POTzXOlA?pwd=nav7', uc:'https://drive.uc.cn/s/38fbb925c57d4' },
       { name:'什锦铺', desc:'小说、有声书、短剧、漫画一个 App 全包，在线看也能导入 TXT/EPUB，可下载离线，安卓和 Windows 双端通用', added:'2026-11-22', img:'icons/shenjinpu.png', version:'v1.0.205', os:['安卓','Windows'], quark:'https://pan.quark.cn/s/06f31c2864ec', baidu:'https://pan.baidu.com/s/1ScYdG6kOB_OIomJzbXBHFQ?pwd=nbbq', uc:'https://drive.uc.cn/s/4ee036b8a0ac4' },
@@ -227,6 +228,8 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
+  { date:'2026-11-22', type:'new', section:'novel', title:'小说区新增：轻小说打包器', desc:'哔哩轻小说、轻小说文库里的书，一条链接就能打包成 EPUB：封面、插图、目录自动带上，分卷能合并成一本。Windows 双击即用，支持多个链接排队下载。',
+    link:{ quark:'https://pan.quark.cn/s/50af4cf0944d' } },
   { date:'2026-11-22', type:'new', section:'video', title:'影视区上架：小果影视 2.0.3', desc:'全网短剧免费看，无广告。手机、平板、电脑、电视全通用，红果、韩小圈、鬼片等站源全都接入，支持追剧记进度、下载转 mp4、多用户切换与数据备份。',
     link:{ quark:'https://pan.quark.cn/s/793ec6faf069' } },
   { date:'2026-11-22', type:'new', section:'data', title:'资料区新增：核心800单词卡', desc:'精选核心 800 词一词一卡，释义、例句、音标、记忆法全都有，排版干净直接打印就能用，快速突破词汇瓶颈。' },
