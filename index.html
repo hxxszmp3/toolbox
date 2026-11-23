@@ -164,6 +164,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 }
 .tool-row .row-body{min-width:0}
 .tool-desc .row-body{font-size:13px;color:var(--text-2);line-height:1.6}
+/* 简介统一占满 3 行高度：不足 3 行的卡片留白补齐，超过 3 行截断，保证「支持设备/下载」行跨卡片对齐 */
+.tool-desc .row-body{min-height:62.4px}
+.desc-clamp{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 /* 简介里直写的网址：自动识别成可点击链接 */
 .tool-desc .row-body .desc-link{
   color:var(--primary);font-weight:600;text-decoration:underline;
@@ -173,7 +176,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .tool-desc .row-body .desc-link:hover{opacity:.75}
 
 /* 支持设备：标签在标题下方成组换行 */
-.tool-os .row-body{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.tool-os .row-body{display:flex;align-items:center;gap:6px;flex-wrap:nowrap;overflow:hidden;min-height:22px}
 .tool-os .os-tag{
   font-size:11px;font-weight:600;color:var(--text-2);
   background:var(--soft-btn);border:1px solid var(--border);
@@ -199,6 +202,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .tool-dl .dl-tag.dl-quark:hover{background:#2f4fd0;border-color:#2f4fd0;color:#fff}
 .tool-dl .dl-tag.dl-baidu{color:#1f63c4;border-color:#c3d8f2;background:#eff6ff}
 .tool-dl .dl-tag.dl-baidu:hover{background:#1f63c4;border-color:#1f63c4;color:#fff}
+/* 纯链接卡片（web 站点）的「链接直达」按钮：用分区强调色 */
+.tool-dl .dl-tag.dl-web{color:var(--accent);border-color:var(--accent-border);background:var(--accent-soft)}
+.tool-dl .dl-tag.dl-web:hover{background:var(--accent);border-color:var(--accent);color:#fff}
 
 /* 专区直达：可点击文字链接标签，用分区强调色，悬停填充 */
 .tool-links .row-body{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
@@ -229,6 +235,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   .tool-dl .dl-tag.dl-uc:hover{background:#ff7b00;border-color:#ff7b00;color:#fff}
   .tool-links .lk-tag{color:var(--accent);background:rgba(255,255,255,.05);border-color:var(--accent-border)}
   .tool-links .lk-tag:hover{background:var(--accent);color:#fff}
+  .tool-dl .dl-tag.dl-web{color:var(--accent);background:rgba(255,255,255,.05);border-color:var(--accent-border)}
+  .tool-dl .dl-tag.dl-web:hover{background:var(--accent);border-color:var(--accent);color:#fff}
 }
 
 /* 右上角书签：点击输入管理员密码显示下载来源 */
@@ -1159,7 +1167,8 @@ function toolCard(t, s, q = '', hot = false){
 
   let action = '';
   if (t.web){
-    action = `<a class="web-link" href="${t.web}" target="_blank" rel="noopener">🔗 ${esc(t.web)}</a>`;
+    /* 纯链接卡片：链接渲染成「链接直达」按钮，与网盘按钮同行同款，保证跨卡片对齐 */
+    action = `<div class="tool-row tool-dl"><div class="row-title">直达入口</div><div class="row-body"><a class="dl-tag dl-web" href="${esc(t.web)}" target="_blank" rel="noopener" title="${esc(t.web)}">🔗 链接直达</a></div></div>`;
   } else if (t.cmd){
     action = `<div class="cmd-wrap"><div class="cmd-hint">怎么安装：复制以下代码到 agent 即可</div><div class="cmd-row"><code>${esc(t.cmd)}</code><button class="btn-copy" data-copy="${esc(t.cmd)}">复制</button></div></div>`;
   } else if (t.quark || t.baidu || t.uc){
@@ -1182,7 +1191,7 @@ function toolCard(t, s, q = '', hot = false){
       <span class="tool-name">${hi(t.name, q)}${newBadge}</span>
       ${tag}
     </div>
-    <div class="tool-row tool-desc"><div class="row-title">${esc(descLabel(s))}</div><div class="row-body">${linkify(hi(t.desc, q))}${features}</div></div>
+    <div class="tool-row tool-desc"><div class="row-title">${esc(descLabel(s))}</div><div class="row-body"><span class="desc-clamp">${linkify(hi(t.desc, q))}</span></div>${features}</div>
     ${linksLine}
     ${osLine}
     ${dlLine}
