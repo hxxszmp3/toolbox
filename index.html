@@ -185,7 +185,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 
 /* 下载：夸克 / 百度两个网盘入口。
    突出但不刺眼 —— 浅色底 + 品牌色描边 + 品牌色文字，悬停时才填充品牌色 */
-.tool-dl{margin-top:auto}
 .tool-dl .row-body{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
 .tool-dl .dl-tag{
   font-size:12px;font-weight:700;
@@ -1195,10 +1194,9 @@ function toolCard(t, s, q = '', hot = false){
     <div class="tool-row tool-desc"><div class="row-title">${esc(descLabel(s))}</div><div class="row-body"><span class="desc-clamp">${linkify(hi(t.desc, q))}</span></div>${features}</div>
     ${linksLine}
     ${osLine}
-    ${dlLine}
     ${secretBox}
     ${points}
-    ${action ? `<div class="tool-action">${action}</div>` : ''}
+    ${(dlLine || action) ? `<div class="tool-action">${dlLine}${action}</div>` : ''}
   </div>`;
 }
 
