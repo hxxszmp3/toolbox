@@ -117,6 +117,7 @@ const SECTIONS = [
           { t:'考计算机', u:'https://pan.quark.cn/s/69547dd0d110' },
           { t:'法考专区', u:'https://pan.quark.cn/s/c210b5007d6b' },
         ] },
+      { name:'苹果iOS安装IPA方法指南', desc:'图文详解 iPhone 安装 IPA 五种方法：Sideloadly、AltStore、SideStore、LiveContainer、TrollStore，签名原理、续签技巧、避坑要点一次讲清', emoji:'📱', quark:'https://pan.quark.cn/s/b1a8b539846c' },
       { name:'全网最全英语单词词库', desc:'960+ 本词书 19 个分类：四六级、考研、雅思、商务英语全都有，带音标例句，导入 Anki、欧路词典、有道直接用', added:'2026-11-23', emoji:'🔤', web:'https://github.com/lilinji/English' },
       { name:'核心800单词卡', desc:'精选核心 800 词一词一卡，释义、例句、音标、记忆法齐全，排版干净直接打印', added:'2026-11-22', emoji:'🗂️', quark:'https://pan.quark.cn/s/6a734e07cf57' },
       { name:'历代书法名作库', desc:'三国至近现代 14281 件书法名作高清全卷在线看，最高 65536 像素，书法爱好者收藏', added:'2026-11-22', emoji:'🖌️', web:'https://cnshufa.com/' },
