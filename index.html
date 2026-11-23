@@ -141,7 +141,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .tool-tag{flex:none;font-size:11px;font-weight:600;color:#d97706;background:#fef3e2;padding:2px 7px;border-radius:6px}
 /* NEW 角标：最近 7 天新增的工具，配合分区「最新在前」排序使用 */
 .tool-new{
-  flex:none;font-size:9px;font-weight:700;letter-spacing:.2px;color:#fff;line-height:1.5;
+  display:inline-block;vertical-align:2px;margin-left:7px;flex:none;font-size:9px;font-weight:700;letter-spacing:.2px;color:#fff;line-height:1.5;
   background:linear-gradient(135deg,#f43f5e,#f97316);padding:1px 4px;border-radius:5px;
   box-shadow:0 1px 3px rgba(244,63,94,.3);
 }
@@ -185,6 +185,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .tool-dl .row-body{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
 .tool-dl .dl-tag{
   font-size:12px;font-weight:700;
+  min-width:96px;justify-content:center;
   padding:4px 11px;border-radius:8px;white-space:nowrap;
   text-decoration:none;cursor:pointer;display:inline-flex;align-items:center;gap:6px;
   background:var(--card);border:1px solid transparent;
@@ -1177,8 +1178,7 @@ function toolCard(t, s, q = '', hot = false){
     ${bookmark}
     <div class="tool-head">
       ${icon}
-      <span class="tool-name">${hi(t.name, q)}</span>
-      ${newBadge}
+      <span class="tool-name">${hi(t.name, q)}${newBadge}</span>
       ${tag}
     </div>
     <div class="tool-row tool-desc"><div class="row-title">${esc(descLabel(s))}</div><div class="row-body">${linkify(hi(t.desc, q))}${features}</div></div>
