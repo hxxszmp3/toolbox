@@ -46,6 +46,7 @@ const SECTIONS = [
   {
     id:'video', icon:'🎬', name:'影视专区', desc:'聚合影视资源', added:'2026-10-04', color:'#ef4444', soft:'#fef2f2',
     tools:[
+      { name:'找剧AI', desc:'AI 全网搜剧在线看：输入片名直接播，电视剧电影动漫综艺短剧全都有，还有 AI 漫剧，免安装打开就能看', emoji:'📺', web:'https://zhaoju4.com/' },
       { name:'TVBox Desktop', desc:'TVBox 桌面版：电脑上看短剧剧集直播，内置公开源开箱即用，聚合搜索多线路切换，支持下载转外部播放器，配置兼容安卓 TVBox 订阅', added:'2026-11-23', emoji:'🖥️', version:'v0.1.0', os:['Windows'], secret:'https://github.com/hgtuj5688/tvbox-desktop', quark:'https://pan.quark.cn/s/bc4d78618976', baidu:'https://pan.baidu.com/s/1oogCMkPv2XGmC-E_CtH18g?pwd=65bt', uc:'https://drive.uc.cn/s/f3580cfe84c84' },
       { name:'什锦铺', desc:'短剧漫剧免费追，自动记住看到哪、下次接着播，还能顺便看小说听有声书，安卓和 Windows 都能装', added:'2026-11-22', img:'icons/shenjinpu.png', version:'v1.0.205', os:['安卓','Windows'], quark:'https://pan.quark.cn/s/06f31c2864ec', baidu:'https://pan.baidu.com/s/1ScYdG6kOB_OIomJzbXBHFQ?pwd=nbbq', uc:'https://drive.uc.cn/s/4ee036b8a0ac4' },
       { name:'小果影视', desc:'全网短剧免费免广告观看。Flutter 多端短剧客户端，手机/平板/电脑/电视通用，含红果、韩小圈、鬼片等站源，支持追剧、下载转 mp4、多用户备份', added:'2026-11-13', img:'icons/xiaoguo.png', version:'v1.0.9+109', os:['安卓','iOS','Windows','macOS','Android TV'], secret:'https://github.com/Xanerix/guoapp', quark:'https://pan.quark.cn/s/793ec6faf069', baidu:'https://pan.baidu.com/s/1gt2EaIambe9BH2aPq-usoQ?pwd=jdpw', uc:'https://drive.uc.cn/s/05e9b4a5fdcb4' },
@@ -162,7 +163,7 @@ const SECTIONS = [
   {
     id:'software', icon:'🛠️', name:'实用软件', desc:'效率工具、黑科技软件', added:'2026-10-04', color:'#6366f1', soft:'#eef2ff',
     tools:[
-      { name:'RVCmax 2026 变声器', desc:'2026 最新版 RVC 变声器，实时变声与模型训练都支持，完全免费无内购', added:'2026-11-22', emoji:'🎤', os:['Windows'], quark:'https://pan.quark.cn/s/d25861e8d2ca' },
+      { name:'RVCmax 2026 变声器', desc:'2026 最新版 RVC 变声器，实时变声与模型训练都支持，完全免费无内购', added:'2026-11-16', emoji:'🎤', os:['Windows'], quark:'https://pan.quark.cn/s/d25861e8d2ca' },
       { name:'WPS Office 2026 终身会员', desc:'终身高级会员版，安卓/Win/Mac/iOS 全平台通用，永久激活免费使用', added:'2026-11-22', emoji:'📄', os:['安卓','Windows','macOS','iOS'], quark:'https://pan.quark.cn/s/e0d451bbe73e' },
       { name:'Filee', desc:'263 种格式离线互转，图片、PDF、Office、HWP、视频、音频通吃，拖进去就转，免装 Office', added:'2026-11-15', img:'icons/filee.png', version:'v2.4.1', os:['Windows','macOS','Linux'], secret:'https://github.com/KnifeLemon/Filee', quark:'https://pan.quark.cn/s/7088f7152853' },
       { name:'ToolKnit', desc:'格式转换一站通：PDF、图片、视频、音频、文本互转，兼有压缩、拼接、抠图，近百个免费工具免注册', added:'2026-11-15', img:'icons/toolknit.png', web:'https://toolknit.com/zh/', secret:'https://toolknit.com/zh/' },
@@ -229,6 +230,8 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
+  { date:'2026-11-23', type:'new', section:'video', title:'影视区新增：找剧AI', desc:'AI 全网搜剧在线看：输入片名直接播，电视剧、电影、动漫、综艺、短剧全都有，还有 AI 漫剧。免安装不用下载，浏览器打开就能看。',
+    link:{ web:'https://zhaoju4.com/' } },
   { date:'2026-11-23', type:'new', section:'video', title:'影视区新增：TVBox Desktop', desc:'安卓 TVBox 的桌面版：电脑上看电影、剧集和电视直播，内置公开源装完就有内容，聚合搜索一次搜多个站，多线路自动体检切换，支持收藏历史与下载转外部播放器，配置兼容安卓 TVBox 订阅格式。',
     link:{ quark:'https://pan.quark.cn/s/bc4d78618976' } },
   { date:'2026-11-22', type:'new', section:'novel', title:'小说区新增：轻小说打包器', desc:'哔哩轻小说、轻小说文库里的书，一条链接就能打包成 EPUB：封面、插图、目录自动带上，分卷能合并成一本。Windows 双击即用，支持多个链接排队下载。',
