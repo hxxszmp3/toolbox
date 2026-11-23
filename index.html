@@ -1167,8 +1167,8 @@ function toolCard(t, s, q = '', hot = false){
 
   let action = '';
   if (t.web){
-    /* 纯链接卡片：链接渲染成「链接直达」按钮，与网盘按钮同行同款，保证跨卡片对齐 */
-    action = `<div class="tool-row tool-dl"><div class="row-title">直达入口</div><div class="row-body"><a class="dl-tag dl-web" href="${esc(t.web)}" target="_blank" rel="noopener" title="${esc(t.web)}">🔗 链接直达</a></div></div>`;
+    /* 纯链接卡片：链接渲染成「链接直达」按钮，与网盘按钮同行同款；底部配一行提示，保持跨卡片底部结构一致 */
+    action = `<div class="tool-row tool-dl"><div class="row-title">直达入口</div><div class="row-body"><a class="dl-tag dl-web" href="${esc(t.web)}" target="_blank" rel="noopener" title="${esc(t.web)}">🔗 链接直达</a></div></div><div class="tool-tips">${ICON_TIP}点击按钮即可打开对应网站，收藏到书签栏更方便</div>`;
   } else if (t.cmd){
     action = `<div class="cmd-wrap"><div class="cmd-hint">怎么安装：复制以下代码到 agent 即可</div><div class="cmd-row"><code>${esc(t.cmd)}</code><button class="btn-copy" data-copy="${esc(t.cmd)}">复制</button></div></div>`;
   } else if (t.quark || t.baidu || t.uc){
