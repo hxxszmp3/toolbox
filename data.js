@@ -46,6 +46,7 @@ const SECTIONS = [
   {
     id:'video', icon:'🎬', name:'影视专区', desc:'聚合影视资源', added:'2026-10-04', color:'#ef4444', soft:'#fef2f2',
     tools:[
+      { name:'TVBox Desktop', desc:'TVBox 桌面版：电脑上看短剧剧集直播，内置公开源开箱即用，聚合搜索多线路切换，支持下载转外部播放器，配置兼容安卓 TVBox 订阅', added:'2026-11-23', emoji:'🖥️', version:'v0.1.0', os:['Windows'], secret:'https://github.com/hgtuj5688/tvbox-desktop', quark:'https://pan.quark.cn/s/bc4d78618976' },
       { name:'什锦铺', desc:'短剧漫剧免费追，自动记住看到哪、下次接着播，还能顺便看小说听有声书，安卓和 Windows 都能装', added:'2026-11-22', img:'icons/shenjinpu.png', version:'v1.0.205', os:['安卓','Windows'], quark:'https://pan.quark.cn/s/06f31c2864ec', baidu:'https://pan.baidu.com/s/1ScYdG6kOB_OIomJzbXBHFQ?pwd=nbbq', uc:'https://drive.uc.cn/s/4ee036b8a0ac4' },
       { name:'小果影视', desc:'全网短剧免费免广告观看。Flutter 多端短剧客户端，手机/平板/电脑/电视通用，含红果、韩小圈、鬼片等站源，支持追剧、下载转 mp4、多用户备份', added:'2026-11-13', img:'icons/xiaoguo.png', version:'v1.0.9+109', os:['安卓','iOS','Windows','macOS','Android TV'], secret:'https://github.com/Xanerix/guoapp', quark:'https://pan.quark.cn/s/793ec6faf069', baidu:'https://pan.baidu.com/s/1gt2EaIambe9BH2aPq-usoQ?pwd=jdpw', uc:'https://drive.uc.cn/s/05e9b4a5fdcb4' },
       { name:'小柿子', desc:'安卓免费看剧应用，电影电视剧动漫综艺直播短剧全都有，聚合资源免会员', added:'2026-11-06', img:'icons/xiaoshizi.png', os:['安卓'], secret:'https://www.xszxsz.com/', quark:'https://pan.quark.cn/s/e1edc76d8989', baidu:'https://pan.baidu.com/s/1b2VnHbg_1igoZAv3LjpUeA?pwd=wttk', uc:'https://drive.uc.cn/s/10c91918624c4?public=1' },
@@ -228,6 +229,8 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
+  { date:'2026-11-23', type:'new', section:'video', title:'影视区新增：TVBox Desktop', desc:'安卓 TVBox 的桌面版：电脑上看电影、剧集和电视直播，内置公开源装完就有内容，聚合搜索一次搜多个站，多线路自动体检切换，支持收藏历史与下载转外部播放器，配置兼容安卓 TVBox 订阅格式。',
+    link:{ quark:'https://pan.quark.cn/s/bc4d78618976' } },
   { date:'2026-11-22', type:'new', section:'novel', title:'小说区新增：轻小说打包器', desc:'哔哩轻小说、轻小说文库里的书，一条链接就能打包成 EPUB：封面、插图、目录自动带上，分卷能合并成一本。Windows 双击即用，支持多个链接排队下载。',
     link:{ quark:'https://pan.quark.cn/s/50af4cf0944d' } },
   { date:'2026-11-22', type:'new', section:'video', title:'影视区上架：小果影视 2.0.3', desc:'全网短剧免费看，无广告。手机、平板、电脑、电视全通用，红果、韩小圈、鬼片等站源全都接入，支持追剧记进度、下载转 mp4、多用户切换与数据备份。',
