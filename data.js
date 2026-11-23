@@ -163,7 +163,7 @@ const SECTIONS = [
   {
     id:'software', icon:'🛠️', name:'实用软件', desc:'效率工具、黑科技软件', added:'2026-10-04', color:'#6366f1', soft:'#eef2ff',
     tools:[
-      { name:'随身听书', desc:'聚合听书工具，38 个听书源插件四端通用，网盘和本地音频都能播，断点续播、倍速、定时关闭全都有', added:'2026-11-23', emoji:'🎧', version:'v5.6', os:['Windows','macOS','安卓','iOS'], secret:'https://github.com/whykang/ssts', quark:'https://pan.quark.cn/s/6dcbeff3dd51' },
+      { name:'随身听书', desc:'开源聚合听书播放器，40 个书源插件导入即用，分类找书多源搜索，网盘和本地音频都能听，支持离线下载', added:'2026-11-23', emoji:'🎧', version:'v5.6', os:['Windows','macOS','安卓','iOS'], secret:'https://github.com/whykang/ssts', quark:'https://pan.quark.cn/s/f2a8ec3ce83b' },
       { name:'RVCmax 2026 变声器', desc:'2026 最新版 RVC 变声器，实时变声与模型训练都支持，完全免费无内购', added:'2026-11-16', emoji:'🎤', os:['Windows'], quark:'https://pan.quark.cn/s/d25861e8d2ca' },
       { name:'WPS Office 2026 终身会员', desc:'终身高级会员版，安卓/Win/Mac/iOS 全平台通用，永久激活免费使用', added:'2026-11-22', emoji:'📄', os:['安卓','Windows','macOS','iOS'], quark:'https://pan.quark.cn/s/e0d451bbe73e' },
       { name:'Filee', desc:'263 种格式离线互转，图片、PDF、Office、HWP、视频、音频通吃，拖进去就转，免装 Office', added:'2026-11-15', img:'icons/filee.png', version:'v2.4.1', os:['Windows','macOS','Linux'], secret:'https://github.com/KnifeLemon/Filee', quark:'https://pan.quark.cn/s/7088f7152853' },
@@ -231,8 +231,8 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
-  { date:'2026-11-23', type:'new', section:'software', title:'实用软件新增：随身听书', desc:'聚合听书工具：38 个听书源插件四端通用，支持夸克/百度/阿里/115 网盘和本地文件夹当书源，断点续播、自动下一集、倍速 0.5–3x、定时关闭、书签云同步全都有。电脑 v5.6 三架构开箱即用，安卓 v5.7 手机装上就能听。',
-    link:{ quark:'https://pan.quark.cn/s/6dcbeff3dd51' } },
+  { date:'2026-11-23', type:'new', section:'software', title:'实用软件新增：随身听书', desc:'开源聚合听书播放器：40 个书源插件导入即用，恐怖、灵异、推理、都市言情、官场、职场全部分好类，支持多源聚合搜索、下载离线听；内置夸克/百度/阿里/115 网盘和 WebDAV 入口，网盘音频直接当有声书听，本地 txt/epub 还能选朗读引擎朗读。电脑 v5.6 免安装，安卓 v5.7 直接装，书架进度云同步。',
+    link:{ quark:'https://pan.quark.cn/s/f2a8ec3ce83b' } },
   { date:'2026-11-23', type:'new', section:'video', title:'影视区新增：找剧AI', desc:'AI 全网搜剧在线看：输入片名直接播，电视剧、电影、动漫、综艺、短剧全都有，还有 AI 漫剧。免安装不用下载，浏览器打开就能看。',
     link:{ web:'https://zhaoju4.com/' } },
   { date:'2026-11-23', type:'new', section:'video', title:'影视区新增：TVBox Desktop', desc:'安卓 TVBox 的桌面版：电脑上看电影、剧集和电视直播，内置公开源装完就有内容，聚合搜索一次搜多个站，多线路自动体检切换，支持收藏历史与下载转外部播放器，配置兼容安卓 TVBox 订阅格式。',
