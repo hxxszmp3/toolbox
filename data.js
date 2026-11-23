@@ -25,8 +25,8 @@ const SECTIONS = [
       { name:'摸鱼神器', desc:'电脑端看小说，隐蔽摸鱼', added:'2026-10-04', img:'icons/moyu.png', os:['Windows'], quark:'https://pan.quark.cn/s/33a420bf77d2', baidu:'https://pan.baidu.com/s/1iSVaAHf-_udfr1SGlIp82g?pwd=rscq' },
       { name:'知乎盐选文章提取', desc:'提取知乎盐选文章（需自备会员）', added:'2026-10-04', img:'icons/zhihu.png', os:['Windows'], quark:'https://pan.quark.cn/s/22496116e151' },
       { name:'600G小说合集', desc:'600多G小说合集，起点番茄热门小说，多为精校版，配本地阅读器即可看', added:'2026-10-05', emoji:'📚', quark:'https://pan.quark.cn/s/b819a88df377' },
-      { name:'各大平台付费小说TXT合集', desc:'各大平台付费小说 TXT 格式打包，223 个合集一次存齐，配本地阅读器就能看', emoji:'📕', quark:'https://pan.quark.cn/s/6e3c118f9fdc' },
-      { name:'知乎盐选与晋江付费小说大合集', desc:'知乎盐选、晋江付费小说 19000 多本大合集，73G 全打包，盐选党晋江党一次存够', emoji:'📖', quark:'https://pan.quark.cn/s/ee648be49ace' },
+      { name:'各大平台付费小说TXT合集', desc:'各大平台付费小说 TXT 格式打包，223 个合集一次存齐，配本地阅读器就能看', added:'2026-11-23', emoji:'📕', quark:'https://pan.quark.cn/s/6e3c118f9fdc' },
+      { name:'知乎盐选与晋江付费小说大合集', desc:'知乎盐选、晋江付费小说 19000 多本大合集，73G 全打包，盐选党晋江党一次存够', added:'2026-11-23', emoji:'📖', quark:'https://pan.quark.cn/s/ee648be49ace' },
     ]
   },
   {
