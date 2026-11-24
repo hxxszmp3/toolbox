@@ -98,7 +98,7 @@ const SECTIONS = [
   {
     id:'data', icon:'📂', name:'资料专区', desc:'干货资料合集', added:'2026-10-04', color:'#14b8a6', soft:'#f0fdfa',
     tools:[
-      { name:'学习资料', desc:'教育考试全阶段资料一站打包：从少儿启蒙一路覆盖到考公、法考，16 个专区点击直达对应网盘，转存即用', added:'2026-11-22', emoji:'🎓',
+      { name:'学习资料', desc:'教育考试全阶段资料一站打包：从少儿启蒙一路覆盖到考公、法考，16 个专区点击直达对应网盘，转存即用', added:'2026-11-22', pin:1, emoji:'🎓',
         links:[
           { t:'少儿专区', u:'https://pan.quark.cn/s/80451ac6830c' },
           { t:'小学专区', u:'https://pan.quark.cn/s/c2d389b9688d' },
@@ -117,6 +117,7 @@ const SECTIONS = [
           { t:'考计算机', u:'https://pan.quark.cn/s/69547dd0d110' },
           { t:'法考专区', u:'https://pan.quark.cn/s/c210b5007d6b' },
         ] },
+      { name:'60+本人性心理学电子书', desc:'有人整理了 60 多本人性心理学电子书，识人、社交、谈判、心理博弈、防骗技巧，内容相当丰富。真正厉害的人，未必最会说，但一定懂察言观色、识人识局。', added:'2026-11-24', emoji:'🧠', quark:'https://pan.quark.cn/s/013b5d1d8dca' },
       { name:'苹果iOS安装IPA方法指南', desc:'图文详解 iPhone 安装 IPA 五种方法：Sideloadly、AltStore、SideStore、LiveContainer、TrollStore，签名原理、续签技巧、避坑要点一次讲清', added:'2026-11-23', emoji:'📱', quark:'https://pan.quark.cn/s/b1a8b539846c' },
       { name:'全网最全英语单词词库', desc:'960+ 本词书 19 个分类：四六级、考研、雅思、商务英语全都有，带音标例句，导入 Anki、欧路词典、有道直接用', added:'2026-11-23', emoji:'🔤', web:'https://github.com/lilinji/English' },
       { name:'核心800单词卡', desc:'精选核心 800 词一词一卡，释义、例句、音标、记忆法齐全，排版干净直接打印', added:'2026-11-22', emoji:'🗂️', quark:'https://pan.quark.cn/s/6a734e07cf57' },
@@ -235,6 +236,8 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
+  { date:'2026-11-24', type:'new', section:'data', title:'资料区新增：60+ 本人性心理学电子书', desc:'识人、社交、谈判、心理博弈、防骗技巧，60 多本人性心理学 PDF 一次存齐，察言观色、识人识局的书都在这里。',
+    link:{ quark:'https://pan.quark.cn/s/013b5d1d8dca' } },
   { date:'2026-11-23', type:'new', section:'software', title:'实用软件新增：随身听书', desc:'开源聚合听书播放器：40 个书源插件导入即用，恐怖、灵异、推理、都市言情、官场、职场全部分好类，支持多源聚合搜索、下载离线听；内置夸克/百度/阿里/115 网盘和 WebDAV 入口，网盘音频直接当有声书听，本地 txt/epub 还能选朗读引擎朗读。电脑 v5.6 免安装，安卓 v5.7 直接装，书架进度云同步。',
     link:{ quark:'https://pan.quark.cn/s/f2a8ec3ce83b' } },
   { date:'2026-11-23', type:'new', section:'video', title:'影视区新增：找剧AI', desc:'AI 全网搜剧在线看：输入片名直接播，电视剧、电影、动漫、综艺、短剧全都有，还有 AI 漫剧。免安装不用下载，浏览器打开就能看。',
