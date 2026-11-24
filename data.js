@@ -168,7 +168,7 @@ const SECTIONS = [
   {
     id:'software', icon:'🛠️', name:'实用软件', desc:'效率工具、黑科技软件', added:'2026-10-04', color:'#6366f1', soft:'#eef2ff',
     tools:[
-      { name:'随身听书', desc:'开源聚合听书播放器，40 个书源插件导入即用，分类找书多源搜索，网盘和本地音频都能听，支持离线下载', added:'2026-11-23', emoji:'🎧', version:'v5.6', os:['Windows','macOS','安卓','iOS'], secret:'https://github.com/whykang/ssts', quark:'https://pan.quark.cn/s/f2a8ec3ce83b' },
+      { name:'随身听书', desc:'开源聚合听书播放器，40 个书源插件导入即用，分类找书多源搜索，网盘和本地音频都能听，支持离线下载', added:'2026-11-23', img:'icons/suishentingshu.png', version:'v5.6', os:['Windows','macOS','安卓','iOS'], secret:'https://github.com/whykang/ssts', quark:'https://pan.quark.cn/s/f2a8ec3ce83b' },
       { name:'RVCmax 2026 变声器', desc:'2026 最新版 RVC 变声器，实时变声与模型训练都支持，完全免费无内购', added:'2026-11-16', emoji:'🎤', os:['Windows'], quark:'https://pan.quark.cn/s/d25861e8d2ca' },
       { name:'WPS Office 2026 终身会员', desc:'终身高级会员版，安卓/Win/Mac/iOS 全平台通用，永久激活免费使用', added:'2026-11-22', emoji:'📄', os:['安卓','Windows','macOS','iOS'], quark:'https://pan.quark.cn/s/e0d451bbe73e' },
       { name:'Filee', desc:'263 种格式离线互转，图片、PDF、Office、HWP、视频、音频通吃，拖进去就转，免装 Office', added:'2026-11-15', img:'icons/filee.png', version:'v2.4.1', os:['Windows','macOS','Linux'], secret:'https://github.com/KnifeLemon/Filee', quark:'https://pan.quark.cn/s/7088f7152853' },
