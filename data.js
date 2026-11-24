@@ -117,6 +117,7 @@ const SECTIONS = [
           { t:'考计算机', u:'https://pan.quark.cn/s/69547dd0d110' },
           { t:'法考专区', u:'https://pan.quark.cn/s/c210b5007d6b' },
         ] },
+      { name:'318个5A级景区视频合集', desc:'318 个国家 5A 级景区讲解 + 185 个高清航拍视频，从壮丽山河到人文古迹一次看全；出门前做攻略，没空出门也能云游中国', added:'2026-11-24', emoji:'🏞️', quark:'https://pan.quark.cn/s/68ddb43e6190' },
       { name:'60+本人性心理学电子书', desc:'有人整理了 60 多本人性心理学电子书，识人、社交、谈判、心理博弈、防骗技巧，内容相当丰富。真正厉害的人，未必最会说，但一定懂察言观色、识人识局。', added:'2026-11-24', emoji:'🧠', quark:'https://pan.quark.cn/s/013b5d1d8dca' },
       { name:'苹果iOS安装IPA方法指南', desc:'图文详解 iPhone 安装 IPA 五种方法：Sideloadly、AltStore、SideStore、LiveContainer、TrollStore，签名原理、续签技巧、避坑要点一次讲清', added:'2026-11-23', emoji:'📱', quark:'https://pan.quark.cn/s/b1a8b539846c' },
       { name:'全网最全英语单词词库', desc:'960+ 本词书 19 个分类：四六级、考研、雅思、商务英语全都有，带音标例句，导入 Anki、欧路词典、有道直接用', added:'2026-11-23', emoji:'🔤', web:'https://github.com/lilinji/English' },
@@ -236,6 +237,8 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
+  { date:'2026-11-24', type:'new', section:'data', title:'资料区新增：318 个 5A 级景区视频合集', desc:'318 个国家 5A 级景区讲解 + 185 个高清航拍视频，从壮丽山河到人文古迹一次看全，出门前做攻略，没空出门也能云游中国。',
+    link:{ quark:'https://pan.quark.cn/s/68ddb43e6190' } },
   { date:'2026-11-24', type:'new', section:'data', title:'资料区新增：60+ 本人性心理学电子书', desc:'识人、社交、谈判、心理博弈、防骗技巧，60 多本人性心理学 PDF 一次存齐，察言观色、识人识局的书都在这里。',
     link:{ quark:'https://pan.quark.cn/s/013b5d1d8dca' } },
   { date:'2026-11-23', type:'new', section:'software', title:'实用软件新增：随身听书', desc:'开源聚合听书播放器：40 个书源插件导入即用，恐怖、灵异、推理、都市言情、官场、职场全部分好类，支持多源聚合搜索、下载离线听；内置夸克/百度/阿里/115 网盘和 WebDAV 入口，网盘音频直接当有声书听，本地 txt/epub 还能选朗读引擎朗读。电脑 v5.6 免安装，安卓 v5.7 直接装，书架进度云同步。',
