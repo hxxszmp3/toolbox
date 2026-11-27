@@ -237,6 +237,8 @@ const SECTIONS = [
    新增一条：在数组最前面 unshift 即可，站点按日期倒序展示
    ===================================================================== */
 const UPDATES = [
+  { date:'2026-11-27', type:'update', section:'novel', title:'番茄小说下载器更新至 2026.11.26-1351-r888', desc:'上游继续高频发版，最新构建 r888 已出：Windows、macOS、Linux、安卓、iOS 全平台支持，安卓区分 64 位 / 32 位 / x86_64 架构，按设备选对应安装包即可。',
+    link:{ quark:'https://pan.quark.cn/s/867ce5b0aad5', baidu:'https://pan.baidu.com/s/1Rg_Ffo3vqfSU4EdQVlJPhA?pwd=f46i', uc:'https://drive.uc.cn/s/2a09d6d4d86c4' } },
   { date:'2026-11-24', type:'new', section:'data', title:'资料区新增：318 个 5A 级景区视频合集', desc:'318 个国家 5A 级景区讲解 + 185 个高清航拍视频，从壮丽山河到人文古迹一次看全，出门前做攻略，没空出门也能云游中国。',
     link:{ quark:'https://pan.quark.cn/s/68ddb43e6190' } },
   { date:'2026-11-24', type:'new', section:'data', title:'资料区新增：60+ 本人性心理学电子书', desc:'识人、社交、谈判、心理博弈、防骗技巧，60 多本人性心理学 PDF 一次存齐，察言观色、识人识局的书都在这里。',
